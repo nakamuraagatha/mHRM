@@ -21,8 +21,7 @@
 //   SPARKLINES -->
 //=  require plugin/sparkline/jquery.sparkline.min.js
 
-//   JQUERY VALIDATE -->
-//=  require plugin/jquery-validate/jquery.validate.min.js
+
 
 //   JQUERY MASKED INPUT -->
 //=  require plugin/masked-input/jquery.maskedinput.min.js
@@ -46,12 +45,4 @@
 //=  require smart-chat-ui/smart.chat.ui.min.js
 //=  require smart-chat-ui/smart.chat.manager.min.js
 
-
-
-
-$(document).ready(function() {
-
-    // DO NOT REMOVE : GLOBAL FUNCTIONS!
-    pageSetUp();
-});
 

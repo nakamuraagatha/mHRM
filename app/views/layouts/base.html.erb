@@ -14,7 +14,6 @@
   <%= csrf_meta_tags %>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  <%= javascript_include_tag 'smart_admin/smart_admin' %>
 
 
   <!-- We recommend you use "your_style.css" to override SmartAdmin
@@ -35,35 +34,7 @@
 
 </head>
 
-<!--
 
-TABLE OF CONTENTS.
-
-Use search to find needed section.
-
-===================================================================
-
-|  01. #CSS Links                |  all CSS links and file paths  |
-|  02. #FAVICONS                 |  Favicon links and file paths  |
-|  03. #GOOGLE FONT              |  Google font link              |
-|  04. #APP SCREEN / ICONS       |  app icons, screen backdrops   |
-|  05. #BODY                     |  body tag                      |
-|  06. #HEADER                   |  header tag                    |
-|  07. #PROJECTS                 |  project lists                 |
-|  08. #TOGGLE LAYOUT BUTTONS    |  layout buttons and actions    |
-|  09. #MOBILE                   |  mobile view dropdown          |
-|  10. #SEARCH                   |  search field                  |
-|  11. #NAVIGATION               |  left panel & navigation       |
-|  12. #RIGHT PANEL              |  right panel userlist          |
-|  13. #MAIN PANEL               |  main panel                    |
-|  14. #MAIN CONTENT             |  content holder                |
-|  15. #PAGE FOOTER              |  page footer                   |
-|  16. #SHORTCUT AREA            |  dropdown shortcuts area       |
-|  17. #PLUGINS                  |  all scripts and plugins       |
-
-===================================================================
-
--->
 
 <!-- #BODY -->
 <!-- Possible Classes
@@ -113,6 +84,14 @@ Use search to find needed section.
   </div>
 </div>
 <!-- END PAGE FOOTER -->
+<%= javascript_include_tag 'smart_admin/smart_admin' %>
+<script>
+  $(document).ready(function() {
+
+    // DO NOT REMOVE : GLOBAL FUNCTIONS!
+    pageSetUp();
+  });
+</script>
 </body>
 
 </html>
