@@ -1,0 +1,25 @@
+<div id="shortcut">
+  <ul>
+    <% if user_signed_in? %>
+        <li>
+          <%= link_to edit_user_registration_path, class: 'jarvismetro-tile big-cubes selected bg-color-pinkDark' do %>
+              <i class="fa fa-user fa-4x"></i> <span>My Profile </span>
+          <% end %>
+        </li>
+
+        <li>
+          <%= link_to destroy_user_session_path, class: 'jarvismetro-tile big-cubes selected bg-color-greenLight' do %>
+              <i class="fa fa-user fa-4x"></i> <span> Sign out </span>
+          <% end %>
+        </li>
+    <% else %>
+        <%= link_to new_user_session_path, class: 'jarvismetro-tile big-cubes selected bg-color-pinkDark' do %>
+            <i class="fa fa-user fa-4x"></i> <span> Sign In </span>
+        <% end %>
+
+        <%= link_to new_registration_path(:user), class: 'jarvismetro-tile big-cubes selected bg-color-greenLight' do %>
+            <i class="fa fa-user fa-4x"></i> <span> Register </span>
+        <% end %>
+    <% end %>
+  </ul>
+</div>

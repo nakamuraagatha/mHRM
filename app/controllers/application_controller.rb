@@ -1,5 +1,11 @@
 class ApplicationController < ActionController::Base
-  # Prevent CSRF attacks by raising an exception.
-  # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
+
+  layout 'base'
+
+  # Attempt to find the mapped route for devise based on request path
+  def devise_mapping
+    @devise_mapping ||= request.env["devise.mapping"]
+  end
+
 end

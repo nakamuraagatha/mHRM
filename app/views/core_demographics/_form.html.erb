@@ -1,0 +1,62 @@
+<%= form_for(core_demographic) do |f| %>
+  <% if core_demographic.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(core_demographic.errors.count, "error") %> prohibited this core_demographic from being saved:</h2>
+
+      <ul>
+      <% core_demographic.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :first_name %>
+    <%= f.text_field :first_name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :last_name %>
+    <%= f.text_field :last_name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :middle_name %>
+    <%= f.text_field :middle_name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :gender_id %>
+    <%= f.select :gender_id, options_for_select(Gender.gender_for_select, selected: core_demographic.gender_id) %>
+  </div>
+
+  <div class="field">
+    <%= f.label :birth_date %>
+    <%= f.date_select :birth_date %>
+  </div>
+
+  <div class="field">
+    <%= f.label :religion_id %>
+    <%= f.select :religion_id, options_for_select(Religion.religion_for_select, selected: core_demographic.religion_id) %>
+  </div>
+
+  <div class="field">
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+  </div>
+
+  <div class="field">
+    <%= f.label :note %>
+    <%= f.text_area :note %>
+  </div>
+
+  <div class="field">
+    <%= f.label :ethnicity_id %>
+    <%= f.number_field :ethnicity_id %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit 'Update Profile' %>
+  </div>
+<% end %>

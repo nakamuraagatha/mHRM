@@ -1,0 +1,1 @@
+json.partial! "core_demographics/core_demographic", core_demographic: @core_demographic

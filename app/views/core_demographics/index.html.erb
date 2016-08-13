@@ -1,0 +1,43 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Core Demographics</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>First name</th>
+      <th>Last name</th>
+      <th>Middle name</th>
+      <th>Gender</th>
+      <th>Birth date</th>
+      <th>Religion</th>
+      <th>Title</th>
+      <th>Note</th>
+      <th>Ethnicity</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @core_demographics.each do |core_demographic| %>
+      <tr>
+        <td><%= core_demographic.first_name %></td>
+        <td><%= core_demographic.last_name %></td>
+        <td><%= core_demographic.middle_name %></td>
+        <td><%= core_demographic.gender_id %></td>
+        <td><%= core_demographic.birth_date %></td>
+        <td><%= core_demographic.religion_id %></td>
+        <td><%= core_demographic.title %></td>
+        <td><%= core_demographic.note %></td>
+        <td><%= core_demographic.ethnicity_id %></td>
+        <td><%= link_to 'Show', core_demographic %></td>
+        <td><%= link_to 'Edit', edit_core_demographic_path(core_demographic) %></td>
+        <td><%= link_to 'Destroy', core_demographic, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Core Demographic', new_core_demographic_path %>

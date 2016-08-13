@@ -1,0 +1,2 @@
+json.extract! core_demographic, :id, :first_name, :last_name, :middle_name, :gender_id, :birth_date, :religion_id, :title, :note, :ethnicity_id, :created_at, :updated_at
+json.url core_demographic_url(core_demographic, format: :json)

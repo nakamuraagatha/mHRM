@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Education type:</strong>
+  <%= @education.education_type %>
+</p>
+
+<p>
+  <strong>Certification:</strong>
+  <%= @education.certification %>
+</p>
+
+<p>
+  <strong>Other skill:</strong>
+  <%= @education.other_skill %>
+</p>
+
+<p>
+  <strong>Date recieved:</strong>
+  <%= @education.date_recieved %>
+</p>
+
+<p>
+  <strong>Date expired:</strong>
+  <%= @education.date_expired %>
+</p>
+
+<p>
+  <strong>Note:</strong>
+  <%= @education.note %>
+</p>
+
+<p>
+  <strong>Clearence:</strong>
+  <%= @education.clearence %>
+</p>
+
+<%= link_to 'Edit', edit_education_path(@education) %> |
+<%= link_to 'Back', educations_path %>
