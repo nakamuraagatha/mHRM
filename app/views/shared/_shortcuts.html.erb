@@ -8,7 +8,7 @@
         </li>
 
         <li>
-          <%= link_to destroy_user_session_path, class: 'jarvismetro-tile big-cubes selected bg-color-greenLight' do %>
+          <%= link_to destroy_user_session_path, :method => :delete, class: 'jarvismetro-tile big-cubes selected bg-color-greenLight' do %>
               <i class="fa fa-user fa-4x"></i> <span> Sign out </span>
           <% end %>
         </li>

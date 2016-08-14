@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  resources :educations
+  resources :educations do
+    collection do
+      get 'my'
+    end
+  end
   resources :roles
   resources :addresses
   resources :contact_types

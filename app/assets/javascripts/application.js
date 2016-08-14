@@ -12,7 +12,6 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
 //   JQUERY VALIDATE -->
 //=  require plugin/jquery-validate/jquery.validate.min.js
 

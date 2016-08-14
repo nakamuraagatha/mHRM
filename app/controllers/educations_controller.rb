@@ -1,10 +1,15 @@
 class EducationsController < ApplicationController
+  before_action  :authenticate_user!
   before_action :set_education, only: [:show, :edit, :update, :destroy]
 
   # GET /educations
   # GET /educations.json
   def index
     @educations = Education.all
+  end
+
+  def my
+    @educations = Education.where(user_id: current_user.id )
   end
 
   # GET /educations/1
@@ -69,6 +74,6 @@ class EducationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def education_params
-      params.require(:education).permit(:education_type, :certification, :other_skill, :date_recieved, :date_expired, :note, :clearence)
+      params.require(:education).permit(:user_id, :education_type, :certification, :other_skill, :date_recieved, :date_expired, :note, :clearence)
     end
 end

@@ -29,7 +29,7 @@ class CoreDemographicsController < ApplicationController
 
     respond_to do |format|
       if @core_demographic.save
-        format.html { redirect_to @core_demographic, notice: 'Core demographic was successfully created.' }
+        format.html { redirect_to :back, notice: 'Profile was successfully Update.' }
         format.json { render :show, status: :created, location: @core_demographic }
       else
         format.html { render :new }
@@ -43,7 +43,7 @@ class CoreDemographicsController < ApplicationController
   def update
     respond_to do |format|
       if @core_demographic.update(core_demographic_params)
-        format.html { redirect_to @core_demographic, notice: 'Core demographic was successfully updated.' }
+        format.html { redirect_to @core_demographic, notice: 'Profile was successfully updated.' }
         format.json { render :show, status: :ok, location: @core_demographic }
       else
         format.html { render :edit }
@@ -70,6 +70,6 @@ class CoreDemographicsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def core_demographic_params
-      params.require(:core_demographic).permit(:first_name, :last_name, :middle_name, :gender_id, :birth_date, :religion_id, :title, :note, :ethnicity_id)
+      params.require(:core_demographic).permit(:user_id, :first_name, :last_name, :middle_name, :gender_id, :birth_date, :religion_id, :title, :note, :ethnicity_id)
     end
 end

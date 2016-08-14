@@ -1,52 +1,86 @@
-<%= form_for(education) do |f| %>
-  <% if education.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(education.errors.count, "error") %> prohibited this education from being saved:</h2>
+<%= form_for(education, html: { method: :post, class: 'form-horizontal' }) do |f| %>
+    <% if education.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(education.errors.count, "error") %> prohibited this education from being saved:</h2>
 
-      <ul>
-      <% education.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+          <ul>
+            <% education.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+    <fieldset>
+      <legend>Set education</legend>
+
+      <% if action_name == "my" %>
+          <%= f.hidden_field :user_id %>
+      <% else %>
+          <div class="form-group">
+            <%= f.label :user_id, class: 'col-md-2 control-label' %>
+            <div class="col-md-9">
+              <%= f.select :user_id,options_for_select(User.pluck(:login, :id), selected: education.user_id), {} ,{class: 'form-control'} %>
+            </div>
+          </div>
       <% end %>
-      </ul>
-    </div>
-  <% end %>
+      <div class="form-group">
+        <%= f.label :education_type, class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.text_field :education_type , class: 'form-control' %>
+        </div>
+      </div>
 
-  <div class="field">
-    <%= f.label :education_type %>
-    <%= f.text_field :education_type %>
-  </div>
+      <div class="form-group">
+        <%= f.label :certification, class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.text_field :certification , class: 'form-control' %>
+        </div>
+      </div>
 
-  <div class="field">
-    <%= f.label :certification %>
-    <%= f.text_field :certification %>
-  </div>
+      <div class="form-group">
+        <%= f.label :other_skill , class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.text_field :other_skill, class: 'form-control' %>
+        </div>
+      </div>
 
-  <div class="field">
-    <%= f.label :other_skill %>
-    <%= f.text_field :other_skill %>
-  </div>
+      <div class="form-group">
+        <%= f.label :date_recieved, class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.text_field :date_recieved , class: 'form-control date_picker' %>
+        </div>
+      </div>
 
-  <div class="field">
-    <%= f.label :date_recieved %>
-    <%= f.date_select :date_recieved %>
-  </div>
+      <div class="form-group">
+        <%= f.label :date_expired, class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.text_field :date_expired , class: 'form-control date_picker' %>
+        </div>
+      </div>
 
-  <div class="field">
-    <%= f.label :date_expired %>
-    <%= f.date_select :date_expired %>
-  </div>
+      <div class="form-group">
+        <%= f.label :note , class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.text_area :note , class: 'form-control' %>
+        </div>
+      </div>
 
-  <div class="field">
-    <%= f.label :note %>
-    <%= f.text_area :note %>
-  </div>
+      <div class="form-group">
+        <%= f.label :clearence , class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.select :clearence, options_for_select(Education::EducationClearence.select_options, selected: education.clearence) ,{}, {class: 'form-control' }%>
+        </div>
+      </div>
 
-  <div class="field">
-    <%= f.label :clearence %>
-    <%= f.number_field :clearence %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+      <div class="form-group" >
+        <div class="col-md-11">
+          <%= f.submit "Update", class: 'btn btn-primary pull-right' %>
+        </div>
+      </div>
+    </fieldset>
 <% end %>
+<script>
+  $(function(){
+    $('.date_picker').datepicker({})
+  })
+</script>

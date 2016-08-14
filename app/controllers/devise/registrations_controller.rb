@@ -35,7 +35,7 @@ class Devise::RegistrationsController < DeviseController
 
   # GET /resource/edit
   def edit
-    @core_demographic = current_user.core_demographic || CoreDemographic.new(user_id: current_user.id)
+    @core_demographic = current_user.core_demographic || CoreDemographic.create(user_id: current_user.id)
     render :edit
   end
 
