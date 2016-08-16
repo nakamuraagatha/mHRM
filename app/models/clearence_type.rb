@@ -1,14 +1,14 @@
-class ContactType < Enumeration
-  has_many :contacts
+class ClearenceType < Enumeration
+  has_many :educations
 
-  OptionName = :contact_type
+  OptionName = :clearence_type
 
   def option_name
     OptionName
   end
 
   def objects
-    Contact.where(:activity_id => self.id)
+    Education.where(:activity_id => self.id)
   end
 
   def objects_count

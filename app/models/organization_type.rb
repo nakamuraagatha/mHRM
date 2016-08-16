@@ -1,14 +1,15 @@
-class ContactType < Enumeration
-  has_many :contacts
+class OrganizationType < Enumeration
+  has_many :organization
 
-  OptionName = :contact_type
+  OptionName = :organization_type
+
 
   def option_name
     OptionName
   end
 
   def objects
-    Contact.where(:activity_id => self.id)
+    Organization.where(:activity_id => self.id)
   end
 
   def objects_count

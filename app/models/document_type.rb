@@ -1,14 +1,14 @@
-class ContactType < Enumeration
-  has_many :contacts
+class DocumentType < Enumeration
+  has_many :documents
 
-  OptionName = :contact_type
+  OptionName = :document_type
 
   def option_name
     OptionName
   end
 
   def objects
-    Contact.where(:activity_id => self.id)
+    Document.where(:activity_id => self.id)
   end
 
   def objects_count

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160813225219) do
+ActiveRecord::Schema.define(version: 20160815214042) do
 
   create_table "addresses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.integer  "address_type"
@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(version: 20160813225219) do
     t.text     "note",              limit: 65535
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
+    t.integer  "activity_id"
   end
 
   create_table "core_demographics", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
@@ -72,6 +73,15 @@ ActiveRecord::Schema.define(version: 20160813225219) do
     t.integer  "user_id"
   end
 
+  create_table "enumerations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+    t.string  "name",          limit: 30, default: "",    null: false
+    t.integer "position"
+    t.boolean "is_default",               default: false, null: false
+    t.string  "type"
+    t.boolean "active",                   default: true,  null: false
+    t.string  "position_name", limit: 30
+  end
+
   create_table "ethnicities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string   "ethnicity"
     t.datetime "created_at", null: false
@@ -87,10 +97,11 @@ ActiveRecord::Schema.define(version: 20160813225219) do
   create_table "organizations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string   "name"
     t.integer  "address_id"
-    t.text     "note",       limit: 65535
+    t.text     "note",        limit: 65535
     t.integer  "contact_id"
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.integer  "activity_id"
   end
 
   create_table "religions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
