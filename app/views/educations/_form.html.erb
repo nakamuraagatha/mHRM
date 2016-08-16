@@ -1,4 +1,10 @@
-<%= form_for(education, html: { method: :post, class: 'form-horizontal' }) do |f| %>
+<% if EducationType.count.zero? %>
+    <h2>Education Type must be present</h2>
+<% end %>
+<% if ClearenceType.count.zero? %>
+    <h2>Clearence Type must be present</h2>
+<% end %>
+<%= form_for(education, html: { class: 'form-horizontal' }) do |f| %>
     <% if education.errors.any? %>
         <div id="error_explanation">
           <h2><%= pluralize(education.errors.count, "error") %> prohibited this education from being saved:</h2>
@@ -13,27 +19,27 @@
     <fieldset>
       <legend>Set education</legend>
 
-      <% if action_name == "my" %>
-          <%= f.hidden_field :user_id %>
-      <% else %>
+      <% if current_user.admin? %>
           <div class="form-group">
             <%= f.label :user_id, class: 'col-md-2 control-label' %>
             <div class="col-md-9">
               <%= f.select :user_id,options_for_select(User.pluck(:login, :id), selected: education.user_id), {} ,{class: 'form-control'} %>
             </div>
           </div>
+      <% else %>
+          <%= f.hidden_field :user_id %>
       <% end %>
       <div class="form-group">
         <%= f.label :education_type, class: 'col-md-2 control-label' %>
         <div class="col-md-9">
-          <%= f.text_field :education_type , class: 'form-control' %>
+          <%= f.select :education_type_id, options_for_select(EducationType.pluck(:name, :id), selected: education.education_type), {},{ class: 'form-control'} %>
         </div>
       </div>
 
       <div class="form-group">
         <%= f.label :certification, class: 'col-md-2 control-label' %>
         <div class="col-md-9">
-          <%= f.text_field :certification , class: 'form-control' %>
+          <%= f.select :certification, options_for_select(Education::Certification::ARRAY, selected: education.certification),{}, {class: 'form-control'} %>
         </div>
       </div>
 
@@ -68,7 +74,7 @@
       <div class="form-group">
         <%= f.label :clearence , class: 'col-md-2 control-label' %>
         <div class="col-md-9">
-          <%= f.select :clearence, options_for_select(Education::EducationClearence.select_options, selected: education.clearence) ,{}, {class: 'form-control' }%>
+          <%= f.select :clearence, options_for_select(ClearenceType.pluck(:name, :id), selected: education.clearence) ,{}, {class: 'form-control' }%>
         </div>
       </div>
 

@@ -21,7 +21,7 @@ class EnumerationsController < ApplicationController
 
   def create
     if request.post? && @enumeration.save
-      flash[:notice] = l(:notice_successful_create)
+      flash[:notice] = I18n.t(:notice_successful_create)
       redirect_to enumerations_path
     else
       render :action => 'new'
@@ -35,7 +35,7 @@ class EnumerationsController < ApplicationController
     if @enumeration.update_attributes(params[:enumeration])
       respond_to do |format|
         format.html {
-          flash[:notice] = "notice_successful_update"
+          flash[:notice] = I18n.t "notice_successful_update"
           redirect_to enumerations_path
         }
         format.js { render :nothing => true }
@@ -66,7 +66,8 @@ class EnumerationsController < ApplicationController
 
   def build_new_enumeration
     class_name = params[:enumeration] && params[:enumeration][:type] || params[:type]
-    @enumeration = Enumeration.new_subclass_instance(class_name, params.require(:enumeration).permit!)
+
+    @enumeration = Enumeration.new_subclass_instance(class_name, params[:action]=='new' ? params[:enumeration] : params.require(:enumeration).permit!)
     if @enumeration.nil?
       render_404
     end

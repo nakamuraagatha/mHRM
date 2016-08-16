@@ -7,4 +7,13 @@ module ApplicationHelper
 
     link_to "<i class='fa fa-lg fa-trash-o'></i>".html_safe, url, options
   end
+
+  def show_link(object, options={})
+    link_to "<i class='fa fa-lg fa-eye'></i>".html_safe, object, options
+  end
+
+  def edit_link(url, options={})
+    link_to "<i class='fa fa-lg fa-edit'></i>".html_safe, url, options
+  end
+
 end
