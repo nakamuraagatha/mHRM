@@ -30,49 +30,49 @@
           <%= f.hidden_field :user_id %>
       <% end %>
       <div class="form-group">
-        <%= f.label :education_type, class: 'col-md-2 control-label' %>
+        <%= f.label t('education_type'), class: 'col-md-2 control-label' %>
         <div class="col-md-9">
           <%= f.select :education_type_id, options_for_select(EducationType.pluck(:name, :id), selected: education.education_type), {},{ class: 'form-control'} %>
         </div>
       </div>
 
       <div class="form-group">
-        <%= f.label :certification, class: 'col-md-2 control-label' %>
+        <%= f.label t(:education_certification), class: 'col-md-2 control-label' %>
         <div class="col-md-9">
           <%= f.select :certification, options_for_select(Education::Certification::ARRAY, selected: education.certification),{}, {class: 'form-control'} %>
         </div>
       </div>
 
       <div class="form-group">
-        <%= f.label :other_skill , class: 'col-md-2 control-label' %>
+        <%= f.label t('education_other_skill') , class: 'col-md-2 control-label' %>
         <div class="col-md-9">
           <%= f.text_field :other_skill, class: 'form-control' %>
         </div>
       </div>
 
       <div class="form-group">
-        <%= f.label :date_recieved, class: 'col-md-2 control-label' %>
+        <%= f.label t('education_date_received'), class: 'col-md-2 control-label' %>
         <div class="col-md-9">
           <%= f.text_field :date_recieved , class: 'form-control date_picker' %>
         </div>
       </div>
 
       <div class="form-group">
-        <%= f.label :date_expired, class: 'col-md-2 control-label' %>
+        <%= f.label t(:education_date_expired), class: 'col-md-2 control-label' %>
         <div class="col-md-9">
           <%= f.text_field :date_expired , class: 'form-control date_picker' %>
         </div>
       </div>
 
       <div class="form-group">
-        <%= f.label :note , class: 'col-md-2 control-label' %>
+        <%= f.label t(:label_note) , class: 'col-md-2 control-label' %>
         <div class="col-md-9">
           <%= f.text_area :note , class: 'form-control' %>
         </div>
       </div>
 
       <div class="form-group">
-        <%= f.label :clearence , class: 'col-md-2 control-label' %>
+        <%= f.label t(:education_clearence) , class: 'col-md-2 control-label' %>
         <div class="col-md-9">
           <%= f.select :clearence, options_for_select(ClearenceType.pluck(:name, :id), selected: education.clearence) ,{}, {class: 'form-control' }%>
         </div>
@@ -80,13 +80,13 @@
 
       <div class="form-group" >
         <div class="col-md-11">
-          <%= f.submit "Update", class: 'btn btn-primary pull-right' %>
+          <%= f.submit t('button_save'), class: 'btn btn-primary pull-right' %>
         </div>
       </div>
     </fieldset>
 <% end %>
 <script>
   $(function(){
-    $('.date_picker').datepicker({})
+    $('.date_picker').datepicker({ dateFormat: 'dd-mm-yy' })
   })
 </script>

@@ -28,46 +28,46 @@
 
 
       <div class="form-group">
-        <%= f.label :first_name, class: 'col-md-2 control-label' %>
+        <%= f.label t(:profile.first_name), class: 'col-md-2 control-label' %>
         <div class="col-md-9">
           <%= f.text_field :first_name, placeholder: 'First name', class: 'form-control' %>
         </div>
       </div>
 
       <div class="form-group">
-        <%= f.label :middle_name, class: 'col-md-2 control-label' %>
+        <%= f.label t(:profile.middle_name), class: 'col-md-2 control-label' %>
         <div class="col-md-9">
           <%= f.text_field :middle_name, placeholder: 'Middle name', class: 'form-control' %>
         </div>
       </div>
 
       <div class="form-group">
-        <%= f.label :last_name, class: 'col-md-2 control-label' %>
+        <%= f.label t(:profile.last_name), class: 'col-md-2 control-label' %>
         <div class="col-md-9">
           <%= f.text_field :last_name, placeholder: 'Last name', class: 'form-control' %>
         </div>
       </div>
 
       <div class="form-group">
-        <label class="col-md-2 control-label">Gender</label>
+        <label class="col-md-2 control-label"><%= t('profile.gender') %></label>
         <div class="col-md-9">
           <%= f.select :gender_id, options_for_select(Gender.gender_for_select, selected: core_demographic.gender_id), {},{class: 'form-control'} %>
         </div>
       </div>
       <div class="form-group">
-        <label class="col-md-2 control-label">Birthday</label>
+        <label class="col-md-2 control-label"><%= t('profile.birthday') %></label>
         <div class="col-md-9">
           <%= f.text_field :birth_date, class: 'form-control' %>
         </div>
       </div>
       <div class="form-group">
-        <label class="col-md-2 control-label">Religion</label>
+        <label class="col-md-2 control-label"><%= t('profile.religion') %></label>
         <div class="col-md-9">
-          <%= f.select :religion_id, options_for_select(Religion.religion_for_select, selected: core_demographic.religion_id) , {},{class: 'form-control'} %>
+          <%= f.select :religion_id, options_for_select(ReligionType.select(:name, :id), selected: core_demographic.religion_id) , {},{class: 'form-control'} %>
         </div>
       </div>
       <div class="form-group">
-        <label class="col-md-2 control-label">Note</label>
+        <label class="col-md-2 control-label"><%= t('label_note') %></label>
         <div class="col-md-9">
           <%= f.text_area :note, class: 'form-control' %>
         </div>
@@ -75,7 +75,7 @@
 
       <div class="form-group" >
         <div class="col-md-11">
-          <%= f.submit "Update", class: 'btn btn-primary pull-right' %>
+          <%= f.submit t(:button_save), class: 'btn btn-primary pull-right' %>
         </div>
       </div>
     </fieldset>
@@ -84,6 +84,6 @@
 
 <script>
   $(document).ready(function(){
-    $('#core_demographic_birth_date').datepicker()
+    $('#core_demographic_birth_date').datepicker({ dateFormat: 'dd-mm-yy' })
   })
 </script>
