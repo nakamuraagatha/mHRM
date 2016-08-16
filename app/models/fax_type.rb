@@ -1,14 +1,14 @@
-class RoleType < Enumeration
-  has_many :roles
+class FaxType < Enumeration
+  has_many :organizations
 
-  OptionName = :enumeration_role_type
+  OptionName = :enumeration_fax_type
 
   def option_name
     OptionName
   end
 
   def objects
-    Role.where(:activity_id => self.id)
+    Organization.where(:fax_id => self.id)
   end
 
   def objects_count

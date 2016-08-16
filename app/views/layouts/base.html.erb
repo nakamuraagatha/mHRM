@@ -67,31 +67,37 @@
 
   <div id="content">
     <div class="row">
-    <%= yield %>
-
-  </div>
-  </div>
-</div>
-<!-- END MAIN PANEL -->
-<%= render partial: 'shared/shortcuts' %>
-<!-- PAGE FOOTER -->
-<div class="page-footer">
-  <div class="row">
-    <div class="col-xs-12 col-sm-6">
-      <span class="txt-color-white">Red Carpet<span class="hidden-xs"> - Bilel KEDIDI </span> © 2016</span>
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="well no-padding">
+          <%= yield %>
+        </div>
+        <div>
+        </div>
+      </div>
     </div>
-
   </div>
 </div>
-<!-- END PAGE FOOTER -->
-<%= javascript_include_tag 'smart_admin/smart_admin' %>
-<script>
-  $(document).ready(function() {
+  <!-- END MAIN PANEL -->
+    <%= render partial: 'shared/shortcuts' %>
+    <!-- PAGE FOOTER -->
+    <div class="page-footer">
+      <div class="row">
+        <div class="col-xs-12 col-sm-6">
+          <span class="txt-color-white">Red Carpet<span class="hidden-xs"> - Bilel KEDIDI </span> © 2016</span>
+        </div>
 
-    // DO NOT REMOVE : GLOBAL FUNCTIONS!
-    pageSetUp();
-  });
-</script>
+      </div>
+    </div>
+    <!-- END PAGE FOOTER -->
+    <%= javascript_include_tag 'smart_admin/smart_admin' %>
+    <script>
+      $(document).ready(function() {
+
+        // DO NOT REMOVE : GLOBAL FUNCTIONS!
+        pageSetUp();
+      });
+    </script>
+
 </body>
 
 </html>

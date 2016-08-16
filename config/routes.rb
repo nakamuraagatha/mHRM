@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :enumerations
+
   resources :educations do
     collection do
       get 'my'
@@ -6,7 +8,6 @@ Rails.application.routes.draw do
   end
   resources :roles
   resources :addresses
-  resources :contact_types
   resources :contacts
   resources :organizations
   resources :core_demographics

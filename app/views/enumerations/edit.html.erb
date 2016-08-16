@@ -1,7 +1,11 @@
-<%= @enumeration.option_name %>
+<%= t @enumeration.option_name %>
 
 <%=form_for :enumeration, object: @enumeration, :url => enumerations_path, html: { class: 'form-horizontal' } do |f| %>
     <%= f.hidden_field :type  %>
     <%= render :partial => 'form', :locals => {:f => f} %>
-    <%= submit_tag :save %>
+    <div class="form-group" >
+      <div class="col-md-11">
+        <%= f.submit t(:button_save), class: 'btn btn-primary pull-right' %>
+      </div>
+    </div>
 <% end %>

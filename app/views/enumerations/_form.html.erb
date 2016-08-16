@@ -12,19 +12,19 @@
 <% end %>
 
 <div class="form-group">
-  <%= f.label :name, class: 'col-md-2 control-label' %>
+  <%= f.label t(:label_name), class: 'col-md-2 control-label' %>
   <div class="col-md-9">
     <%= f.text_field :name , class: 'form-control' %>
   </div>
 </div>
 <div class="form-group">
-  <%= f.label :active, class: 'col-md-2 control-label' %>
+  <%= f.label t(:label_active), class: 'col-md-2 control-label' %>
   <div class="col-md-9">
     <%= f.check_box :active, class: 'form-control' %>
   </div>
 </div>
 <div class="form-group">
-  <%= f.label :is_default, class: 'col-md-2 control-label' %>
+  <%= f.label t(:label_default), class: 'col-md-2 control-label' %>
   <div class="col-md-9">
     <%= f.check_box :is_default, class: 'form-control' %>
   </div>

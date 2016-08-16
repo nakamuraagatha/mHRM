@@ -1,7 +1,7 @@
 class EmploymentType < Enumeration
   has_many :employments
 
-  OptionName = :employment_type
+  OptionName = :enumeration_employment_type
 
   def option_name
     OptionName

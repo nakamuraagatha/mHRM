@@ -1,36 +1,30 @@
-<h2><%= 'label_enumerations' %></h2>
+
+<h2> <%= t :enumerations_label %></h2>
 
 <% Enumeration.get_subclasses.each do |klass| %>
-<h3><%= klass::OptionName %></h3>
+    <h3><%= t(klass::OptionName) %></h3>
+    <p><%= link_to I18n.t("enumeration_new_label"), new_enumeration_path(:type => klass.name), class: 'btn btn-default'  %></p>
+    <% enumerations = klass.where(nil) %>
+    <% if enumerations.any? %>
+        <table class="table table-responsive table-bordered table-striped ">
+          <thead>
+          <tr>
+            <th><%= t :label_name %></th>
+            <th><%= t :label_default %></th>
+            <th><%= t :label_active %></th>
+            <th></th>
+          </tr>
+          </thead>
+          <% enumerations.each do |enumeration| %>
+              <tr>
+                <td class="name"><%= link_to enumeration, edit_enumeration_path(enumeration) %></td>
+                <td class="tick"><%= enumeration.is_default? %></td>
+                <td class="tick"><%= enumeration.active? %></td>
+                <td class="buttons">
 
-<% enumerations = klass.where(nil) %>
-<% if enumerations.any? %>
-<table class="table table-responsive"><thead>
-<tr>
-    <th>Name</th>
-    <th>Default</th>
-    <th>Active</th>
-    <th></th>
-</tr></thead>
-<% enumerations.each do |enumeration| %>
-<tr class="<%= cycle('odd', 'even') %>">
-    <td class="name"><%= link_to enumeration, edit_enumeration_path(enumeration) %></td>
-    <td class="tick"><%= enumeration.is_default? %></td>
-    <td class="tick"><%= enumeration.active? %></td>
-    <td class="buttons">
-
-    </td>
-</tr>
-<% end %>
-</table>
-<% reset_cycle %>
-<% end %>
-
-<p><%= link_to "label_enumeration_new", new_enumeration_path(:type => klass.name) %></p>
-<% end %>
-
-
-
-<%= javascript_tag do %>
-  $(function() { $("table.enumerations tbody").positionedItems(); });
+                </td>
+              </tr>
+          <% end %>
+        </table>
+    <% end %>
 <% end %>

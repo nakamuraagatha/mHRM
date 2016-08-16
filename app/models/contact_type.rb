@@ -1,7 +1,7 @@
 class ContactType < Enumeration
   has_many :contacts
 
-  OptionName = :contact_type
+  OptionName = :enumeration_contact_type
 
   def option_name
     OptionName

@@ -1,7 +1,7 @@
 class DocumentType < Enumeration
   has_many :documents
 
-  OptionName = :document_type
+  OptionName = :enumeration_document_type
 
   def option_name
     OptionName

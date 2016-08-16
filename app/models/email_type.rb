@@ -1,7 +1,7 @@
 class EmailType < Enumeration
   has_many :organizations
 
-  OptionName = :email_type
+  OptionName = :enumeration_email_type
 
   def option_name
     OptionName

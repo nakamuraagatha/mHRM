@@ -1,7 +1,7 @@
 class OrganizationType < Enumeration
   has_many :organization
 
-  OptionName = :organization_type
+  OptionName = :enumeration_organization_type
 
 
   def option_name

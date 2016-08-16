@@ -1,7 +1,7 @@
 class ClearenceType < Enumeration
   has_many :educations
 
-  OptionName = :clearence_type
+  OptionName = :enumeration_clearence_type
 
   def option_name
     OptionName
