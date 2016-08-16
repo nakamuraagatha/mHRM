@@ -14,6 +14,7 @@ en:
   label_name: Name
   label_on: On
   label_off: Off
+  text_are_you_sure: Are you sure to delete this record?
 
   button_save: Save
   button_create: Create

@@ -20,9 +20,7 @@
                 <td class="name"><%= link_to enumeration, edit_enumeration_path(enumeration) %></td>
                 <td class="tick"><%= enumeration.is_default? %></td>
                 <td class="tick"><%= enumeration.active? %></td>
-                <td class="buttons">
-
-                </td>
+                <td class="buttons"><%= delete_link enumeration_path(enumeration) %></td>
               </tr>
           <% end %>
         </table>
