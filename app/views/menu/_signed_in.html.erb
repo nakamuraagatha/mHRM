@@ -1,10 +1,14 @@
 <ul>
   <li class="active">
-    <a href="<%= edit_user_registration_path %>" title="Dashboard"><i class="fa fa-lg fa-fw fa-home"></i> <span class="menu-item-parent">Profile</span></a>
+    <a href="<%= edit_user_registration_path %>" title="Dashboard"><i class="fa fa-lg fa-fw fa-home"></i> <span class="menu-item-parent"><%= t('profile.profile') %></span></a>
   </li>
 
-  <li class="active">
+  <li class="">
     <a href="<%= my_educations_path %>" title="Dashboard"><i class="fa fa-lg fa-fw fa-home"></i> <span class="menu-item-parent">Educations</span></a>
+  </li>
+
+  <li class="">
+    <a href="<%= organizations_path %>" title="Dashboard"><i class="fa fa-lg fa-fw fa-home"></i> <span class="menu-item-parent">Organizations</span></a>
   </li>
 
   <% if current_user.admin? %>

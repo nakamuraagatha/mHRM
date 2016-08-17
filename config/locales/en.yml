@@ -150,6 +150,8 @@ en:
   label_default: Default
   label_active: Active
   label_name: Name
+  label_address: Address
+  label_contact: Contact
   label_on: On
   label_off: Off
   label_note: note
@@ -158,6 +160,8 @@ en:
   notice_successful_create: Successful creation.
   notice_successful_update: Successful update.
   notice_successful_delete: Successful deletion.
+  new_organization: New Organization
+  organizations:   Organizations
 
   button_save: Save
   button_create: Create

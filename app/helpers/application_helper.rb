@@ -16,4 +16,9 @@ module ApplicationHelper
     link_to "<i class='fa fa-lg fa-edit'></i>".html_safe, url, options
   end
 
+  def options_helper(klass, selected)
+    options_for_select(klass.active.pluck(:name, :id), selected: selected )
+  end
+
+
 end
