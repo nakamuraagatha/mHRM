@@ -63,3 +63,6 @@ gem 'therubyracer', platforms: :ruby
 gem 'execjs'
 gem 'binding_of_caller'
 gem 'awesome_print', require: 'ap'
+gem 'carrierwave'
+gem "jquery-fileupload-rails"
+gem "mini_magick"

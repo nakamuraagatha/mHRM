@@ -14,4 +14,6 @@
 //= require jquery_ujs
 //   JQUERY VALIDATE -->
 //=  require plugin/jquery-validate/jquery.validate.min.js
+//= require jquery-fileupload/basic
+//= require jquery-fileupload/vendor/tmpl
 

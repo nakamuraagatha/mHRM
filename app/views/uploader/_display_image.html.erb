@@ -1,0 +1,4 @@
+<div class="col-md-12" id="image" align="center">
+  <%= image_tag current_user.avatar.resized.url %>
+  <i class="fa fa-times" onclick="$.getScript('/remove_image.js')" style="cursor: pointer;"></i>
+</div>

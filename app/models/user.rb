@@ -17,4 +17,6 @@ class User < ApplicationRecord
     return '-' if profile.nil?
     "#{profile.first_name} #{profile.last_name}"
   end
+
+  mount_uploader :avatar, AvatarUploader
 end

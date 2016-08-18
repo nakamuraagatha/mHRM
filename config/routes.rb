@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   resources :addresses
   resources :contacts
   resources :organizations
+  post 'image_upload', to: "core_demographics#image_upload"
+  get 'remove_image', to: "core_demographics#remove_image"
   resources :core_demographics
   devise_for :users
   get 'home/index'

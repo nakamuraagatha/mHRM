@@ -1,0 +1,71 @@
+<%= form_for :image, url: image_upload_path, :html => {method: :post,  :multipart => true, :id => "fileupload"  } do |f| %>
+    <h4></h4>
+
+    <div class="input-group">
+      <input id="fileupload" type="file" name="images">
+          <span class="input-group-btn">
+            <!--<button class="btn btn-secondary fileinput-button" type="button"><i class="fa fa-times" aria-hidden="true"></i>
+            </button>-->
+          </span>
+    </div>
+
+    <br>
+<% end %>
+
+<script id="template-upload" type="text/x-tmpl">
+  <div class="upload">
+  {%=o.name%}
+  <div class="progress"> <div class="progress-bar progress-bar-success"></div>  </div>
+  </div>
+</script>
+
+<script>
+  /*jslint unparam: true */
+  /*global window, $ */
+  $(function () {
+    'use strict';
+    url: '<%= image_upload_path %>';
+    $('#fileupload').fileupload({
+      dataType: 'script',
+      add: function(e, data){
+        var uploadErrors = [];
+        var acceptFileTypes = /^image\/(gif|jpe?g|png)$/i;
+        if(data.originalFiles[0]['type'].length && !acceptFileTypes.test(data.originalFiles[0]['type'])) {
+          uploadErrors.push('Not an accepted file type');
+        }
+        if(data.originalFiles[0]['size'].length && data.originalFiles[0]['size'] > 5000000) {
+          uploadErrors.push('Filesize is too big');
+        }
+        if(uploadErrors.length > 0) {
+          alert(uploadErrors.join("\n"));
+        } else {
+          data.context = $(tmpl('template-upload', data.files[0]));
+          $('#files').append(data.context);
+          data.submit()
+        }
+
+      },
+      done: function (e, data) {
+        data.context.hide();
+      },
+      fail: function (e, data) {
+        $.each(data.messages, function (index, error) {
+          $('<p style="color: red;">Upload file error: ' + error + '<i class="elusive-remove" style="padding-left:10px;"/></p>')
+              .appendTo('#files');
+        });
+      },
+      progress: function (e, data) {
+        if( data.context)
+        {
+          var progress = parseInt(data.loaded / data.total * 100, 10);
+          data.context.find('.progress-bar').css(
+              'width',
+              progress + '%'
+          );
+        }
+
+      }
+    }).prop('disabled', !$.support.fileInput)
+        .parent().addClass($.support.fileInput ? undefined : 'disabled');
+  });
+</script>

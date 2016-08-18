@@ -1,19 +1,22 @@
-<%= form_for(core_demographic, html: { class: 'form-horizontal' }) do |f| %>
-    <% if core_demographic.errors.any? %>
-        <div id="error_explanation">
-          <h2><%= pluralize(core_demographic.errors.count, "error") %> prohibited this core_demographic from being saved:</h2>
+<fieldset>
+  <legend>Profile edit</legend>
+  <div id="files" class="files">
+    <%= render partial: 'uploader/display_image' %>
+  </div>
 
-          <ul>
-            <% core_demographic.errors.full_messages.each do |message| %>
-                <li><%= message %></li>
-            <% end %>
-          </ul>
-        </div>
-    <% end %>
+  <%= render partial: 'uploader/upload' %>
+  <%= form_for(core_demographic, html: { class: 'form-horizontal' }) do |f| %>
+      <% if core_demographic.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(core_demographic.errors.count, "error") %> prohibited this core_demographic from being saved:</h2>
 
-
-    <fieldset>
-      <legend>Profile edit</legend>
+            <ul>
+              <% core_demographic.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+      <% end %>
 
       <% if controller_name == "registrations" %>
           <%= f.hidden_field :user_id %>
@@ -78,12 +81,13 @@
           <%= f.submit t(:button_save), class: 'btn btn-primary pull-right' %>
         </div>
       </div>
-    </fieldset>
 
-<% end %>
+  <% end %>
 
-<script>
-  $(document).ready(function(){
-    $('#core_demographic_birth_date').datepicker({ dateFormat: 'dd-mm-yy' })
-  })
-</script>
+  <script>
+    $(document).ready(function(){
+      $('#core_demographic_birth_date').datepicker({ dateFormat: 'dd-mm-yy' })
+    })
+  </script>
+</fieldset>
+

@@ -8,6 +8,18 @@ class CoreDemographicsController < ApplicationController
     @core_demographics = CoreDemographic.all
   end
 
+  def image_upload
+    current_user.avatar = params[:images]
+    current_user.save
+    render 'uploader/image_upload'
+  end
+
+  def remove_image
+    current_user.remove_avatar!
+    current_user.save
+    render 'uploader/remove_image'
+  end
+
   # GET /core_demographics/1
   # GET /core_demographics/1.json
   def show
