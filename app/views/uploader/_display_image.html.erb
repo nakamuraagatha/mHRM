@@ -1,4 +1,6 @@
-<div class="col-md-12" id="image" align="center">
-  <%= image_tag current_user.avatar.resized.url %>
-  <i class="fa fa-times" onclick="$.getScript('/remove_image.js')" style="cursor: pointer;"></i>
+<div class="col-sm-3 profile-pic" style="margin-top: 20px;">
+  <% if current_user.avatar.resized.url %>
+      <%= image_tag( current_user.avatar.resized.url) %>
+  <% else %>
+  <% end %>
 </div>

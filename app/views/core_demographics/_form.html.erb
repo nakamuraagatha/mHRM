@@ -1,10 +1,14 @@
 <fieldset>
-  <legend>Profile edit</legend>
-  <div id="files" class="files">
-    <%= render partial: 'uploader/display_image' %>
-  </div>
+  <legend></legend>
+  <div class="col-sm-12">
 
-  <%= render partial: 'uploader/upload' %>
+    <div class="row">
+      <div id="files" class="files">
+        <%= render partial: 'uploader/display_image' %>
+      </div>
+      <%= render partial: 'uploader/upload' %>
+    </div>
+  </div>
   <%= form_for(core_demographic, html: { class: 'form-horizontal' }) do |f| %>
       <% if core_demographic.errors.any? %>
           <div id="error_explanation">
