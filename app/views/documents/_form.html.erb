@@ -1,0 +1,68 @@
+
+<fieldset>
+  <legend></legend>
+  <%= form_for(document, html: { class: 'form-horizontal',  :multipart => true}) do |f| %>
+      <% if document.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(document.errors.count, "error") %> prohibited this document from being saved:</h2>
+
+            <ul>
+              <% document.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+      <% end %>
+
+      <% if current_user.admin? %>
+          <div class="form-group">
+            <%= f.label :user_id, class: 'col-md-2 control-label' %>
+            <div class="col-md-9">
+              <%= f.select :user_id, options_for_select(User.pluck(:login, :id), selected: document.user_id), {} ,{class: 'form-control'} %>
+            </div>
+          </div>
+      <% else %>
+          <%= f.hidden_field :user_id %>
+      <% end %>
+
+      <div class="form-group">
+        <%= f.label t(:title), class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.text_field :title , class: 'form-control' %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label t(:description) , class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.text_area :description , class: 'form-control' %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label t(:document_type), class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.select :document_type_id, options_for_select(DocumentType.active.pluck(:name, :id), selected: document.document_type_id) , {} ,{class: 'form-control'} %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label t(:date) , class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.text_field :date , class: 'form-control' %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label t(:attachment), class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.file_field :attachment %>
+        </div>
+      </div>
+      <div class="form-group" >
+        <div class="col-md-11">
+          <%= f.submit t(:button_save), class: 'btn btn-primary pull-right' %>
+        </div>
+      </div>
+  <% end %>
+</fieldset>

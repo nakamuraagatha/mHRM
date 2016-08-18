@@ -142,6 +142,7 @@ en:
   enumeration_education_type: Education type enumeration
   enumeration_new_label: New_value
   education_type: Education
+  educations: Educations
   education_certification: Certification
   education_other_skill: Other skill
   education_date_received: Date received
@@ -162,8 +163,14 @@ en:
   notice_successful_update: Successful update.
   notice_successful_delete: Successful deletion.
   new_organization: New Organization
-  organizations:   Organizations
-  organization:   Organization
+  organizations: Organizations
+  organization: Organization
+  document_type: Document type
+  documents: Documents
+  description: Description
+  title: Title
+  date: date
+  attachment: Attachment
 
   button_save: Save
   button_create: Create
