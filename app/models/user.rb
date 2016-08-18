@@ -11,4 +11,10 @@ class User < ApplicationRecord
 
   validates_uniqueness_of :login, :email
   validates_presence_of :login, :email
+
+  def name
+    profile = core_demographic
+    return '-' if profile.nil?
+    "#{profile.first_name} #{profile.last_name}"
+  end
 end

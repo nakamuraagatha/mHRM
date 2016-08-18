@@ -155,6 +155,7 @@ en:
   label_on: On
   label_off: Off
   label_note: note
+  label_user: User
   label_no_data: No data to display
   text_are_you_sure: Are you sure to delete this record?
   notice_successful_create: Successful creation.
@@ -162,6 +163,7 @@ en:
   notice_successful_delete: Successful deletion.
   new_organization: New Organization
   organizations:   Organizations
+  organization:   Organization
 
   button_save: Save
   button_create: Create
