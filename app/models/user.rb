@@ -18,5 +18,17 @@ class User < ApplicationRecord
     "#{profile.first_name} #{profile.last_name}"
   end
 
+  def gender
+    core_demographic.try :gender
+  end
+
+  def profile_image
+    if avatar.thumb.url
+      avatar.thumb.url
+    else
+      'male.png'
+    end
+  end
+
   mount_uploader :avatar, AvatarUploader
 end
