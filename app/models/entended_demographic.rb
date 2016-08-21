@@ -1,0 +1,2 @@
+class EntendedDemographic < ApplicationRecord
+end

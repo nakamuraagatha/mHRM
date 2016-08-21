@@ -1,0 +1,1 @@
+json.partial! "entended_demographics/entended_demographic", entended_demographic: @entended_demographic

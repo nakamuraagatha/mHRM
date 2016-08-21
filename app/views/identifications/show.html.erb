@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Identification number:</strong>
+  <%= @identification.identification_number %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @identification.status %>
+</p>
+
+<p>
+  <strong>Date expired:</strong>
+  <%= @identification.date_expired %>
+</p>
+
+<p>
+  <strong>Issued by:</strong>
+  <%= @identification.issued_by %>
+</p>
+
+<p>
+  <strong>Note:</strong>
+  <%= @identification.note %>
+</p>
+
+<p>
+  <strong>Identification type:</strong>
+  <%= @identification.identification_type_id %>
+</p>
+
+<%= link_to 'Edit', edit_identification_path(@identification) %> |
+<%= link_to 'Back', identifications_path %>

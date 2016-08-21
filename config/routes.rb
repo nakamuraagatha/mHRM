@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  resources :positions
+  resources :departments
+  resources :entended_demographics
+  resources :identifications
   resources :documents
   resources :enumerations
 

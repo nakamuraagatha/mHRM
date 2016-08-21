@@ -1,0 +1,47 @@
+<%= form_for(identification) do |f| %>
+  <% if identification.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(identification.errors.count, "error") %> prohibited this identification from being saved:</h2>
+
+      <ul>
+      <% identification.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :identification_number %>
+    <%= f.text_field :identification_number %>
+  </div>
+
+  <div class="field">
+    <%= f.label :status %>
+    <%= f.check_box :status %>
+  </div>
+
+  <div class="field">
+    <%= f.label :date_expired %>
+    <%= f.date_select :date_expired %>
+  </div>
+
+  <div class="field">
+    <%= f.label :issued_by %>
+    <%= f.text_field :issued_by %>
+  </div>
+
+  <div class="field">
+    <%= f.label :note %>
+    <%= f.text_area :note %>
+  </div>
+
+  <div class="field">
+    <%= f.label :identification_type_id %>
+    <%= f.number_field :identification_type_id %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

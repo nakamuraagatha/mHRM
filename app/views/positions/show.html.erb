@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @position.user_id %>
+</p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @position.title %>
+</p>
+
+<p>
+  <strong>Position description:</strong>
+  <%= @position.position_description %>
+</p>
+
+<p>
+  <strong>Location:</strong>
+  <%= @position.location %>
+</p>
+
+<p>
+  <strong>Special requirement:</strong>
+  <%= @position.special_requirement %>
+</p>
+
+<p>
+  <strong>Note:</strong>
+  <%= @position.note %>
+</p>
+
+<p>
+  <strong>Date start:</strong>
+  <%= @position.date_start %>
+</p>
+
+<p>
+  <strong>Date end:</strong>
+  <%= @position.date_end %>
+</p>
+
+<p>
+  <strong>Files:</strong>
+  <%= @position.files %>
+</p>
+
+<%= link_to 'Edit', edit_position_path(@position) %> |
+<%= link_to 'Back', positions_path %>

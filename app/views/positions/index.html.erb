@@ -1,0 +1,43 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Positions</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Title</th>
+      <th>Position description</th>
+      <th>Location</th>
+      <th>Special requirement</th>
+      <th>Note</th>
+      <th>Date start</th>
+      <th>Date end</th>
+      <th>Files</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @positions.each do |position| %>
+      <tr>
+        <td><%= position.user_id %></td>
+        <td><%= position.title %></td>
+        <td><%= position.position_description %></td>
+        <td><%= position.location %></td>
+        <td><%= position.special_requirement %></td>
+        <td><%= position.note %></td>
+        <td><%= position.date_start %></td>
+        <td><%= position.date_end %></td>
+        <td><%= position.files %></td>
+        <td><%= link_to 'Show', position %></td>
+        <td><%= link_to 'Edit', edit_position_path(position) %></td>
+        <td><%= link_to 'Destroy', position, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Position', new_position_path %>

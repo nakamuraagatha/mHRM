@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @department.user_id %>
+</p>
+
+<p>
+  <strong>Note:</strong>
+  <%= @department.note %>
+</p>
+
+<p>
+  <strong>Date start:</strong>
+  <%= @department.date_start %>
+</p>
+
+<p>
+  <strong>Date end:</strong>
+  <%= @department.date_end %>
+</p>
+
+<%= link_to 'Edit', edit_department_path(@department) %> |
+<%= link_to 'Back', departments_path %>

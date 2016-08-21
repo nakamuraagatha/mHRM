@@ -1,0 +1,2 @@
+json.extract! identification, :id, :identification_number, :status, :date_expired, :issued_by, :note, :identification_type_id, :created_at, :updated_at
+json.url identification_url(identification, format: :json)

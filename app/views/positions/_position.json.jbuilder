@@ -1,0 +1,2 @@
+json.extract! position, :id, :user_id, :title, :position_description, :location, :special_requirement, :note, :date_start, :date_end, :files, :created_at, :updated_at
+json.url position_url(position, format: :json)
