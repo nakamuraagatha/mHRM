@@ -1,28 +1,57 @@
-
 <h2> <%= t :enumerations_label %></h2>
+<div id="accordion">
+  <% Enumeration.get_subclasses.each do |klass| %>
+      <div>
+        <h3><%= t(klass::OptionName) %></h3>
+        <div class="padding-10">
+          <p><%= link_to I18n.t("enumeration_new_label"), new_enumeration_path(:type => klass.name), class: 'btn btn-default'  %></p>
+          <% enumerations = klass.where(nil) %>
+          <% if enumerations.any? %>
 
-<% Enumeration.get_subclasses.each do |klass| %>
-    <h3><%= t(klass::OptionName) %></h3>
-    <p><%= link_to I18n.t("enumeration_new_label"), new_enumeration_path(:type => klass.name), class: 'btn btn-default'  %></p>
-    <% enumerations = klass.where(nil) %>
-    <% if enumerations.any? %>
-        <table class="table table-responsive table-bordered table-striped ">
-          <thead>
-          <tr>
-            <th><%= t :label_name %></th>
-            <th><%= t :label_default %></th>
-            <th><%= t :label_active %></th>
-            <th></th>
-          </tr>
-          </thead>
-          <% enumerations.each do |enumeration| %>
-              <tr>
-                <td class="name"><%= link_to enumeration, edit_enumeration_path(enumeration) %></td>
-                <td class="tick"><%= enumeration.is_default? %></td>
-                <td class="tick"><%= enumeration.active? %></td>
-                <td class="buttons"><%= delete_link enumeration_path(enumeration) %></td>
-              </tr>
+              <table class="table table-responsive table-bordered table-striped ">
+                <thead>
+                <tr>
+                  <th><%= t :label_name %></th>
+                  <th><%= t :label_default %></th>
+                  <th><%= t :label_active %></th>
+                  <th></th>
+                </tr>
+                </thead>
+                <% enumerations.each do |enumeration| %>
+                    <tr>
+                      <td class="name"><%= link_to enumeration, edit_enumeration_path(enumeration) %></td>
+                      <td class="tick"><%= enumeration.is_default? %></td>
+                      <td class="tick"><%= enumeration.active? %></td>
+                      <td class="buttons"><%= delete_link enumeration_path(enumeration) %></td>
+                    </tr>
+                <% end %>
+              </table>
+
           <% end %>
-        </table>
-    <% end %>
-<% end %>
+        </div>
+      </div>
+  <% end %>
+</div>
+<script>
+  $(function(){
+    /*
+     * ACCORDION
+     */
+    //jquery accordion
+
+    var accordionIcons = {
+      header: "fa fa-plus",    // custom icon class
+      activeHeader: "fa fa-minus" // custom icon class
+    };
+
+    $("#accordion").accordion({
+      autoHeight : false,
+      heightStyle : "content",
+      collapsible : true,
+      animate : 300,
+      icons: accordionIcons,
+      header : "h3"
+    })
+
+  })
+</script>
