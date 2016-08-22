@@ -1,62 +1,89 @@
-<%= form_for(position) do |f| %>
-  <% if position.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(position.errors.count, "error") %> prohibited this position from being saved:</h2>
+<fieldset>
+  <legend>Set education</legend>
+  <%= form_for(position, html: { class: 'form-horizontal' }) do |f| %>
+      <% if position.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(position.errors.count, "error") %> prohibited this position from being saved:</h2>
 
-      <ul>
-      <% position.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+            <ul>
+              <% position.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
       <% end %>
-      </ul>
-    </div>
+
+      <% if current_user.admin? %>
+          <div class="form-group">
+            <%= f.label :user_id, class: 'col-md-2 control-label' %>
+            <div class="col-md-9">
+              <%= f.select :user_id,options_for_select(User.pluck(:login, :id), selected: position.user_id), {} ,{class: 'form-control'} %>
+            </div>
+          </div>
+      <% else %>
+          <%= f.hidden_field :user_id %>
+      <% end %>
+
+      <div class="form-group">
+        <%= f.label :title, class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.text_field :title, class: 'form-control' %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :position_description, class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.text_area :position_description , class: 'form-control' %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :location , class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.text_field :location , class: 'form-control' %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :special_requirement , class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.text_field :special_requirement , class: 'form-control' %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :note , class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.text_area :note , class: 'form-control' %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :date_start , class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.text_field :date_start, class: 'form-control' %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :date_end , class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.text_field :date_end , class: 'form-control' %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :files , class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.text_field :files %>
+        </div>
+      </div>
+
+      <div class="form-group" >
+        <div class="col-md-11">
+          <%= f.submit t('button_save'), class: 'btn btn-primary pull-right' %>
+        </div>
+      </div>
   <% end %>
-
-  <div class="field">
-    <%= f.label :user_id %>
-    <%= f.number_field :user_id %>
-  </div>
-
-  <div class="field">
-    <%= f.label :title %>
-    <%= f.text_field :title %>
-  </div>
-
-  <div class="field">
-    <%= f.label :position_description %>
-    <%= f.text_area :position_description %>
-  </div>
-
-  <div class="field">
-    <%= f.label :location %>
-    <%= f.text_field :location %>
-  </div>
-
-  <div class="field">
-    <%= f.label :special_requirement %>
-    <%= f.text_field :special_requirement %>
-  </div>
-
-  <div class="field">
-    <%= f.label :note %>
-    <%= f.text_area :note %>
-  </div>
-
-  <div class="field">
-    <%= f.label :date_start %>
-    <%= f.date_select :date_start %>
-  </div>
-
-  <div class="field">
-    <%= f.label :date_end %>
-    <%= f.date_select :date_end %>
-  </div>
-
-  <div class="field">
-    <%= f.label :files %>
-    <%= f.text_field :files %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+</fieldset>

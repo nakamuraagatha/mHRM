@@ -30,5 +30,9 @@ class User < ApplicationRecord
     end
   end
 
+  def to_s
+    name
+  end
+
   mount_uploader :avatar, AvatarUploader
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160818214156) do
+ActiveRecord::Schema.define(version: 20160821182323) do
 
   create_table "addresses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.integer  "address_type"
@@ -60,6 +60,15 @@ ActiveRecord::Schema.define(version: 20160818214156) do
     t.datetime "updated_at",                 null: false
   end
 
+  create_table "departments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+    t.integer  "user_id"
+    t.text     "note",       limit: 65535
+    t.date     "date_start"
+    t.date     "date_end"
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
+
   create_table "documents", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string   "title"
     t.text     "description",      limit: 65535
@@ -85,6 +94,14 @@ ActiveRecord::Schema.define(version: 20160818214156) do
     t.integer  "education_type_id"
   end
 
+  create_table "entended_demographics", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+    t.integer  "identification_id"
+    t.integer  "owner_id"
+    t.string   "owner_type"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
+
   create_table "enumerations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string  "name",          limit: 30, default: "",    null: false
     t.integer "position"
@@ -106,6 +123,17 @@ ActiveRecord::Schema.define(version: 20160818214156) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "identifications", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+    t.string   "identification_number"
+    t.boolean  "status"
+    t.date     "date_expired"
+    t.string   "issued_by"
+    t.text     "note",                   limit: 65535
+    t.integer  "identification_type_id"
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+  end
+
   create_table "organizations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string   "name"
     t.integer  "address_id"
@@ -117,6 +145,20 @@ ActiveRecord::Schema.define(version: 20160818214156) do
     t.integer  "organization_type_id"
     t.integer  "address_type_id"
     t.integer  "user_id"
+  end
+
+  create_table "positions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+    t.integer  "user_id"
+    t.string   "title"
+    t.text     "position_description", limit: 65535
+    t.string   "location"
+    t.string   "special_requirement"
+    t.text     "note",                 limit: 65535
+    t.date     "date_start"
+    t.date     "date_end"
+    t.string   "files"
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
   end
 
   create_table "religions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|

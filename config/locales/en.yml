@@ -167,6 +167,7 @@ en:
   organization: Organization
   document_type: Document type
   documents: Documents
+  positions: Positions
   description: Description
   title: Title
   date: date

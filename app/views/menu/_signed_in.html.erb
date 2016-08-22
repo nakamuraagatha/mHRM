@@ -1,18 +1,22 @@
 <ul>
   <li class="active">
-    <a href="<%= edit_user_registration_path %>" title="Dashboard"><i class="fa fa-lg fa-fw fa-home"></i> <span class="menu-item-parent"><%= t('profile.profile') %></span></a>
+    <a href="<%= edit_user_registration_path %>" title="Profile"><i class="fa fa-lg fa-fw fa-home"></i> <span class="menu-item-parent"><%= t('profile.profile') %></span></a>
   </li>
 
   <li class="">
-    <a href="<%= my_educations_path %>" title="Dashboard"><i class="fa fa-lg fa-fw fa-graduation-cap"></i> <span class="menu-item-parent"><%= t(:educations) %></span></a>
+    <a href="<%= my_educations_path %>" title="Educations"><i class="fa fa-lg fa-fw fa-graduation-cap"></i> <span class="menu-item-parent"><%= t(:educations) %></span></a>
   </li>
 
   <li class="">
-    <a href="<%= organizations_path %>" title="Dashboard"><i class="fa fa-lg fa-fw fa-group"></i> <span class="menu-item-parent"><%= t(:organizations) %></span></a>
+    <a href="<%= organizations_path %>" title="Organizations"><i class="fa fa-lg fa-fw fa-group"></i> <span class="menu-item-parent"><%= t(:organizations) %></span></a>
   </li>
 
   <li class="">
-    <a href="<%= documents_path %>" title="Dashboard"><i class="fa fa-lg fa-fw fa-book"></i> <span class="menu-item-parent"><%= t(:documents) %></span></a>
+    <a href="<%= documents_path %>" title="Documents"><i class="fa fa-lg fa-fw fa-book"></i> <span class="menu-item-parent"><%= t(:documents) %></span></a>
+  </li>
+
+  <li class="">
+    <a href="<%= positions_path %>" title="Positions"><i class="fa fa-lg fa-fw fa-sort"></i> <span class="menu-item-parent"><%= t(:positions) %></span></a>
   </li>
 
   <% if current_user.admin? %>
