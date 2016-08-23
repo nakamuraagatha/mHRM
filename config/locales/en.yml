@@ -135,6 +135,7 @@ en:
   enumeration_contact_type: Contact enumeration
   enumeration_email_type: Email enumeration
   enumeration_fax_type: Fax enumeration
+  enumeration_phone_type: Phone enumeration
   enumeration_employment_type: Employment type enumeration
   enumeration_religion_type: Religion type enumeration
   enumeration_role_type: Role type enumeration
