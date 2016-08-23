@@ -5,9 +5,12 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
   has_one :core_demographic
+  has_one :exte
 
   has_many :organizations
   has_many :educations
+  has_many :documents
+  has_many :positions
 
   validates_uniqueness_of :login, :email
   validates_presence_of :login, :email

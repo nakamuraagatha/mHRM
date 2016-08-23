@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Extend Demographies</h1>
+
+<%= link_to 'New Extend Demography', new_extend_demography_path , class:'btn btn-primary pull-right'%>
+
+<table class="table table-responsive table-bordered">
+  <thead>
+  <tr>
+    <th>User</th>
+    <th>Identification</th>
+    <th colspan="3"></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% if @extend_demographies.any? %>
+      <% @extend_demographies.each do |extend_demography| %>
+          <tr>
+            <td><%= extend_demography.user %></td>
+            <td><%= extend_demography.identification %></td>
+            <td><%= show_link extend_demography %></td>
+            <td><%= edit_link edit_extend_demography_path(extend_demography) %></td>
+            <td><%= delete_link extend_demography%></td>
+          </tr>
+      <% end %>
+  <% else %>
+      <tr align="center">
+        <td colspan="11"><%= t('label_no_data') %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>

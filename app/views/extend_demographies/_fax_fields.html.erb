@@ -1,0 +1,25 @@
+<div class="nested-fields">
+  <div class="form-group">
+    <%= f.label t('label_fax_type'), class: 'col-md-2 control-label' %>
+    <div class="col-md-7">
+      <%= f.select :fax_type_id, options_for_select(FaxType.active.pluck(:name, :id)), {},{ class: 'form-control'} %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label t('fax'), class: 'col-md-2 control-label' %>
+    <div class="col-md-7">
+      <%= f.email_field :fax_number,  class: 'form-control' %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label t('label_note'), class: 'col-md-2 control-label' %>
+    <div class="col-md-7">
+      <%= f.text_area :note, class: 'form-control' %>
+    </div>
+  </div>
+  <div>
+    <%= link_to_remove_association "remove", f, class: 'btn btn-warning' %>
+  </div>
+</div>

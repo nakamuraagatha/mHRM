@@ -1,0 +1,2 @@
+module ExtendDemographiesHelper
+end

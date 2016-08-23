@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :extend_demographies
   resources :positions
   resources :departments
   resources :entended_demographics

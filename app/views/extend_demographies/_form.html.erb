@@ -1,0 +1,66 @@
+<%= simple_form_for(extend_demography, html: { class: 'form-horizontal' }) do |f| %>
+    <% if extend_demography.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(extend_demography.errors.count, "error") %> prohibited this extend_demography from being saved:</h2>
+
+          <ul>
+            <% extend_demography.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+
+    <% if current_user.admin? %>
+        <div class="form-group">
+          <%= f.label :user_id, class: 'col-md-2 control-label' %>
+          <div class="col-md-9">
+            <%= f.select :user_id, options_for_select(User.pluck(:login, :id), selected: extend_demography.user_id), {} ,{class: 'form-control'} %>
+          </div>
+        </div>
+    <% else %>
+        <%= f.hidden_field :user_id %>
+    <% end %>
+
+    <div id="emails">
+      <%= link_to_add_association 'add email', f, :emails, class: 'btn btn-success pull-right' %>
+
+      <%= f.simple_fields_for :emails do |mail| %>
+          <%= render 'email_fields', :f => mail %>
+      <% end %>
+
+    </div>
+
+    <div id="faxes">
+      <%= link_to_add_association 'add fax number', f, :faxes, class: 'btn btn-success pull-right' %>
+
+      <%= f.simple_fields_for :faxes do |fax| %>
+          <%= render 'fax_fields', :f => fax %>
+      <% end %>
+
+    </div>
+
+    <div id="phones">
+      <%= link_to_add_association 'add phone', f, :phones, class: 'btn btn-success pull-right' %>
+
+      <%= f.simple_fields_for :phones do |phone| %>
+          <%= render 'phone_fields', :f => phone %>
+      <% end %>
+
+    </div>
+
+    <div class="col-sm-12" style="margin-top: 10px">
+      <% extend_demography.identification ||= Identification.new %>
+      <%= f.fields_for :identification do |form| %>
+          <%= render 'extend_demographies/identification_field', :f => form, identification: extend_demography.identification%>
+      <% end %>
+    </div>
+
+
+    <div class="form-group" >
+      <div class="col-md-11">
+        <%= f.submit t('button_save'), class: 'btn btn-primary pull-right' %>
+      </div>
+    </div>
+<% end %>
