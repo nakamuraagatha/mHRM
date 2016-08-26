@@ -19,16 +19,7 @@
     <fieldset>
       <legend>Set education</legend>
 
-      <% if current_user.admin? %>
-          <div class="form-group">
-            <%= f.label :user_id, class: 'col-md-2 control-label' %>
-            <div class="col-md-9">
-              <%= f.select :user_id,options_for_select(User.pluck(:login, :id), selected: education.user_id), {} ,{class: 'form-control'} %>
-            </div>
-          </div>
-      <% else %>
-          <%= f.hidden_field :user_id %>
-      <% end %>
+      <%= f.hidden_field :user_id %>
       <div class="form-group">
         <%= f.label t('education_type'), class: 'col-md-2 control-label' %>
         <div class="col-md-9">
@@ -39,7 +30,7 @@
       <div class="form-group">
         <%= f.label t(:education_certification), class: 'col-md-2 control-label' %>
         <div class="col-md-9">
-          <%= f.select :certification, options_for_select(Education::Certification::ARRAY, selected: education.certification),{}, {class: 'form-control'} %>
+          <%= f.select :certification_type_id, options_for_select(CertificationType.active.pluck(:name, :id), selected: education.certification),{}, {class: 'form-control'} %>
         </div>
       </div>
 

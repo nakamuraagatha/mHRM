@@ -1,0 +1,33 @@
+
+<p id="notice"><%= notice %></p>
+
+<h1><%= t(:users) %></h1>
+
+<%#= link_to t(:new_user), new_user_path, class: 'btn btn-primary pull-right' %>
+<table class="table table-bordered table-responsive">
+  <thead>
+  <tr>
+    <th><%= t :login %></th>
+    <th><%= t :email %></th>
+    <th colspan="2"></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% if @users.any? %>
+      <% @users.each do |user| %>
+          <tr>
+            <td><%= user.login %></td>
+            <td><%= user.email %></td>
+            <td><%= show_link user %></td>
+            <td><%= delete_link user %></td>
+          </tr>
+      <% end %>
+  <% else %>
+      <tr align="center">
+        <td colspan="11"><%= t('label_no_data') %></td>
+      </tr>
+  <% end %>
+
+  </tbody>
+</table>

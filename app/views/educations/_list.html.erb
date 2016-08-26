@@ -1,0 +1,37 @@
+<table class="table table-responsive table-bordered">
+  <thead>
+  <tr>
+    <th><%= t :education_type %></th>
+    <th><%= t :education_certification %></th>
+    <th><%= t :education_other_skill %></th>
+    <th><%= t :education_date_received %></th>
+    <th><%= t :education_date_expired %></th>
+    <th><%= t :label_note %></th>
+    <th><%= t :education_clearence %></th>
+    <th colspan="3"></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% if educations.any? %>
+      <% educations.each do |education| %>
+          <tr>
+            <td><%= education.education_type %></td>
+            <td><%= education.certification %></td>
+            <td><%= education.other_skill %></td>
+            <td><%= education.date_recieved %></td>
+            <td><%= education.date_expired %></td>
+            <td><%= education.note %></td>
+            <td><%= education.clearence %></td>
+            <td><%= show_link user_education_path(@user, education) %></td>
+            <td><%= edit_link edit_user_education_path(@user, education) %></td>
+            <td><%= delete_link education %></td>
+          </tr>
+      <% end %>
+  <% else %>
+      <tr align="center">
+        <td colspan="11"><%= t('label_no_data') %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>

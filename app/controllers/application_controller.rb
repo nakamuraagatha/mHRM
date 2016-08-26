@@ -30,6 +30,12 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def find_user
+      @user = User.find params[:user_id]
+  rescue ActiveRecord::RecordNotFound
+    render_404
+  end
+
 
 
 end

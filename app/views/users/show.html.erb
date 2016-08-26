@@ -1,0 +1,56 @@
+<h1><%= @user.name %></h1>
+
+<section id="widget-grid" class="show_customer_account">
+  <div class="row">
+    <article class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+      <%= render partial: 'password',
+                 layout: 'shared/smart_widget_wrapper',
+                 locals: {
+                     wid_id: 'password',
+                     wid_title: 'Change password',
+                     user: @user
+                 } %>
+    </article>
+    <article class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+      <%= render partial: 'core_demographics/form',
+                 layout: 'shared/smart_widget_wrapper',
+                 locals: {
+                     wid_id: 'profile',
+                     wid_title: 'profile',
+                     core_demographic: @profile
+                 } %>
+    </article>
+  </div>
+
+  <div class="row">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <%= render partial: 'educations/list',
+                 layout: 'shared/smart_widget_wrapper',
+                 locals: {
+                     wid_id: 'educations',
+                     wid_title: 'Educations',
+                     educations: @educations
+                 } %>
+    </article>
+
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <%= render partial: 'documents/list',
+                 layout: 'shared/smart_widget_wrapper',
+                 locals: {
+                     wid_id: 'documents',
+                     wid_title: 'Documents',
+                     documents: @documents
+                 } %>
+    </article>
+
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <%= render partial: 'organizations/list',
+                 layout: 'shared/smart_widget_wrapper',
+                 locals: {
+                     wid_id: 'organizations',
+                     wid_title: 'Organizations',
+                     organizations: @organizations
+                 } %>
+    </article>
+  </div>
+</section>

@@ -8,7 +8,7 @@ class EducationType < Enumeration
   end
 
   def objects
-    Education.where(:activity_id => self.id)
+    Education.where(:education_type_id => self.id)
   end
 
   def objects_count
@@ -16,6 +16,6 @@ class EducationType < Enumeration
   end
 
   def transfer_relations(to)
-    objects.update_all(:activity_id => to.id)
+    objects.update_all(:education_type_id => to.id)
   end
 end

@@ -66,3 +66,6 @@ gem 'awesome_print', require: 'ap'
 gem 'carrierwave'
 gem "jquery-fileupload-rails"
 gem "mini_magick"
+gem "cocoon"
+gem 'simple_form'
+gem 'will_paginate'

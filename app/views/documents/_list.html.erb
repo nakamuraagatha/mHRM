@@ -1,0 +1,42 @@
+<table class="table table-bordered table-responsive">
+  <thead>
+  <tr>
+    <th><%= t(:title) %></th>
+    <th><%= t :description %></th>
+    <th><%= t :label_user %></th>
+    <th><%= t(:document_type)%></th>
+    <th><%= ( :date) %></th>
+    <th><%= t :attachment %></th>
+    <th colspan="3"></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% if documents.any? %>
+      <% documents.each do |document| %>
+          <tr>
+            <td><%= document.title %></td>
+            <td><%= document.description %></td>
+            <td><%= document.user_id %></td>
+            <td><%= document.document_type_id %></td>
+            <td><%= document.date %></td>
+            <td><%= document.attachment %></td>
+            <% if @user %>
+                <td><%= show_link user_document_path(@user, document) %></td>
+                <td><%= edit_link edit_user_document_path(@user, document) %></td>
+                <td><%= delete_link document %></td>
+            <% else %>
+                <td><%= show_link document %></td>
+                <td><%= edit_link edit_document_path(document) %></td>
+                <td><%= delete_link document %></td>
+            <% end %>
+          </tr>
+      <% end %>
+  <% else %>
+      <tr align="center">
+        <td colspan="9"><%= t('label_no_data') %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+

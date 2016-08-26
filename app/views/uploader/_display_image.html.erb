@@ -1,6 +1,6 @@
 <div class="col-sm-3 profile-pic" style="margin-top: 20px;">
-  <% if current_user.avatar.resized.url %>
-      <%= image_tag( current_user.avatar.resized.url) %>
+  <% if user.avatar.resized.url %>
+      <%= image_tag( user.avatar.resized.url) %>
   <% else %>
   <% end %>
 </div>

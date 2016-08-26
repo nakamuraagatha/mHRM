@@ -5,7 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
   has_one :core_demographic
-  has_one :exte
+  has_one :extend_demography
 
   has_many :organizations
   has_many :educations
@@ -17,12 +17,16 @@ class User < ApplicationRecord
 
   def name
     profile = core_demographic
-    return '-' if profile.nil?
+    return login if profile.nil?
     "#{profile.first_name} #{profile.last_name}"
   end
 
   def gender
     core_demographic.try :gender
+  end
+
+  def profile
+    core_demographic || CoreDemographic.new(user_id: self.id)
   end
 
   def profile_image

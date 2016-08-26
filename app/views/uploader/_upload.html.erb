@@ -1,4 +1,4 @@
-<%= form_for :image, url: image_upload_path, :html => {method: :post,  :multipart => true, :id => "fileupload"  } do |f| %>
+<%= form_for :image, url: image_upload_user_path(@user), :html => {method: :post,  :multipart => true, :id => "fileupload"  } do |f| %>
     <h4></h4>
 
     <div class="input-group">
@@ -24,7 +24,7 @@
   /*global window, $ */
   $(function () {
     'use strict';
-    url: '<%= image_upload_path %>';
+    url: '<%= image_upload_user_path(@user) %>';
     $('#fileupload').fileupload({
       dataType: 'script',
       add: function(e, data){

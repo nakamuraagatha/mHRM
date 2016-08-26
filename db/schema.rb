@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160823073805) do
+ActiveRecord::Schema.define(version: 20160826202931) do
 
   create_table "addresses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.integer  "address_type"
@@ -82,16 +82,16 @@ ActiveRecord::Schema.define(version: 20160823073805) do
 
   create_table "educations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string   "education_type"
-    t.string   "certification"
     t.string   "other_skill"
     t.date     "date_recieved"
     t.date     "date_expired"
-    t.text     "note",              limit: 65535
+    t.text     "note",                  limit: 65535
     t.integer  "clearence"
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
     t.integer  "user_id"
     t.integer  "education_type_id"
+    t.integer  "certification_type_id"
   end
 
   create_table "emails", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|

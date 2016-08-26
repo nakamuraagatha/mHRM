@@ -1,24 +1,6 @@
 class CoreDemographicsController < ApplicationController
   before_action  :authenticate_user!
-  before_action :set_core_demographic, only: [:show, :edit, :update, :destroy]
-
-  # GET /core_demographics
-  # GET /core_demographics.json
-  def index
-    @core_demographics = CoreDemographic.all
-  end
-
-  def image_upload
-    current_user.avatar = params[:images]
-    current_user.save
-    render 'uploader/image_upload'
-  end
-
-  def remove_image
-    current_user.remove_avatar!
-    current_user.save
-    render 'uploader/remove_image'
-  end
+  before_action :set_core_demographic, only: [:show, :edit, :update]
 
   # GET /core_demographics/1
   # GET /core_demographics/1.json
@@ -61,16 +43,6 @@ class CoreDemographicsController < ApplicationController
         format.html { render :edit }
         format.json { render json: @core_demographic.errors, status: :unprocessable_entity }
       end
-    end
-  end
-
-  # DELETE /core_demographics/1
-  # DELETE /core_demographics/1.json
-  def destroy
-    @core_demographic.destroy
-    respond_to do |format|
-      format.html { redirect_to core_demographics_url, notice: 'Core demographic was successfully destroyed.' }
-      format.json { head :no_content }
     end
   end
 

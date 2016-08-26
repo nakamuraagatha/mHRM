@@ -2,5 +2,5 @@
 alert('<%= current_user.errors.full_messages.join(', ') %>');
 <% else %>
 $('.files').html("");
-$('.files').html("<%= escape_javascript(render partial: 'uploader/display_image') %>");
+$('.files').html("<%= escape_javascript(render partial: 'uploader/display_image', locals: {user: @user}) %>");
 <% end %>

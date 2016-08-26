@@ -1,25 +1,38 @@
 Rails.application.routes.draw do
+
+
+
+  devise_for :users
+  resources :users, only: [:index, :show, :destroy] do
+    member do
+      put 'change_password'
+      post 'image_upload'
+      get 'remove_image'
+    end
+    resources :educations, only: [:show, :edit]
+    resources :documents, only: [:show, :edit]
+  end
+  resources :core_demographics
+
   resources :extend_demographies
   resources :positions
   resources :departments
   resources :entended_demographics
   resources :identifications
-  resources :documents
-  resources :enumerations
 
-  resources :educations do
+  resources :enumerations
+  resources :educations, except: [:index] do
     collection do
       get 'my'
     end
   end
+  resources :documents
+
   resources :roles
   resources :addresses
   resources :contacts
   resources :organizations
-  post 'image_upload', to: "core_demographics#image_upload"
-  get 'remove_image', to: "core_demographics#remove_image"
-  resources :core_demographics
-  devise_for :users
+
   get 'home/index'
 
   root to: "home#index"
