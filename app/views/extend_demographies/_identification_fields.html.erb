@@ -1,0 +1,50 @@
+<div class="nested-fields row bordered">
+  <fieldset>
+
+    <div class="col-md-12">
+      <%= link_to_remove_association "remove", f, class: 'btn btn-warning pull-right' %>
+
+      <div class="  form-group col-md-12">
+        <%= f.label :identification_type_id, class: 'col-md-2 control-label' %>
+        <div class="col-md-8">
+          <%= f.select :identification_type_id, IdentificationType.active.pluck(:name, :id), {} , {class: 'form-control'}%>
+        </div>
+      </div>
+
+      <div class="form-group col-md-12">
+        <%= f.label :identification_number, class: 'col-md-2 control-label' %>
+        <div class="col-md-8">
+          <%= f.text_field :identification_number,  class: 'form-control' %>
+        </div>
+      </div>
+
+      <div class="  form-group col-md-12">
+        <%= f.label :status, class: 'col-md-2 control-label' %>
+        <div class="col-md-8">
+          <%= f.check_box :status ,  class: 'form-control' %>
+        </div>
+      </div>
+
+      <div class="  form-group col-md-12">
+        <%= f.label :date_expired , class: 'col-md-2 control-label' %>
+        <div class="col-md-8">
+          <%= f.text_field :date_expired ,  class: 'form-control' %>
+        </div>
+      </div>
+
+      <div class="  form-group col-md-12">
+        <%= f.label :issued_by , class: 'col-md-2 control-label' %>
+        <div class="col-md-8">
+          <%= f.text_field :issued_by ,  class: 'form-control' %>
+        </div>
+      </div>
+
+      <div class="  form-group col-md-12">
+        <%= f.label :note , class: 'col-md-2 control-label' %>
+        <div class="col-md-8">
+          <%= f.text_area :note ,  class: 'form-control' %>
+        </div>
+      </div>
+    </div>
+  </fieldset>
+</div>

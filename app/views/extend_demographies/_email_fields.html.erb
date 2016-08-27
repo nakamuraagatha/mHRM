@@ -1,30 +1,32 @@
-<div class="nested-fields">
-  <div class="col-sm-12">
+<div class="nested-fields row">
+  <fieldset>
 
-    <div class="col-sm-1 pull-right">
-      <%= link_to_remove_association "remove", f, class: 'btn btn-warning' %>
-    </div>
+    <div class="col-md-12">
+      <%= link_to_remove_association "remove", f, class: 'btn btn-warning pull-right' %>
 
-    <div class="form-group">
-      <%= f.label t('label_email_type'), class: 'col-md-2 control-label' %>
-      <div class="col-md-7">
-        <%= f.select :email_type_id, options_for_select(EmailType.active.pluck(:name, :id)), {},{ class: 'form-control'} %>
+
+      <div class="form-group col-md-12">
+        <%= f.label t('label_email_type'), class: 'col-md-2 control-label' %>
+        <div class="col-md-8">
+          <%= f.select :email_type_id, options_for_select(EmailType.active.pluck(:name, :id)), {},{ class: 'form-control'} %>
+        </div>
       </div>
-    </div>
 
-    <div class="form-group">
-      <%= f.label t('email'), class: 'col-md-2 control-label' %>
-      <div class="col-md-7">
-        <%= f.email_field :email_address,  class: 'form-control' %>
+      <div class="form-group col-md-12">
+        <%= f.label t('email'), class: 'col-md-2 control-label' %>
+        <div class="col-md-8">
+          <%= f.email_field :email_address, class: 'form-control' %>
+        </div>
       </div>
-    </div>
 
-    <div class="form-group">
-      <%= f.label t('label_note'), class: 'col-md-2 control-label' %>
-      <div class="col-md-7">
-        <%= f.text_area :note, class: 'form-control' %>
+      <div class="form-group col-md-12">
+        <%= f.label t('label_note'), class: 'col-md-2 control-label' %>
+        <div class="col-md-8">
+          <%= f.text_area :note, class: 'form-control' %>
+        </div>
       </div>
+
     </div>
 
-  </div>
+  </fieldset>
 </div>

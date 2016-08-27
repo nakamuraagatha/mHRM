@@ -3,7 +3,7 @@ class CreateEmails < ActiveRecord::Migration[5.0]
     create_table :emails do |t|
       t.string :email_address
       t.integer :email_type_id
-      t.belongs_to :extend_demography, foreign_key: true
+      t.integer :extend_demography_id
       t.text :note
 
       t.timestamps

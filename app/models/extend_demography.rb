@@ -7,9 +7,13 @@ class ExtendDemography < ApplicationRecord
   accepts_nested_attributes_for :faxes, reject_if: :all_blank, allow_destroy: true
   has_many :phones
   accepts_nested_attributes_for :phones, reject_if: :all_blank, allow_destroy: true
+  has_many :identifications
+  accepts_nested_attributes_for :identifications, reject_if: :all_blank, allow_destroy: true
 
-  has_one :identification
-  accepts_nested_attributes_for :identification
+  has_many :addresses
+  accepts_nested_attributes_for :addresses, reject_if: :all_blank, allow_destroy: true
+  has_many :social_media
+  accepts_nested_attributes_for :social_media, reject_if: :all_blank, allow_destroy: true
 
 
 end

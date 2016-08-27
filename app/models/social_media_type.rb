@@ -1,5 +1,5 @@
 class SocialMediaType < Enumeration
-  has_many :organizations
+  has_many :social_media
 
   OptionName = :enumeration_social_media_type
 
@@ -8,7 +8,7 @@ class SocialMediaType < Enumeration
   end
 
   def objects
-    # .where(:fax_id => self.id)
+    SocialMedium.where(:social_media_type_id => self.id)
   end
 
   def objects_count
@@ -16,6 +16,6 @@ class SocialMediaType < Enumeration
   end
 
   def transfer_relations(to)
-    objects.update_all(:activity_id => to.id)
+    objects.update_all(:social_media_type_id => to.id)
   end
 end

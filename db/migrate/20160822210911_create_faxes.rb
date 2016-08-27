@@ -3,7 +3,7 @@ class CreateFaxes < ActiveRecord::Migration[5.0]
     create_table :faxes do |t|
       t.string :fax_number
       t.integer :fax_type_id
-      t.belongs_to :extend_demography, foreign_key: true
+      t.integer :extend_demography_id
       t.text :note
 
       t.timestamps

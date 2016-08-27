@@ -3,17 +3,18 @@
 
     <div class="col-md-12">
       <%= link_to_remove_association "remove", f, class: 'btn btn-warning pull-right' %>
+
       <div class="form-group col-md-12">
-        <%= f.label t('label_fax_type'), class: 'col-md-2 control-label' %>
+        <%= f.label :social_media_type_id , class: 'col-md-2 control-label' %>
         <div class="col-md-8">
-          <%= f.select :fax_type_id, options_for_select(FaxType.active.pluck(:name, :id)), {},{ class: 'form-control'} %>
+          <%= f.select :social_media_type_id, SocialMediaType.active.pluck(:name, :id), {}, {class: 'form-control'} %>
         </div>
       </div>
 
       <div class="form-group col-md-12">
-        <%= f.label t('fax'), class: 'col-md-2 control-label' %>
+        <%= f.label :social_media_handle , class: 'col-md-2 control-label' %>
         <div class="col-md-8">
-          <%= f.text_field :fax_number,  class: 'form-control' %>
+          <%= f.text_field :social_media_handle , class: 'form-control' %>
         </div>
       </div>
 
@@ -23,9 +24,8 @@
           <%= f.text_area :note, class: 'form-control' %>
         </div>
       </div>
-      <div>
 
-      </div>
     </div>
+
   </fieldset>
 </div>

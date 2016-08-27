@@ -3,7 +3,7 @@ class CreatePhones < ActiveRecord::Migration[5.0]
     create_table :phones do |t|
       t.string :phone_number
       t.integer :phone_type_id
-      t.belongs_to :extend_demography, foreign_key: true
+      t.integer :extend_demography_id
       t.text :note
 
       t.timestamps

@@ -15,9 +15,6 @@ class ExtendDemographiesController < ApplicationController
   # GET /extend_demographies/new
   def new
     @extend_demography = ExtendDemography.new
-    @email = @extend_demography.emails.build
-    @phone = @extend_demography.phones.build
-    @fax = @extend_demography.faxes.build
   end
 
   # GET /extend_demographies/1/edit
@@ -31,7 +28,7 @@ class ExtendDemographiesController < ApplicationController
 
     respond_to do |format|
       if @extend_demography.save
-        format.html { redirect_to @extend_demography, notice: 'Extend demography was successfully created.' }
+        format.html { redirect_to :back, notice: 'Extend demography was successfully created.' }
         format.json { render :show, status: :created, location: @extend_demography }
       else
         format.html { render :new }
@@ -45,7 +42,7 @@ class ExtendDemographiesController < ApplicationController
   def update
     respond_to do |format|
       if @extend_demography.update(extend_demography_params)
-        format.html { redirect_to @extend_demography, notice: 'Extend demography was successfully updated.' }
+        format.html { redirect_to  :back, notice: 'Extend demography was successfully updated.' }
         format.json { render :show, status: :ok, location: @extend_demography }
       else
         format.html { render :edit }
@@ -73,11 +70,12 @@ class ExtendDemographiesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def extend_demography_params
       params.require(:extend_demography).permit(:user_id, :identification_id,
-                                                email_attributes: [:id, :email_type_id, :email_address, :note, :_destroy],
-                                                phone_attributes: [:id, :phone_type_id, :phone_number_address, :note, :_destroy],
-                                                fax_attributes:   [:id, :fax_type_id, :fax_number_address, :note, :_destroy],
-                                                identification_attributes:   [:id, :identification_number, :status, :date_expired,
-                                                :issued_by, :note, :identification_type_id]
+                                                emails_attributes: [:id, :email_type_id, :email_address, :note, :_destroy],
+                                                social_media_attributes: [:id, :social_media_type_id, :social_media_handle, :note, :_destroy],
+                                                addresses_attributes: [:id, :address_type, :address, :zip_code, :state, :city, :country_code, :_destroy],
+                                                phones_attributes: [:id, :phone_type_id, :phone_number, :note, :_destroy],
+                                                faxes_attributes:   [:id, :fax_type_id, :fax_number, :note, :_destroy],
+                                                identifications_attributes:   [:id, :identification_number, :status, :date_expired, :issued_by, :note, :identification_type_id, :_destroy]
       )
     end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160826202931) do
+ActiveRecord::Schema.define(version: 20160827115243) do
 
   create_table "addresses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.integer  "address_type"
@@ -19,8 +19,9 @@ ActiveRecord::Schema.define(version: 20160826202931) do
     t.string   "zip_code"
     t.string   "state"
     t.string   "country_code"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+    t.integer  "extend_demography_id"
   end
 
   create_table "contact_links", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
@@ -129,8 +130,10 @@ ActiveRecord::Schema.define(version: 20160826202931) do
 
   create_table "extend_demographies", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.integer  "identification_id"
+    t.index ["identification_id"], name: "index_extend_demographies_on_identification_id", using: :btree
     t.index ["user_id"], name: "index_extend_demographies_on_user_id", using: :btree
   end
 
@@ -141,7 +144,6 @@ ActiveRecord::Schema.define(version: 20160826202931) do
     t.text     "note",                 limit: 65535
     t.datetime "created_at",                         null: false
     t.datetime "updated_at",                         null: false
-    t.index ["extend_demography_id"], name: "index_faxes_on_extend_demography_id", using: :btree
   end
 
   create_table "genders", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
@@ -160,7 +162,6 @@ ActiveRecord::Schema.define(version: 20160826202931) do
     t.datetime "created_at",                           null: false
     t.datetime "updated_at",                           null: false
     t.integer  "extend_demography_id"
-    t.index ["extend_demography_id"], name: "index_identifications_on_extend_demography_id", using: :btree
   end
 
   create_table "organizations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
@@ -183,7 +184,6 @@ ActiveRecord::Schema.define(version: 20160826202931) do
     t.text     "note",                 limit: 65535
     t.datetime "created_at",                         null: false
     t.datetime "updated_at",                         null: false
-    t.index ["extend_demography_id"], name: "index_phones_on_extend_demography_id", using: :btree
   end
 
   create_table "positions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
@@ -212,6 +212,15 @@ ActiveRecord::Schema.define(version: 20160826202931) do
     t.text     "note",       limit: 65535
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
+  end
+
+  create_table "social_media", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+    t.integer  "social_media_type_id"
+    t.text     "note",                 limit: 65535
+    t.string   "social_media_handle"
+    t.integer  "extend_demography_id"
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
   end
 
   create_table "user_organizations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
@@ -253,8 +262,6 @@ ActiveRecord::Schema.define(version: 20160826202931) do
   end
 
   add_foreign_key "emails", "extend_demographies"
+  add_foreign_key "extend_demographies", "identifications"
   add_foreign_key "extend_demographies", "users"
-  add_foreign_key "faxes", "extend_demographies"
-  add_foreign_key "identifications", "extend_demographies"
-  add_foreign_key "phones", "extend_demographies"
 end
