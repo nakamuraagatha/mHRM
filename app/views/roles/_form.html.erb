@@ -2,43 +2,43 @@
   <legend>Set role </legend>
 
   <%= form_for(role, html: { class: 'form-horizontal' }) do |f| %>
-  <% if role.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(role.errors.count, "error") %> prohibited this role from being saved:</h2>
+      <% if role.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(role.errors.count, "error") %> prohibited this role from being saved:</h2>
 
-      <ul>
-      <% role.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+            <ul>
+              <% role.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
       <% end %>
-      </ul>
-    </div>
-  <% end %>
 
-   <div class="form-group">
-    <%= f.label :name , class: 'col-md-2 control-label' %>
-     <div class="col-md-9">
-    <%= f.text_field :name, class: 'form-control' %>
-  </div>
-  </div>
-
-   <div class="form-group">
-    <%= f.label :state, class: 'col-md-2 control-label' %>
-     <div class="col-md-9">
-    <%= f.check_box :state , class: 'form-control' %>
-  </div>
-  </div>
-
-   <div class="form-group">
-    <%= f.label :note , class: 'col-md-2 control-label' %>
-     <div class="col-md-9">
-    <%= f.text_area :note , class: 'form-control' %>
-  </div>
-  </div>
-
-    <div class="form-group" >
-      <div class="col-md-11">
-        <%= f.submit t('button_save'), class: 'btn btn-primary pull-right' %>
+      <div class="form-group">
+        <%= f.label :role_type, class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.select :role_type_id, options_for_select(RoleType.pluck(:name, :id), selected: role.role_type_id), {},{ class: 'form-control'} %>
+        </div>
       </div>
-    </div>
-    </fieldset>
-<% end %>
+
+      <div class="form-group">
+        <%= f.label :state, class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.check_box :state , class: 'form-control' %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :note , class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.text_area :note , class: 'form-control' %>
+        </div>
+      </div>
+
+      <div class="form-group" >
+        <div class="col-md-11">
+          <%= f.submit t('button_save'), class: 'btn btn-primary pull-right' %>
+        </div>
+      </div>
+      </fieldset>
+  <% end %>
