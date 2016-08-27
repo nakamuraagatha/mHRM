@@ -5,7 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
   has_one :core_demographic
-  has_one :extend_demography
+  has_one :user_extend_demography
 
   has_many :organizations
   has_many :educations
@@ -20,7 +20,7 @@ class User < ApplicationRecord
   end
 
   def extend_informations
-    extend_demography || ExtendDemography.new(user_id: self.id)
+    user_extend_demography || UserExtendDemography.new(user_id: self.id)
   end
 
   def self.current

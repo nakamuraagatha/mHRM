@@ -1,37 +1,55 @@
-<%= form_for(department) do |f| %>
-  <% if department.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(department.errors.count, "error") %> prohibited this department from being saved:</h2>
+<%= form_for(department, html: { class: 'form-horizontal' }) do |f| %>
+    <% if department.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(department.errors.count, "error") %> prohibited this department from being saved:</h2>
 
-      <ul>
-      <% department.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+          <ul>
+            <% department.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+
+    <%= f.hidden_field :user_id %>
+    <div class="form-group">
+      <%= f.label :department_type, class: 'col-md-2 control-label' %>
+      <div class="col-md-9">
+        <%= f.select :department_type_id, options_for_select(DepartmentType.pluck(:name, :id), selected: department.department_type_id), {},{ class: 'form-control'} %>
+      </div>
     </div>
-  <% end %>
+    <div class="form-group">
+      <%= f.label :note , class: 'col-md-2 control-label' %>
+      <div class="col-md-9">
+        <%= f.text_area :note , class: 'form-control' %>
+      </div>
+    </div>
 
-  <div class="field">
-    <%= f.label :user_id %>
-    <%= f.number_field :user_id %>
-  </div>
+    <div class="form-group">
+      <%= f.label :date_start , class: 'col-md-2 control-label' %>
+      <div class="col-md-9">
+        <%= f.text_field :date_start, class: 'form-control date_picker' %>
+      </div>
+    </div>
 
-  <div class="field">
-    <%= f.label :note %>
-    <%= f.text_area :note %>
-  </div>
+    <div class="form-group">
+      <%= f.label :date_end , class: 'col-md-2 control-label' %>
+      <div class="col-md-9">
+        <%= f.text_field :date_end, class: 'form-control date_picker' %>
+      </div>
+    </div>
 
-  <div class="field">
-    <%= f.label :date_start %>
-    <%= f.date_select :date_start %>
-  </div>
+    <div class="form-group" >
+      <div class="col-md-11">
+        <%= f.submit t('button_save'), class: 'btn btn-primary pull-right' %>
+      </div>
+    </div>
 
-  <div class="field">
-    <%= f.label :date_end %>
-    <%= f.date_select :date_end %>
-  </div>
 
-  <div class="actions">
-    <%= f.submit %>
-  </div>
 <% end %>
+<script>
+  $(function(){
+    $('.date_picker').datepicker({ dateFormat: 'dd-mm-yy' })
+  })
+</script>

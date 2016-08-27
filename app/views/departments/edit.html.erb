@@ -1,6 +1,22 @@
-<h1>Editing Department</h1>
-
-<%= render 'form', department: @department %>
-
-<%= link_to 'Show', @department %> |
-<%= link_to 'Back', departments_path %>
+<section id="widget-grid" class="show_customer_account">
+  <div class="row">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <%= render partial: 'form',
+                 layout: 'shared/smart_widget_wrapper',
+                 locals: {
+                     department: @department,
+                     wid_id: 'department',
+                     wid_title: 'Edit department'
+                 } %>
+    </article>
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <%= render partial: 'extend_demographies/form',
+                 layout: 'shared/smart_widget_wrapper',
+                 locals: {
+                     wid_id: 'extend_demography',
+                     wid_title: 'More informations',
+                     extend_demography: @department.department_informations
+                 } %>
+    </article>
+  </div>
+</section>

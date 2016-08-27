@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
+  before_action :find_optional_user
   layout 'base'
 
   def authorize(ctrl = params[:controller], action = params[:action], global = false)
@@ -43,12 +44,12 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def find_user
+  def find_optional_user
+    if params[:user_id]
       @user = User.find params[:user_id]
+    end
   rescue ActiveRecord::RecordNotFound
     render_404
   end
-
-
 
 end

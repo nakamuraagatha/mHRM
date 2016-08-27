@@ -1,2 +1,0 @@
-class EntendedDemographic < ApplicationRecord
-end

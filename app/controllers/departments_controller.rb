@@ -1,10 +1,11 @@
 class DepartmentsController < ApplicationController
   before_action :set_department, only: [:show, :edit, :update, :destroy]
 
+
   # GET /departments
   # GET /departments.json
   def index
-    @departments = Department.all
+    @departments = Department.visible(current_user)
   end
 
   # GET /departments/1
@@ -14,7 +15,7 @@ class DepartmentsController < ApplicationController
 
   # GET /departments/new
   def new
-    @department = Department.new
+    @department = Department.new user_id: current_user.id
   end
 
   # GET /departments/1/edit
@@ -28,7 +29,7 @@ class DepartmentsController < ApplicationController
 
     respond_to do |format|
       if @department.save
-        format.html { redirect_to @department, notice: 'Department was successfully created.' }
+        format.html { redirect_to edit_department_path(@department), notice: 'Department was successfully created.' }
         format.json { render :show, status: :created, location: @department }
       else
         format.html { render :new }
@@ -42,7 +43,7 @@ class DepartmentsController < ApplicationController
   def update
     respond_to do |format|
       if @department.update(department_params)
-        format.html { redirect_to @department, notice: 'Department was successfully updated.' }
+        format.html { redirect_to edit_department_path(@department), notice: 'Department was successfully updated.' }
         format.json { render :show, status: :ok, location: @department }
       else
         format.html { render :edit }
@@ -69,6 +70,6 @@ class DepartmentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def department_params
-      params.require(:department).permit(:user_id, :note, :date_start, :date_end)
+      params.require(:department).permit(:user_id, :note, :date_start, :date_end, :department_type_id)
     end
 end

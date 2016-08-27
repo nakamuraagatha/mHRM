@@ -69,7 +69,7 @@ class ExtendDemographiesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def extend_demography_params
-      params.require(:extend_demography).permit(:user_id, :identification_id,
+      params.require(:extend_demography).permit(:user_id, :department_id,
                                                 emails_attributes: [:id, :email_type_id, :email_address, :note, :_destroy],
                                                 social_media_attributes: [:id, :social_media_type_id, :social_media_handle, :note, :_destroy],
                                                 addresses_attributes: [:id, :address_type, :address, :zip_code, :state, :city, :country_code, :_destroy],

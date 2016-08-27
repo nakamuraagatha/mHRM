@@ -1,4 +1,4 @@
-<%= simple_form_for(extend_demography, html: { class: 'form-horizontal' }) do |f| %>
+<%= simple_form_for(extend_demography, url: extend_demography.new_record? ? extend_demographies_path : extend_demography_path(extend_demography),  html: {  class: 'form-horizontal' }) do |f| %>
     <% if extend_demography.errors.any? %>
         <div id="error_explanation">
           <h2><%= pluralize(extend_demography.errors.count, "error") %> prohibited this extend_demography from being saved:</h2>

@@ -1,0 +1,30 @@
+<table class="table table-responsive table-bordered">
+  <thead>
+  <tr>
+    <th>User</th>
+    <th>Note</th>
+    <th>Date start</th>
+    <th>Date end</th>
+    <th colspan="2"></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% if departments.any? %>
+      <% departments.each do |department| %>
+          <tr>
+            <td><%= department.user_id %></td>
+            <td><%= department.note %></td>
+            <td><%= department.date_start %></td>
+            <td><%= department.date_end %></td>
+            <td><%= edit_link edit_department_path(department) %></td>
+            <td><%= delete_link department %></td>
+          </tr>
+      <% end %>
+  <% else %>
+      <tr align="center">
+        <td colspan="11"><%= t('label_no_data') %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>

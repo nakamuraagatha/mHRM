@@ -133,6 +133,7 @@ end
 
 # Force load the subclasses in development mode
 require_dependency 'organization_type'
+require_dependency 'department_type'
 require_dependency 'clearence_type'
 require_dependency 'contact_type'
 require_dependency 'document_type'

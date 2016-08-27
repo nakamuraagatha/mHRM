@@ -37,6 +37,9 @@ class FillEnumeration < ActiveRecord::Migration[5.0]
     ['Christian', 'Muslim'].each do |val|
       ReligionType.create(name: val)
     end
+    ['human Resource Management', 'Executive', 'InformationManagement', 'Business Development', 'Organizational Development', 'Finance', 'Program Management'].each do |val|
+      DepartmentType.create(name: val)
+    end
 
   end
   def self.down
