@@ -1,1 +1,0 @@
-json.partial! "extend_demographies/extend_demography", extend_demography: @extend_demography
