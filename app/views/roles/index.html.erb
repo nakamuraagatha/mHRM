@@ -2,30 +2,34 @@
 
 <h1>Roles</h1>
 
-<table>
+<%= link_to 'New Role', new_role_path, class: 'btn btn-success pull-right' %>
+
+<table class="table table-responsive table-bordered">
   <thead>
-    <tr>
-      <th>Name</th>
-      <th>State</th>
-      <th>Note</th>
-      <th colspan="3"></th>
-    </tr>
+  <tr>
+    <th><%= t :label_name %></th>
+    <th>State</th>
+    <th><%= t :label_note %></th>
+    <th colspan="3"></th>
+  </tr>
   </thead>
 
   <tbody>
-    <% @roles.each do |role| %>
-      <tr>
-        <td><%= role.name %></td>
-        <td><%= role.state %></td>
-        <td><%= role.note %></td>
-        <td><%= link_to 'Show', role %></td>
-        <td><%= link_to 'Edit', edit_role_path(role) %></td>
-        <td><%= link_to 'Destroy', role, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  <% if @roles.any? %>
+      <% @roles.each do |role| %>
+          <tr>
+            <td><%= role.name %></td>
+            <td><%= role.state %></td>
+            <td><%= role.note %></td>
+            <td><%= show_link role %></td>
+            <td><%= edit_link edit_role_path(role) %></td>
+            <td><%= delete_link role %></td>
+          </tr>
+      <% end %>
+  <% else %>
+      <tr align="center">
+        <td colspan="11"><%= t('label_no_data') %></td>
       </tr>
-    <% end %>
+  <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Role', new_role_path %>

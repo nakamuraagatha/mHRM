@@ -15,6 +15,22 @@ class User < ApplicationRecord
   validates_uniqueness_of :login, :email
   validates_presence_of :login, :email
 
+  def self.current=(user)
+    RequestStore.store[:current_user] = user
+  end
+
+  def extend_informations
+    extend_demography || ExtendDemography.new(user_id: self.id)
+  end
+
+  def self.current
+    RequestStore.store[:current_user] ||= nil
+  end
+
+  def allowed_to?(context)
+
+  end
+
   def name
     profile = core_demographic
     return login if profile.nil?

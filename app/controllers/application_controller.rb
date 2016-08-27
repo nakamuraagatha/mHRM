@@ -3,6 +3,19 @@ class ApplicationController < ActionController::Base
 
   layout 'base'
 
+  def authorize(ctrl = params[:controller], action = params[:action], global = false)
+    allowed = User.current.allowed_to?({:controller => ctrl, :action => action}, @project || @projects, :global => global)
+    if allowed
+      true
+    else
+      if @project && @project.archived?
+        render_403 :message => :notice_not_authorized_archived_project
+      else
+        deny_access
+      end
+    end
+  end
+
   def render_403(options={})
     @project = nil
     render_error({:message => :notice_not_authorized, :status => 403}.merge(options))

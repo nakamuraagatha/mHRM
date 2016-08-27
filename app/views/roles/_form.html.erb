@@ -1,4 +1,7 @@
-<%= form_for(role) do |f| %>
+<fieldset>
+  <legend>Set role </legend>
+
+  <%= form_for(role, html: { class: 'form-horizontal' }) do |f| %>
   <% if role.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(role.errors.count, "error") %> prohibited this role from being saved:</h2>
@@ -11,22 +14,31 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :name %>
-    <%= f.text_field :name %>
+   <div class="form-group">
+    <%= f.label :name , class: 'col-md-2 control-label' %>
+     <div class="col-md-9">
+    <%= f.text_field :name, class: 'form-control' %>
+  </div>
   </div>
 
-  <div class="field">
-    <%= f.label :state %>
-    <%= f.check_box :state %>
+   <div class="form-group">
+    <%= f.label :state, class: 'col-md-2 control-label' %>
+     <div class="col-md-9">
+    <%= f.check_box :state , class: 'form-control' %>
+  </div>
   </div>
 
-  <div class="field">
-    <%= f.label :note %>
-    <%= f.text_area :note %>
+   <div class="form-group">
+    <%= f.label :note , class: 'col-md-2 control-label' %>
+     <div class="col-md-9">
+    <%= f.text_area :note , class: 'form-control' %>
+  </div>
   </div>
 
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+    <div class="form-group" >
+      <div class="col-md-11">
+        <%= f.submit t('button_save'), class: 'btn btn-primary pull-right' %>
+      </div>
+    </div>
+    </fieldset>
 <% end %>

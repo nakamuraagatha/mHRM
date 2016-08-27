@@ -11,23 +11,13 @@
         </div>
     <% end %>
 
-
-    <% if current_user.admin? %>
-        <div class="form-group">
-          <%= f.label :user_id, class: 'col-md-2 control-label' %>
-          <div class="col-md-9">
-            <%= f.select :user_id, options_for_select(User.pluck(:login, :id), selected: extend_demography.user_id), {} ,{class: 'form-control'} %>
-          </div>
-        </div>
-    <% else %>
-        <%= f.hidden_field :user_id %>
-    <% end %>
+    <%= f.hidden_field :user_id %>
 
     <div id="emails">
       <%= link_to_add_association 'add email', f, :emails, class: 'btn btn-success pull-right' %>
 
       <%= f.simple_fields_for :emails do |mail| %>
-          <%= render 'email_fields', :f => mail %>
+          <%= render 'extend_demographies/email_fields', :f => mail %>
       <% end %>
 
     </div>
@@ -36,7 +26,7 @@
       <%= link_to_add_association 'add fax number', f, :faxes, class: 'btn btn-success pull-right' %>
 
       <%= f.simple_fields_for :faxes do |fax| %>
-          <%= render 'fax_fields', :f => fax %>
+          <%= render 'extend_demographies/fax_fields', :f => fax %>
       <% end %>
 
     </div>
@@ -45,7 +35,7 @@
       <%= link_to_add_association 'add phone', f, :phones, class: 'btn btn-success pull-right' %>
 
       <%= f.simple_fields_for :phones do |phone| %>
-          <%= render 'phone_fields', :f => phone %>
+          <%= render 'extend_demographies/phone_fields', :f => phone %>
       <% end %>
 
     </div>
