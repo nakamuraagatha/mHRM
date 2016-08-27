@@ -4,12 +4,13 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  has_one :core_demographic
-  has_one :user_extend_demography
+  has_one :core_demographic, :dependent => :destroy
+  has_one :user_extend_demography, :dependent => :destroy
+  has_many :educations, :dependent => :destroy
+  has_many :documents, :dependent => :destroy
 
   has_many :organizations
-  has_many :educations
-  has_many :documents
+
   has_many :positions
 
   validates_uniqueness_of :login, :email

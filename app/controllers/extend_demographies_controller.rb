@@ -1,25 +1,5 @@
 class ExtendDemographiesController < ApplicationController
-  before_action :set_extend_demography, only: [:show, :edit, :update, :destroy]
-
-  # GET /extend_demographies
-  # GET /extend_demographies.json
-  def index
-    @extend_demographies = ExtendDemography.all
-  end
-
-  # GET /extend_demographies/1
-  # GET /extend_demographies/1.json
-  def show
-  end
-
-  # GET /extend_demographies/new
-  def new
-    @extend_demography = ExtendDemography.new
-  end
-
-  # GET /extend_demographies/1/edit
-  def edit
-  end
+  before_action :set_extend_demography, only: [:update]
 
   # POST /extend_demographies
   # POST /extend_demographies.json
@@ -48,16 +28,6 @@ class ExtendDemographiesController < ApplicationController
         format.html { render :edit }
         format.json { render json: @extend_demography.errors, status: :unprocessable_entity }
       end
-    end
-  end
-
-  # DELETE /extend_demographies/1
-  # DELETE /extend_demographies/1.json
-  def destroy
-    @extend_demography.destroy
-    respond_to do |format|
-      format.html { redirect_to extend_demographies_url, notice: 'Extend demography was successfully destroyed.' }
-      format.json { head :no_content }
     end
   end
 

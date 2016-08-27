@@ -9,7 +9,7 @@
       <%= render partial: 'uploader/upload' %>
     </div>
   </div>
-  <%= form_for(core_demographic, html: { class: 'form-horizontal' }) do |f| %>
+  <%= form_for([core_demographic.user, core_demographic], html: { class: 'form-horizontal' }) do |f| %>
       <% if core_demographic.errors.any? %>
           <div id="error_explanation">
             <h2><%= pluralize(core_demographic.errors.count, "error") %> prohibited this core_demographic from being saved:</h2>

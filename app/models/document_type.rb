@@ -8,7 +8,7 @@ class DocumentType < Enumeration
   end
 
   def objects
-    Document.where(:activity_id => self.id)
+    Document.where(:document_type_id => self.id)
   end
 
   def objects_count
@@ -16,6 +16,6 @@ class DocumentType < Enumeration
   end
 
   def transfer_relations(to)
-    objects.update_all(:activity_id => to.id)
+    objects.update_all(:document_type_id => to.id)
   end
 end

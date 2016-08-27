@@ -1,5 +1,5 @@
 class FaxType < Enumeration
-  has_many :organizations
+  has_many :faxes
 
   OptionName = :enumeration_fax_type
 
@@ -8,7 +8,7 @@ class FaxType < Enumeration
   end
 
   def objects
-    Organization.where(:fax_id => self.id)
+    Organization.where(:fax_type_id => self.id)
   end
 
   def objects_count
@@ -16,6 +16,6 @@ class FaxType < Enumeration
   end
 
   def transfer_relations(to)
-    objects.update_all(:activity_id => to.id)
+    objects.update_all(:fax_type_id => to.id)
   end
 end

@@ -1,0 +1,66 @@
+<h3><%= t(:label_permissions) %></h3>
+<div class="box tabular" id="permissions">
+  <% perms_by_module = @role.setable_permissions.group_by {|p| p.project_module.to_s} %>
+  <% perms_by_module.keys.sort.each do |mod| %>
+      <fieldset><legend><%= mod.blank? ? l(:label_project) : l_or_humanize(mod, :prefix => 'project_module_') %></legend>
+        <% perms_by_module[mod].each do |permission| %>
+            <label class="floating">
+              <%= check_box_tag 'role[permissions][]', permission.name, (@role.permissions.include? permission.name),
+                                :id => "role_permissions_#{permission.name}",
+                                :data => {:shows => ".#{permission.name}_shown"} %>
+              <%= l_or_humanize(permission.name, :prefix => 'permission_') %>
+            </label>
+        <% end %>
+      </fieldset>
+  <% end %>
+  <br /><%= check_all_links 'permissions' %>
+  <%= hidden_field_tag 'role[permissions][]', '' %>
+</div>
+
+<div id="role-permissions-trackers" class="view_issues_shown">
+  <h3><%= l(:label_issue_tracking) %></h3>
+  <% permissions = %w(view_issues add_issues edit_issues add_issue_notes delete_issues) %>
+
+  <div class="autoscroll">
+    <table class="list">
+      <thead>
+      <tr>
+        <th><%= l(:label_tracker) %></th>
+        <% permissions.each do |permission| %>
+            <th class="<%= "#{permission}_shown" %>"><%= l("permission_#{permission}") %></th>
+        <% end %>
+        </thead>
+      <tbody>
+      <tr>
+        <td class="name"><b><%= l(:label_tracker_all) %></b></td>
+        <% permissions.each do |permission| %>
+            <td class="<%= "#{permission}_shown" %>">
+              <%= hidden_field_tag "role[permissions_all_trackers][#{permission}]", '0', :id => nil %>
+              <%= check_box_tag "role[permissions_all_trackers][#{permission}]",
+                                '1',
+                                @role.permissions_all_trackers?(permission),
+                                :class => "#{permission}_shown",
+                                :data => {:disables => ".#{permission}_tracker"} %>
+            </td>
+        <% end %>
+      </tr>
+      <% Tracker.sorted.all.each do |tracker| %>
+          <tr class="<%= cycle("odd", "even") %>">
+            <td class="name"><%= tracker.name %></td>
+            <% permissions.each do |permission| %>
+                <td class="<%= "#{permission}_shown" %>"><%= check_box_tag "role[permissions_tracker_ids][#{permission}][]",
+                                                                           tracker.id,
+                                                                           @role.permissions_tracker_ids?(permission, tracker.id),
+                                                                           :class => "#{permission}_tracker",
+                                                                           :id => "role_permissions_tracker_ids_add_issues_#{tracker.id}" %></td>
+            <% end %>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+
+  <% permissions.each do |permission| %>
+      <%= hidden_field_tag "role[permissions_tracker_ids][#{permission}][]", '' %>
+  <% end %>
+</div>

@@ -1,20 +1,6 @@
 class CoreDemographicsController < ApplicationController
   before_action  :authenticate_user!
-  before_action :set_core_demographic, only: [:show, :edit, :update]
-
-  # GET /core_demographics/1
-  # GET /core_demographics/1.json
-  def show
-  end
-
-  # GET /core_demographics/new
-  def new
-    @core_demographic = CoreDemographic.new
-  end
-
-  # GET /core_demographics/1/edit
-  def edit
-  end
+  before_action :set_core_demographic, only: [:update]
 
   # POST /core_demographics
   # POST /core_demographics.json

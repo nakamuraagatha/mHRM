@@ -16,6 +16,6 @@ class ReligionType < Enumeration
   end
 
   def transfer_relations(to)
-    objects.update_all(:activity_id => to.id)
+    objects.update_all(:religion_id => to.id)
   end
 end

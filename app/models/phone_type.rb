@@ -1,5 +1,5 @@
 class PhoneType < Enumeration
-  has_many :organizations
+  has_many :phones
 
   OptionName = :enumeration_phone_type
 
@@ -8,7 +8,7 @@ class PhoneType < Enumeration
   end
 
   def objects
-    Organization.where(:fax_id => self.id)
+    Organization.where(:phone_type_id => self.id)
   end
 
   def objects_count
@@ -16,6 +16,6 @@ class PhoneType < Enumeration
   end
 
   def transfer_relations(to)
-    objects.update_all(:activity_id => to.id)
+    objects.update_all(:phone_type_id => to.id)
   end
 end

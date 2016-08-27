@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-
+  get 'home/index'
+  root to: "home#index"
 
 
   devise_for :users
@@ -9,31 +10,30 @@ Rails.application.routes.draw do
       post 'image_upload'
       get 'remove_image'
     end
-    resources :educations, only: [:show, :edit]
-    resources :documents, only: [:show, :edit]
+    resources :educations, only: [:show, :edit, :index]
+    resources :documents, only: [:show, :edit, :index]
+    resources :core_demographics, only: [:create, :update]
+    resources :user_extend_demographies, only: [:create, :update], controller: :extend_demographies
   end
-  resources :core_demographics
+  resources :departments do
+    resources :department_extend_demographies, only: [:create, :update], controller: :extend_demographies
+  end
 
-  resources :extend_demographies
-  resources :positions
-  resources :departments
-  resources :identifications
-
-  resources :enumerations
   resources :educations, except: [:index] do
     collection do
       get 'my'
     end
   end
-  resources :documents
 
-  resources :roles
-  resources :addresses
+  resources :positions
   resources :contacts
   resources :organizations
+  resources :documents
 
-  get 'home/index'
+  resources :enumerations
+  resources :roles
 
-  root to: "home#index"
+
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

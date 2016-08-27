@@ -1,1 +1,0 @@
-json.array! @core_demographics, partial: 'core_demographics/core_demographic', as: :core_demographic

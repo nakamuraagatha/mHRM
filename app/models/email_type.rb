@@ -1,5 +1,5 @@
 class EmailType < Enumeration
-  has_many :organizations
+  has_many :emails
 
   OptionName = :enumeration_email_type
 
@@ -8,7 +8,7 @@ class EmailType < Enumeration
   end
 
   def objects
-    Organization.where(:email_id => self.id)
+    Organization.where(:email_type_id => self.id)
   end
 
   def objects_count
@@ -16,6 +16,6 @@ class EmailType < Enumeration
   end
 
   def transfer_relations(to)
-    objects.update_all(:activity_id => to.id)
+    objects.update_all(:email_type_id => to.id)
   end
 end
