@@ -1,6 +1,7 @@
 class DocumentsController < ApplicationController
   before_action  :authenticate_user!
   before_action :set_document, only: [:show, :edit, :update, :destroy]
+  before_action :authorize, only: [:index, :new, :create]
 
   # GET /documents
   # GET /documents.json

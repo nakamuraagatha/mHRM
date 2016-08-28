@@ -1,6 +1,8 @@
 class EducationsController < ApplicationController
   before_action  :authenticate_user!
   before_action :set_education, only: [:show, :edit, :update, :destroy]
+  before_action :authorize, only: [:index, :new, :create]
+  # before_action :authorize, only: [:index, :new, :create]
 
   # GET /educations
   # GET /educations.json

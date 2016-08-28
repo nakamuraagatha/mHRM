@@ -47,6 +47,10 @@ class Department < ApplicationRecord
     raise "Cannot delete enumeration" if self.in_use?
   end
 
+  def users
+    job_details.map{|job| job.user}
+  end
+
   def name
     "#{id} #{department_type}"
   end

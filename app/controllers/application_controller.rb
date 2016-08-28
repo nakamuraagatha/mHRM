@@ -4,16 +4,14 @@ class ApplicationController < ActionController::Base
   before_action :find_optional_user
   layout 'base'
 
-  def authorize(ctrl = params[:controller], action = params[:action], global = false)
-    allowed = User.current.allowed_to?({:controller => ctrl, :action => action}, @project || @projects, :global => global)
+  def authorize(ctrl = params[:controller], action = params[:action])
+    allowed = current_user.allowed_to?({:controller => ctrl, :action => action})
     if allowed
       true
     else
-      if @project && @project.archived?
-        render_403 :message => :notice_not_authorized_archived_project
-      else
-        deny_access
-      end
+      flash[:error] = 'Permission denied'
+      redirect_to root_path
+      return false
     end
   end
 

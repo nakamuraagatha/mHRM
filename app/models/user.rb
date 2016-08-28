@@ -13,6 +13,7 @@ class User < ApplicationRecord
   has_many :educations, :dependent => :destroy
   has_many :documents, :dependent => :destroy
   has_many :organizations
+  has_many :departments
   has_many :positions
   has_many :contacts
 
@@ -31,8 +32,41 @@ class User < ApplicationRecord
     user_extend_demography || UserExtendDemography.new(user_id: self.id)
   end
 
-  def allowed_to?(context)
 
+  def allowed_to?(action, for_user = nil)
+    if for_user
+      if action.is_a? Hash
+        permission = allowed_actions.include? "#{action[:controller]}/#{action[:action]}"
+      else
+        permission = permissions.include? action.to_sym
+      end
+      if permission
+        permission = has_same_department?(for_user)
+      end
+    else
+      if action.is_a? Hash
+        permission = allowed_actions.include? "#{action[:controller]}/#{action[:action]}"
+      else
+        permission = permissions.include? action.to_sym
+      end
+    end
+    permission
+  end
+
+  def has_same_department?(for_user)
+    return true if self.admin?
+    return false unless job_detail
+    job_detail.department.users.include?(for_user)
+  end
+
+  def all_permissions
+    @allowed_permissions ||= begin
+      RedCarpet::AccessControl.permissions.collect {|p| p.name}
+    end
+  end
+
+  def allowed_actions
+    @actions_allowed ||= permissions.inject([]) { |actions, permission| actions += RedCarpet::AccessControl.allowed_actions(permission) }.flatten
   end
 
   def job
@@ -63,6 +97,12 @@ class User < ApplicationRecord
 
   def to_s
     name
+  end
+
+  def permissions
+    return all_permissions if self.admin?
+    return [] unless job_detail
+    job_detail.role.try( :permissions ) || []
   end
 
   mount_uploader :avatar, AvatarUploader

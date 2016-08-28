@@ -2,6 +2,8 @@ class OrganizationsController < ApplicationController
   before_action  :authenticate_user!
   before_action :set_organization, only: [:show, :edit, :update, :destroy]
 
+  before_action :authorize, only: [:index, :new, :create]
+
   # GET /organizations
   # GET /organizations.json
   def index

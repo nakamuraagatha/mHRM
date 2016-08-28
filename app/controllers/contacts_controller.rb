@@ -1,7 +1,7 @@
 class ContactsController < ApplicationController
   before_action  :authenticate_user!
   before_action :set_contact, only: [:show, :edit, :update, :destroy]
-
+  before_action :authorize, only: [:index, :new, :create]
   # GET /contacts
   # GET /contacts.json
   def index
