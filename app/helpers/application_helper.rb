@@ -51,4 +51,8 @@ module ApplicationHelper
     end
   end
 
+  def menu_active?(controller)
+    params[:controller]== controller ? 'active' : ''
+  end
+
 end
