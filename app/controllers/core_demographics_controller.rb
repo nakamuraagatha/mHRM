@@ -36,6 +36,8 @@ class CoreDemographicsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_core_demographic
       @core_demographic = CoreDemographic.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      render_404
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

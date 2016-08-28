@@ -1,4 +1,5 @@
 class ContactsController < ApplicationController
+  before_action  :authenticate_user!
   before_action :set_contact, only: [:show, :edit, :update, :destroy]
 
   # GET /contacts
@@ -65,6 +66,8 @@ class ContactsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_contact
       @contact = Contact.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      render_404
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

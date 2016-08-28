@@ -44,6 +44,10 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def require_admin
+    render_404 unless current_user.admin?
+  end
+
   def find_optional_user
     if params[:user_id]
       @user = User.find params[:user_id]

@@ -1,4 +1,5 @@
 class ExtendDemographiesController < ApplicationController
+  before_action  :authenticate_user!
   before_action :set_extend_demography, only: [:update]
 
   # POST /extend_demographies
@@ -35,6 +36,8 @@ class ExtendDemographiesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_extend_demography
       @extend_demography = ExtendDemography.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      render_404
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

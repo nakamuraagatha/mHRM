@@ -1,4 +1,6 @@
 class RolesController < ApplicationController
+  before_action  :authenticate_user!
+  before_filter :require_admin
   before_action :set_role, only: [:show, :edit, :update, :destroy]
 
   # GET /roles
@@ -65,6 +67,8 @@ class RolesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_role
       @role = Role.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      render_404
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

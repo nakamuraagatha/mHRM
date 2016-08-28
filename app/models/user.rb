@@ -4,14 +4,17 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  # HAS ONE
   has_one :core_demographic, :dependent => :destroy
   has_one :user_extend_demography, :dependent => :destroy
+  has_one :job_detail
+
+  # HAS MANY
   has_many :educations, :dependent => :destroy
   has_many :documents, :dependent => :destroy
-
   has_many :organizations
-
   has_many :positions
+  has_many :contacts
 
   validates_uniqueness_of :login, :email
   validates_presence_of :login, :email
@@ -20,16 +23,20 @@ class User < ApplicationRecord
     RequestStore.store[:current_user] = user
   end
 
-  def extend_informations
-    user_extend_demography || UserExtendDemography.new(user_id: self.id)
-  end
-
   def self.current
     RequestStore.store[:current_user] ||= nil
   end
 
+  def extend_informations
+    user_extend_demography || UserExtendDemography.new(user_id: self.id)
+  end
+
   def allowed_to?(context)
 
+  end
+
+  def job
+    job_detail || JobDetail.new(user_id: self.id)
   end
 
   def name

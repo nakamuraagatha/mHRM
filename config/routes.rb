@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     resources :educations, only: [:show, :edit, :index]
     resources :documents, only: [:show, :edit, :index]
     resources :core_demographics, only: [:create, :update]
+    resources :job_details, only: [:create, :update]
     resources :user_extend_demographies, only: [:create, :update], controller: :extend_demographies
   end
   resources :departments do

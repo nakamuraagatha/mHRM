@@ -1,0 +1,46 @@
+
+<%= form_for([user, job_detail], html: { class: 'form-horizontal' }) do |f| %>
+    <% if job_detail.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(job_detail.errors.count, "error") %> prohibited this job detail from being saved:</h2>
+
+          <ul>
+            <% job_detail.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+    <fieldset>
+      <legend></legend>
+
+      <%= f.hidden_field :user_id %>
+      <div class="form-group">
+        <%= f.label t('departments'), class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.select :department_id, options_for_select(Department.all.map{|dep| [dep.department_type, dep.id] }, selected: job_detail.department_id), {},{ class: 'form-control'} %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label t(:enumeration_role_type), class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.select :role_id, options_for_select(Role.active.map{|role| [role.role_type, role.id]}, selected: job_detail.role_id),{}, {class: 'form-control'} %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label t(:label_note) , class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.text_area :note , class: 'form-control' %>
+        </div>
+      </div>
+
+
+      <div class="form-group" >
+        <div class="col-md-11">
+          <%= f.submit t('button_save'), class: 'btn btn-primary pull-right' %>
+        </div>
+      </div>
+    </fieldset>
+<% end %>

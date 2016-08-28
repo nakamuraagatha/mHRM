@@ -1,4 +1,5 @@
 class DepartmentsController < ApplicationController
+  before_action  :authenticate_user!
   before_action :set_department, only: [:show, :edit, :update, :destroy]
 
 
@@ -66,6 +67,8 @@ class DepartmentsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_department
       @department = Department.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      render_404
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
