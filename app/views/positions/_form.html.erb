@@ -13,16 +13,9 @@
           </div>
       <% end %>
 
-      <% if current_user.admin? %>
-          <div class="form-group">
-            <%= f.label :user_id, class: 'col-md-2 control-label' %>
-            <div class="col-md-9">
-              <%= f.select :user_id,options_for_select(User.pluck(:login, :id), selected: position.user_id), {} ,{class: 'form-control'} %>
-            </div>
-          </div>
-      <% else %>
-          <%= f.hidden_field :user_id %>
-      <% end %>
+
+      <%= f.hidden_field :user_id %>
+
 
       <div class="form-group">
         <%= f.label :title, class: 'col-md-2 control-label' %>
@@ -62,21 +55,21 @@
       <div class="form-group">
         <%= f.label :date_start , class: 'col-md-2 control-label' %>
         <div class="col-md-9">
-          <%= f.text_field :date_start, class: 'form-control' %>
+          <%= f.text_field :date_start, class: 'form-control date_picker' %>
         </div>
       </div>
 
       <div class="form-group">
         <%= f.label :date_end , class: 'col-md-2 control-label' %>
         <div class="col-md-9">
-          <%= f.text_field :date_end , class: 'form-control' %>
+          <%= f.text_field :date_end , class: 'form-control date_picker' %>
         </div>
       </div>
 
       <div class="form-group">
-        <%= f.label :files , class: 'col-md-2 control-label' %>
+        <%#= f.label :files , class: 'col-md-2 control-label' %>
         <div class="col-md-9">
-          <%= f.text_field :files %>
+          <%#= f.text_field :files %>
         </div>
       </div>
 

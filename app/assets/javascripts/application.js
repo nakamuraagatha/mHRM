@@ -18,3 +18,7 @@
 //= require jquery-fileupload/vendor/tmpl
 //= require cocoon
 
+$(function(){
+    $('.date_picker').datepicker({ dateFormat: 'dd-mm-yy' })
+})
+
