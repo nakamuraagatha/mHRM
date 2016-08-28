@@ -1,0 +1,12 @@
+<%= title [t(:departments), departments_path], @department.name %>
+
+<%= form_tag({}, :method => :delete) do %>
+    <div class="box">
+      <p><strong><%= t(:text_enumeration_destroy_question, :name => @department.name, :count => @department.objects_count) %></strong></p>
+      <p><label for='reassign_to_id'><%= t(:text_enumeration_category_reassign_to) %></label>
+        <%= select_tag 'reassign_to_id', (content_tag('option', "--- #{t(:actionview_instancetag_blank_option)} ---", :value => '') + options_from_collection_for_select(@departments, 'id', 'name')) %></p>
+    </div>
+
+    <%= submit_tag t(:button_save) %>
+    <%= link_to t(:button_cancel), departments_path %>
+<% end %>

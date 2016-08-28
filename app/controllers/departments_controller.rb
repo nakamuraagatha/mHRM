@@ -56,23 +56,28 @@ class DepartmentsController < ApplicationController
   # DELETE /departments/1
   # DELETE /departments/1.json
   def destroy
-    @department.destroy
-    respond_to do |format|
-      format.html { redirect_to departments_url, notice: 'Department was successfully destroyed.' }
-      format.json { head :no_content }
+    if !@department.in_use?
+      @department.destroy
+       redirect_to departments_url
+      return
+    elsif params[:reassign_to_id].present? && (reassign_to = @enumeration.class.find_by_id(params[:reassign_to_id].to_i))
+      @department.destroy(reassign_to)
+      redirect_to enumerations_path
+      return
     end
+    @departments = @department.class.where(nil).to_a - [@department]
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_department
-      @department = Department.find(params[:id])
-    rescue ActiveRecord::RecordNotFound
-      render_404
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_department
+    @department = Department.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    render_404
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def department_params
-      params.require(:department).permit(:user_id, :note, :date_start, :date_end, :department_type_id)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def department_params
+    params.require(:department).permit(:user_id, :note, :date_start, :date_end, :department_type_id)
+  end
 end
