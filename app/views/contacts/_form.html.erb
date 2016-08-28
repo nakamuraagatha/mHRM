@@ -1,27 +1,42 @@
-<%= form_for(contact) do |f| %>
-  <% if contact.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(contact.errors.count, "error") %> prohibited this contact from being saved:</h2>
+<fieldset>
+  <legend>Set Contact</legend>
+  <%= form_for(contact, html: { class: 'form-horizontal' }) do |f| %>
+      <% if contact.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(contact.errors.count, "error") %> prohibited this contact from being saved:</h2>
 
-      <ul>
-      <% contact.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+            <ul>
+              <% contact.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
       <% end %>
-      </ul>
-    </div>
+      <%= f.hidden_field :user_id %>
+      <div class="form-group">
+        <%= f.label t('enumeration_contact_type'), class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.select :contact_type_id, options_for_select(ContactType.active.pluck(:name, :id), selected: contact.contact_type_id), {},{ class: 'form-control'} %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :emergency_contact, class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.check_box :emergency_contact, class: 'form-control' %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :note , class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.text_area :note, class: 'form-control' %>
+        </div>
+      </div>
+
+      <div class="form-group" >
+        <div class="col-md-11">
+          <%= f.submit t('button_save'), class: 'btn btn-primary pull-right' %>
+        </div>
+      </div>
   <% end %>
-
-  <div class="field">
-    <%= f.label :emergency_contact %>
-    <%= f.check_box :emergency_contact %>
-  </div>
-
-  <div class="field">
-    <%= f.label :note %>
-    <%= f.text_area :note %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+</fieldset>

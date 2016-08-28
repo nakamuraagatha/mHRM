@@ -1,6 +1,6 @@
 <ul>
   <li class="active">
-    <a href="<%= edit_user_registration_path %>" title="<%= t('profile.profile') %>"><i class="fa fa-lg fa-fw fa-home"></i> <span class="menu-item-parent"><%= t('profile.profile') %></span></a>
+    <a href="<%= edit_user_registration_path %>" title="<%= t('profile.profile') %>"><i class="fa fa-lg fa-fw fa-user"></i> <span class="menu-item-parent"><%= t('profile.profile') %></span></a>
   </li>
 
   <li class="">
@@ -21,6 +21,10 @@
 
   <li class="">
     <a href="<%= departments_path %>" title="<%= t(:departments) %>"><i class="fa fa-lg fa-fw fa-university"></i> <span class="menu-item-parent"><%= t(:departments) %></span></a>
+  </li>
+
+  <li class="">
+    <a href="<%= contacts_path %>" title="<%= t(:contacts) %>"><i class="fa fa-lg fa-fw fa-sitemap"></i> <span class="menu-item-parent"><%= t(:contacts) %></span></a>
   </li>
 
   <% if current_user.admin? %>

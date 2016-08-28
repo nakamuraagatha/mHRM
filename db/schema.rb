@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160827155511) do
+ActiveRecord::Schema.define(version: 20160828081734) do
 
   create_table "addresses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.integer  "address_type"
@@ -43,7 +43,8 @@ ActiveRecord::Schema.define(version: 20160827155511) do
     t.text     "note",              limit: 65535
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
-    t.integer  "activity_id"
+    t.integer  "contact_type_id"
+    t.integer  "user_id"
   end
 
   create_table "core_demographics", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
