@@ -7,7 +7,7 @@ class EducationsController < ApplicationController
   # GET /educations
   # GET /educations.json
   def index
-    @educations = Education.all
+    @educations = Education.visible
   end
 
   def my
@@ -72,6 +72,7 @@ class EducationsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_education
       @education = Education.find(params[:id])
+      raise Unauthorized unless @education.visible?
     rescue ActiveRecord::RecordNotFound
       render_404
     end

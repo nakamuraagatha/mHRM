@@ -54,9 +54,19 @@ class User < ApplicationRecord
   end
 
   def has_same_department?(for_user)
-    return true if self.admin?
-    return false unless job_detail
-    job_detail.department.users.include?(for_user)
+    permitted_users.include?(for_user)
+  end
+
+  def permitted_users
+    @permitted_users ||= begin
+      if self.admin?
+        User.where(nil)
+      elsif !job_detail
+        []
+      else
+        job_detail.department.users
+      end
+    end
   end
 
   def all_permissions
@@ -68,6 +78,7 @@ class User < ApplicationRecord
   def allowed_actions
     @actions_allowed ||= permissions.inject([]) { |actions, permission| actions += RedCarpet::AccessControl.allowed_actions(permission) }.flatten
   end
+
 
   def job
     job_detail || JobDetail.new(user_id: self.id)

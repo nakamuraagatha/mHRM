@@ -5,7 +5,7 @@ class PositionsController < ApplicationController
   # GET /positions
   # GET /positions.json
   def index
-    @positions = Position.all
+    @positions = Position.visible
   end
 
   # GET /positions/1
@@ -66,6 +66,7 @@ class PositionsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_position
       @position = Position.find(params[:id])
+      raise Unauthorized unless @position.visible?
     rescue ActiveRecord::RecordNotFound
       render_404
     end

@@ -6,7 +6,7 @@ class DocumentsController < ApplicationController
   # GET /documents
   # GET /documents.json
   def index
-    @documents = Document.all
+    @documents = Document.visible
   end
 
   # GET /documents/1
@@ -67,6 +67,7 @@ class DocumentsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_document
       @document = Document.find(params[:id])
+      raise Unauthorized unless @document.visible?
     rescue ActiveRecord::RecordNotFound
       render_404
     end

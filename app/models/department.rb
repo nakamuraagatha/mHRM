@@ -8,9 +8,12 @@ class Department < ApplicationRecord
   validates_presence_of :department_type_id
   validates_uniqueness_of :department_type_id
 
-  def self.visible(current_user)
-    return where(nil) if current_user.admin?
-    where user_id: current_user.id
+  def self.visible
+    where(user_id: User.current.permitted_users)
+  end
+
+  def visible?
+    User.current.permitted_users.include? user
   end
 
   def department_informations

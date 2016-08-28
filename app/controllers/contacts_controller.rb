@@ -2,10 +2,11 @@ class ContactsController < ApplicationController
   before_action  :authenticate_user!
   before_action :set_contact, only: [:show, :edit, :update, :destroy]
   before_action :authorize, only: [:index, :new, :create]
+
   # GET /contacts
   # GET /contacts.json
   def index
-    @contacts = Contact.all
+    @contacts = Contact.visible
   end
 
   # GET /contacts/1
@@ -66,6 +67,7 @@ class ContactsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_contact
       @contact = Contact.find(params[:id])
+      raise Unauthorized unless @contact.visible?
     rescue ActiveRecord::RecordNotFound
       render_404
     end

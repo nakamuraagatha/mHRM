@@ -18,10 +18,10 @@
             <td><%= organization.note %></td>
             <td><%= organization.contact_id %></td>
             <% if @user %>
-                <td><%= show_link user_organization_path(@user, organization) %></td>
+
                 <td><%= edit_link edit_user_organization_path(@user, organization) %></td>
             <% else %>
-                <td><%= show_link organization %></td>
+
                 <td><%= edit_link edit_organization_path(organization) %></td>
             <% end %>
             <td><%= delete_link organization %></td>

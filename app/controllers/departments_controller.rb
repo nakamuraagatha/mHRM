@@ -6,7 +6,7 @@ class DepartmentsController < ApplicationController
   # GET /departments
   # GET /departments.json
   def index
-    @departments = Department.visible(current_user)
+    @departments = Department.visible
   end
 
   # GET /departments/1
@@ -72,6 +72,7 @@ class DepartmentsController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_department
     @department = Department.find(params[:id])
+    raise Unauthorized unless @department.visible?
   rescue ActiveRecord::RecordNotFound
     render_404
   end

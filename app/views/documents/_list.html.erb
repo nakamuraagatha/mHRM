@@ -22,14 +22,11 @@
             <td><%= document.date %></td>
             <td><%= document.attachment %></td>
             <% if @user %>
-                <td><%= show_link user_document_path(@user, document) %></td>
                 <td><%= edit_link edit_user_document_path(@user, document) %></td>
-                <td><%= delete_link document %></td>
             <% else %>
-                <td><%= show_link document %></td>
                 <td><%= edit_link edit_document_path(document) %></td>
-                <td><%= delete_link document %></td>
             <% end %>
+            <td><%= delete_link document %></td>
           </tr>
       <% end %>
   <% else %>

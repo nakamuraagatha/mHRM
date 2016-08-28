@@ -1,18 +1,28 @@
+class Unauthorized < Exception; end
+
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   before_action :find_optional_user
+  before_action :set_user
   layout 'base'
+
+  def set_user
+    User.current= current_user if user_signed_in?
+  end
 
   def authorize(ctrl = params[:controller], action = params[:action])
     allowed = current_user.allowed_to?({:controller => ctrl, :action => action})
-    if allowed
-      true
-    else
-      flash[:error] = 'Permission denied'
-      redirect_to root_path
-      return false
-    end
+    allowed ?  true : deny_access
+  end
+  rescue_from ::Unauthorized, :with => :deny_access
+
+  def deny_access
+    User.current ? render_403 : require_login
+  end
+
+  def require_login
+    redirect_to new_session_path(:user)
   end
 
   def render_403(options={})

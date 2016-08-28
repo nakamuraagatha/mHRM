@@ -187,6 +187,8 @@ en:
   button_cancel: Cancel
   button_create: Create
   button_edit: Edit
+  notice_not_authorized: Not authorized
+  notice_file_not_found: Page does not exist
 
   text_enumeration_destroy_question: "%{count} objects are assigned to the value “%{name}”."
   text_enumeration_category_reassign_to: 'Reassign them to this value:'
