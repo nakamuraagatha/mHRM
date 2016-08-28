@@ -10,10 +10,8 @@ class ExtendDemographiesController < ApplicationController
     respond_to do |format|
       if @extend_demography.save
         format.html { redirect_to :back, notice: 'Extend demography was successfully created.' }
-        format.json { render :show, status: :created, location: @extend_demography }
       else
-        format.html { render :new }
-        format.json { render json: @extend_demography.errors, status: :unprocessable_entity }
+        format.html { render :edit }
       end
     end
   end
@@ -24,10 +22,8 @@ class ExtendDemographiesController < ApplicationController
     respond_to do |format|
       if @extend_demography.update(extend_demography_params)
         format.html { redirect_to  :back, notice: 'Extend demography was successfully updated.' }
-        format.json { render :show, status: :ok, location: @extend_demography }
       else
         format.html { render :edit }
-        format.json { render json: @extend_demography.errors, status: :unprocessable_entity }
       end
     end
   end

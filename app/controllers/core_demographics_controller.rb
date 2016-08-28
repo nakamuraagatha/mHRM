@@ -10,10 +10,8 @@ class CoreDemographicsController < ApplicationController
     respond_to do |format|
       if @core_demographic.save
         format.html { redirect_to :back, notice: 'Profile was successfully Update.' }
-        format.json { render :show, status: :created, location: @core_demographic }
       else
-        format.html { render :new }
-        format.json { render json: @core_demographic.errors, status: :unprocessable_entity }
+        format.html { render :edit }
       end
     end
   end
@@ -24,10 +22,8 @@ class CoreDemographicsController < ApplicationController
     respond_to do |format|
       if @core_demographic.update(core_demographic_params)
         format.html { redirect_to @core_demographic, notice: 'Profile was successfully updated.' }
-        format.json { render :show, status: :ok, location: @core_demographic }
       else
-        format.html { render :edit }
-        format.json { render json: @core_demographic.errors, status: :unprocessable_entity }
+        format.html { render 'edit' }
       end
     end
   end

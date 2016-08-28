@@ -10,7 +10,7 @@ class JobDetailsController < ApplicationController
       if @job_detail.save
         format.html { redirect_to :back , notice: 'Job detail was successfully created.' }
       else
-        format.html { render :new }
+        format.html { render :edit }
       end
     end
   end
