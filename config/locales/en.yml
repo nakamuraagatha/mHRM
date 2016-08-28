@@ -184,8 +184,13 @@ en:
   attachment: Attachment
 
   button_save: Save
+  button_cancel: Cancel
   button_create: Create
   button_edit: Edit
+
+  text_enumeration_destroy_question: "%{count} objects are assigned to the value “%{name}”."
+  text_enumeration_category_reassign_to: 'Reassign them to this value:'
+  actionview_instancetag_blank_option:  Please select
 
 
   profile:

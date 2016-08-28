@@ -8,7 +8,7 @@ class RoleType < Enumeration
   end
 
   def objects
-    Role.where(:activity_id => self.id)
+    Role.where(:role_type_id => self.id)
   end
 
   def objects_count
@@ -16,6 +16,6 @@ class RoleType < Enumeration
   end
 
   def transfer_relations(to)
-    objects.update_all(:activity_id => to.id)
+    objects.update_all(:role_type_id => to.id)
   end
 end

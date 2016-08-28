@@ -55,7 +55,7 @@ class EnumerationsController < ApplicationController
       redirect_to enumerations_path
       return
     end
-    @enumerations = @enumeration.class.system.to_a - [@enumeration]
+    @enumerations = @enumeration.class.where(nil).to_a - [@enumeration]
   end
 
   private
