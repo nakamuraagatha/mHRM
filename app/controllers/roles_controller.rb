@@ -27,7 +27,7 @@ class RolesController < ApplicationController
   # POST /roles.json
   def create
     @role = Role.new(role_params)
-
+    @role.permissions = params[:permissions]
     respond_to do |format|
       if @role.save
         format.html { redirect_to roles_url, notice: 'Role was successfully created.' }
@@ -43,6 +43,7 @@ class RolesController < ApplicationController
   # PATCH/PUT /roles/1.json
   def update
     respond_to do |format|
+      @role.permissions = params[:permissions]
       if @role.update(role_params)
         format.html { redirect_to roles_url, notice: 'Role was successfully updated.' }
         format.json { head :no_content }

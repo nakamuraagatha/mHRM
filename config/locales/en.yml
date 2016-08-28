@@ -192,6 +192,7 @@ en:
   text_enumeration_category_reassign_to: 'Reassign them to this value:'
   actionview_instancetag_blank_option:  Please select
 
+  label_permissions: Permissions
 
   profile:
     profile: profile
