@@ -20,4 +20,5 @@
 
   <!-- SmartAdmin RTL Support  -->
   *= require smartadmin-rtl.min.css
+  *= require dataTables/jquery.dataTables
  */

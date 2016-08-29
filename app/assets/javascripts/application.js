@@ -17,6 +17,7 @@
 //= require jquery-fileupload/basic
 //= require jquery-fileupload/vendor/tmpl
 //= require cocoon
+//= require dataTables/jquery.dataTables
 
 $(function(){
     $('.date_picker').datepicker({ dateFormat: 'dd-mm-yy' })

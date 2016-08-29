@@ -70,3 +70,5 @@ gem "cocoon"
 gem 'simple_form'
 gem "request_store"
 gem 'will_paginate'
+gem 'jquery-datatables-rails'
+gem 'ajax-datatables-rails'
