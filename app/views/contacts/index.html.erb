@@ -3,4 +3,4 @@
 <h1>Contacts</h1>
 
 <%= link_to 'New Contact', new_contact_path, class: 'btn btn-primary pull-right' %>
-<% render 'list', locals: {contacts: @contacts} %>
+<%= render partial: 'list', locals: {contacts: @contacts} %>

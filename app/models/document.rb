@@ -1,5 +1,6 @@
 class Document < ApplicationRecord
   belongs_to :document_type
+  belongs_to :user
 
   validates_presence_of :title
 

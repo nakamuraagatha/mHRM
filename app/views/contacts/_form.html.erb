@@ -22,7 +22,7 @@
       <div class="form-group">
         <%= f.label :emergency_contact, class: 'col-md-2 control-label' %>
         <div class="col-md-9">
-          <%= f.check_box :emergency_contact, class: 'form-control' %>
+          <%= f.select :emergency_contact, [['Yes', true], ['No', false]] ,{},  {class: 'form-control'} %>
         </div>
       </div>
 

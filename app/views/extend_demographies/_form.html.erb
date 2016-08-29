@@ -13,69 +13,80 @@
 
     <%= f.hidden_field :user_id %>
 
-    <div class="col-xs-4">
-      <%= f.simple_fields_for :emails do |mail| %>
-          <%= render 'extend_demographies/email_fields', :f => mail %>
-      <% end %>
-      <div id="emails" class="col-xs-12 margin-top-10">
-        <%= link_to_add_association 'add email', f, :emails, class: 'btn btn-success', partial: 'extend_demographies/email_fields' %>
+    <div id="tabs">
+      <ul>
+        <li><a id="link-tabs-emails" href="#tabs-emails" >Emails</a></li>
+        <li><a id="link-tabs-faxes" href="#tabs-faxes">Faxes</a></li>
+        <li><a id="link-tabs-phones" href="#tabs-phones">Phones</a></li>
+        <li><a id="link-tabs-identifications" href="#tabs-identifications">Identifications</a></li>
+        <li><a id="link-tabs-social_media" href="#tabs-social_media">Social media</a></li>
+        <li><a id="link-tabs-addresses" href="#tabs-addresses">Address</a></li>
+      </ul>
+      <div id='tabs-emails' >
+        <%= f.simple_fields_for :emails do |mail| %>
+            <%= render 'extend_demographies/email_fields', :f => mail %>
+        <% end %>
+        <div id="emails" class="col-xs-12 margin-top-10">
+          <%= link_to_add_association 'add email', f, :emails, class: 'btn btn-success', partial: 'extend_demographies/email_fields' %>
 
+        </div>
+      </div>
+      <div id='tabs-faxes' >
+        <%= f.simple_fields_for :faxes do |fax| %>
+            <%= render 'extend_demographies/fax_fields', :f => fax %>
+        <% end %>
+        <div id="faxes" class="col-xs-12 margin-top-10">
+          <%= link_to_add_association 'add fax number', f, :faxes, class: 'btn btn-success', partial: 'extend_demographies/fax_fields' %>
+        </div>
+      </div>
+      <div id='tabs-phones' >
+        <%= f.simple_fields_for :phones do |phone| %>
+            <%= render 'extend_demographies/phone_fields', :f => phone %>
+        <% end %>
+
+        <div id="phones" class="col-xs-12 margin-top-10">
+          <%= link_to_add_association 'add phone', f, :phones, class: 'btn btn-success', partial: 'extend_demographies/phone_fields' %>
+        </div>
+      </div>
+
+      <div id='tabs-identifications' >
+        <%= f.simple_fields_for :identifications do |identification| %>
+            <%= render 'extend_demographies/identification_fields', :f => identification %>
+        <% end %>
+
+        <div id="identifications" class="col-xs-12 margin-top-10">
+          <%= link_to_add_association 'add identification', f, :identifications, class: 'btn btn-success', partial: 'extend_demographies/identification_fields' %>
+        </div>
+      </div>
+
+      <div id='tabs-social_media' >
+        <%= f.simple_fields_for :social_media do |sm| %>
+            <%= render 'extend_demographies/social_media_fields', :f => sm %>
+        <% end %>
+
+        <div id="phones" class="col-xs-12 margin-top-10">
+          <%= link_to_add_association 'add social_media', f, :social_media, class: 'btn btn-success', partial: 'extend_demographies/social_media_fields' %>
+        </div>
+      </div>
+
+      <div id='tabs-addresses' >
+        <%= f.simple_fields_for :addresses do |address| %>
+            <%= render 'extend_demographies/address_fields', :f => address %>
+        <% end %>
+
+        <div id="addresses" class="col-xs-12 margin-top-10">
+          <%= link_to_add_association 'add address', f, :addresses, class: 'btn btn-success', partial: 'extend_demographies/address_fields' %>
+        </div>
       </div>
     </div>
-
-
-    <div class="col-xs-4">
-      <%= f.simple_fields_for :faxes do |fax| %>
-          <%= render 'extend_demographies/fax_fields', :f => fax %>
-      <% end %>
-      <div id="faxes" class="col-xs-12 margin-top-10">
-        <%= link_to_add_association 'add fax number', f, :faxes, class: 'btn btn-success', partial: 'extend_demographies/fax_fields' %>
-      </div>
-    </div>
-
-    <div class="col-xs-4">
-      <%= f.simple_fields_for :phones do |phone| %>
-          <%= render 'extend_demographies/phone_fields', :f => phone %>
-      <% end %>
-
-      <div id="phones" class="col-xs-12 margin-top-10">
-        <%= link_to_add_association 'add phone', f, :phones, class: 'btn btn-success', partial: 'extend_demographies/phone_fields' %>
-      </div>
-   </div>
-
-    <div class="col-xs-4">
-      <%= f.simple_fields_for :identifications do |identification| %>
-          <%= render 'extend_demographies/identification_fields', :f => identification %>
-      <% end %>
-
-      <div id="phones" class="col-xs-12 margin-top-10">
-        <%= link_to_add_association 'add identification', f, :identifications, class: 'btn btn-success', partial: 'extend_demographies/identification_fields' %>
-      </div>
-    </div>
-
-    <div class="col-xs-4">
-      <%= f.simple_fields_for :social_media do |sm| %>
-          <%= render 'extend_demographies/social_media_fields', :f => sm %>
-      <% end %>
-
-      <div id="phones" class="col-xs-12 margin-top-10">
-        <%= link_to_add_association 'add social_media', f, :social_media, class: 'btn btn-success', partial: 'extend_demographies/social_media_fields' %>
-      </div>
-    </div>
-
-    <div class="col-xs-4">
-      <%= f.simple_fields_for :addresses do |address| %>
-          <%= render 'extend_demographies/address_fields', :f => address %>
-      <% end %>
-
-      <div id="phones" class="col-xs-12 margin-top-10">
-        <%= link_to_add_association 'add address', f, :addresses, class: 'btn btn-success', partial: 'extend_demographies/address_fields' %>
-      </div>
-    </div>
-
     <div class="form-group" >
       <div class="col-md-11">
         <%= f.submit t('button_save'), class: 'btn btn-primary pull-right' %>
       </div>
     </div>
 <% end %>
+<script>
+  $( function() {
+    $tabs = $( "#tabs" ).tabs();
+  } );
+</script>
