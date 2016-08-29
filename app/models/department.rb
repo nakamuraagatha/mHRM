@@ -55,8 +55,16 @@ class Department < ApplicationRecord
     job_details.map{|job| job.user}
   end
 
+  def to_s
+    "#{department_type}"
+  end
+
   def name
     "#{id} #{department_type}"
+  end
+
+  def grouped_by_role
+    job_details.group_by{|j| j.role.to_s }
   end
 
 end

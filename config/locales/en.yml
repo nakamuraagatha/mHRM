@@ -205,6 +205,7 @@ en:
     birthday: Birth date
     gender: Gender
     religion: Religion
+    ethnicity: Ethnicity
     password: Password
     current_password: Current password
     password_confirmation: Password confirmation

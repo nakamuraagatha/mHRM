@@ -14,16 +14,7 @@
           </div>
       <% end %>
 
-      <% if current_user.admin? %>
-          <div class="form-group">
-            <%= f.label :user_id, class: 'col-md-2 control-label' %>
-            <div class="col-md-9">
-              <%= f.select :user_id, options_for_select(User.pluck(:login, :id), selected: document.user_id), {} ,{class: 'form-control'} %>
-            </div>
-          </div>
-      <% else %>
-          <%= f.hidden_field :user_id %>
-      <% end %>
+      <%= f.hidden_field :user_id %>
 
       <div class="form-group">
         <%= f.label t(:title), class: 'col-md-2 control-label' %>

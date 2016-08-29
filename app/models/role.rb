@@ -17,6 +17,9 @@ class Role < ApplicationRecord
 
   scope :active, lambda { where(:state => true) }
 
+  def to_s
+    role_type.to_s
+  end
   def setable_permissions
     setable_permissions = RedCarpet::AccessControl.permissions - RedCarpet::AccessControl.public_permissions
     setable_permissions

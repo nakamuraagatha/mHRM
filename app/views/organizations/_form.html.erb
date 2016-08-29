@@ -12,16 +12,7 @@
     <% end %>
     <fieldset>
       <legend>Set Organization</legend>
-      <% if current_user.admin? %>
-          <div class="form-group">
-            <%= f.label t('label_user'), class: 'col-md-2 control-label' %>
-            <div class="col-md-9">
-              <%= f.select :user_id, options_for_select(User.all.map{|u| [u.name, u.id]}, selected: organization.user_id),{} ,{class: 'form-control'} %>
-            </div>
-          </div>
-      <% else %>
-      <% end %>
-
+      <%= f.hidden_field :user_id %>
       <div class="form-group">
         <%= f.label t('label_name'), class: 'col-md-2 control-label' %>
         <div class="col-md-9">

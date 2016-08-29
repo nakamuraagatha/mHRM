@@ -9,7 +9,16 @@
                      wid_id: 'password',
                      wid_title: 'Change password'
                  } %>
-      </article>
+      <% if current_user.job_detail %>
+          <%= render partial: 'job_details/info',
+                     layout: 'shared/smart_widget_wrapper',
+                     locals: {
+                         wid_id: 'job_detail_info',
+                         wid_title: "Department Info: #{ current_user.job_detail.role}",
+                         job_detail: current_user.job_detail
+                     } %>
+      <% end %>
+    </article>
       <article class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
       <%= render partial: 'core_demographics/form',
                  layout: 'shared/smart_widget_wrapper',

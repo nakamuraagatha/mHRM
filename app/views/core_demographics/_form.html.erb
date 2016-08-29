@@ -9,7 +9,7 @@
       <%= render partial: 'uploader/upload' %>
     </div>
   </div>
-  <%= form_for([core_demographic.user, core_demographic], html: { class: 'form-horizontal' }) do |f| %>
+  <%= form_for([core_demographic.user, core_demographic], html: { class: 'form-horizontal', id: 'core-demo-form' }) do |f| %>
       <% if core_demographic.errors.any? %>
           <div id="error_explanation">
             <h2><%= pluralize(core_demographic.errors.count, "error") %> prohibited this core_demographic from being saved:</h2>
@@ -26,47 +26,54 @@
 
       <div class="form-group">
         <%= f.label t('profile.first_name'), class: 'col-md-2 control-label' %>
-        <div class="col-md-9">
+        <div class="col-md-8">
           <%= f.text_field :first_name, placeholder: 'First name', class: 'form-control' %>
         </div>
       </div>
 
       <div class="form-group">
         <%= f.label t('profile.middle_name'), class: 'col-md-2 control-label' %>
-        <div class="col-md-9">
+        <div class="col-md-8">
           <%= f.text_field :middle_name, placeholder: 'Middle name', class: 'form-control' %>
         </div>
       </div>
 
       <div class="form-group">
         <%= f.label t('profile.last_name'), class: 'col-md-2 control-label' %>
-        <div class="col-md-9">
+        <div class="col-md-8">
           <%= f.text_field :last_name, placeholder: 'Last name', class: 'form-control' %>
         </div>
       </div>
 
       <div class="form-group">
         <label class="col-md-2 control-label"><%= t('profile.gender') %></label>
-        <div class="col-md-9">
+        <div class="col-md-8">
           <%= f.select :gender_id, options_for_select(Gender.gender_for_select, selected: core_demographic.gender_id), {},{class: 'form-control'} %>
         </div>
       </div>
       <div class="form-group">
         <label class="col-md-2 control-label"><%= t('profile.birthday') %></label>
-        <div class="col-md-9">
+        <div class="col-md-8">
           <%= f.text_field :birth_date, class: 'form-control date_picker' %>
         </div>
       </div>
       <div class="form-group">
         <label class="col-md-2 control-label"><%= t('profile.religion') %></label>
-        <div class="col-md-9">
+        <div class="col-md-8">
           <%= f.select :religion_id, options_for_select(ReligionType.active.select(:name, :id), selected: core_demographic.religion_id) , {},{class: 'form-control'} %>
         </div>
       </div>
       <div class="form-group">
         <label class="col-md-2 control-label"><%= t('label_note') %></label>
-        <div class="col-md-9">
+        <div class="col-md-8">
           <%= f.text_area :note, class: 'form-control' %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-md-2 control-label"><%= t('profile.ethnicity') %></label>
+        <div class="col-md-8">
+          <%= f.select :ethnicity_id, options_for_select(EthnicityType.active.select(:name, :id), selected: core_demographic.ethnicity_id) , {},{class: 'form-control'} %>
         </div>
       </div>
 
@@ -78,3 +85,54 @@
 
   <% end %>
 </fieldset>
+<script>
+  // Validation
+  $(function() {
+    runAllForms();
+    // Validation
+    $("#core-demo-form").validate({
+
+      // Rules for form validation
+      rules : {
+        "core_demographic[first_name]" : {
+          required : true
+        },
+        "core_demographic[last_name]" : {
+          required : true
+        },
+        "core_demographic[gender_id]" : {
+          required : true
+        },
+        "core_demographic[birth_date]" : {
+          required : true
+        },
+        "core_demographic[religion_id]" : {
+          required : true
+        }
+      },
+
+      // Messages for form validation
+      messages : {
+        login : {
+          required : 'Please enter your login'
+        },
+        email : {
+          required : 'Please enter your email address',
+          email : 'Please enter a VALID email address'
+        },
+        password : {
+          required : 'Please enter your password'
+        },
+        passwordConfirm : {
+          required : 'Please enter your password one more time',
+          equalTo : 'Please enter the same password as above'
+        }
+      },
+      // Do not change code below
+      errorPlacement : function(error, element) {
+        error.insertAfter(element.parent());
+      }
+    });
+
+  });
+</script>

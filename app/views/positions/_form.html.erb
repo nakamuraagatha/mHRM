@@ -1,5 +1,5 @@
 <fieldset>
-  <legend>Set education</legend>
+  <legend>Set position</legend>
   <%= form_for(position, html: { class: 'form-horizontal' }) do |f| %>
       <% if position.errors.any? %>
           <div id="error_explanation">
@@ -34,7 +34,7 @@
       <div class="form-group">
         <%= f.label :location , class: 'col-md-2 control-label' %>
         <div class="col-md-9">
-          <%= f.text_field :location , class: 'form-control' %>
+          <%= f.select :location_type_id, LocationType.active.pluck(:name, :id), {} , {class: 'form-control'} %>
         </div>
       </div>
 
