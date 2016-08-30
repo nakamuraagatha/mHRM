@@ -59,6 +59,8 @@ class ApplicationController < ActionController::Base
   def find_optional_user
     if params[:user_id]
       @user = User.find params[:user_id]
+    elsif params[:employee_id]
+      @user = User.find params[:employee_id]
     else
       @user = current_user
     end

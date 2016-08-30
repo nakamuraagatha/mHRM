@@ -27,7 +27,7 @@ Rails.application.routes.draw do
   resources :organizations
   resources :documents
 
-  resources :employees do
+  resources :employees, only: [:index, :show] do
     resources :departments, only: [:new]
     resources :positions, only: [:new]
     resources :contacts, only: [:new]

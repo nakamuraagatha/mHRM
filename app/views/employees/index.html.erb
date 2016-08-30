@@ -19,8 +19,8 @@
             <td><%= user.id %></td>
             <td><%= user.login %></td>
             <td><%= user.email %></td>
-            <td><%#= show_link user %></td>
-            <td><%#= delete_link user %></td>
+            <td><%#= show_link(employee_path user) %></td>
+            <td><%= render_action_link(user) %></td>
           </tr>
       <% end %>
   <% else %>
