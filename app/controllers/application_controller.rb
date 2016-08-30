@@ -3,7 +3,7 @@ class Unauthorized < Exception; end
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
-  before_action :find_optional_user
+  # before_action :find_optional_user
   before_action :set_user
   layout 'base'
 
@@ -59,6 +59,8 @@ class ApplicationController < ActionController::Base
   def find_optional_user
     if params[:user_id]
       @user = User.find params[:user_id]
+    else
+      @user = current_user
     end
   rescue ActiveRecord::RecordNotFound
     render_404

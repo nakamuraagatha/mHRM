@@ -1,12 +1,15 @@
 class DocumentsController < ApplicationController
   before_action  :authenticate_user!
   before_action :set_document, only: [:show, :edit, :update, :destroy]
-  before_action :authorize, only: [:index, :new, :create]
+  before_action :find_optional_user, only: [:new]
+  before_action :authorize, only: [:new, :create]
+  before_action :authorize_edit, only: [:edit, :update]
+  before_action :authorize_delete, only: [:destroy]
 
   # GET /documents
   # GET /documents.json
   def index
-    @documents = Document.visible
+    @documents = Document.visible :view_documents
   end
 
   # GET /documents/1
@@ -16,7 +19,7 @@ class DocumentsController < ApplicationController
 
   # GET /documents/new
   def new
-    @document = Document.new
+    @document = Document.new(user_id: @user.id)
   end
 
   # GET /documents/1/edit
@@ -67,7 +70,6 @@ class DocumentsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_document
       @document = Document.find(params[:id])
-      raise Unauthorized unless @document.visible?
     rescue ActiveRecord::RecordNotFound
       render_404
     end
@@ -76,4 +78,11 @@ class DocumentsController < ApplicationController
     def document_params
       params.require(:document).permit(:title, :description, :user_id, :document_type_id, :date, :attachment)
     end
+  def authorize_edit
+    raise Unauthorized unless @document.can?(:edit_documents, :manage_documents)
+  end
+
+  def authorize_delete
+    raise Unauthorized unless @document.can?(:delete_documents, :manage_documents)
+  end
 end

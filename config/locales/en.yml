@@ -169,6 +169,7 @@ en:
   text_are_you_sure: Are you sure to delete this record?
   notice_successful_create: Successful creation.
   notice_successful_update: Successful update.
+  error_update: Error on update.
   notice_successful_delete: Successful deletion.
   new_organization: New Organization
   organizations: Organizations

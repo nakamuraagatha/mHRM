@@ -1,8 +1,7 @@
-<p id="notice"><%= notice %></p>
 
 <h1>Positions</h1>
 
-<%= link_to 'New Position', new_position_path, class:'btn btn-primary pull-right'%>
+<%= link_to('New Position', new_position_path, class:'btn btn-primary pull-right') if User.current.can?(:create_positions, :manage_positions) %>
 <table class="table table-bordered table-responsive">
   <thead>
   <tr>
@@ -30,8 +29,8 @@
             <td><%= position.note %></td>
             <td><%= position.date_start %></td>
             <td><%= position.date_end %></td>
-            <td><%= edit_link edit_position_path(position) %></td>
-            <td><%= delete_link position %></td>
+            <td><%= edit_link(edit_position_path(position))  if position.can?(:edit_positions, :manage_positions) %></td>
+            <td><%= delete_link(position)  if position.can?(:delete_positions, :manage_positions)%></td>
           </tr>
       <% end %>
   <% else %>

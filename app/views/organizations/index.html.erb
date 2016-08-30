@@ -1,6 +1,4 @@
-<p id="notice"><%= notice %></p>
-
 <h1><%= t(:organizations) %></h1>
 
-<%= link_to t(:new_organization), new_organization_path, class: 'btn btn-primary pull-right' %>
+<%= link_to( t(:new_organization), new_organization_path, class: 'btn btn-primary pull-right') if User.current.can?(:create_organizations, :manage_organizations) %>
 <%= render partial: 'list', locals:{organizations: @organizations}  %>

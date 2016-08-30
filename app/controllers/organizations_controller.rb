@@ -1,13 +1,15 @@
 class OrganizationsController < ApplicationController
   before_action  :authenticate_user!
   before_action :set_organization, only: [:show, :edit, :update, :destroy]
-
-  before_action :authorize, only: [:index, :new, :create]
+  before_action :find_optional_user, only: [:new]
+  before_action :authorize, only: [:new, :create]
+  before_action :authorize_edit, only: [:edit, :update]
+  before_action :authorize_delete, only: [:destroy]
 
   # GET /organizations
   # GET /organizations.json
   def index
-    @organizations = Organization.visible
+    @organizations = Organization.visible :view_organizations
   end
 
   # GET /organizations/1
@@ -17,7 +19,7 @@ class OrganizationsController < ApplicationController
 
   # GET /organizations/new
   def new
-    @organization = Organization.new
+    @organization = Organization.new(user_id: @user.id)
   end
 
   # GET /organizations/1/edit
@@ -68,7 +70,6 @@ class OrganizationsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_organization
       @organization = Organization.find(params[:id])
-      raise Unauthorized unless @organization.visible?
     rescue ActiveRecord::RecordNotFound
       render_404
     end
@@ -77,4 +78,12 @@ class OrganizationsController < ApplicationController
     def organization_params
       params.require(:organization).permit(:name, :address_id, :note, :contact_id)
     end
+
+  def authorize_edit
+    raise Unauthorized unless @organization.can?(:edit_organizations, :manage_organizations)
+  end
+
+  def authorize_delete
+    raise Unauthorized unless @organization.can?(:delete_organizations, :manage_organizations)
+  end
 end

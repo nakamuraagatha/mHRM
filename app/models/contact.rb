@@ -3,12 +3,6 @@ class Contact < ApplicationRecord
   belongs_to :contact_type
   belongs_to :user
 
-  def self.visible
-    where(user_id: User.current.permitted_users)
-  end
-
-  def visible?
-    User.current.permitted_users.include? user
-  end
+  scope :visible, lambda {|action|  User.current.allowed_to?(action) ? where(nil) :  where(user_id: User.current.id) }
 
 end

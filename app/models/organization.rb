@@ -3,11 +3,10 @@ class Organization < ApplicationRecord
   belongs_to :address
   belongs_to :user
 
-  def self.visible
-    where(user_id: User.current.permitted_users)
-  end
+  scope :visible, lambda {|action|  User.current.allowed_to?(action) ? where(nil) :  where(user_id: User.current.id) }
+
 
   def visible?
-    User.current.permitted_users.include? user
+    User.current == user or User.current.allowed_to?(:edit_organizations) or User.current.allowed_to?(:manage_organizations)
   end
 end

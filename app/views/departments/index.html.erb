@@ -1,7 +1,5 @@
-<p id="notice"><%= notice %></p>
-
 <h1>Departments</h1>
 
-<%= link_to 'New Department', new_department_path, class: 'btn btn-primary pull-right' %>
+<%= link_to( 'New Department', new_department_path, class: 'btn btn-primary pull-right') if User.current.can?(:create_departments, :manage_departments) %>
 
 <%= render partial: 'list', locals: {departments: @departments} %>

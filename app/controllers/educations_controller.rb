@@ -1,17 +1,15 @@
 class EducationsController < ApplicationController
   before_action  :authenticate_user!
   before_action :set_education, only: [:show, :edit, :update, :destroy]
-  before_action :authorize, only: [:index, :new, :create]
-  # before_action :authorize, only: [:index, :new, :create]
+  before_action :find_optional_user, only: [:new]
+  before_action :authorize, only: [:new, :create]
+  before_action :authorize_edit, only: [:edit, :update]
+  before_action :authorize_delete, only: [:destroy]
 
   # GET /educations
   # GET /educations.json
   def index
-    @educations = Education.visible
-  end
-
-  def my
-    @educations = Education.where(user_id: current_user.id )
+    @educations = Education.visible(:view_educations)
   end
 
   # GET /educations/1
@@ -21,7 +19,7 @@ class EducationsController < ApplicationController
 
   # GET /educations/new
   def new
-    @education = Education.new
+    @education = Education.new(user_id: @user.id)
   end
 
   # GET /educations/1/edit
@@ -72,7 +70,6 @@ class EducationsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_education
       @education = Education.find(params[:id])
-      raise Unauthorized unless @education.visible?
     rescue ActiveRecord::RecordNotFound
       render_404
     end
@@ -81,4 +78,12 @@ class EducationsController < ApplicationController
     def education_params
       params.require(:education).permit(:user_id, :education_type_id, :certification_type_id, :other_skill, :date_recieved, :date_expired, :note, :clearence)
     end
+
+  def authorize_edit
+    raise Unauthorized unless @education.can?(:edit_educations, :manage_educations)
+  end
+
+  def authorize_delete
+    raise Unauthorized unless @education.can?(:delete_educations, :manage_educations)
+  end
 end

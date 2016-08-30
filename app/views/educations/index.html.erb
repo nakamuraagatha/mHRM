@@ -1,7 +1,5 @@
-<p id="notice"><%= notice %></p>
-
 <h1>Educations</h1>
 
-<%= link_to 'New Education', new_education_path, class:'btn btn-primary pull-right'%>
+<%= link_to( 'New Education', new_education_path, class:'btn btn-primary pull-right') if User.current.can?(:create_educations, :manage_educations)%>
 
 <%= render 'list', educations: @educations %>

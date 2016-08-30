@@ -18,13 +18,12 @@
             <td><%= organization.note %></td>
             <td><%= organization.contact_id %></td>
             <% if @user %>
-
-                <td><%= edit_link edit_user_organization_path(@user, organization) %></td>
+                <td><%= edit_link (edit_user_organization_path(@user, organization))  if organization.can?(:edit_organizations, :manage_organizations) %></td>
             <% else %>
 
-                <td><%= edit_link edit_organization_path(organization) %></td>
+                <td><%= edit_link( edit_organization_path(organization))  if organization.can?(:edit_organizations, :manage_organizations) %></td>
             <% end %>
-            <td><%= delete_link organization %></td>
+            <td><%= delete_link( organization)  if organization.can?(:delete_organizations, :manage_organizations) %></td>
           </tr>
       <% end %>
   <% else %>

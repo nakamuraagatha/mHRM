@@ -1,12 +1,15 @@
 class DepartmentsController < ApplicationController
   before_action  :authenticate_user!
   before_action :set_department, only: [:show, :edit, :update, :destroy]
-  before_action :authorize, only: [:index, :new, :create]
+  before_action :find_optional_user, only: [:new]
+  before_action :authorize, only: [:new, :create]
+  before_action :authorize_edit, only: [:edit, :update]
+  before_action :authorize_delete, only: [:destroy]
 
   # GET /departments
   # GET /departments.json
   def index
-    @departments = Department.visible
+    @departments = Department.visible :view_departments
   end
 
   # GET /departments/1
@@ -16,7 +19,7 @@ class DepartmentsController < ApplicationController
 
   # GET /departments/new
   def new
-    @department = Department.new user_id: current_user.id
+    @department = Department.new user_id: @user.id
   end
 
   # GET /departments/1/edit
@@ -72,7 +75,6 @@ class DepartmentsController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_department
     @department = Department.find(params[:id])
-    raise Unauthorized unless @department.visible?
   rescue ActiveRecord::RecordNotFound
     render_404
   end
@@ -80,5 +82,13 @@ class DepartmentsController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def department_params
     params.require(:department).permit(:user_id, :note, :date_start, :date_end, :department_type_id)
+  end
+
+  def authorize_edit
+    raise Unauthorized unless @department.can?(:edit_departments, :manage_departments)
+  end
+
+  def authorize_delete
+    raise Unauthorized unless @department.can?(:delete_departments, :manage_departments)
   end
 end

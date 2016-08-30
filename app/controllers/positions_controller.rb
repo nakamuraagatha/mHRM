@@ -1,11 +1,16 @@
 class PositionsController < ApplicationController
   before_action  :authenticate_user!
   before_action :set_position, only: [:show, :edit, :update, :destroy]
-  before_action :authorize, only: [:index, :new, :create]
+  before_action :find_optional_user, only: [:new]
+  before_action :authorize, only: [:new, :create]
+  before_action :authorize_edit, only: [:edit, :update]
+  before_action :authorize_delete, only: [:destroy]
+
+
   # GET /positions
   # GET /positions.json
   def index
-    @positions = Position.visible
+    @positions = Position.visible(:view_positions)
   end
 
   # GET /positions/1
@@ -15,7 +20,7 @@ class PositionsController < ApplicationController
 
   # GET /positions/new
   def new
-    @position = Position.new
+    @position = Position.new(user_id: @user.id)
   end
 
   # GET /positions/1/edit
@@ -63,16 +68,22 @@ class PositionsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_position
-      @position = Position.find(params[:id])
-      raise Unauthorized unless @position.visible?
-    rescue ActiveRecord::RecordNotFound
-      render_404
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_position
+    @position = Position.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    render_404
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def position_params
-      params.require(:position).permit(:user_id, :title, :position_description, :location_type_id, :special_requirement, :note, :date_start, :date_end, :files)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def position_params
+    params.require(:position).permit(:user_id, :title, :position_description, :location_type_id, :special_requirement, :note, :date_start, :date_end, :files)
+  end
+  def authorize_edit
+    raise Unauthorized unless @position.can?(:edit_positions, :manage_positions)
+  end
+
+  def authorize_delete
+    raise Unauthorized unless @position.can?(:delete_positions, :manage_positions)
+  end
 end

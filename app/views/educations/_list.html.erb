@@ -23,8 +23,8 @@
             <td><%= education.date_expired %></td>
             <td><%= education.note %></td>
             <td><%= education.clearence %></td>
-            <td><%= edit_link edit_user_education_path(@user, education) %></td>
-            <td><%= delete_link education %></td>
+            <td><%= edit_link(edit_education_path(education))  if education.can?(:edit_educations, :manage_educations) %></td>
+            <td><%= delete_link( education)  if education.can?(:delete_educations, :manage_educations) %></td>
           </tr>
       <% end %>
   <% else %>

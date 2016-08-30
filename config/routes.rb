@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :users, only: [:index, :show, :destroy] do
     member do
       put 'change_password'
+      put 'change_basic_info'
       post 'image_upload'
       get 'remove_image'
     end
@@ -20,16 +21,21 @@ Rails.application.routes.draw do
     resources :department_extend_demographies, only: [:create, :update], controller: :extend_demographies
   end
 
-  resources :educations, except: [:index] do
-    collection do
-      get 'my'
-    end
-  end
-
+  resources :educations
   resources :positions
   resources :contacts
   resources :organizations
   resources :documents
+
+  resources :employees do
+    resources :departments, only: [:new]
+    resources :positions, only: [:new]
+    resources :contacts, only: [:new]
+    resources :organizations, only: [:new]
+    resources :documents, only: [:new]
+  end
+
+
 
   resources :enumerations
   resources :roles

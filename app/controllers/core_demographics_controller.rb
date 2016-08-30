@@ -9,7 +9,7 @@ class CoreDemographicsController < ApplicationController
 
     respond_to do |format|
       if @core_demographic.save
-        format.html { redirect_to :back, notice: 'Profile was successfully Update.' }
+        format.html { redirect_to root_path, notice: I18n.t(:notice_successful_create) }
       else
         format.html { render :edit }
       end
@@ -21,7 +21,7 @@ class CoreDemographicsController < ApplicationController
   def update
     respond_to do |format|
       if @core_demographic.update(core_demographic_params)
-        format.html { redirect_to @core_demographic, notice: 'Profile was successfully updated.' }
+        format.html { redirect_to root_path, notice: I18n.t(:notice_successful_update) }
       else
         format.html { render 'edit' }
       end

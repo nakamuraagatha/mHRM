@@ -22,11 +22,11 @@
             <td><%= document.date %></td>
             <td><%= document.attachment %></td>
             <% if @user %>
-                <td><%= edit_link edit_user_document_path(@user, document) %></td>
+                <td><%= edit_link( edit_user_document_path(@user, document)) if document.can?(:edit_documents, :manage_documents) %></td>
             <% else %>
-                <td><%= edit_link edit_document_path(document) %></td>
+                <td><%= edit_link(edit_document_path(document)) if document.can?(:edit_documents, :manage_documents)%></td>
             <% end %>
-            <td><%= delete_link document %></td>
+            <td><%= delete_link( document)  if document.can?(:delete_documents, :manage_documents) %></td>
           </tr>
       <% end %>
   <% else %>

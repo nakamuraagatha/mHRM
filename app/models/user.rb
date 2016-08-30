@@ -20,6 +20,14 @@ class User < ApplicationRecord
   validates_uniqueness_of :login, :email
   validates_presence_of :login, :email
 
+  def self.visible
+    if User.current.allowed_to?(:view_employees)
+      where(nil)
+    else
+      where(id: User.current.id)
+    end
+  end
+
   def self.current=(user)
     RequestStore.store[:current_user] = user
   end
@@ -34,23 +42,11 @@ class User < ApplicationRecord
 
 
   def allowed_to?(action, for_user = nil)
-    if for_user
-      if action.is_a? Hash
-        permission = allowed_actions.include? "#{action[:controller]}/#{action[:action]}"
-      else
-        permission = permissions.include? action.to_sym
-      end
-      if permission
-        permission = has_same_department?(for_user)
-      end
+    if action.is_a? Hash
+      allowed_actions.include? "#{action[:controller]}/#{action[:action]}"
     else
-      if action.is_a? Hash
-        permission = allowed_actions.include? "#{action[:controller]}/#{action[:action]}"
-      else
-        permission = permissions.include? action.to_sym
-      end
+      permissions.include? action.to_sym
     end
-    permission
   end
 
   def has_same_department?(for_user)
@@ -62,7 +58,7 @@ class User < ApplicationRecord
       if self.admin?
         User.where(nil)
       elsif !job_detail
-        []
+        User.where(id: self.id)
       else
         job_detail.department.users
       end

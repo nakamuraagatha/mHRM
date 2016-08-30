@@ -14,10 +14,23 @@ class UsersController < ApplicationController
 
   def change_password
     if params[:password] == params[:password_confirmation]
-      @user.update(password: params[:password])
-      flash[:notice] = t('devise.passwords.updated_not_active')
+      if @user.update(password: params[:password])
+        flash[:notice] = I18n.t('devise.passwords.updated_not_active')
+      else
+        flash[:notice] = I18n.t('error_update')
+      end
+
     else
       flash[:error] = 'Password not matched'
+    end
+    redirect_to user_path(@user)
+  end
+
+  def change_basic_info
+    if @user.update(params.require(:user).permit(:login, :email, :admin))
+      flash[:notice] = I18n.t('notice_successful_update')
+    else
+      flash[:error] = I18n.t('error_update')
     end
     redirect_to user_path(@user)
   end

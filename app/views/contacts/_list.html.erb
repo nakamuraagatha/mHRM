@@ -18,8 +18,8 @@
             <td><%= contact.emergency_contact %></td>
             <td><%= contact.contact_type %></td>
             <td><%= contact.note %></td>
-            <td><%= edit_link edit_contact_path(contact) %></td>
-            <td><%= delete_link contact %></td>
+            <td><%= edit_link(edit_contact_path(contact)) if contact.can?(:edit_contacts, :manage_contacts) %></td>
+            <td><%= delete_link( contact) if contact.can?(:delete_contacts, :manage_contacts) %></td>
           </tr>
       <% end %>
   <% else %>
