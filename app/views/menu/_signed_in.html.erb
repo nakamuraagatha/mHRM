@@ -6,9 +6,11 @@
   <li class="<%= menu_active?('educations') %>">
     <a href="<%= educations_path %>" title="<%= t(:educations) %>"><i class="fa fa-lg fa-fw fa-graduation-cap"></i> <span class="menu-item-parent"><%= t(:educations) %></span></a>
   </li>
-  <li class="<%= menu_active?('employees') %>">
-    <a href="<%= employees_path %>" title="<%= 'Employees' %>"><i class="fa fa-lg fa-fw fa-users"></i> <span class="menu-item-parent"><%= 'Employees' %></span></a>
-  </li>
+  <% if User.current.allowed_to?(:manage_roles) %>
+      <li class="<%= menu_active?('employees') %>">
+        <a href="<%= employees_path %>" title="<%= t 'label_search' %>"><i class="fa fa-lg fa-fw fa-users"></i> <span class="menu-item-parent"><%= t :label_search %></span></a>
+      </li>
+  <% end %>
   <li class="<%= menu_active?('organizations') %>">
     <a href="<%= organizations_path %>" title="<%= t(:organizations) %>"><i class="fa fa-lg fa-fw fa-home"></i> <span class="menu-item-parent"><%= t(:organizations) %></span></a>
   </li>

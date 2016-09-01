@@ -160,6 +160,7 @@ en:
   label_email_type: Email type
   label_fax_type: Fax type
   label_phone_type: Phone type
+  label_search: Search
   login: Login
   email: Email
   fax: Fax

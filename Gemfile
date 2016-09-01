@@ -55,14 +55,15 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'factory_girl_rails'
   gem 'faker'
+  gem 'awesome_print', require: 'ap'
+  gem 'better_errors'
+  gem 'binding_of_caller'
 end
 
 gem 'devise'
 
 gem 'therubyracer', platforms: :ruby
 gem 'execjs'
-gem 'binding_of_caller'
-gem 'awesome_print', require: 'ap'
 gem 'carrierwave'
 gem "jquery-fileupload-rails"
 gem "mini_magick"
@@ -72,3 +73,4 @@ gem "request_store"
 gem 'will_paginate'
 gem 'jquery-datatables-rails'
 gem 'ajax-datatables-rails'
+gem 'ckeditor_rails'

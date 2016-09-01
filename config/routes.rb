@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'settings/edit'
+
   get 'home/index'
   root to: "home#index"
 
@@ -39,6 +41,8 @@ Rails.application.routes.draw do
 
   resources :enumerations
   resources :roles
+
+  resources :settings, only: [:index, :create]
 
 
 

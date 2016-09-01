@@ -58,4 +58,8 @@ RedCarpet::AccessControl.map do |map|
     map.permission :manage_contacts, {:contacts => [:new, :create, :edit, :update, :destroy]},  :read => true
   end
 
+  map.project_module :employee do |map|
+    map.permission :view_roles, {:employees => [:index]},  :read => true
+ end
+
 end
