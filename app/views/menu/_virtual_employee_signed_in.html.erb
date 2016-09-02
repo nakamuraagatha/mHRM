@@ -1,0 +1,24 @@
+<ul>
+  <li class="<%= menu_active?('devise/registrations') %>">
+    <a href="<%= employee_path(User.current) %>" title="<%= t('profile.profile') %>"><i class="fa fa-lg fa-fw fa-user"></i> <span class="menu-item-parent"><%= t('profile.profile') %></span></a>
+  </li>
+
+  <li class="<%= menu_active?('educations') %>">
+    <a href="<%= employee_educations_path(User.current) %>" title="<%= t(:educations) %>"><i class="fa fa-lg fa-fw fa-graduation-cap"></i> <span class="menu-item-parent"><%= t(:educations) %></span></a>
+  </li>
+  <li class="<%= menu_active?('organizations') %>">
+    <a href="<%= employee_organizations_path(User.current) %>" title="<%= t(:organizations) %>"><i class="fa fa-lg fa-fw fa-home"></i> <span class="menu-item-parent"><%= t(:organizations) %></span></a>
+  </li>
+  <li class="<%= menu_active?('documents') %>">
+    <a href="<%= employee_documents_path(User.current) %>" title="<%= t(:documents) %>"><i class="fa fa-lg fa-fw fa-book"></i> <span class="menu-item-parent"><%= t(:documents) %></span></a>
+  </li>
+  <li class="<%= menu_active?('positions') %>">
+    <a href="<%= employee_positions_path(User.current) %>" title="<%= t(:positions) %>"><i class="fa fa-lg fa-fw fa-sort"></i> <span class="menu-item-parent"><%= t(:positions) %></span></a>
+  </li>
+  <li class="<%= menu_active?('departments') %>">
+    <a href="<%= employee_departments_path(User.current) %>" title="<%= t(:departments) %>"><i class="fa fa-lg fa-fw fa-university"></i> <span class="menu-item-parent"><%= t(:departments) %></span></a>
+  </li>
+  <li class="<%= menu_active?('contacts') %>">
+    <a href="<%= employee_contacts_path(User.current) %>" title="<%= t(:contacts) %>"><i class="fa fa-lg fa-fw fa-sitemap"></i> <span class="menu-item-parent"><%= t(:contacts) %></span></a>
+  </li>
+</ul>

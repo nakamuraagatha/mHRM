@@ -1,7 +1,7 @@
 class EmployeesController < ApplicationController
   before_action  :authenticate_user!
   before_action  :set_employee, :only => [:show]
-  before_action :authorize_show, only: [:show]
+  before_action  :authorize
 
   def index
     @users = User.visible
@@ -19,8 +19,8 @@ class EmployeesController < ApplicationController
     render_404
   end
 
-  def authorize_show
-    User.current.can?(:view_employee, :manage_employee)
+  def authorize
+    User.current.allowed_to?(:manage_roles)
   end
 
 end

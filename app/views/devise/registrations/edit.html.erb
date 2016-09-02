@@ -9,13 +9,13 @@
                      wid_id: 'password',
                      wid_title: 'Change password'
                  } %>
-      <% if current_user.job_detail %>
+      <% if User.current.job_detail %>
           <%= render partial: 'job_details/info',
                      layout: 'shared/smart_widget_wrapper',
                      locals: {
                          wid_id: 'job_detail_info',
-                         wid_title: "Department Info: #{ current_user.job_detail.role}",
-                         job_detail: current_user.job_detail
+                         wid_title: "Department Info: #{ User.current.job_detail.role}",
+                         job_detail: User.current.job_detail
                      } %>
       <% end %>
     </article>
@@ -35,7 +35,7 @@
                  locals: {
                      wid_id: 'extend_demography',
                      wid_title: 'More informations',
-                     extend_demography: current_user.extend_informations
+                     extend_demography: User.current.extend_informations
                  } %>
     </article>
 

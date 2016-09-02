@@ -8,7 +8,14 @@ class ApplicationController < ActionController::Base
   layout 'base'
 
   def set_user
-    User.current= current_user if user_signed_in?
+    if user_signed_in?
+      User.current= current_user
+      if params[:employee_id]
+        User.current = User.find params[:employee_id]
+      end
+    end
+  rescue ActiveRecord::RecordNotFound
+    render_404
   end
 
   def authorize(ctrl = params[:controller], action = params[:action])
@@ -53,7 +60,7 @@ class ApplicationController < ActionController::Base
   end
 
   def require_admin
-    render_404 unless current_user.admin?
+    render_404 unless User.current.admin?
   end
 
   def find_optional_user

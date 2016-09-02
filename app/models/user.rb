@@ -40,6 +40,8 @@ class User < ApplicationRecord
     RequestStore.store[:current_user] ||= User.new
   end
 
+
+
   def extend_informations
     user_extend_demography || UserExtendDemography.new(user_id: self.id)
   end
@@ -90,13 +92,17 @@ class User < ApplicationRecord
     "#{profile.first_name} #{profile.last_name}"
   end
 
-  def gender
-    core_demographic.try :gender
-  end
-
   def profile
     core_demographic || CoreDemographic.new(user_id: self.id)
   end
+
+  def first_name;  profile.first_name;  end
+  def middle_name; profile.middle_name; end
+  def last_name;   profile.last_name;   end
+  def gender;      profile.gender;      end
+  def active?;     self.state?;              end
+
+
 
   def profile_image
     if avatar.thumb.url

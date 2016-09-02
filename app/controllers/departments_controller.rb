@@ -1,7 +1,7 @@
 class DepartmentsController < ApplicationController
   before_action  :authenticate_user!
   before_action :set_department, only: [:show, :edit, :update, :destroy]
-  before_action :find_optional_user, only: [:new]
+  before_action :find_optional_user
   before_action :authorize, only: [:new, :create]
   before_action :authorize_edit, only: [:edit, :update]
   before_action :authorize_delete, only: [:destroy]

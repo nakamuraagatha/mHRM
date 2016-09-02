@@ -18,14 +18,6 @@ RedCarpet::AccessControl.map do |map|
     map.permission :manage_departments, {:departments => [:new, :create, :edit, :update, :destroy]},  :read => true
   end
 
-  map.project_module :employees do |map|
-    map.permission :view_employees,   {:employees => [:index]},  :read => true
-    map.permission :create_employees, {:departments => [:new, :create]},  :read => true
-    map.permission :edit_employees,   {:departments => [:edit, :update]},  :read => true
-    map.permission :delete_employees, {:departments => [:destroy]},  :read => true
-    map.permission :manage_employees, {:departments => [:new, :create, :edit, :update, :destroy]},  :read => true
-  end
-
   map.project_module :organizations do |map|
     map.permission :view_organizations, {:organizations => [:index]},  :read => true
     map.permission :create_organizations, {:organizations => [:new, :create]},  :read => true

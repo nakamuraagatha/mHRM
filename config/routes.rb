@@ -30,19 +30,19 @@ Rails.application.routes.draw do
   resources :documents
 
   resources :employees, only: [:index, :show] do
-    resources :educations, only: [:new]
-    resources :departments, only: [:new]
-    resources :positions, only: [:new]
-    resources :contacts, only: [:new]
-    resources :organizations, only: [:new]
-    resources :documents, only: [:new]
+    get 'home/index', as: 'home'
+    resources :educations
+    resources :departments
+    resources :positions
+    resources :contacts
+    resources :organizations
+    resources :documents
   end
 
 
 
   resources :enumerations
   resources :roles
-
   resources :settings, only: [:index, :create]
 
 

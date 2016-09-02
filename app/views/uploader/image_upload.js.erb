@@ -1,5 +1,5 @@
-<% if current_user.errors.any? %>
-alert('<%= current_user.errors.full_messages.join(', ') %>');
+<% if User.current.errors.any? %>
+alert('<%= User.current.errors.full_messages.join(', ') %>');
 <% else %>
 $('.files').html("");
 $('.files').html("<%= escape_javascript(render partial: 'uploader/display_image', locals: {user: @user}) %>");

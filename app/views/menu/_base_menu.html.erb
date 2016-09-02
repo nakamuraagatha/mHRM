@@ -5,9 +5,9 @@
 				<span> <!-- User image size is adjusted inside CSS, it should stay as it -->
 
 					<a href="javascript:void(0);" id="show-shortcut" data-action="toggleShortcut">
-            <%= image_tag current_user.profile_image, class: 'online' %>
-						<span>
-							<%= current_user.login %>
+            <%= image_tag User.current.profile_image, class: 'online' %>
+            <span>
+							<%= User.current.login %>
 						</span>
             <i class="fa fa-angle-down"></i>
           </a>
@@ -19,7 +19,11 @@
   <!-- NAVIGATION : This navigation is also responsive-->
   <nav>
     <% if user_signed_in? %>
-        <%= render  partial: 'menu/signed_in' %>
+        <% if User.current == current_user %>
+            <%= render  partial: 'menu/signed_in' %>
+        <% else %>
+            <%= render  partial: 'menu/virtual_employee_signed_in' %>
+        <% end %>
     <% else %>
         <%= render partial: 'menu/not_signed_in' %>
     <% end %>

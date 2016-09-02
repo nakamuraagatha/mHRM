@@ -27,7 +27,7 @@
     <a href="<%= contacts_path %>" title="<%= t(:contacts) %>"><i class="fa fa-lg fa-fw fa-sitemap"></i> <span class="menu-item-parent"><%= t(:contacts) %></span></a>
   </li>
 
-  <% if current_user.admin? %>
+  <% if User.current.admin? %>
       <%= render partial: 'menu/admin' %>
   <% end %>
 </ul>
