@@ -5,5 +5,9 @@ class Phone < ApplicationRecord
   validates_presence_of :phone_number, :phone_type_id
   validates_uniqueness_of :phone_number, scope: [:phone_type_id, :extend_demography_id]
   validates_uniqueness_of :phone_type_id, scope: [:extend_demography_id]
-  
+
+  def self.safe_attributes
+    [:id, :phone_type_id, :phone_number, :note, :_destroy]
+  end
+
 end

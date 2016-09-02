@@ -1,7 +1,7 @@
-<h1><%= t(:users) %></h1>
+<h1><%= t(:employees) %></h1>
 
 <%#= link_to t(:new_user), new_user_path, class: 'btn btn-primary pull-right' %>
-<table class="table table-bordered table-responsive" id="users">
+<table class="display  projects-table table  table-striped table-bordered table-hover" cellspacing="0" width="100%" id="users">
   <thead>
   <tr>
     <th>#</th>
@@ -36,6 +36,12 @@
   $(document).ready(function() {
     $('#users').DataTable({
       display: [[0, 'desc']],
+      "sDom": "<'dt-toolbar'" +
+      "<'col-sm-5 col-xs-8'f>" + //search box
+      "<'col-sm-2 col-sm-offset-4 col-xs-2 'CT>"+// drop down size
+      "<'col-sm-1 col-xs-2 'l>>"+// drop down size
+      "t"+ // the table
+      "<'dt-toolbar-footer'<'col-sm-6 col-xs-12 hidden-xs'i><'col-xs-12 col-sm-6'p>>",
       "iDisplayLength": 10
     });
   } );

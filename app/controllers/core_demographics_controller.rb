@@ -38,6 +38,6 @@ class CoreDemographicsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def core_demographic_params
-      params.require(:core_demographic).permit(:user_id, :first_name, :last_name, :middle_name, :gender_id, :birth_date, :religion_id, :title, :note, :ethnicity_id)
+      params.require(:core_demographic).permit(CoreDemographic.safe_attributes)
     end
 end

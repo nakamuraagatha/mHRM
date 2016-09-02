@@ -33,11 +33,9 @@ class EducationsController < ApplicationController
 
     respond_to do |format|
       if @education.save
-        format.html { redirect_to @education, notice: 'Education was successfully created.' }
-        format.json { render :show, status: :created, location: @education }
+        format.html { redirect_to edit_education_path(@education), notice: 'Education was successfully created.' }
       else
         format.html { render :new }
-        format.json { render json: @education.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -47,11 +45,9 @@ class EducationsController < ApplicationController
   def update
     respond_to do |format|
       if @education.update(education_params)
-        format.html { redirect_to @education, notice: 'Education was successfully updated.' }
-        format.json { render :show, status: :ok, location: @education }
+        format.html { redirect_to edit_education_path(@education), notice: 'Education was successfully updated.' }
       else
         format.html { render :edit }
-        format.json { render json: @education.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -76,7 +72,7 @@ class EducationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def education_params
-      params.require(:education).permit(:user_id, :education_type_id, :certification_type_id, :other_skill, :date_recieved, :date_expired, :note, :clearence)
+      params.require(:education).permit(Education.safe_attributes)
     end
 
   def authorize_edit

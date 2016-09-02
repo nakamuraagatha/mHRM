@@ -81,14 +81,14 @@ class DepartmentsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def department_params
-    params.require(:department).permit(:user_id, :note, :date_start, :date_end, :department_type_id)
+    params.require(:department).permit(Department.safe_attributes)
   end
 
   def authorize_edit
-    raise Unauthorized unless @department.can?(:edit_departments, :manage_departments)
+    raise Unauthorized unless @department.can?(:edit_departments, :manage_departments, :manage_roles)
   end
 
   def authorize_delete
-    raise Unauthorized unless @department.can?(:delete_departments, :manage_departments)
+    raise Unauthorized unless @department.can?(:delete_departments, :manage_departments, :manage_roles)
   end
 end

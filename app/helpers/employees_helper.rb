@@ -11,6 +11,12 @@ module EmployeesHelper
       output<<'</li>'
     end
 
+    if User.current.allowed_to?(:create_educations)
+      output<< '<li>'
+      output<< link_to('New education', new_employee_education_path(user))
+      output<<'</li>'
+    end
+
     if User.current.allowed_to?(:create_departments)
       output<< '<li>'
       output<< link_to('New department', new_employee_department_path(user))

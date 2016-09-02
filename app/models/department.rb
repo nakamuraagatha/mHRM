@@ -9,7 +9,12 @@ class Department < ApplicationRecord
   validates_presence_of :department_type_id
   validates_uniqueness_of :department_type_id
 
-  scope :visible, lambda {|action|  User.current.allowed_to?(action) ? where(nil) :  where(user_id: User.current.id) }
+  scope :visible, lambda {|action|  User.current.allowed_to?(action) ? for_employees :  where(user_id: User.current.id) }
+  scope :for_employees, -> {where(user_id: User.employees.pluck(:id))}
+
+  def self.safe_attributes
+    [:user_id, :note, :date_start, :date_end, :department_type_id, :organization_id]
+  end
 
   def visible?
     User.current == user or User.current.allowed_to?(:edit_departments) or User.current.allowed_to?(:manage_departments)

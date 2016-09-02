@@ -59,7 +59,7 @@ RedCarpet::AccessControl.map do |map|
   end
 
   map.project_module :employee do |map|
-    map.permission :view_roles, {:employees => [:index]},  :read => true
+    map.permission :manage_roles, {:employees => [:index]},  :read => true
  end
 
 end

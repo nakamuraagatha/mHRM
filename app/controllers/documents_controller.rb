@@ -76,7 +76,7 @@ class DocumentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def document_params
-      params.require(:document).permit(:title, :description, :user_id, :document_type_id, :date, :attachment)
+      params.require(:document).permit(Document.safe_attributes)
     end
   def authorize_edit
     raise Unauthorized unless @document.can?(:edit_documents, :manage_documents)

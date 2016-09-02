@@ -37,6 +37,6 @@ class JobDetailsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def job_detail_params
-    params.require(:job_detail).permit(:user_id, :department_id, :note, :role_id)
+    params.require(:job_detail).permit(JobDetail.safe_attributes)
   end
 end

@@ -130,17 +130,25 @@ en:
         earlier_than_minimum_start_date: "cannot be earlier than %{date} because of preceding issues"
 
   enumerations_label: Enumerations
-  enumeration_organization_type: Organization enumeration
+  enumeration_address_type: Address enumeration
   enumeration_clearence_type: Clearence enumeration
-  enumeration_contact_type: Contact enumeration
+  enumeration_certification_type: Certification enumeration
+  enumeration_contact_type: Relationship
+  enumeration_country_type: Country enumeration
+  enumeration_department_type: Department enumeration
+  enumeration_document_type: Document enumeration
+  enumeration_education_type: Education enumeration
+  enumeration_employment_type: Employment enumeration
   enumeration_email_type: Email enumeration
+  enumeration_ethnicity_type: Ethnicity enumeration
   enumeration_fax_type: Fax enumeration
+  enumeration_identification_type: Identification enumeration
+  enumeration_location_type: Location enumeration
   enumeration_phone_type: Phone enumeration
-  enumeration_employment_type: Employment type enumeration
+  enumeration_organization_type: Organization enumeration
   enumeration_religion_type: Religion type enumeration
-  enumeration_role_type: Role type enumeration
-  enumeration_document_type: Document type enumeration
-  enumeration_education_type: Education type enumeration
+  enumeration_role_type: Role enumeration
+  enumeration_state_type: State enumeration
   enumeration_new_label: New_value
   education_type: Education
   educations: Educations
@@ -197,13 +205,14 @@ en:
   actionview_instancetag_blank_option:  Please select
 
   label_permissions: Permissions
+  label_employees: Employees
 
   profile:
     profile: profile
     name: Name
     first_name: First name
     middle_name: Middle name
-    last_name: Last
+    last_name: Last name
     birthday: Birth date
     gender: Gender
     religion: Religion

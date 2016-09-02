@@ -30,6 +30,7 @@ Rails.application.routes.draw do
   resources :documents
 
   resources :employees, only: [:index, :show] do
+    resources :educations, only: [:new]
     resources :departments, only: [:new]
     resources :positions, only: [:new]
     resources :contacts, only: [:new]

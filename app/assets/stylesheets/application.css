@@ -22,3 +22,7 @@
   *= require smartadmin-rtl.min.css
   *= require dataTables/jquery.dataTables
  */
+
+label, legend{
+    text-transform: capitalize;
+}

@@ -22,10 +22,14 @@ class User < ApplicationRecord
 
   def self.visible
     if User.current.allowed_to?(:view_employees)
-      where(nil)
+      employees
     else
       where(id: User.current.id)
     end
+  end
+
+  def self.employees
+    User.where(admin: false)
   end
 
   def self.current=(user)
@@ -33,7 +37,7 @@ class User < ApplicationRecord
   end
 
   def self.current
-    RequestStore.store[:current_user] ||= nil
+    RequestStore.store[:current_user] ||= User.new
   end
 
   def extend_informations
@@ -41,7 +45,7 @@ class User < ApplicationRecord
   end
 
 
-  def allowed_to?(action, for_user = nil)
+  def allowed_to?(action)
     if action.is_a? Hash
       allowed_actions.include? "#{action[:controller]}/#{action[:action]}"
     else

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160901202003) do
+ActiveRecord::Schema.define(version: 20160902182307) do
 
   create_table "addresses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.integer  "address_type"
@@ -47,6 +47,9 @@ ActiveRecord::Schema.define(version: 20160901202003) do
     t.datetime "updated_at",                      null: false
     t.integer  "contact_type_id"
     t.integer  "user_id"
+    t.string   "first_name"
+    t.string   "middle_name"
+    t.string   "last_name"
   end
 
   create_table "core_demographics", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
@@ -72,6 +75,7 @@ ActiveRecord::Schema.define(version: 20160901202003) do
     t.datetime "created_at",                       null: false
     t.datetime "updated_at",                       null: false
     t.integer  "department_type_id"
+    t.integer  "organization_id"
   end
 
   create_table "documents", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
@@ -217,6 +221,7 @@ ActiveRecord::Schema.define(version: 20160901202003) do
     t.datetime "created_at",                         null: false
     t.datetime "updated_at",                         null: false
     t.integer  "location_type_id"
+    t.integer  "department_id"
   end
 
   create_table "religions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|

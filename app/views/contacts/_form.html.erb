@@ -1,5 +1,5 @@
 <fieldset>
-  <legend>Set Contact</legend>
+  <legend>Contact</legend>
   <%= form_for(contact, html: { class: 'form-horizontal' }) do |f| %>
       <% if contact.errors.any? %>
           <div id="error_explanation">
@@ -19,6 +19,27 @@
           <%= f.select :contact_type_id, options_for_select(ContactType.active.pluck(:name, :id), selected: contact.contact_type_id), {},{ class: 'form-control'} %>
         </div>
       </div>
+      <div class="form-group">
+        <%= f.label t('profile.first_name'), class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.text_field :first_name, placeholder: 'First name', class: 'form-control' %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label t('profile.middle_name'), class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.text_field :middle_name, placeholder: 'Middle name', class: 'form-control' %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label t('profile.last_name'), class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.text_field :last_name, placeholder: 'Last name', class: 'form-control' %>
+        </div>
+      </div>
+
       <div class="form-group">
         <%= f.label :emergency_contact, class: 'col-md-2 control-label' %>
         <div class="col-md-9">
