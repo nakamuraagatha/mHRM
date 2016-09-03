@@ -33,7 +33,7 @@ class OrganizationsController < ApplicationController
 
     respond_to do |format|
       if @organization.save
-        format.html { redirect_to organizations_path, notice: 'Organization was successfully created.' }
+        format.html { redirect_to edit_organization_path(@organization), notice: 'Organization was successfully created.' }
       else
         format.html { render :new }
       end
@@ -45,7 +45,7 @@ class OrganizationsController < ApplicationController
   def update
     respond_to do |format|
       if @organization.update(organization_params)
-        format.html { redirect_to organizations_path, notice: 'Organization was successfully updated.' }
+        format.html { redirect_to edit_organization_path(@organization), notice: 'Organization was successfully updated.' }
       else
         format.html { render :edit }
       end

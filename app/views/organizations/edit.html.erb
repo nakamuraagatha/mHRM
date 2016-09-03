@@ -1,6 +1,23 @@
-<h1>Editing Organization</h1>
 
-<%= render 'form', organization: @organization %>
-
-<%= link_to 'Show', @organization %> |
-<%= link_to 'Back', organizations_path %>
+<section id="widget-grid" class="show_customer_account">
+  <div class="row">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <%= render partial: 'form',
+                 layout: 'shared/smart_widget_wrapper',
+                 locals: {
+                     organization: @organization,
+                     wid_id: 'organization',
+                     wid_title: 'Edit Organization'
+                 } %>
+    </article>
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <%= render partial: 'extend_demographies/form',
+                 layout: 'shared/smart_widget_wrapper',
+                 locals: {
+                     wid_id: 'extend_demography',
+                     wid_title: 'Organizations informations',
+                     extend_demography: @organization.extend_informations
+                 } %>
+    </article>
+  </div>
+</section>

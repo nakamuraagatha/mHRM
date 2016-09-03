@@ -14,6 +14,12 @@ Rails.application.routes.draw do
       get 'remove_image'
     end
     resources :educations, only: [:show, :edit, :index]
+    resources :contacts, only: [:show, :edit, :index]  do
+      resources :contact_extend_demographies, only: [:create, :update], controller: :extend_demographies
+    end
+    resources :organizations, only: [:show, :edit, :index] do
+      resources :organization_extend_demographies, only: [:create, :update], controller: :extend_demographies
+    end
     resources :documents, only: [:show, :edit, :index]
     resources :core_demographics, only: [:create, :update]
     resources :job_details, only: [:create, :update]
@@ -25,8 +31,12 @@ Rails.application.routes.draw do
 
   resources :educations
   resources :positions
-  resources :contacts
-  resources :organizations
+  resources :contacts do
+    resources :contact_extend_demographies, only: [:create, :update], controller: :extend_demographies
+  end
+  resources :organizations do
+    resources :organization_extend_demographies, only: [:create, :update], controller: :extend_demographies
+  end
   resources :documents
 
   resources :employees, only: [:index, :show] do
@@ -34,8 +44,12 @@ Rails.application.routes.draw do
     resources :educations
     resources :departments
     resources :positions
-    resources :contacts
-    resources :organizations
+    resources :contacts do
+      resources :contact_extend_demographies, only: [:create, :update], controller: :extend_demographies
+    end
+    resources :organizations do
+      resources :organization_extend_demographies, only: [:create, :update], controller: :extend_demographies
+    end
     resources :documents
   end
 

@@ -31,16 +31,24 @@ class ExtendDemographiesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_extend_demography
-      @extend_demography = ExtendDemography.find(params[:id])
-    rescue ActiveRecord::RecordNotFound
-      render_404
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_extend_demography
+    @extend_demography = ExtendDemography.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    render_404
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def extend_demography_params
-      type = params[:department_extend_demography] ? :department_extend_demography : :user_extend_demography
-      params.require(type).permit(ExtendDemography.safe_attributes)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def extend_demography_params
+    type = if params[:department_extend_demography]
+             :department_extend_demography
+           elsif params[:user_extend_demography]
+             :user_extend_demography
+           elsif params[:contact_extend_demography]
+             :contact_extend_demography
+           else
+             :organization_extend_demography
+           end
+    params.require(type).permit(ExtendDemography.safe_attributes)
+  end
 end

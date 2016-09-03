@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160902182307) do
+ActiveRecord::Schema.define(version: 20160903083715) do
 
   create_table "addresses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.integer  "address_type"
@@ -143,6 +143,8 @@ ActiveRecord::Schema.define(version: 20160902182307) do
     t.integer  "identification_id"
     t.string   "type"
     t.integer  "department_id"
+    t.integer  "contact_id"
+    t.integer  "organization_id"
     t.index ["identification_id"], name: "index_extend_demographies_on_identification_id", using: :btree
     t.index ["user_id"], name: "index_extend_demographies_on_user_id", using: :btree
   end

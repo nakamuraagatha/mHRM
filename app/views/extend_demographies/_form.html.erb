@@ -13,6 +13,8 @@
 
     <%= f.hidden_field :user_id %>
     <%= f.hidden_field :department_id %>
+    <%= f.hidden_field :contact_id %>
+    <%= f.hidden_field :organization_id %>
     <%= f.hidden_field :type %>
 
     <div id="tabs">
@@ -20,8 +22,10 @@
         <li><a id="link-tabs-emails" href="#tabs-emails" >Emails</a></li>
         <li><a id="link-tabs-faxes" href="#tabs-faxes">Faxes</a></li>
         <li><a id="link-tabs-phones" href="#tabs-phones">Phones</a></li>
-        <li><a id="link-tabs-identifications" href="#tabs-identifications">Identifications</a></li>
-        <li><a id="link-tabs-social_media" href="#tabs-social_media">Social media</a></li>
+        <% unless extend_demography.object.is_a? Organization %>
+            <li><a id="link-tabs-identifications" href="#tabs-identifications">Identifications</a></li>
+            <li><a id="link-tabs-social_media" href="#tabs-social_media">Social media</a></li>
+        <% end %>
         <li><a id="link-tabs-addresses" href="#tabs-addresses">Address</a></li>
       </ul>
       <div id='tabs-emails' >
@@ -51,6 +55,7 @@
         </div>
       </div>
 
+      <% unless extend_demography.object.is_a? Organization %>
       <div id='tabs-identifications' >
         <%= f.simple_fields_for :identifications do |identification| %>
             <%= render 'extend_demographies/identification_fields', :f => identification %>
@@ -66,10 +71,11 @@
             <%= render 'extend_demographies/social_media_fields', :f => sm %>
         <% end %>
 
-        <div id="phones" class="col-xs-11 margin-top-10">
+        <div id="social_media" class="col-xs-11 margin-top-10">
           <%= link_to_add_association 'add social media', f, :social_media, class: 'btn btn-success pull-right col-xs-3 col-sm-2 col-md-1', partial: 'extend_demographies/social_media_fields' %>
         </div>
       </div>
+      <% end %>
 
       <div id='tabs-addresses' >
         <%= f.simple_fields_for :addresses do |address| %>

@@ -40,8 +40,6 @@ class User < ApplicationRecord
     RequestStore.store[:current_user] ||= User.new
   end
 
-
-
   def extend_informations
     user_extend_demography || UserExtendDemography.new(user_id: self.id)
   end

@@ -23,6 +23,6 @@
   *= require dataTables/jquery.dataTables
  */
 
-label, legend{
+label, legend, .jarviswidget header h2 strong{
     text-transform: capitalize;
 }
