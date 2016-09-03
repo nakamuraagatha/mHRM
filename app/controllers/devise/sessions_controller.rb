@@ -3,7 +3,7 @@ class Devise::SessionsController < DeviseController
   prepend_before_action :allow_params_authentication!, only: :create
   prepend_before_action :verify_signed_out_user, only: :destroy
   prepend_before_action only: [:create, :destroy] { request.env["devise.skip_timeout"] = true }
-
+  prepend_before_action :check_captcha, only: [:create] # Change this to be any actions you want to protect.
   # GET /resource/sign_in
   def new
     self.resource = resource_class.new(sign_in_params)
@@ -51,6 +51,13 @@ class Devise::SessionsController < DeviseController
   end
 
   private
+
+  def check_captcha
+    unless verify_recaptcha
+      self.resource = resource_class.new devise_parameter_sanitizer.sanitize(:sign_in)
+      respond_with_navigational(resource) { render :new }
+    end
+  end
 
   # Check if there is no signed in user before doing the sign out.
   #

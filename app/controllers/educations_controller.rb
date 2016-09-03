@@ -76,10 +76,10 @@ class EducationsController < ApplicationController
     end
 
   def authorize_edit
-    raise Unauthorized unless @education.can?(:edit_educations, :manage_educations)
+    raise Unauthorized unless @education.can?(:edit_educations, :manage_educations, :manage_roles)
   end
 
   def authorize_delete
-    raise Unauthorized unless @education.can?(:delete_educations, :manage_educations)
+    raise Unauthorized unless @education.can?(:delete_educations, :manage_educations, :manage_roles)
   end
 end

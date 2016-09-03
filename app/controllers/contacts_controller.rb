@@ -76,10 +76,10 @@ class ContactsController < ApplicationController
     end
 
   def authorize_edit
-    raise Unauthorized unless @contact.can?(:edit_contacts, :manage_contacts)
+    raise Unauthorized unless @contact.can?(:edit_contacts, :manage_contacts, :manage_roles)
   end
 
   def authorize_delete
-    raise Unauthorized unless @contact.can?(:delete_contacts, :manage_contacts)
+    raise Unauthorized unless @contact.can?(:delete_contacts, :manage_contacts, :manage_roles)
   end
 end

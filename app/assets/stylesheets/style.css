@@ -22,6 +22,14 @@ div.flash.warning, .conflict {
     text-align: left;
 }
 
-label, legend, .jarviswidget header h2 strong{
+label, legend, .jarviswidget header h2 strong, a{
     text-transform: capitalize;
 }
+
+.center {
+    margin: auto;
+    width: 50%;
+    border: 3px solid green;
+    padding: 10px;
+}
+

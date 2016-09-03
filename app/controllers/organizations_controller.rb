@@ -76,10 +76,10 @@ class OrganizationsController < ApplicationController
     end
 
   def authorize_edit
-    raise Unauthorized unless @organization.can?(:edit_organizations, :manage_organizations)
+    raise Unauthorized unless @organization.can?(:edit_organizations, :manage_organizations, :manage_roles)
   end
 
   def authorize_delete
-    raise Unauthorized unless @organization.can?(:delete_organizations, :manage_organizations)
+    raise Unauthorized unless @organization.can?(:delete_organizations, :manage_organizations, :manage_roles)
   end
 end

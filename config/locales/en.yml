@@ -169,7 +169,7 @@ en:
   label_fax_type: Fax type
   label_phone_type: Phone type
   label_search: Search
-  login: Login
+  login: Username
   email: Email
   fax: Fax
   phone: Phone Number
@@ -183,6 +183,8 @@ en:
   new_organization: New Organization
   organizations: Organizations
   organization: Organization
+  clearences: Clearences
+  certifications: Certifications
   document_type: Document type
   documents: Documents
   positions: Positions

@@ -79,10 +79,10 @@ class DocumentsController < ApplicationController
       params.require(:document).permit(Document.safe_attributes)
     end
   def authorize_edit
-    raise Unauthorized unless @document.can?(:edit_documents, :manage_documents)
+    raise Unauthorized unless @document.can?(:edit_documents, :manage_documents, :manage_roles)
   end
 
   def authorize_delete
-    raise Unauthorized unless @document.can?(:delete_documents, :manage_documents)
+    raise Unauthorized unless @document.can?(:delete_documents, :manage_documents, :manage_roles)
   end
 end

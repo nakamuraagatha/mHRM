@@ -74,3 +74,4 @@ gem 'will_paginate'
 gem 'jquery-datatables-rails'
 gem 'ajax-datatables-rails'
 gem 'ckeditor_rails'
+gem "recaptcha", require: "recaptcha/rails"

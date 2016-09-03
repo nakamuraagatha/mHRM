@@ -80,10 +80,10 @@ class PositionsController < ApplicationController
     params.require(:position).permit(Position.safe_attributes)
   end
   def authorize_edit
-    raise Unauthorized unless @position.can?(:edit_positions, :manage_positions)
+    raise Unauthorized unless @position.can?(:edit_positions, :manage_positions, :manage_roles)
   end
 
   def authorize_delete
-    raise Unauthorized unless @position.can?(:delete_positions, :manage_positions)
+    raise Unauthorized unless @position.can?(:delete_positions, :manage_positions, :manage_roles)
   end
 end

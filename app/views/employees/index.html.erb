@@ -1,17 +1,16 @@
 <h1><%= t(:employees) %></h1>
 
-<%#= link_to t(:new_user), new_user_path, class: 'btn btn-primary pull-right' %>
 <table class="display  projects-table table  table-striped table-bordered table-hover" cellspacing="0" width="100%" id="users">
   <thead>
-  <tr>
+  <tr>received
     <th>#</th>
     <th><%= t :login %></th>
-    <th><%= 'Active' %></th>
     <th><%= t 'profile.first_name' %></th>
     <th><%= t 'profile.middle_name' %></th>
     <th><%= t 'profile.last_name' %></th>
     <th><%= t 'profile.gender' %></th>
     <th><%= t :email %></th>
+    <th><%= 'Active' %></th>
     <th></th>
     <th></th>
   </tr>
@@ -22,14 +21,13 @@
       <% @users.each do |user| %>
           <tr>
             <td><%= link_to user.id, log_in_employee_path(user) %></td>
-            <td><%= user.login %></td>
-            <td><%= user.active? %></td>
+            <td><%= link_to user.login, log_in_employee_path(user) %></td>
             <td><%= user.first_name %></td>
             <td><%= user.middle_name %></td>
             <td><%= user.last_name %></td>
             <td><%= user.gender %></td>
             <td><%= user.email %></td>
-            <td><%#= show_link(employee_path user) %></td>
+            <td><%= user.active? %></td>
             <td><%= render_action_link(user) %></td>
           </tr>
       <% end %>

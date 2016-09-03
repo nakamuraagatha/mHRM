@@ -50,6 +50,14 @@ RedCarpet::AccessControl.map do |map|
     map.permission :manage_contacts, {:contacts => [:new, :create, :edit, :update, :destroy]},  :read => true
   end
 
+  map.project_module :certifications do |map|
+    map.permission :view_certifications, {:certifications => [:index]},  :read => true
+    map.permission :create_certifications, {:certifications => [:new, :create]},  :read => true
+    map.permission :edit_certifications, {:certifications => [:edit, :update]},  :read => true
+    map.permission :delete_certifications, {:certifications => [:destroy]},  :read => true
+    map.permission :manage_certifications, {:certifications => [:new, :create, :edit, :update, :destroy]},  :read => true
+  end
+
   map.project_module :employee do |map|
     map.permission :manage_roles, {:employees => [:index]},  :read => true
  end

@@ -12,19 +12,6 @@ class EmployeesController < ApplicationController
 
   end
 
-  def change_password
-    if params[:password] == params[:password_confirmation]
-      if @employee.update(password: params[:password])
-        flash[:notice] = I18n.t('devise.passwords.updated_not_active')
-      else
-        flash[:notice] = I18n.t('error_update')
-      end
-    else
-      flash[:error] = 'Password not matched'
-    end
-    redirect_to employee_path(@employee)
-  end
-
   def update
     if @employee.update(params.require(:user).permit(User.safe_attributes))
       flash[:notice] = I18n.t('notice_successful_update')

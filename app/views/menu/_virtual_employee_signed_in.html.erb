@@ -6,6 +6,14 @@
   <li class="<%= menu_active?('educations') %>">
     <a href="<%= employee_educations_path(User.current) %>" title="<%= t(:educations) %>"><i class="fa fa-lg fa-fw fa-graduation-cap"></i> <span class="menu-item-parent"><%= t(:educations) %></span></a>
   </li>
+  <li class="<%= menu_active?('certifications') %>">
+    <a href="<%= employee_certifications_path(User.current) %>" title="<%= t(:certifications) %>"><i class="fa fa-lg fa-fw fa-certificate"></i> <span class="menu-item-parent"><%= t(:certifications) %></span></a>
+  </li>
+
+  <li class="<%= menu_active?('clearences') %>">
+    <a href="<%#= employee_clearences_path(User.current) %>" title="<%= t(:clearences) %>"><i class="fa fa-lg fa-fw fa-eraser"></i> <span class="menu-item-parent"><%= t(:clearences) %></span></a>
+  </li>
+
   <li class="<%= menu_active?('organizations') %>">
     <a href="<%= employee_organizations_path(User.current) %>" title="<%= t(:organizations) %>"><i class="fa fa-lg fa-fw fa-home"></i> <span class="menu-item-parent"><%= t(:organizations) %></span></a>
   </li>

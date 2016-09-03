@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Certifications</h1>
+<%= link_to( 'New Certification', new_certification_path, class: 'btn btn-primary pull-right') if current_user.allowed_to?(:create_certifications)%>
+<table class="table table-responsive table-bordered">
+  <thead>
+  <tr>
+    <th>Certification type</th>
+    <th>User</th>
+    <th>Date received</th>
+    <th>Date expired</th>
+    <th colspan="3"></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% if @certifications.any? %>
+      <% @certifications.each do |certification| %>
+          <tr>
+            <td><%= certification.certification_type %></td>
+            <td><%= certification.user %></td>
+            <td><%= certification.date_received %></td>
+            <td><%= certification.date_expired %></td>
+            <td><%= edit_link edit_certification_path(certification) %></td>
+            <td><%= delete_link certification %></td>
+          </tr>
+      <% end %>
+  <% else %>
+      <tr align="center">
+        <td colspan="11"><%= t('label_no_data') %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>

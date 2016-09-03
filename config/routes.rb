@@ -1,9 +1,7 @@
 Rails.application.routes.draw do
   get 'settings/edit'
-
   get 'home/index'
   root to: "home#index"
-
 
   devise_for :users
   resources :users, only: [:index, :show, :destroy] do
@@ -13,6 +11,7 @@ Rails.application.routes.draw do
       post 'image_upload'
       get 'remove_image'
     end
+    resources :certifications
     resources :educations, only: [:show, :edit, :index]
     resources :contacts, only: [:show, :edit, :index]  do
       resources :contact_extend_demographies, only: [:create, :update], controller: :extend_demographies
@@ -29,6 +28,7 @@ Rails.application.routes.draw do
     resources :department_extend_demographies, only: [:create, :update], controller: :extend_demographies
   end
 
+  resources :certifications
   resources :educations
   resources :positions
   resources :contacts do
@@ -42,13 +42,13 @@ Rails.application.routes.draw do
   resources :employees, only: [:index, :show, :destroy, :update] do
     member do
       get 'log_in'
-      put 'change_password'
     end
 
     get 'home/index', as: 'home'
     resources :educations
     resources :departments
     resources :positions
+    resources :certifications
     resources :contacts do
       resources :contact_extend_demographies, only: [:create, :update], controller: :extend_demographies
     end
@@ -58,13 +58,7 @@ Rails.application.routes.draw do
     resources :documents
   end
 
-
-
   resources :enumerations
   resources :roles
   resources :settings, only: [:index, :create]
-
-
-
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

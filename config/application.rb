@@ -13,5 +13,9 @@ module MHRM
     # -- all .rb files in that directory are automatically loaded.
 
     config.autoload_paths << Rails.root.join('lib')
+
+    #RECAPTCHA ENV
+    ENV['RECAPTCHA_PUBLIC_KEY'] = '6LdO6R8TAAAAAK4JOgsXtpNz3O-W0xT_DEaqxNMo'
+    ENV['RECAPTCHA_PRIVATE_KEY'] =  "6LdO6R8TAAAAAM7okxh79m94rOYm9yR2lZNYcJrR"
   end
 end
