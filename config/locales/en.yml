@@ -131,7 +131,7 @@ en:
 
   enumerations_label: Enumerations
   enumeration_address_type: Address enumeration
-  enumeration_clearence_type: Clearence enumeration
+  enumeration_clearence_type: Clearance enumeration
   enumeration_certification_type: Certification enumeration
   enumeration_contact_type: Relationship
   enumeration_country_type: Country enumeration
@@ -156,7 +156,7 @@ en:
   education_other_skill: Other skill
   education_date_received: Date received
   education_date_expired: Date expired
-  education_clearence: Clearence
+  education_clearence: Clearance
   label_default: Default
   label_active: Active
   label_name: Name
@@ -183,7 +183,7 @@ en:
   new_organization: New Organization
   organizations: Organizations
   organization: Organization
-  clearences: Clearences
+  clearences: Clearances
   certifications: Certifications
   document_type: Document type
   documents: Documents

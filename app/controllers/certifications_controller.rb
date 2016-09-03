@@ -1,6 +1,4 @@
 class CertificationsController < ApplicationController
-  before_action :set_certification, only: [:show, :edit, :update, :destroy]
-
   before_action  :authenticate_user!
   before_action :set_certification, only: [:show, :edit, :update, :destroy]
   # before_action :find_optional_user
@@ -10,7 +8,7 @@ class CertificationsController < ApplicationController
   # GET /certifications
   # GET /certifications.json
   def index
-    @certifications = Certification.all
+    @certifications = Certification.visible :view_certifications
   end
 
   # GET /certifications/1

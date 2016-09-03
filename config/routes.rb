@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   get 'settings/edit'
   get 'home/index'
   root to: "home#index"
@@ -11,6 +12,7 @@ Rails.application.routes.draw do
       post 'image_upload'
       get 'remove_image'
     end
+    resources :clearances
     resources :certifications
     resources :educations, only: [:show, :edit, :index]
     resources :contacts, only: [:show, :edit, :index]  do
@@ -28,6 +30,7 @@ Rails.application.routes.draw do
     resources :department_extend_demographies, only: [:create, :update], controller: :extend_demographies
   end
 
+  resources :clearances
   resources :certifications
   resources :educations
   resources :positions
@@ -48,6 +51,7 @@ Rails.application.routes.draw do
     resources :educations
     resources :departments
     resources :positions
+    resources :clearances
     resources :certifications
     resources :contacts do
       resources :contact_extend_demographies, only: [:create, :update], controller: :extend_demographies

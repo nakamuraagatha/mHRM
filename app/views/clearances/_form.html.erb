@@ -1,0 +1,43 @@
+<fieldset>
+  <legend>Clearance</legend>
+  <%= simple_form_for(clearance, html: { class: 'form-horizontal' }) do |f| %>
+      <%= f.error_notification %>
+
+      <%= f.hidden_field :user_id %>
+
+      <div class="form-group">
+        <%= f.label t(:education_clearence), class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.select :clearence_type_id, options_for_select(ClearenceType.active.pluck(:name, :id), selected: clearance.clearence_type_id),{}, {class: 'form-control'} %>
+        </div>
+      </div>
+
+
+      <div class="form-group">
+        <%= f.label t('education_date_received'), class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.text_field :date_received , class: 'form-control date_picker' %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label t(:education_date_expired), class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.text_field :date_expired , class: 'form-control date_picker' %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label t(:label_note) , class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.text_area :note , class: 'form-control' %>
+        </div>
+      </div>
+
+      <div class="form-group" >
+        <div class="col-md-11">
+          <%= f.submit t('button_save'), class: 'btn btn-primary pull-right' %>
+        </div>
+      </div>
+  <% end %>
+</fieldset>

@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Certification type:</strong>
+  <%= @certification.certification_type_id %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @certification.user_id %>
+</p>
+
+<p>
+  <strong>Date received:</strong>
+  <%= @certification.date_received %>
+</p>
+
+<p>
+  <strong>Note:</strong>
+  <%= @certification.note %>
+</p>
+
+<p>
+  <strong>Date expired:</strong>
+  <%= @certification.date_expired %>
+</p>
+
+<%= link_to 'Edit', edit_certification_path(@certification) %> |
+<%= link_to 'Back', certifications_path %>

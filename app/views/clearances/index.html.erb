@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<h1>clearances</h1>
+<%= link_to( 'New clearance', new_clearance_path, class: 'btn btn-primary pull-right') if current_user.allowed_to?(:create_clearances)%>
+<table class="table table-responsive table-bordered">
+  <thead>
+  <tr>
+    <th>Clearance type</th>
+    <th>User</th>
+    <th>Date received</th>
+    <th>Date expired</th>
+    <th colspan="3"></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% if @clearances.any? %>
+      <% @clearances.each do |clearance| %>
+          <tr>
+            <td><%= clearance.clearence_type %></td>
+            <td><%= clearance.user %></td>
+            <td><%= clearance.date_received %></td>
+            <td><%= clearance.date_expired %></td>
+            <td><%= edit_link edit_clearance_path(clearance) %></td>
+            <td><%= delete_link clearance %></td>
+          </tr>
+      <% end %>
+  <% else %>
+      <tr align="center">
+        <td colspan="11"><%= t('label_no_data') %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>

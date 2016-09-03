@@ -58,6 +58,14 @@ RedCarpet::AccessControl.map do |map|
     map.permission :manage_certifications, {:certifications => [:new, :create, :edit, :update, :destroy]},  :read => true
   end
 
+  map.project_module :clearances do |map|
+    map.permission :view_clearances, {:clearances => [:index]},  :read => true
+    map.permission :create_clearances, {:clearances => [:new, :create]},  :read => true
+    map.permission :edit_clearances, {:clearances => [:edit, :update]},  :read => true
+    map.permission :delete_clearances, {:clearances => [:destroy]},  :read => true
+    map.permission :manage_clearances, {:clearances => [:new, :create, :edit, :update, :destroy]},  :read => true
+  end
+
   map.project_module :employee do |map|
     map.permission :manage_roles, {:employees => [:index]},  :read => true
  end
