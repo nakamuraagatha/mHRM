@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-xs-12">
-    <%= @setting.home_page_content.html_safe %>
+    <%= @setting.home_page_content.html_safe if @setting.home_page_content %>
 
   </div>
 </div>
