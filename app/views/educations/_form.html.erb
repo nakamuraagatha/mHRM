@@ -42,13 +42,6 @@
       </div>
 
       <div class="form-group">
-        <%= f.label t(:education_clearence) , class: 'col-md-2 control-label' %>
-        <div class="col-md-9">
-          <%= f.select :clearence, options_for_select(ClearenceType.pluck(:name, :id), selected: education.clearence) ,{}, {class: 'form-control' }%>
-        </div>
-      </div>
-
-      <div class="form-group">
         <%= f.label t('education_date_received'), class: 'col-md-2 control-label' %>
         <div class="col-md-9">
           <%= f.text_field :date_recieved , class: 'form-control date_picker' %>

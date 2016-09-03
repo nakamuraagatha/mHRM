@@ -17,7 +17,7 @@
       <div class="form-group">
         <%= f.label :role_type, class: 'col-md-2 control-label' %>
         <div class="col-md-9">
-          <%= f.select :role_type_id, options_for_select(RoleType.pluck(:name, :id), selected: role.role_type_id), {},{ class: 'form-control'} %>
+          <%= f.select :role_type_id, options_for_select(RoleType.active.pluck(:name, :id), selected: role.role_type_id), {},{ class: 'form-control'} %>
         </div>
       </div>
 
