@@ -21,7 +21,7 @@
   <% if @users.any? %>
       <% @users.each do |user| %>
           <tr>
-            <td><%= link_to user.id, employee_home_path(user) %></td>
+            <td><%= link_to user.id, log_in_employee_path(user) %></td>
             <td><%= user.login %></td>
             <td><%= user.active? %></td>
             <td><%= user.first_name %></td>

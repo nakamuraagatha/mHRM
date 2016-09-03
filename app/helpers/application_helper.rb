@@ -16,6 +16,15 @@ module ApplicationHelper
     link_to "<i class='fa fa-lg fa-edit'></i>".html_safe, url, options
   end
 
+  def render_employee_information
+    output = '<div class="col-xs-6" style="float: left">'
+    output<< "<div class='col-xs-2' >#{image_tag(User.current.profile_image)}#{User.current.name}</div>"
+    output<< "<div class='col-xs-2' >#{User.current.gender}</div>"
+    output<< "<div class='col-xs-2' >#{User.current.active?}</div>"
+    output<< '</div>'
+    output
+  end
+
   # Renders flash messages
   def render_flash_messages
     s = ''

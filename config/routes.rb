@@ -39,7 +39,11 @@ Rails.application.routes.draw do
   end
   resources :documents
 
-  resources :employees, only: [:index, :show] do
+  resources :employees, only: [:index, :show, :destroy] do
+    member do
+      get 'log_in'
+    end
+
     get 'home/index', as: 'home'
     resources :educations
     resources :departments

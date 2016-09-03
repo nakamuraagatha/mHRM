@@ -1,7 +1,7 @@
 class EducationsController < ApplicationController
   before_action  :authenticate_user!
   before_action :set_education, only: [:show, :edit, :update, :destroy]
-  before_action :find_optional_user
+  # before_action :find_optional_user
   before_action :authorize, only: [:new, :create]
   before_action :authorize_edit, only: [:edit, :update]
   before_action :authorize_delete, only: [:destroy]

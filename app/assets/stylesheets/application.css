@@ -21,8 +21,5 @@
   <!-- SmartAdmin RTL Support  -->
   *= require smartadmin-rtl.min.css
   *= require dataTables/jquery.dataTables
+  *= require style.css
  */
-
-label, legend, .jarviswidget header h2 strong{
-    text-transform: capitalize;
-}

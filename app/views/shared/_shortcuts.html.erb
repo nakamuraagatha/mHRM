@@ -1,17 +1,25 @@
 <div id="shortcut">
   <ul>
     <% if user_signed_in? %>
-        <li>
-          <%= link_to edit_user_registration_path, class: 'jarvismetro-tile big-cubes selected bg-color-pinkDark' do %>
-              <i class="fa fa-user fa-4x"></i> <span>My Profile </span>
-          <% end %>
-        </li>
+        <% if User.current == current_user %>
+            <li>
+              <%= link_to edit_user_registration_path, class: 'jarvismetro-tile big-cubes selected bg-color-pinkDark' do %>
+                  <i class="fa fa-user fa-4x"></i> <span>My Profile </span>
+              <% end %>
+            </li>
 
-        <li>
-          <%= link_to destroy_user_session_path, :method => :delete, class: 'jarvismetro-tile big-cubes selected bg-color-greenLight' do %>
-              <i class="fa fa-user fa-4x"></i> <span> Sign out </span>
-          <% end %>
-        </li>
+            <li>
+              <%= link_to destroy_user_session_path, :method => :delete, class: 'jarvismetro-tile big-cubes selected bg-color-greenLight' do %>
+                  <i class="fa fa-user fa-4x"></i> <span> Sign out </span>
+              <% end %>
+            </li>
+        <% else %>
+            <li>
+              <%= link_to employee_path(User.current), :method => :delete, class: 'jarvismetro-tile big-cubes selected bg-color-greenLight' do %>
+                  <i class="fa fa-user fa-4x"></i> <span> Sign out </span>
+              <% end %>
+            </li>
+        <% end %>
     <% else %>
         <%= link_to new_user_session_path, class: 'jarvismetro-tile big-cubes selected bg-color-pinkDark' do %>
             <i class="fa fa-user fa-4x"></i> <span> Sign In </span>

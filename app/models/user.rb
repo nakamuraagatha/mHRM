@@ -21,7 +21,7 @@ class User < ApplicationRecord
   validates_presence_of :login, :email
 
   def self.visible
-    if User.current.allowed_to?(:view_employees)
+    if User.current.allowed_to?(:manage_roles)
       employees
     else
       where(id: User.current.id)
@@ -98,7 +98,7 @@ class User < ApplicationRecord
   def middle_name; profile.middle_name; end
   def last_name;   profile.last_name;   end
   def gender;      profile.gender;      end
-  def active?;     self.state?;              end
+  def active?;     self.state ? 'Active' : 'Non active';         end
 
 
 

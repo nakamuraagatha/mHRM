@@ -1,6 +1,6 @@
 class EmployeesController < ApplicationController
   before_action  :authenticate_user!
-  before_action  :set_employee, :only => [:show]
+  before_action  :set_employee, :only => [:show, :destroy, :log_in]
   before_action  :authorize
 
   def index
@@ -9,6 +9,18 @@ class EmployeesController < ApplicationController
 
   def show
 
+  end
+
+  def log_in
+    session[:employee_id] = @employee.id
+    flash[:notice]= "Logged In from #{@employee.login}"
+    redirect_to root_path
+  end
+
+  def destroy
+    session[:employee_id] = nil
+    flash[:notice]= "Logged Off from #{@employee.login}"
+    redirect_to root_path
   end
 
   private

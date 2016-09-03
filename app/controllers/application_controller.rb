@@ -3,15 +3,16 @@ class Unauthorized < Exception; end
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
-  # before_action :find_optional_user
+  before_action :find_optional_user
   before_action :set_user
   layout 'base'
 
   def set_user
     if user_signed_in?
-      User.current= current_user
-      if params[:employee_id]
-        User.current = User.find params[:employee_id]
+      if session[:employee_id]
+        User.current = User.find session[:employee_id]
+      else
+        User.current= current_user
       end
     end
   rescue ActiveRecord::RecordNotFound
@@ -66,8 +67,8 @@ class ApplicationController < ActionController::Base
   def find_optional_user
     if params[:user_id]
       @user = User.find params[:user_id]
-    elsif params[:employee_id]
-      @user = User.find params[:employee_id]
+    elsif session[:employee_id]
+      @user = User.find session[:employee_id]
     else
       @user = current_user
     end
