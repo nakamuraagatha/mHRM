@@ -27,7 +27,7 @@ class UsersController < ApplicationController
   end
 
   def change_basic_info
-    if @user.update(params.require(:user).permit(:login, :email, :admin))
+    if @user.update(params.require(:user).permit(User.safe_attributes + [:admin]))
       flash[:notice] = I18n.t('notice_successful_update')
     else
       flash[:error] = I18n.t('error_update')

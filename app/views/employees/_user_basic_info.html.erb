@@ -1,4 +1,4 @@
-<%= form_for(user, url: change_basic_info_user_path(user), html: { method: :put, class: 'form-horizontal', id: 'smart-form-register' }) do |f| %>
+<%= form_for(User.current, url: employee_path(User.current), html: {method: 'put', class: 'form-horizontal', id: 'smart-form-register' }) do |f| %>
 
     <fieldset>
       <legend>Change User Information</legend>
@@ -18,19 +18,11 @@
       </div>
 
       <div class="form-group">
-        <label class="col-md-2 control-label">Administrator</label>
-        <div class="col-md-9">
-          <%= f.check_box :admin %>
-        </div>
-      </div>
-
-      <div class="form-group">
         <label class="col-md-2 control-label">Status</label>
         <div class="col-md-9">
           <%= f.select :state, options_for_select([['Active', true],['Inactive', false]], selected: user.state), {}, {class: 'form-control'} %>
         </div>
       </div>
-
 
       <div class="form-group" >
         <div class="col-md-11">

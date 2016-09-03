@@ -2,21 +2,24 @@
 <section id="widget-grid" class="show_customer_account">
   <div class="row">
     <article class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-      <%#= render partial: 'users/password',
+      <%= render partial: 'password',
                  layout: 'shared/smart_widget_wrapper',
                  locals: {
                      wid_id: 'password',
                      wid_title: 'Change password',
-                     user: @user
+                     user: User.current
                  } %>
-      <%#= render partial: 'users/user_basic_info',
+    </article>
+    <article class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+      <%= render partial: 'user_basic_info',
                  layout: 'shared/smart_widget_wrapper',
                  locals: {
                      wid_id: 'basic_info',
                      wid_title: 'Basic Information',
-                     user: @user
+                     user: User.current
                  } %>
-
+    </article>
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
       <%= render partial: 'job_details/form',
                  layout: 'shared/smart_widget_wrapper',
                  locals: {

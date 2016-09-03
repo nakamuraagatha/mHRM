@@ -39,9 +39,10 @@ Rails.application.routes.draw do
   end
   resources :documents
 
-  resources :employees, only: [:index, :show, :destroy] do
+  resources :employees, only: [:index, :show, :destroy, :update] do
     member do
       get 'log_in'
+      put 'change_password'
     end
 
     get 'home/index', as: 'home'

@@ -110,6 +110,19 @@ class User < ApplicationRecord
     end
   end
 
+  def self.safe_attributes
+    [:login, :state, :email]
+  end
+
+  def active_for_authentication?
+    # Uncomment the below debug statement to view the properties of the returned self model values.
+    # logger.debug self.to_yaml
+
+    super && account_active?
+  end
+
+  def account_active?; state?; end
+
   def to_s
     name
   end
