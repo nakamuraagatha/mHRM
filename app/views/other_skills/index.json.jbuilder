@@ -1,0 +1,1 @@
+json.array! @other_skills, partial: 'other_skills/other_skill', as: :other_skill

@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>name:</strong>
+  <%= @other_skill.name %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @other_skill.user %>
+</p>
+
+<p>
+  <strong>Date received:</strong>
+  <%= @other_skill.date_received %>
+</p>
+
+<p>
+  <strong>Note:</strong>
+  <%= @other_skill.note %>
+</p>
+
+<p>
+  <strong>Date expired:</strong>
+  <%= @other_skill.date_expired %>
+</p>
+
+<%= link_to 'Edit', edit_other_skill_path(@other_skill) %> |
+<%= link_to 'Back', other_skills_path %>

@@ -66,8 +66,16 @@ RedCarpet::AccessControl.map do |map|
     map.permission :manage_clearances, {:clearances => [:new, :create, :edit, :update, :destroy]},  :read => true
   end
 
+  map.project_module :other_skills do |map|
+    map.permission :view_other_skills, {:other_skills => [:index]},  :read => true
+    map.permission :create_other_skills, {:other_skills => [:new, :create]},  :read => true
+    map.permission :edit_other_skills, {:other_skills => [:edit, :update]},  :read => true
+    map.permission :delete_other_skills, {:other_skills => [:destroy]},  :read => true
+    map.permission :manage_other_skills, {:other_skills => [:new, :create, :edit, :update, :destroy]},  :read => true
+  end
+
   map.project_module :employee do |map|
     map.permission :manage_roles, {:employees => [:index]},  :read => true
- end
+  end
 
 end

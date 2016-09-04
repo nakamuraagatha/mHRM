@@ -1,0 +1,33 @@
+
+<h1><%= t :other_skills %></h1>
+<%= link_to( 'New skill', new_other_skill_path, class: 'btn btn-primary pull-right') if can?(:create_other_skills)%>
+<table class="table table-responsive table-bordered">
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>User</th>
+    <th>Date received</th>
+    <th>Date expired</th>
+    <th colspan="3"></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% if @other_skills.any? %>
+      <% @other_skills.each do |other_skill| %>
+          <tr>
+            <td><%= other_skill.name %></td>
+            <td><%= other_skill.user %></td>
+            <td><%= other_skill.date_received %></td>
+            <td><%= other_skill.date_expired %></td>
+            <td><%= edit_link edit_other_skill_path(other_skill) %></td>
+            <td><%= delete_link other_skill %></td>
+          </tr>
+      <% end %>
+  <% else %>
+      <tr align="center">
+        <td colspan="11"><%= t('label_no_data') %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>

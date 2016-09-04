@@ -12,6 +12,7 @@ Rails.application.routes.draw do
       post 'image_upload'
       get 'remove_image'
     end
+    resources :other_skills
     resources :clearances
     resources :certifications
     resources :educations, only: [:show, :edit, :index]
@@ -30,6 +31,7 @@ Rails.application.routes.draw do
     resources :department_extend_demographies, only: [:create, :update], controller: :extend_demographies
   end
 
+  resources :other_skills
   resources :clearances
   resources :certifications
   resources :educations
@@ -51,6 +53,7 @@ Rails.application.routes.draw do
     resources :educations
     resources :departments
     resources :positions
+    resources :other_skills
     resources :clearances
     resources :certifications
     resources :contacts do

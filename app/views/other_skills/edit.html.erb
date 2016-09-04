@@ -1,0 +1,13 @@
+<section id="widget-grid" class="show_customer_account">
+  <div class="row">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <%= render partial: 'form',
+                 layout: 'shared/smart_widget_wrapper',
+                 locals: {
+                     other_skill: @other_skill,
+                     wid_id: 'other_skill',
+                     wid_title: 'Edit skill'
+                 } %>
+    </article>
+  </div>
+</section>

@@ -65,15 +65,18 @@ class ClearancesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_clearance
-      @clearance = Clearance.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_clearance
+    @clearance = Clearance.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    render_404
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def clearance_params
-      params.require(:clearance).permit(Clearance.safe_attributes)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def clearance_params
+    params.require(:clearance).permit(Clearance.safe_attributes)
+  end
+
   def authorize_edit
     raise Unauthorized unless @clearance.can?(:edit_clearances, :manage_clearances, :manage_roles)
   end

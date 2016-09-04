@@ -16,6 +16,9 @@
         <a href="<%= educations_path %>" title="<%= t(:educations) %>"><i class="fa fa-lg fa-fw fa-graduation-cap"></i> <span class="menu-item-parent"><%= t(:educations) %></span></a>
       </li>
 
+      <li class="<%= menu_active?('other_skills') %>">
+        <a href="<%= other_skills_path %>" title="<%= t(:other_skills) %>"><i class="fa fa-lg fa-fw fa-plus"></i> <span class="menu-item-parent"><%= t(:other_skills) %></span></a>
+      </li>
       <li class="<%= menu_active?('certifications') %>">
         <a href="<%= certifications_path %>" title="<%= t(:certifications) %>"><i class="fa fa-lg fa-fw fa-certificate"></i> <span class="menu-item-parent"><%= t(:certifications) %></span></a>
       </li>

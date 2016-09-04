@@ -1,36 +1,32 @@
-<% if EducationType.count.zero? %>
-    <h2>Education Type must be present</h2>
-<% end %>
-<% if ClearenceType.count.zero? %>
-    <h2>Clearence Type must be present</h2>
-<% end %>
-<%= form_for(education, html: { class: 'form-horizontal' }) do |f| %>
-    <% if education.errors.any? %>
-        <div id="error_explanation">
-          <h2><%= pluralize(education.errors.count, "error") %> prohibited this education from being saved:</h2>
+<fieldset>
+  <legend>Skill</legend>
+  <%= simple_form_for(other_skill, html: { class: 'form-horizontal' }) do |f| %>
+      <% data = other_skill
+         if data.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(data.errors.count, "error") %> :</h2>
 
-          <ul>
-            <% education.errors.full_messages.each do |message| %>
-                <li><%= message %></li>
-            <% end %>
-          </ul>
-        </div>
-    <% end %>
-    <fieldset>
-      <legend>education</legend>
-
+            <ul>
+              <% data.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+      <% end %>
       <%= f.hidden_field :user_id %>
+
       <div class="form-group">
-        <%= f.label t('education_type'), class: 'col-md-2 control-label' %>
+        <%= f.label t(:other_skill), class: 'col-md-2 control-label' %>
         <div class="col-md-9">
-          <%= f.select :education_type_id, options_for_select(EducationType.pluck(:name, :id), selected: education.education_type_id), {},{ class: 'form-control'} %>
+          <%= f.text_field :name, class: 'form-control' %>
         </div>
       </div>
+
 
       <div class="form-group">
         <%= f.label t('education_date_received'), class: 'col-md-2 control-label' %>
         <div class="col-md-9">
-          <%= f.text_field :date_recieved , class: 'form-control date_picker' %>
+          <%= f.text_field :date_received , class: 'form-control date_picker' %>
         </div>
       </div>
 
@@ -60,5 +56,5 @@
           <%= f.submit t('button_save'), class: 'btn btn-primary pull-right' %>
         </div>
       </div>
-    </fieldset>
-<% end %>
+  <% end %>
+</fieldset>

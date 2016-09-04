@@ -157,6 +157,8 @@ en:
   education_date_received: Date received
   education_date_expired: Date expired
   education_clearence: Clearance
+  other_skill: Skill
+  other_skills: Skills
   label_default: Default
   label_active: Active
   label_name: Name
