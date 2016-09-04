@@ -19,7 +19,7 @@ class ClearancesController < ApplicationController
 
   # GET /clearances/new
   def new
-    @clearance = Clearance.new
+    @clearance = Clearance.new(user_id: @user.id)
   end
 
   # GET /clearances/1/edit

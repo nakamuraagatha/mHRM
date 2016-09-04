@@ -18,7 +18,7 @@ class CertificationsController < ApplicationController
 
   # GET /certifications/new
   def new
-    @certification = Certification.new
+    @certification = Certification.new(user_id: @user.id)
   end
 
   # GET /certifications/1/edit
