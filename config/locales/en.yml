@@ -142,6 +142,7 @@ en:
   enumeration_email_type: Email enumeration
   enumeration_ethnicity_type: Ethnicity enumeration
   enumeration_fax_type: Fax enumeration
+  enumeration_gender_type: Gender enumeration
   enumeration_identification_type: Identification enumeration
   enumeration_location_type: Location enumeration
   enumeration_phone_type: Phone enumeration

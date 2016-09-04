@@ -15,7 +15,7 @@
   <% if documents.any? %>
       <% documents.each do |document| %>
           <tr>
-            <td><%= document.title %></td>
+            <td><%= link_to document.title, document_path(document) %></td>
             <td><%= document.description %></td>
             <td><%= document.user %></td>
             <td><%= document.document_type_id %></td>

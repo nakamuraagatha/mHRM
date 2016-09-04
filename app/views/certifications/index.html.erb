@@ -18,7 +18,7 @@
   <% if @certifications.any? %>
       <% @certifications.each do |certification| %>
           <tr>
-            <td><%= certification.certification_type %></td>
+            <td><%= link_to certification.certification_type, certification_path(certification) %></td>
             <td><%= certification.user %></td>
             <td><%= certification.date_received %></td>
             <td><%= certification.date_expired %></td>

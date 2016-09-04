@@ -18,7 +18,7 @@
   <% if @clearances.any? %>
       <% @clearances.each do |clearance| %>
           <tr>
-            <td><%= clearance.clearence_type %></td>
+            <td><%= link_to clearance.clearence_type, clearance_path(clearance)%></td>
             <td><%= clearance.user %></td>
             <td><%= clearance.date_received %></td>
             <td><%= clearance.date_expired %></td>

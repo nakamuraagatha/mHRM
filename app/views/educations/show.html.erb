@@ -1,16 +1,11 @@
+<%= link_to 'Delete', education_path(@education), class: 'btn btn-danger pull-right'  %>
+<%= link_to 'Edit', edit_education_path(@education), class: 'btn btn-success pull-right' %>
+
+<div class="col-xs-12">
+
 <p>
   <strong>Education type:</strong>
   <%= @education.education_type %>
-</p>
-
-<p>
-  <strong>Certification:</strong>
-  <%= @education.certification %>
-</p>
-
-<p>
-  <strong>Other skill:</strong>
-  <%= @education.other_skill %>
 </p>
 
 <p>
@@ -28,5 +23,9 @@
   <%= @education.note %>
 </p>
 
-<%= link_to 'Edit', edit_education_path(@education) %> |
-<%= link_to 'Back', educations_path %>
+
+  <p>
+    <strong>File:</strong>
+    <%= @education.file_url %>
+  </p>
+</div>

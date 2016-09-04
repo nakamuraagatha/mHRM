@@ -17,15 +17,6 @@
                      wid_title: 'Basic Information',
                      user: @user
                  } %>
-
-      <%= render partial: 'job_details/form',
-                 layout: 'shared/smart_widget_wrapper',
-                 locals: {
-                     wid_id: 'job_detail',
-                     wid_title: 'Job detail',
-                     user: @user,
-                     job_detail: @user.job
-                 } %>
     </article>
     <article class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
       <%= render partial: 'core_demographics/form',
@@ -36,7 +27,16 @@
                      core_demographic: @profile
                  } %>
     </article>
-
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <%= render partial: 'job_details/form',
+                 layout: 'shared/smart_widget_wrapper',
+                 locals: {
+                     wid_id: 'job_detail',
+                     wid_title: 'Job detail',
+                     user: @user,
+                     job_detail: @user.job
+                 } %>
+    </article>
     <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
       <%= render partial: 'extend_demographies/form',
                  layout: 'shared/smart_widget_wrapper',

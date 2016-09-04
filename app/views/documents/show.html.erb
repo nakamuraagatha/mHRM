@@ -1,3 +1,6 @@
+<%= link_to 'Delete',  document_path(@document), class: 'btn btn-danger pull-right'  %>
+<%= link_to 'Edit', edit_document_path(@document), class: 'btn btn-success pull-right' %>
+<div class="col-xs-12">
 
 <p>
   <strong>Title:</strong>
@@ -28,6 +31,4 @@
   <strong>Attachment:</strong>
   <%= @document.attachment %>
 </p>
-
-<%= link_to 'Edit', edit_document_path(@document) %> |
-<%= link_to 'Back', documents_path %>
+</div>

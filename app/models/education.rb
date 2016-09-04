@@ -5,10 +5,6 @@ class Education < ApplicationRecord
 
   validates_presence_of :education_type_id, :user_id
 
-  def certification
-    certification_type.try :name
-  end
-
   def visible?
     User.current == user or User.current.allowed_to?(:edit_educations) or User.current.allowed_to?(:manage_educations)
   end

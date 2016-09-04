@@ -1,29 +1,36 @@
-<p id="notice"><%= notice %></p>
+<%= link_to 'Delete', certification_path(@certification), class: 'btn btn-danger pull-right'  %>
+<%= link_to 'Edit', edit_certification_path(@certification), class: 'btn btn-success pull-right' %>
+<div class="col-xs-12">
 
-<p>
-  <strong>Certification type:</strong>
-  <%= @certification.certification_type_id %>
-</p>
+  <p>
+    <strong>Certification type:</strong>
+    <%= @certification.certification_type %>
+  </p>
 
-<p>
-  <strong>User:</strong>
-  <%= @certification.user_id %>
-</p>
+  <p>
+    <strong>User:</strong>
+    <%= @certification.user %>
+  </p>
 
-<p>
-  <strong>Date received:</strong>
-  <%= @certification.date_received %>
-</p>
+  <p>
+    <strong>Date received:</strong>
+    <%= @certification.date_received %>
+  </p>
 
-<p>
-  <strong>Note:</strong>
-  <%= @certification.note %>
-</p>
+  <p>
+    <strong>Date expired:</strong>
+    <%= @certification.date_expired %>
+  </p>
 
-<p>
-  <strong>Date expired:</strong>
-  <%= @certification.date_expired %>
-</p>
+  <p>
+    <strong>Note:</strong>
+    <%= @certification.note %>
+  </p>
 
-<%= link_to 'Edit', edit_certification_path(@certification) %> |
-<%= link_to 'Back', certifications_path %>
+
+  <p>
+    <strong>File:</strong>
+    <%= @certification.file_url %>
+  </p>
+
+</div>

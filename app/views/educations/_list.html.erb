@@ -14,7 +14,7 @@
   <% if educations.any? %>
       <% educations.each do |education| %>
           <tr>
-            <td><%= education.education_type %></td>
+            <td><%= link_to education.education_type, education_path(education) %></td>
             <td><%= education.date_recieved %></td>
             <td><%= education.date_expired %></td>
             <td><%= education.note %></td>
