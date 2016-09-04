@@ -2,8 +2,6 @@
   <thead>
   <tr>
     <th><%= t :education_type %></th>
-    <th><%= t :education_certification %></th>
-    <th><%= t :education_other_skill %></th>
     <th><%= t :education_date_received %></th>
     <th><%= t :education_date_expired %></th>
     <th><%= t :label_note %></th>
@@ -16,8 +14,6 @@
       <% educations.each do |education| %>
           <tr>
             <td><%= education.education_type %></td>
-            <td><%= education.certification %></td>
-            <td><%= education.other_skill %></td>
             <td><%= education.date_recieved %></td>
             <td><%= education.date_expired %></td>
             <td><%= education.note %></td>

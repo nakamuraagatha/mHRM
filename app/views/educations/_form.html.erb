@@ -28,20 +28,6 @@
       </div>
 
       <div class="form-group">
-        <%= f.label t(:education_certification), class: 'col-md-2 control-label' %>
-        <div class="col-md-9">
-          <%= f.select :certification_type_id, options_for_select(CertificationType.active.pluck(:name, :id), selected: education.certification_type_id),{}, {class: 'form-control'} %>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <%= f.label t('education_other_skill') , class: 'col-md-2 control-label' %>
-        <div class="col-md-9">
-          <%= f.text_field :other_skill, class: 'form-control' %>
-        </div>
-      </div>
-
-      <div class="form-group">
         <%= f.label t('education_date_received'), class: 'col-md-2 control-label' %>
         <div class="col-md-9">
           <%= f.text_field :date_recieved , class: 'form-control date_picker' %>

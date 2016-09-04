@@ -1,7 +1,7 @@
 
 <section id="widget-grid" class="show_customer_account">
   <div class="row">
-    <article class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
       <%= render partial: 'user_basic_info',
                  layout: 'shared/smart_widget_wrapper',
                  locals: {
@@ -9,18 +9,18 @@
                      wid_title: 'Basic Information',
                      user: User.current
                  } %>
+   
     </article>
-    <article class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-      <%= render partial: 'job_details/form',
+    <article class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+      <%= render partial: 'core_demographics/form',
                  layout: 'shared/smart_widget_wrapper',
                  locals: {
-                     wid_id: 'job_detail',
-                     wid_title: 'Job detail',
-                     user: User.current,
-                     job_detail: User.current.job
+                     wid_id: 'profile',
+                     wid_title: 'profile',
+                     core_demographic: User.current.profile
                  } %>
     </article>
-    <article class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
       <%#= render partial: 'core_demographics/form',
                  layout: 'shared/smart_widget_wrapper',
                  locals: {

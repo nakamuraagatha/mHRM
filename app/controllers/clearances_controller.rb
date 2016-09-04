@@ -1,5 +1,5 @@
 class ClearancesController < ApplicationController
-  before_action :set_clearance, only: [:show, :edit, :update, :destroy]
+
   before_action  :authenticate_user!
   before_action :set_clearance, only: [:show, :edit, :update, :destroy]
   # before_action :find_optional_user
@@ -33,7 +33,7 @@ class ClearancesController < ApplicationController
 
     respond_to do |format|
       if @clearance.save
-        format.html { redirect_to edit_clearance_url(@clearance), notice: 'Clearance was successfully created.' }
+        format.html { redirect_to clearances_url, notice: 'Clearance was successfully created.' }
 
       else
         format.html { render :new }
@@ -46,7 +46,7 @@ class ClearancesController < ApplicationController
   def update
     respond_to do |format|
       if @clearance.update(clearance_params)
-        format.html { redirect_to edit_clearance_url(@clearance), notice: 'Clearance was successfully updated.' }
+        format.html { redirect_to clearances_url, notice: 'Clearance was successfully updated.' }
 
       else
         format.html { render :edit }
@@ -75,10 +75,10 @@ class ClearancesController < ApplicationController
       params.require(:clearance).permit(Clearance.safe_attributes)
     end
   def authorize_edit
-    raise Unauthorized unless @certification.can?(:edit_certifications, :manage_certifications, :manage_roles)
+    raise Unauthorized unless @clearance.can?(:edit_clearances, :manage_clearances, :manage_roles)
   end
 
   def authorize_delete
-    raise Unauthorized unless @certification.can?(:delete_certifications, :manage_certifications, :manage_roles)
+    raise Unauthorized unless @clearance.can?(:delete_clearances, :manage_clearances, :manage_roles)
   end
 end

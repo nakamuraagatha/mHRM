@@ -1,7 +1,6 @@
 class Education < ApplicationRecord
   belongs_to :user
   belongs_to :education_type
-  belongs_to :certification_type
 
   validates_presence_of :education_type_id, :user_id
 
@@ -14,8 +13,7 @@ class Education < ApplicationRecord
   end
 
   def self.safe_attributes
-    [:user_id, :education_type_id, :certification_type_id,
-     :other_skill, :date_recieved, :date_expired, :note]
+    [:user_id, :education_type_id, :date_recieved, :date_expired, :note]
   end
 
 end

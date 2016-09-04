@@ -32,7 +32,7 @@ class CertificationsController < ApplicationController
 
     respond_to do |format|
       if @certification.save
-        format.html { redirect_to edit_certification_url(@certification), notice: 'Certification was successfully created.' }
+        format.html { redirect_to certifications_url, notice: 'Certification was successfully created.' }
       else
         format.html { render :new }
       end
@@ -44,7 +44,7 @@ class CertificationsController < ApplicationController
   def update
     respond_to do |format|
       if @certification.update(certification_params)
-        format.html { redirect_to edit_certification_url(@certification), notice: 'Certification was successfully updated.' }
+        format.html { redirect_to certifications_url, notice: 'Certification was successfully updated.' }
 
       else
         format.html { render :edit }

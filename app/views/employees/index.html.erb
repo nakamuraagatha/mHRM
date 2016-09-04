@@ -4,14 +4,12 @@
   <thead>
   <tr>received
     <th>#</th>
-    <th><%= t :login %></th>
     <th><%= t 'profile.first_name' %></th>
     <th><%= t 'profile.middle_name' %></th>
     <th><%= t 'profile.last_name' %></th>
     <th><%= t 'profile.gender' %></th>
     <th><%= t :email %></th>
     <th><%= 'Active' %></th>
-    <th></th>
     <th></th>
   </tr>
   </thead>
@@ -21,7 +19,6 @@
       <% @users.each do |user| %>
           <tr>
             <td><%= link_to user.id, log_in_employee_path(user) %></td>
-            <td><%= link_to user.login, log_in_employee_path(user) %></td>
             <td><%= user.first_name %></td>
             <td><%= user.middle_name %></td>
             <td><%= user.last_name %></td>
