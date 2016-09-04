@@ -1,4 +1,8 @@
 module ApplicationHelper
+  def can?(*args)
+    args.map{|action| current_user.allowed_to? action }.include?(true)
+  end
+
   def delete_link(url, options={})
     options = {
         :method => :delete,

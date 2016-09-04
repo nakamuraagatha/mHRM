@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Certifications</h1>
-<%= link_to( 'New Certification', new_certification_path, class: 'btn btn-primary pull-right') if current_user.allowed_to?(:create_certifications)%>
+<%= link_to( 'New Certification', new_certification_path, class: 'btn btn-primary pull-right') if can?(:create_certifications)%>
 <table class="table table-responsive table-bordered">
   <thead>
   <tr>

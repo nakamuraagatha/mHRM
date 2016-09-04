@@ -6,7 +6,7 @@ class ApplicationRecord < ActiveRecord::Base
   scope :for_employees, -> {where(user_id: User.employees.pluck(:id))}
 
   def can?(*args)
-    owner? or args.map{|action| User.current.allowed_to? action }.include? true
+    owner? or args.map{|action| User.current.allowed_to? action }.include?(true)
   end
 
   def owner?

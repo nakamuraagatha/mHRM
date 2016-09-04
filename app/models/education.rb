@@ -2,9 +2,8 @@ class Education < ApplicationRecord
   belongs_to :user
   belongs_to :education_type
   belongs_to :certification_type
-  belongs_to :clearence_type, :foreign_key => 'clearence'
 
-  validates_presence_of :education_type_id, :clearence, :user_id
+  validates_presence_of :education_type_id, :user_id
 
   def certification
     certification_type.try :name
@@ -16,7 +15,7 @@ class Education < ApplicationRecord
 
   def self.safe_attributes
     [:user_id, :education_type_id, :certification_type_id,
-     :other_skill, :date_recieved, :date_expired, :note, :clearence]
+     :other_skill, :date_recieved, :date_expired, :note]
   end
 
 end

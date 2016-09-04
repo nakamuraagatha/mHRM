@@ -7,7 +7,6 @@
     <th><%= t :education_date_received %></th>
     <th><%= t :education_date_expired %></th>
     <th><%= t :label_note %></th>
-    <th><%= t :education_clearence %></th>
     <th colspan="2"></th>
   </tr>
   </thead>
@@ -22,7 +21,6 @@
             <td><%= education.date_recieved %></td>
             <td><%= education.date_expired %></td>
             <td><%= education.note %></td>
-            <td><%= education.clearence_type %></td>
             <td><%= edit_link(edit_education_path(education))  if education.can?(:edit_educations, :manage_educations) %></td>
             <td><%= delete_link( education)  if education.can?(:delete_educations, :manage_educations) %></td>
           </tr>

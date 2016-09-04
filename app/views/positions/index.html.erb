@@ -1,7 +1,7 @@
 
 <h1>Positions</h1>
 
-<%= link_to('New Position', new_position_path, class:'btn btn-primary pull-right') if current_user.can?(:create_positions, :manage_positions, :manage_roles) %>
+<%= link_to('New Position', new_position_path, class:'btn btn-primary pull-right') if can?(:create_positions, :manage_positions, :manage_roles) %>
 <table class="table table-bordered table-responsive">
   <thead>
   <tr>

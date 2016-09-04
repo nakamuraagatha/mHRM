@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
 
 <h1>clearances</h1>
-<%= link_to( 'New clearance', new_clearance_path, class: 'btn btn-primary pull-right') if current_user.allowed_to?(:create_clearances)%>
+<%= link_to( 'New clearance', new_clearance_path, class: 'btn btn-primary pull-right') if can?(:create_clearances)%>
 <table class="table table-responsive table-bordered">
   <thead>
   <tr>

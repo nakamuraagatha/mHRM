@@ -1,4 +1,4 @@
 <h1>Contacts</h1>
 
-<%= link_to( 'New Contact', new_contact_path, class: 'btn btn-primary pull-right') if User.current.can?(:create_contacts, :manage_contacts)  %>
+<%= link_to( 'New Contact', new_contact_path, class: 'btn btn-primary pull-right') if can?(:create_contacts, :manage_contacts, :manage_roles)  %>
 <%= render partial: 'list', locals: {contacts: @contacts} %>
