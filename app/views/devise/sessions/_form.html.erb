@@ -6,10 +6,10 @@
     <fieldset>
 
       <section>
-        <label class="label">E-mail</label>
+        <label class="label"><%= t :login %></label>
         <label class="input"> <i class="icon-append fa fa-user"></i>
-          <%= f.email_field :email, autofocus: true %>
-          <b class="tooltip tooltip-top-right"><i class="fa fa-user txt-color-teal"></i> Please enter email address/username</b></label>
+          <%= f.text_field :login, autofocus: true %>
+          <b class="tooltip tooltip-top-right"><i class="fa fa-user txt-color-teal"></i> Please enter username</b></label>
       </section>
 
       <section>
