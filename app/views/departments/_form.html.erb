@@ -23,7 +23,7 @@
     <div class="form-group">
       <%= f.label t('organization'), class: 'col-md-2 control-label' %>
       <div class="col-md-9">
-        <%= f.select :organization_id, options_for_select(Organization.all.map{|dep| [dep.name, dep.id] }, selected: department.organization_id), {},{ class: 'form-control'} %>
+        <%= f.select :organization_id, options_for_select(Organization.all.map{|dep| [dep.name, dep.id] }.insert(0, ['']), selected: department.organization_id), {},{ class: 'form-control'} %>
       </div>
     </div>
 

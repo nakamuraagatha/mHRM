@@ -1,6 +1,9 @@
 class Department < ApplicationRecord
   belongs_to :user
   belongs_to :department_type
+  belongs_to :organization
+
+
   has_one :department_extend_demography
   has_many :job_details
 

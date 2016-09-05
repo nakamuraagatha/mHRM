@@ -1,7 +1,8 @@
 <table class="table table-responsive table-bordered">
   <thead>
   <tr>
-    <th>User</th>
+    <th>Department Type</th>
+    <th>Organization</th>
     <th>Note</th>
     <th>Date start</th>
     <th>Date end</th>
@@ -13,7 +14,8 @@
   <% if departments.any? %>
       <% departments.each do |department| %>
           <tr>
-            <td><%= department.user %></td>
+            <td><%= department.department_type %></td>
+            <td><%= department.organization %></td>
             <td><%= department.note %></td>
             <td><%= department.date_start %></td>
             <td><%= department.date_end %></td>

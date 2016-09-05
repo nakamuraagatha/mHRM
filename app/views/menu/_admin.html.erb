@@ -10,8 +10,15 @@
     <li>
       <%= link_to "Roles", roles_path %>
     </li>
+    <li class="<%= menu_active?('organizations') %>">
+      <a href="<%= organizations_path %>" title="<%= t(:organizations) %>"><i class="fa fa-lg fa-fw fa-home"></i> <span class="menu-item-parent"><%= t(:organizations) %></span></a>
+    </li>
+    <li class="<%= menu_active?('departments') %>">
+      <a href="<%= departments_path %>" title="<%= t(:departments) %>"><i class="fa fa-lg fa-fw fa-university"></i> <span class="menu-item-parent"><%= t(:departments) %></span></a>
+    </li>
     <li>
       <%= link_to "Setting", settings_path %>
     </li>
+
   </ul>
 </li>
