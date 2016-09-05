@@ -1,3 +1,10 @@
+<%= link_to 'Delete',  department_path(@department), class: 'btn btn-danger pull-right',
+            :method => :delete,
+            :data => {:confirm => t(:text_are_you_sure)}
+%>
+<%= link_to 'Edit', edit_department_path(@department), class: 'btn btn-success pull-right' %>
+
+<div class="col-xs-12">
 <p>
   <strong>User:</strong>
   <%= @department.user %>
@@ -18,5 +25,5 @@
   <%= @department.date_end %>
 </p>
 
-<%= link_to 'Edit', edit_department_path(@department) %> |
-<%= link_to 'Back', departments_path %>
+  <%= render_extend_demography_information(@department.department_extend_demography) %>
+</div>

@@ -33,7 +33,7 @@ class EducationsController < ApplicationController
 
     respond_to do |format|
       if @education.save
-        format.html { redirect_to edit_education_path(@education), notice: 'Education was successfully created.' }
+        format.html { redirect_to educations_url, notice: 'Education was successfully created.' }
       else
         format.html { render :new }
       end
@@ -45,7 +45,7 @@ class EducationsController < ApplicationController
   def update
     respond_to do |format|
       if @education.update(education_params)
-        format.html { redirect_to edit_education_path(@education), notice: 'Education was successfully updated.' }
+        format.html { redirect_to educations_url, notice: 'Education was successfully updated.' }
       else
         format.html { render :edit }
       end

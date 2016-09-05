@@ -14,7 +14,7 @@
   <% if contacts.any? %>
       <% contacts.each do |contact| %>
           <tr>
-            <td><%= contact.user %></td>
+            <td><%= link_to contact.user, contact %></td>
             <td><%= contact.emergency_contact %></td>
             <td><%= contact.contact_type %></td>
             <td><%= contact.note %></td>

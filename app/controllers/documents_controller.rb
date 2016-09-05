@@ -33,11 +33,9 @@ class DocumentsController < ApplicationController
 
     respond_to do |format|
       if @document.save
-        format.html { redirect_to @document, notice: 'Document was successfully created.' }
-        format.json { render :show, status: :created, location: @document }
+        format.html { redirect_to documents_url, notice: 'Document was successfully created.' }
       else
         format.html { render :new }
-        format.json { render json: @document.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -47,11 +45,9 @@ class DocumentsController < ApplicationController
   def update
     respond_to do |format|
       if @document.update(document_params)
-        format.html { redirect_to @document, notice: 'Document was successfully updated.' }
-        format.json { render :show, status: :ok, location: @document }
+        format.html { redirect_to documents_url, notice: 'Document was successfully updated.' }
       else
         format.html { render :edit }
-        format.json { render json: @document.errors, status: :unprocessable_entity }
       end
     end
   end

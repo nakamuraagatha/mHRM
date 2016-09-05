@@ -1,22 +1,18 @@
-<p>
-  <strong>Name:</strong>
-  <%= @organization.name %>
-</p>
+<%= link_to 'Delete',  organization_path(@organization), class: 'btn btn-danger pull-right',
+    :method => :delete,
+    :data => {:confirm => t(:text_are_you_sure)}
+     %>
+<%= link_to 'Edit', edit_organization_path(@organization), class: 'btn btn-success pull-right' %>
+<div class="col-xs-12">
+  <p>
+    <strong>Name:</strong>
+    <%= @organization.name %>
+  </p>
 
-<p>
-  <strong>Address:</strong>
-  <%= @organization.address_id %>
-</p>
+  <p>
+    <strong>Note:</strong>
+    <%= @organization.note %>
+  </p>
 
-<p>
-  <strong>Note:</strong>
-  <%= @organization.note %>
-</p>
-
-<p>
-  <strong>Contact:</strong>
-  <%= @organization.contact_id %>
-</p>
-
-<%= link_to 'Edit', edit_organization_path(@organization) %> |
-<%= link_to 'Back', organizations_path %>
+  <%= render_extend_demography_information(@organization.organization_extend_demography) %>
+</div>

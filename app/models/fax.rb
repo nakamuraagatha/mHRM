@@ -10,4 +10,12 @@ class Fax < ApplicationRecord
     [:id, :fax_type_id, :fax_number, :note, :_destroy]
   end
 
+  def to_html
+    output = "<div class='col-xs-12'>"
+    output<< "<div class='col-xs-2'>#{fax_type} </div>"
+    output<< "<div class='col-xs-8'>#{fax_number} </div>"
+    output<< "</div>"
+    output.html_safe
+  end
+
 end

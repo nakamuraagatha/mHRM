@@ -5,8 +5,8 @@
 <table class="table table-bordered table-responsive">
   <thead>
   <tr>
-    <th>User</th>
     <th>Title</th>
+    <th>User</th>
     <th>Position description</th>
     <th>Location</th>
     <th>Special requirement</th>
@@ -21,8 +21,8 @@
   <% if @positions.any? %>
       <% @positions.each do |position| %>
           <tr>
+            <td><%= link_to position.title, position %></td>
             <td><%= position.user %></td>
-            <td><%= position.title %></td>
             <td><%= position.position_description %></td>
             <td><%= position.location %></td>
             <td><%= position.special_requirement %></td>

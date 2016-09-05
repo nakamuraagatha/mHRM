@@ -1,47 +1,48 @@
-<p>
-  <strong>User:</strong>
-  <%= @position.user %>
-</p>
+<%= link_to 'Delete',  position_path(@position), class: 'btn btn-danger pull-right',
+            :method => :delete,
+            :data => {:confirm => t(:text_are_you_sure)}
+%>
+<%= link_to 'Edit', edit_position_path(@position), class: 'btn btn-success pull-right' %>
+<div class="col-xs-12">
 
-<p>
-  <strong>Title:</strong>
-  <%= @position.title %>
-</p>
+  <p>
+    <strong>User:</strong>
+    <%= @position.user %>
+  </p>
 
-<p>
-  <strong>Position description:</strong>
-  <%= @position.position_description %>
-</p>
+  <p>
+    <strong>Title:</strong>
+    <%= @position.title %>
+  </p>
 
-<p>
-  <strong>Location:</strong>
-  <%= @position.location %>
-</p>
+  <p>
+    <strong>Position description:</strong>
+    <%= @position.position_description %>
+  </p>
 
-<p>
-  <strong>Special requirement:</strong>
-  <%= @position.special_requirement %>
-</p>
+  <p>
+    <strong>Location:</strong>
+    <%= @position.location %>
+  </p>
 
-<p>
-  <strong>Note:</strong>
-  <%= @position.note %>
-</p>
+  <p>
+    <strong>Special requirement:</strong>
+    <%= @position.special_requirement %>
+  </p>
 
-<p>
-  <strong>Date start:</strong>
-  <%= @position.date_start %>
-</p>
+  <p>
+    <strong>Note:</strong>
+    <%= @position.note %>
+  </p>
 
-<p>
-  <strong>Date end:</strong>
-  <%= @position.date_end %>
-</p>
+  <p>
+    <strong>Date start:</strong>
+    <%= @position.date_start %>
+  </p>
 
-<p>
-  <strong>Files:</strong>
-  <%= @position.files %>
-</p>
+  <p>
+    <strong>Date end:</strong>
+    <%= @position.date_end %>
+  </p>
 
-<%= link_to 'Edit', edit_position_path(@position) %> |
-<%= link_to 'Back', positions_path %>
+</div>

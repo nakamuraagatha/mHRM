@@ -1,7 +1,7 @@
 class Contact < ApplicationRecord
   belongs_to :contact_type
   belongs_to :user
-  belongs_to :contact_extend_demography
+  has_one :contact_extend_demography
 
   def self.safe_attributes
     [:emergency_contact, :first_name, :middle_name, :last_name,

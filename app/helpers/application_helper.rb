@@ -96,4 +96,37 @@ module ApplicationHelper
     @devise_mapping ||= Devise.mappings[:user]
   end
 
+
+  #For extend Demography
+  def render_extend_demography_information(extend_demo)
+    return if extend_demo.nil?
+    output = "<div class='row'>"
+    if extend_demo.emails.present?
+      output<< "<div class='col-xs-12'> <h4>Email</h4> </div>"
+      output<< extend_demo.emails.map{|record| record.to_html }.join('')
+    end
+    if extend_demo.faxes.present?
+      output<< "<div class='col-xs-12'> <h4>Fax</h4> </div>"
+      output<< extend_demo.faxes.map{|record| record.to_html }.join('')
+      end
+    if extend_demo.phones.present?
+      output<< "<div class='col-xs-12'> <h4>Phone</h4> </div>"
+      output<< extend_demo.phones.map{|record| record.to_html }.join('')
+    end
+    if extend_demo.identifications.present?
+      output<< "<div class='col-xs-12'> <h4>Identification</h4> </div>"
+      output<< extend_demo.identifications.map{|record| record.to_html }.join('')
+    end
+    if extend_demo.social_media.present?
+      output<< "<div class='col-xs-12'> <h4>Social media</h4> </div>"
+      output<< extend_demo.social_media.map{|record| record.to_html }.join('')
+    end
+    if extend_demo.addresses.present?
+      output<< "<div class='col-xs-12'> <h4>Address</h4> </div>"
+      output<< extend_demo.addresses.map{|record| record.to_html }.join('')
+    end
+    output<< '</div>'
+    output.html_safe
+  end
+
 end

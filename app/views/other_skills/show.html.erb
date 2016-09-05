@@ -1,4 +1,7 @@
-<%= link_to 'Delete', other_skill_path(@other_skill), class: 'btn btn-danger pull-right'  %>
+<%= link_to 'Delete', other_skill_path(@other_skill), class: 'btn btn-danger pull-right',
+            :method => :delete,
+            :data => {:confirm => t(:text_are_you_sure)}
+%>
 <%= link_to 'Edit', edit_other_skill_path(@other_skill), class: 'btn btn-success pull-right' %>
 <div class="col-xs-12">
 

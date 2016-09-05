@@ -1,4 +1,7 @@
-<%= link_to 'Delete',  document_path(@document), class: 'btn btn-danger pull-right'  %>
+<%= link_to 'Delete',  document_path(@document), class: 'btn btn-danger pull-right' ,
+            :method => :delete,
+            :data => {:confirm => t(:text_are_you_sure)}
+%>
 <%= link_to 'Edit', edit_document_path(@document), class: 'btn btn-success pull-right' %>
 <div class="col-xs-12">
 
@@ -14,12 +17,12 @@
 
 <p>
   <strong>User:</strong>
-  <%= @document.user_id %>
+  <%= @document.user %>
 </p>
 
 <p>
   <strong>Document type:</strong>
-  <%= @document.document_type_id %>
+  <%= @document.document_type %>
 </p>
 
 <p>

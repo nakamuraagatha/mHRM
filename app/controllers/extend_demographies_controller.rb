@@ -9,7 +9,6 @@ class ExtendDemographiesController < ApplicationController
 
     respond_to do |format|
       if @extend_demography.save
-        url_back = @extend_demography.department_id ? departments_path : root_path
         format.html { redirect_to url_back, notice: I18n.t(:notice_successful_create) }
       else
         format.html { render :edit }
@@ -22,7 +21,6 @@ class ExtendDemographiesController < ApplicationController
   def update
     respond_to do |format|
       if @extend_demography.update(extend_demography_params)
-        url_back = @extend_demography.department_id ? departments_path : root_path
         format.html { redirect_to  url_back, notice: I18n.t(:notice_successful_update) }
       else
         format.html { render :edit }
@@ -50,5 +48,17 @@ class ExtendDemographiesController < ApplicationController
              :organization_extend_demography
            end
     params.require(type).permit(ExtendDemography.safe_attributes)
+  end
+
+  def url_back
+    if @extend_demography.department_id
+      departments_path
+    elsif @extend_demography.contact_id
+      contacts_url
+    elsif @extend_demography.organization_id
+      organizations_path
+    else
+      root_path
+    end
   end
 end
