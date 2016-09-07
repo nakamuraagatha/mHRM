@@ -11,7 +11,7 @@ class Position < ApplicationRecord
   def self.safe_attributes
     [:user_id, :title, :position_description,
      :location_type_id, :special_requirement, :note,
-     :date_start, :date_end, :files, :department_id]
+     :date_start, :date_end, :files, :department_id, :salary]
   end
 
   mount_uploader :files, AttachmentUploader

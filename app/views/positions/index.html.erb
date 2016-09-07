@@ -10,6 +10,7 @@
     <th>Special requirement</th>
     <th>Date start</th>
     <th>Date end</th>
+    <th>Salary</th>
     <th colspan="2"></th>
   </tr>
   </thead>
@@ -23,6 +24,7 @@
             <td><%= position.special_requirement %></td>
             <td><%= position.date_start %></td>
             <td><%= position.date_end %></td>
+            <td><%= position.salary %></td>
             <td><%= edit_link(edit_position_path(position))  if position.can?(:edit_positions, :manage_positions) %></td>
             <td><%= delete_link(position)  if position.can?(:delete_positions, :manage_positions)%></td>
           </tr>
