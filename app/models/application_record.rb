@@ -3,7 +3,7 @@ class ApplicationRecord < ActiveRecord::Base
 
 
   scope :visible, lambda {|action|  User.current.allowed_to?(action) ? for_employees :  where(user_id: User.current.id) }
-  scope :for_employees, -> {where(user_id: User.employees.pluck(:id))}
+  scope :for_employees, -> {where(user_id: User.employees.pluck(:id) + [User.current.id])}
 
   def can?(*args)
     owner? or args.map{|action| User.current.allowed_to? action }.include?(true)

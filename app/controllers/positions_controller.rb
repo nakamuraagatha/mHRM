@@ -1,9 +1,9 @@
 class PositionsController < ApplicationController
   before_action  :authenticate_user!
-  before_action :set_position, only: [:show, :edit, :update, :destroy]
+  before_action :set_position, only: [:show, :edit, :update, :destroy, :delete_file]
   # before_action :find_optional_user
   before_action :authorize, only: [:new, :create]
-  before_action :authorize_edit, only: [:edit, :update]
+  before_action :authorize_edit, only: [:edit, :update, :delete_file]
   before_action :authorize_delete, only: [:destroy]
 
 
@@ -54,6 +54,14 @@ class PositionsController < ApplicationController
         format.html { render :edit }
         format.json { render json: @position.errors, status: :unprocessable_entity }
       end
+    end
+  end
+
+  def delete_file
+    @position.remove_files!
+    @position.save
+    respond_to do |format|
+      format.html { redirect_to edit_position_path(@position), notice: 'File was successfully deleted.' }
     end
   end
 

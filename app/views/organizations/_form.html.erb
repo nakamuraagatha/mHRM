@@ -21,7 +21,7 @@
       </div>
 
       <div class="form-group">
-        <%= f.label t('organization'), class: 'col-md-2 control-label' %>
+        <%= f.label t('organization_type'), class: 'col-md-2 control-label' %>
         <div class="col-md-9">
           <%= f.select :organization_type_id, options_helper(OrganizationType, organization.organization_type_id) ,{}, {class: 'form-control'} %>
         </div>
@@ -36,6 +36,7 @@
 
       <div class="form-group" >
         <div class="col-md-11">
+          <%= link_to t('button_cancel'), organizations_path, class: 'btn btn-warning pull-right' %>
           <%= f.submit t('button_save'), class: 'btn btn-primary pull-right' %>
         </div>
       </div>

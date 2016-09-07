@@ -1,9 +1,12 @@
-<%= link_to 'Delete', education_path(@education), class: 'btn btn-danger pull-right',
-            :method => :delete,
-            :data => {:confirm => t(:text_are_you_sure)}
-%>
-<%= link_to 'Edit', edit_education_path(@education), class: 'btn btn-success pull-right' %>
 
+<div class="col-xs-12 btn-edition">
+  <%= link_to 'Delete', education_path(@education), class: 'btn btn-danger pull-right',
+              :method => :delete,
+              :data => {:confirm => t(:text_are_you_sure)}
+  %>
+  <%= link_to 'Edit', edit_education_path(@education), class: 'btn btn-success pull-right' %>
+  <%= link_to t('button_cancel'), educations_path, class: 'btn btn-warning pull-right' %>
+</div>
 <div class="col-xs-12">
 
 <p>
@@ -23,12 +26,12 @@
 
 <p>
   <strong>Note:</strong>
-  <%= @education.note %>
+  <%= @education.note.html_safe %>
 </p>
 
 
   <p>
     <strong>File:</strong>
-    <%= @education.file_url %>
+    <%= link_to(@education.read_attribute(:file), @education.file_url) %>
   </p>
 </div>

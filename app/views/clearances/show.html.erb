@@ -1,8 +1,11 @@
-<%= link_to 'Delete', clearance_path(@clearance), class: 'btn btn-danger pull-right' ,
-            :method => :delete,
-            :data => {:confirm => t(:text_are_you_sure)}
-%>
-<%= link_to 'Edit', edit_clearance_path(@clearance), class: 'btn btn-success pull-right' %>
+<div class="col-xs-12 btn-edition">
+  <%= link_to 'Delete', clearance_path(@clearance), class: 'btn btn-danger pull-right' ,
+              :method => :delete,
+              :data => {:confirm => t(:text_are_you_sure)}
+  %>
+  <%= link_to 'Edit', edit_clearance_path(@clearance), class: 'btn btn-success pull-right' %>
+  <%= link_to t('button_cancel'), certifications_path, class: 'btn btn-warning pull-right' %>
+</div>
 <div class="col-xs-12">
 
   <p>
@@ -27,12 +30,12 @@
 
   <p>
     <strong>Note:</strong>
-    <%= @clearance.note %>
+    <%= @clearance.note.html_safe %>
   </p>
-  
+
   <p>
     <strong>File:</strong>
-    <%= @clearance.file_url %>
+    <%= link_to(@clearance.read_attribute(:file), @clearance.file_url) if @clearance.file_url  %>
   </p>
 
 </div>

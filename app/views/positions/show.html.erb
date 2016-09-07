@@ -1,14 +1,12 @@
-<%= link_to 'Delete',  position_path(@position), class: 'btn btn-danger pull-right',
-            :method => :delete,
-            :data => {:confirm => t(:text_are_you_sure)}
-%>
-<%= link_to 'Edit', edit_position_path(@position), class: 'btn btn-success pull-right' %>
+<div class="col-xs-12 btn-edition">
+  <%= link_to 'Delete',  position_path(@position), class: 'btn btn-danger pull-right',
+              :method => :delete,
+              :data => {:confirm => t(:text_are_you_sure)}
+  %>
+  <%= link_to 'Edit', edit_position_path(@position), class: 'btn btn-success pull-right' %>
+  <%= link_to t('button_cancel'), positions_path, class: 'btn btn-warning pull-right' %>
+</div>
 <div class="col-xs-12">
-
-  <p>
-    <strong>User:</strong>
-    <%= @position.user %>
-  </p>
 
   <p>
     <strong>Title:</strong>
@@ -17,7 +15,7 @@
 
   <p>
     <strong>Position description:</strong>
-    <%= @position.position_description %>
+    <%= @position.position_description.html_safe %>
   </p>
 
   <p>
@@ -32,7 +30,7 @@
 
   <p>
     <strong>Note:</strong>
-    <%= @position.note %>
+    <%= @position.note.html_safe %>
   </p>
 
   <p>
@@ -43,6 +41,11 @@
   <p>
     <strong>Date end:</strong>
     <%= @position.date_end %>
+  </p>
+
+  <p>
+    <strong>File</strong>
+    <%=  link_to( @position.read_attribute(:files)  , @position.files_url) if @position.files_url %>
   </p>
 
 </div>

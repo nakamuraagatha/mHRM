@@ -1,37 +1,40 @@
-<%= link_to 'Delete',  document_path(@document), class: 'btn btn-danger pull-right' ,
-            :method => :delete,
-            :data => {:confirm => t(:text_are_you_sure)}
-%>
-<%= link_to 'Edit', edit_document_path(@document), class: 'btn btn-success pull-right' %>
+<div class="col-xs-12 btn-edition">
+  <%= link_to 'Delete',  document_path(@document), class: 'btn btn-danger pull-right' ,
+              :method => :delete,
+              :data => {:confirm => t(:text_are_you_sure)}
+  %>
+  <%= link_to 'Edit', edit_document_path(@document), class: 'btn btn-success pull-right' %>
+  <%= link_to t('button_cancel'), documents_path, class: 'btn btn-warning pull-right' %>
+</div>
 <div class="col-xs-12">
 
-<p>
-  <strong>Title:</strong>
-  <%= @document.title %>
-</p>
+  <p>
+    <strong>Title:</strong>
+    <%= @document.title %>
+  </p>
 
-<p>
-  <strong>Description:</strong>
-  <%= @document.description %>
-</p>
+  <p>
+    <strong>Description:</strong>
+    <%= @document.description %>
+  </p>
 
-<p>
-  <strong>User:</strong>
-  <%= @document.user %>
-</p>
+  <p>
+    <strong>User:</strong>
+    <%= @document.user %>
+  </p>
 
-<p>
-  <strong>Document type:</strong>
-  <%= @document.document_type %>
-</p>
+  <p>
+    <strong>Document type:</strong>
+    <%= @document.document_type %>
+  </p>
 
-<p>
-  <strong>Date:</strong>
-  <%= @document.date %>
-</p>
+  <p>
+    <strong>Date:</strong>
+    <%= @document.date %>
+  </p>
 
-<p>
-  <strong>Attachment:</strong>
-  <%= @document.attachment %>
-</p>
+  <p>
+    <strong>Attachment:</strong>
+    <%= link_to( @document.read_attribute(:attachment)  , @document.attachment_url) if @document.attachment_url %>
+  </p>
 </div>

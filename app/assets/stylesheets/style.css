@@ -33,3 +33,6 @@ label, legend, .jarviswidget header h2 strong, a{
     padding: 10px;
 }
 
+.btn {
+    margin-left: 10px;
+}

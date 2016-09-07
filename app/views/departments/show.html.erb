@@ -1,29 +1,31 @@
-<%= link_to 'Delete',  department_path(@department), class: 'btn btn-danger pull-right',
-            :method => :delete,
-            :data => {:confirm => t(:text_are_you_sure)}
-%>
-<%= link_to 'Edit', edit_department_path(@department), class: 'btn btn-success pull-right' %>
-
+<div class="col-xs-12 btn-edition">
+  <%= link_to 'Delete',  department_path(@department), class: 'btn btn-danger pull-right',
+              :method => :delete,
+              :data => {:confirm => t(:text_are_you_sure)}
+  %>
+  <%= link_to 'Edit', edit_department_path(@department), class: 'btn btn-success pull-right' %>
+  <%= link_to t('button_cancel'), departments_path, class: 'btn btn-warning pull-right' %>
+</div>
 <div class="col-xs-12">
-<p>
-  <strong>User:</strong>
-  <%= @department.user %>
-</p>
+  <p>
+    <strong>User:</strong>
+    <%= @department.user %>
+  </p>
 
-<p>
-  <strong>Note:</strong>
-  <%= @department.note %>
-</p>
+  <p>
+    <strong>Note:</strong>
+    <%= @department.note %>
+  </p>
 
-<p>
-  <strong>Date start:</strong>
-  <%= @department.date_start %>
-</p>
+  <p>
+    <strong>Date start:</strong>
+    <%= @department.date_start %>
+  </p>
 
-<p>
-  <strong>Date end:</strong>
-  <%= @department.date_end %>
-</p>
+  <p>
+    <strong>Date end:</strong>
+    <%= @department.date_end %>
+  </p>
 
   <%= render_extend_demography_information(@department.department_extend_demography) %>
 </div>

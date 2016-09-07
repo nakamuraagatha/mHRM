@@ -20,7 +20,7 @@
             <td><%= document.user %></td>
             <td><%= document.document_type_id %></td>
             <td><%= document.date %></td>
-            <td><%= document.attachment %></td>
+            <td><%= link_to( document.read_attribute(:attachment)  , document.attachment_url) if document.attachment_url %></td>
             <% if @user %>
                 <td><%= edit_link( edit_user_document_path(@user, document)) if document.can?(:edit_documents, :manage_documents) %></td>
             <% else %>

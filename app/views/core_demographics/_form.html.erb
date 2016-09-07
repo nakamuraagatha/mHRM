@@ -1,89 +1,91 @@
 <fieldset>
   <legend></legend>
-  <div class="col-sm-12">
+  <div class="col-sm-4">
 
     <div class="row">
-      <div id="files" class="files">
+      <div id="files" class="files col-xs-12">
         <%= render partial: 'uploader/display_image', locals: {user: core_demographic.user} %>
       </div>
       <%= render partial: 'uploader/upload' %>
     </div>
   </div>
-  <%= form_for([core_demographic.user, core_demographic], html: { class: 'form-horizontal', id: 'core-demo-form' }) do |f| %>
-      <% if core_demographic.errors.any? %>
-          <div id="error_explanation">
-            <h2><%= pluralize(core_demographic.errors.count, "error") %> prohibited this core_demographic from being saved:</h2>
+  <div class="col-sm-8">
+    <%= form_for([core_demographic.user, core_demographic], html: { class: 'form-horizontal', id: 'core-demo-form' }) do |f| %>
+        <% if core_demographic.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(core_demographic.errors.count, "error") %> prohibited this core_demographic from being saved:</h2>
 
-            <ul>
-              <% core_demographic.errors.full_messages.each do |message| %>
-                  <li><%= message %></li>
-              <% end %>
-            </ul>
+              <ul>
+                <% core_demographic.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                <% end %>
+              </ul>
+            </div>
+        <% end %>
+
+        <%= f.hidden_field :user_id %>
+
+        <div class="form-group">
+          <%= f.label t('profile.first_name'), class: 'col-md-2 control-label' %>
+          <div class="col-md-8">
+            <%= f.text_field :first_name, placeholder: 'First name', class: 'form-control' %>
           </div>
-      <% end %>
+        </div>
 
-      <%= f.hidden_field :user_id %>
+        <div class="form-group">
+          <%= f.label t('profile.middle_name'), class: 'col-md-2 control-label' %>
+          <div class="col-md-8">
+            <%= f.text_field :middle_name, placeholder: 'Middle name', class: 'form-control' %>
+          </div>
+        </div>
 
-      <div class="form-group">
-        <%= f.label t('profile.first_name'), class: 'col-md-2 control-label' %>
-        <div class="col-md-8">
-          <%= f.text_field :first_name, placeholder: 'First name', class: 'form-control' %>
+        <div class="form-group">
+          <%= f.label t('profile.last_name'), class: 'col-md-2 control-label' %>
+          <div class="col-md-8">
+            <%= f.text_field :last_name, placeholder: 'Last name', class: 'form-control' %>
+          </div>
         </div>
-      </div>
 
-      <div class="form-group">
-        <%= f.label t('profile.middle_name'), class: 'col-md-2 control-label' %>
-        <div class="col-md-8">
-          <%= f.text_field :middle_name, placeholder: 'Middle name', class: 'form-control' %>
+        <div class="form-group">
+          <label class="col-md-2 control-label"><%= t('profile.gender') %></label>
+          <div class="col-md-8">
+            <%= f.select :gender_id, options_for_select(GenderType.active.pluck(:name, :id), selected: core_demographic.gender_id), {},{class: 'form-control'} %>
+          </div>
         </div>
-      </div>
+        <div class="form-group">
+          <label class="col-md-2 control-label"><%= t('profile.birthday') %></label>
+          <div class="col-md-8">
+            <%= f.text_field :birth_date, class: 'form-control date_picker' %>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-2 control-label"><%= t('profile.religion') %></label>
+          <div class="col-md-8">
+            <%= f.select :religion_id, options_for_select(ReligionType.active.pluck(:name, :id), selected: core_demographic.religion_id) , {},{class: 'form-control'} %>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-2 control-label"><%= t('label_note') %></label>
+          <div class="col-md-8">
+            <%= f.text_area :note, class: 'form-control' %>
+          </div>
+        </div>
 
-      <div class="form-group">
-        <%= f.label t('profile.last_name'), class: 'col-md-2 control-label' %>
-        <div class="col-md-8">
-          <%= f.text_field :last_name, placeholder: 'Last name', class: 'form-control' %>
+        <div class="form-group">
+          <label class="col-md-2 control-label"><%= t('profile.ethnicity') %></label>
+          <div class="col-md-8">
+            <%= f.select :ethnicity_id, options_for_select(EthnicityType.active.select(:name, :id), selected: core_demographic.ethnicity_id) , {},{class: 'form-control'} %>
+          </div>
         </div>
-      </div>
 
-      <div class="form-group">
-        <label class="col-md-2 control-label"><%= t('profile.gender') %></label>
-        <div class="col-md-8">
-          <%= f.select :gender_id, options_for_select(GenderType.active.select(:name, :id), selected: core_demographic.gender_id), {},{class: 'form-control'} %>
+        <div class="form-group" >
+          <div class="col-md-11">
+            <%= f.submit t(:button_save), class: 'btn btn-primary pull-right' %>
+          </div>
         </div>
-      </div>
-      <div class="form-group">
-        <label class="col-md-2 control-label"><%= t('profile.birthday') %></label>
-        <div class="col-md-8">
-          <%= f.text_field :birth_date, class: 'form-control date_picker' %>
-        </div>
-      </div>
-      <div class="form-group">
-        <label class="col-md-2 control-label"><%= t('profile.religion') %></label>
-        <div class="col-md-8">
-          <%= f.select :religion_id, options_for_select(ReligionType.active.select(:name, :id), selected: core_demographic.religion_id) , {},{class: 'form-control'} %>
-        </div>
-      </div>
-      <div class="form-group">
-        <label class="col-md-2 control-label"><%= t('label_note') %></label>
-        <div class="col-md-8">
-          <%= f.text_area :note, class: 'form-control' %>
-        </div>
-      </div>
 
-      <div class="form-group">
-        <label class="col-md-2 control-label"><%= t('profile.ethnicity') %></label>
-        <div class="col-md-8">
-          <%= f.select :ethnicity_id, options_for_select(EthnicityType.active.select(:name, :id), selected: core_demographic.ethnicity_id) , {},{class: 'form-control'} %>
-        </div>
-      </div>
-
-      <div class="form-group" >
-        <div class="col-md-11">
-          <%= f.submit t(:button_save), class: 'btn btn-primary pull-right' %>
-        </div>
-      </div>
-
-  <% end %>
+    <% end %>
+  </div>
 </fieldset>
 <script>
   // Validation

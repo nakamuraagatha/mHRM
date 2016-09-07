@@ -65,6 +65,7 @@
           <%= link_to_add_association 'add identification', f, :identifications, class: 'btn btn-success pull-right col-xs-4 col-sm-2 col-md-2', partial: 'extend_demographies/identification_fields' %>
         </div>
       </div>
+      <% end %>
 
       <div id='tabs-social_media' >
         <%= f.simple_fields_for :social_media do |sm| %>
@@ -75,7 +76,6 @@
           <%= link_to_add_association 'add social media', f, :social_media, class: 'btn btn-success pull-right col-xs-4 col-sm-2 col-md-2', partial: 'extend_demographies/social_media_fields' %>
         </div>
       </div>
-      <% end %>
 
       <div id='tabs-addresses' >
         <%= f.simple_fields_for :addresses do |address| %>

@@ -22,7 +22,7 @@ module ApplicationHelper
 
   def render_employee_information
     output = '<div class="col-xs-8 margin-top-10" style="float: left; font-weight: bold;">'
-    output<< "<div class='col-xs-2' >#{image_tag(User.current.profile_image)}</div>"
+    output<< "<div class='col-xs-2' >#{image_tag(User.current.profile_image, size: '35x35')}</div>"
     output<< "<div class='col-xs-2' >#{User.current.name}</div>"
     output<< "<div class='col-xs-2' >#{User.current.gender}</div>"
     output<< "<div class='col-xs-2' >#{User.current.active?}</div>"

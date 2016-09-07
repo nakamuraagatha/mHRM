@@ -1,6 +1,7 @@
-<div class="col-sm-3 profile-pic" style="margin-top: 20px;">
+<div class="col-sm-12 " style="margin-top: 20px; text-align: center;">
   <% if user.avatar.resized.url %>
-      <%= image_tag( user.avatar.resized.url) %>
+      <%= image_tag( user.avatar.resized.url, class: 'img-responsive') %>
   <% else %>
+      <%= image_tag('male.png', width: '100%') %>
   <% end %>
 </div>

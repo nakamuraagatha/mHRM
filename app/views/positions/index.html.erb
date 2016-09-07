@@ -6,11 +6,9 @@
   <thead>
   <tr>
     <th>Title</th>
-    <th>User</th>
     <th>Position description</th>
     <th>Location</th>
     <th>Special requirement</th>
-    <th>Note</th>
     <th>Date start</th>
     <th>Date end</th>
     <th colspan="2"></th>
@@ -22,11 +20,9 @@
       <% @positions.each do |position| %>
           <tr>
             <td><%= link_to position.title, position %></td>
-            <td><%= position.user %></td>
-            <td><%= position.position_description %></td>
+            <td><%= position.position_description.html_safe %></td>
             <td><%= position.location %></td>
             <td><%= position.special_requirement %></td>
-            <td><%= position.note %></td>
             <td><%= position.date_start %></td>
             <td><%= position.date_end %></td>
             <td><%= edit_link(edit_position_path(position))  if position.can?(:edit_positions, :manage_positions) %></td>

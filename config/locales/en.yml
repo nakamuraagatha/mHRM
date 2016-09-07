@@ -186,6 +186,7 @@ en:
   new_organization: New Organization
   organizations: Organizations
   organization: Organization
+  organization_type: Organization Type
   clearences: Clearances
   certifications: Certifications
   document_type: Document type

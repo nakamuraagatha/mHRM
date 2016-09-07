@@ -14,5 +14,5 @@ class Position < ApplicationRecord
      :date_start, :date_end, :files, :department_id]
   end
 
-
+  mount_uploader :files, AttachmentUploader
 end

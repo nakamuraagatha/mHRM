@@ -1,9 +1,11 @@
+<div class="col-xs-12 btn-edition">
 <%= link_to 'Delete',  contact_path(@contact), class: 'btn btn-danger pull-right',
             :method => :delete,
             :data => {:confirm => t(:text_are_you_sure)}
 %>
 <%= link_to 'Edit', edit_contact_path(@contact), class: 'btn btn-success pull-right' %>
-
+<%= link_to t('button_cancel'), contacts_path, class: 'btn btn-warning pull-right' %>
+</div>
 <div class="col-xs-12">
   <p>
     <strong>Emergency contact:</strong>
@@ -28,6 +30,12 @@
   <p>
     <strong>Note:</strong>
     <%= @contact.note %>
+  </p>
+
+
+  <p>
+    <strong>File:</strong>
+    <%= link_to(@contact.read_attribute(:file), @contact.file_url) if @contact.file_url  %>
   </p>
 
   <%= render_extend_demography_information(@contact.contact_extend_demography) %>

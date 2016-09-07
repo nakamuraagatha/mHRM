@@ -18,6 +18,7 @@
 //= require jquery-fileupload/vendor/tmpl
 //= require cocoon
 //= require dataTables/jquery.dataTables
+//= require ckeditor-jquery
 
 $(function(){
     $('.date_picker').datepicker({ dateFormat: 'dd-mm-yy' })

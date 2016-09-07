@@ -30,7 +30,7 @@
     <div class="form-group">
       <%= f.label :note , class: 'col-md-2 control-label' %>
       <div class="col-md-9">
-        <%= f.text_area :note , class: 'form-control' %>
+        <%= f.text_area :note , class: 'form-control ckeditor' %>
       </div>
     </div>
 
@@ -50,6 +50,7 @@
 
     <div class="form-group" >
       <div class="col-md-11">
+        <%= link_to t('button_cancel'), departments_path, class: 'btn btn-warning pull-right' %>
         <%= f.submit t('button_save'), class: 'btn btn-primary pull-right' %>
       </div>
     </div>
