@@ -57,8 +57,10 @@ class ExtendDemographiesController < ApplicationController
       contacts_url
     elsif @extend_demography.organization_id
       organizations_path
+    elsif User.current != current_user
+      employee_path(User.current)
     else
-      root_path
+      edit_user_registration_path
     end
   end
 end

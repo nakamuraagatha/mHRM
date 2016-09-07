@@ -9,7 +9,8 @@ class CoreDemographicsController < ApplicationController
 
     respond_to do |format|
       if @core_demographic.save
-        format.html { redirect_to root_path, notice: I18n.t(:notice_successful_create) }
+        url = User.current != current_user ? employee_path(User.current) : edit_user_registration_path
+        format.html { redirect_to url, notice: I18n.t(:notice_successful_create) }
       else
         format.html { render :edit }
       end
@@ -19,9 +20,10 @@ class CoreDemographicsController < ApplicationController
   # PATCH/PUT /core_demographics/1
   # PATCH/PUT /core_demographics/1.json
   def update
+    url = User.current != current_user ? employee_path(User.current) : edit_user_registration_path
     respond_to do |format|
       if @core_demographic.update(core_demographic_params)
-        format.html { redirect_to root_path, notice: I18n.t(:notice_successful_update) }
+        format.html { redirect_to url, notice: I18n.t(:notice_successful_update) }
       else
         format.html { render 'edit' }
       end
