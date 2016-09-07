@@ -1,6 +1,6 @@
 <fieldset>
   <legend>Skill</legend>
-  <%= simple_form_for(other_skill, html: { class: 'form-horizontal' }) do |f| %>
+  <%= simple_form_for(other_skill, html: { class: 'form-horizontal' ,  :multipart => true}) do |f| %>
       <% data = other_skill
          if data.errors.any? %>
           <div id="error_explanation">
@@ -40,7 +40,7 @@
       <div class="form-group">
         <%= f.label t(:label_note) , class: 'col-md-2 control-label' %>
         <div class="col-md-9">
-          <%= f.text_area :note , class: 'form-control' %>
+          <%= f.text_area :note , class: 'form-control ckeditor' %>
         </div>
       </div>
 

@@ -25,6 +25,7 @@ module ApplicationHelper
     output<< "<div class='col-xs-2' >#{image_tag(User.current.profile_image, size: '35x35')}</div>"
     output<< "<div class='col-xs-2' >#{User.current.name}</div>"
     output<< "<div class='col-xs-2' >#{User.current.gender}</div>"
+    output<< "<div class='col-xs-2' >#{User.current.birthday}</div>"
     output<< "<div class='col-xs-2' >#{User.current.active?}</div>"
     output<< '</div>'
     output

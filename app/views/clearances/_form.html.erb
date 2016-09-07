@@ -1,6 +1,6 @@
 <fieldset>
   <legend>Clearance</legend>
-  <%= simple_form_for(clearance, html: { class: 'form-horizontal' }) do |f| %>
+  <%= simple_form_for(clearance, html: { class: 'form-horizontal',  :multipart => true }) do |f| %>
       <% data = clearance
          if data.errors.any? %>
           <div id="error_explanation">

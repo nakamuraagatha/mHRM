@@ -5,7 +5,6 @@
   <thead>
   <tr>
     <th>Clearance type</th>
-    <th>User</th>
     <th>Date received</th>
     <th>Date expired</th>
     <th>File</th>
@@ -18,8 +17,7 @@
       <% @clearances.each do |clearance| %>
           <tr>
             <td><%= link_to clearance.clearence_type, clearance_path(clearance)%></td>
-            <td><%= clearance.user %></td>
-            <td><%= clearance.date_received %></td>
+           <td><%= clearance.date_received %></td>
             <td><%= clearance.date_expired %></td>
             <td><%= link_to(clearance.read_attribute(:file), clearance.file_url) if clearance.file_url  %></td>
 

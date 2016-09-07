@@ -6,7 +6,6 @@
   <thead>
   <tr>
     <th>Title</th>
-    <th>Position description</th>
     <th>Location</th>
     <th>Special requirement</th>
     <th>Date start</th>
@@ -20,7 +19,6 @@
       <% @positions.each do |position| %>
           <tr>
             <td><%= link_to position.title, position %></td>
-            <td><%= position.position_description.html_safe %></td>
             <td><%= position.location %></td>
             <td><%= position.special_requirement %></td>
             <td><%= position.date_start %></td>

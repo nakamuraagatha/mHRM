@@ -85,18 +85,21 @@ class User < ApplicationRecord
   end
 
   def name
-    profile = core_demographic
-    return login if profile.nil?
-    "#{profile.first_name} #{profile.last_name}"
+    cd = core_demographic
+    return login if cd.nil?
+    "#{cd.first_name} #{cd.last_name}"
   end
 
   def profile
-    core_demographic || CoreDemographic.new(user_id: self.id)
+    @profile ||= begin
+      core_demographic || CoreDemographic.new(user_id: self.id)
+    end
   end
 
   def first_name;  profile.first_name;  end
   def middle_name; profile.middle_name; end
   def last_name;   profile.last_name;   end
+  def birthday;    profile.birth_date;  end
   def gender;      profile.gender;      end
   def active?;     self.state ? 'Active' : 'Non active';         end
 
