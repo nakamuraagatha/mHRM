@@ -20,7 +20,7 @@
             <td><%= user.login %></td>
             <td><%= user.email %></td>
             <td><%= show_link user %></td>
-            <td><%= delete_link user %></td>
+            <td><%= delete_link( user) if current_user != user %></td>
           </tr>
       <% end %>
   <% else %>
