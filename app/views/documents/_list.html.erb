@@ -2,7 +2,6 @@
   <thead>
   <tr>
     <th><%= t(:title) %></th>
-    <th><%= t :description %></th>
     <th><%= t(:document_type)%></th>
     <th><%= ( :date) %></th>
     <th><%= t :attachment %></th>
@@ -15,7 +14,6 @@
       <% documents.each do |document| %>
           <tr>
             <td><%= link_to document.title, document_path(document) %></td>
-            <td><%= document.description %></td>
             <td><%= document.document_type_id %></td>
             <td><%= document.date %></td>
             <td><%= link_to( document.read_attribute(:attachment)  , document.attachment_url) if document.attachment_url %></td>
