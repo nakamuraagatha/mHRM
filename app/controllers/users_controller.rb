@@ -15,8 +15,8 @@ class UsersController < ApplicationController
   end
 
   def change_password
-    if params[:password] == params[:password_confirmation]
-      if @user.update(password: params[:password])
+    if params[:user][:password] == params[:user][:password_confirmation]
+      if @user.update(password: params[:user][:password])
         flash[:notice] = I18n.t('devise.passwords.updated_not_active')
       else
         flash[:notice] = I18n.t('error_update')
