@@ -1,17 +1,21 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
+
+  acts_as_paranoid
+
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
   # HAS ONE
-  has_one :core_demographic, :dependent => :destroy
-  has_one :user_extend_demography, :dependent => :destroy
+  has_one :core_demographic
+  has_one :user_extend_demography
   has_one :job_detail
 
   # HAS MANY
-  has_many :educations, :dependent => :destroy
-  has_many :documents, :dependent => :destroy
+  has_many :educations
+  has_many :documents
   has_many :organizations
   has_many :departments
   has_many :positions

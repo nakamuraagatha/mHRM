@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
   before_action  :authenticate_user!
   before_action :find_user, except: [:index]
+
+  before_filter :require_admin, only: [:destroy]
   def index
     @users = User.all
   end
@@ -48,6 +50,12 @@ class UsersController < ApplicationController
   end
 
   def new
+  end
+
+  def destroy
+    @user.destroy
+    flash[:notice] = I18n.t('notice_successful_delete')
+    redirect_to :back
   end
 
   private

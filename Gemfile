@@ -75,3 +75,4 @@ gem 'jquery-datatables-rails'
 gem 'ajax-datatables-rails'
 gem 'ckeditor_rails'
 gem "recaptcha", require: "recaptcha/rails"
+gem "paranoia", "~> 2.2.0.pre"
