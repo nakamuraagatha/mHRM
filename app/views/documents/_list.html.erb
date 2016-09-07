@@ -14,7 +14,7 @@
       <% documents.each do |document| %>
           <tr>
             <td><%= link_to document.title, document_path(document) %></td>
-            <td><%= document.document_type_id %></td>
+            <td><%= document.document_type %></td>
             <td><%= document.date %></td>
             <td><%= link_to( document.read_attribute(:attachment)  , document.attachment_url) if document.attachment_url %></td>
             <% if @user %>
