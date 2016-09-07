@@ -3,10 +3,13 @@
   <div class="col-sm-4">
 
     <div class="row">
-      <div id="files" class="files col-xs-12">
+      <div id="files" class="files col-xs-12" >
         <%= render partial: 'uploader/display_image', locals: {user: core_demographic.user} %>
       </div>
-      <%= render partial: 'uploader/upload' %>
+      <div  class="files col-xs-12 margin-top-10"  align="center">
+        <%= render partial: 'uploader/upload' %>
+      </div>
+
     </div>
   </div>
   <div class="col-sm-8">
