@@ -4,7 +4,6 @@
     <th><%= t :education_type %></th>
     <th><%= t :education_date_received %></th>
     <th><%= t :education_date_expired %></th>
-    <th><%= 'File' %></th>
     <th colspan="2"></th>
   </tr>
   </thead>
@@ -16,8 +15,6 @@
             <td><%= link_to education.education_type, education_path(education) %></td>
             <td><%= education.date_recieved %></td>
             <td><%= education.date_expired %></td>
-            <td><%= link_to(education.read_attribute(:file), education.file_url) if education.file_url  %></td>
-
             <td><%= edit_link(edit_education_path(education))  if education.can?(:edit_educations, :manage_educations) %></td>
             <td><%= delete_link( education)  if education.can?(:delete_educations, :manage_educations) %></td>
           </tr>

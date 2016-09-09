@@ -1,0 +1,3 @@
+class ContactAttachment < Attachment
+
+end

@@ -29,7 +29,9 @@
   </p>
 
   <p>
-    <strong>Attachment:</strong>
-    <%= link_to( @document.read_attribute(:attachment)  , @document.attachment_url) if @document.attachment_url %>
+    <strong><%= t('attachments') %>:</strong>
+    <% @document.document_attachments.each do |attachment| %>
+        <%= render 'attachments/attachment_show_only', :attachment => attachment %>
+    <% end %>
   </p>
 </div>

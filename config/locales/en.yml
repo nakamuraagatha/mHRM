@@ -198,6 +198,7 @@ en:
   title: Title
   date: date
   attachment: Attachment
+  attachments: Attachments
 
   button_save: Save
   button_cancel: Cancel

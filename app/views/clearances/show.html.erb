@@ -29,8 +29,10 @@
   </p>
 
   <p>
-    <strong>File:</strong>
-    <%= link_to(@clearance.read_attribute(:file), @clearance.file_url) if @clearance.file_url  %>
+    <strong><%= t('attachments') %>:</strong>
+    <% @clearance.clearance_attachments.each do |attachment| %>
+        <%= render 'attachments/attachment_show_only', :attachment => attachment %>
+    <% end %>
   </p>
 
 </div>

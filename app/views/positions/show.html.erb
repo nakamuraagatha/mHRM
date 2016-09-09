@@ -48,8 +48,10 @@
   </p>
 
   <p>
-    <strong>File</strong>
-    <%=  link_to( @position.read_attribute(:files)  , @position.files_url) if @position.files_url %>
+    <strong><%= t('attachments') %>:</strong>
+    <% @position.position_attachments.each do |attachment| %>
+        <%= render 'attachments/attachment_show_only', :attachment => attachment %>
+    <% end %>
   </p>
 
 </div>

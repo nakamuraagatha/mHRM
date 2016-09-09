@@ -34,8 +34,10 @@
 
 
   <p>
-    <strong>File:</strong>
-    <%= link_to(@contact.read_attribute(:file), @contact.file_url) if @contact.file_url  %>
+    <strong><%= t('attachments') %>:</strong>
+    <% @contact.contact_attachments.each do |attachment| %>
+        <%= render 'attachments/attachment_show_only', :attachment => attachment %>
+    <% end %>
   </p>
 
   <%= render_extend_demography_information(@contact.contact_extend_demography) %>

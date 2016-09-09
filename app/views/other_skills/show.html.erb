@@ -27,9 +27,12 @@
     <strong>Note:</strong>
     <%= @other_skill.note.html_safe %>
   </p>
+
   <p>
-    <strong>File:</strong>
-    <%= link_to(@other_skill.read_attribute(:file), @other_skill.file_url) if @other_skill.file_url  %>
+    <strong><%= t('attachments') %>:</strong>
+    <% @other_skill.skill_attachments.each do |attachment| %>
+        <%= render 'attachments/attachment_show_only', :attachment => attachment %>
+    <% end %>
   </p>
 
 

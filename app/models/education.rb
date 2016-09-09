@@ -1,7 +1,9 @@
 class Education < ApplicationRecord
   belongs_to :user
   belongs_to :education_type
-  mount_uploader :file, AttachmentUploader
+  has_many :education_attachments, foreign_key: :owner_id
+  accepts_nested_attributes_for :education_attachments, reject_if: :all_blank, allow_destroy: true
+
 
   validates_presence_of :education_type_id, :user_id
 
@@ -10,7 +12,9 @@ class Education < ApplicationRecord
   end
 
   def self.safe_attributes
-    [:user_id, :file, :education_type_id, :date_recieved, :date_expired, :note]
+    [:user_id, :education_type_id, :date_recieved,
+     :date_expired, :note,
+     education_attachments_attributes: [Attachment.safe_attributes]]
   end
 
 end

@@ -32,8 +32,10 @@
 
 
   <p>
-    <strong>File:</strong>
-    <%= link_to(@certification.read_attribute(:file), @certification.file_url) if @certification.file_url %>
+    <strong><%= t('attachments') %>:</strong>
+    <% @certification.certification_attachments.each do |attachment| %>
+        <%= render 'attachments/attachment_show_only', :attachment => attachment %>
+    <% end %>
   </p>
 
 </div>

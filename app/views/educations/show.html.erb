@@ -31,7 +31,9 @@
 
 
   <p>
-    <strong>File:</strong>
-    <%= link_to(@education.read_attribute(:file), @education.file_url) %>
+    <strong><%= t('attachments') %>:</strong>
+    <% @education.education_attachments.each do |attachment| %>
+        <%= render 'attachments/attachment_show_only', :attachment => attachment %>
+    <% end %>
   </p>
 </div>

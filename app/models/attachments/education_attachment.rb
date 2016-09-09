@@ -1,0 +1,3 @@
+class EducationAttachment < Attachment
+
+end

@@ -1,0 +1,24 @@
+<div class="nested-fields row margin-top-5">
+  <div class="col-md-2 hidden-xs"></div>
+  <div class="col-md-10">
+    <fieldset>
+      <div class="col-md-12">
+        <div class="col-md-4">
+          <%= f.file_field :file %>
+          <%= f.hidden_field :type %>
+          <%= f.hidden_field :owner_id %>
+        </div>
+
+        <div class="col-md-6">
+          <%= f.text_field :description, placeholder: 'description', class: 'form-control' %>
+        </div>
+
+        <div class="col-md-2">
+          <%= link_to_remove_association "<i class='fa fa-trash-o'></i>".html_safe , f, class: 'btn btn-danger' %>
+        </div>
+
+      </div>
+
+    </fieldset>
+  </div>
+</div>

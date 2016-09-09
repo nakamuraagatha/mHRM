@@ -80,13 +80,14 @@
       </div>
 
       <div class="form-group">
-        <%= f.label :files , class: 'col-md-2 control-label' %>
-        <div class="col-md-9">
-          <% if @position.files_url %>
-              <%=  link_to( @position.read_attribute(:files)  , @position.files_url)  %>
-              <%= link_to "<i class='fa fa-trash-o' ></i>".html_safe, delete_file_position_path(@position) %>
-          <% end %>
-          <%= f.file_field :files %>
+        <div class="col-md-12">
+          <%= f.label t(:attachments) , class: 'col-md-2 control-label' %>
+        </div>
+        <%= f.simple_fields_for :position_attachments do |attachment| %>
+            <%= render 'attachments/attachment_show', :f => attachment %>
+        <% end %>
+        <div id="attachment_fields" class="col-xs-11 margin-top-10 " style="padding-right: 2px;" >
+          <%= link_to_add_association 'add file', f, :position_attachments, class: 'btn btn-success col-xs-4 col-sm-2 col-md-2', partial: 'attachments/attachment_fields' %>
         </div>
       </div>
 

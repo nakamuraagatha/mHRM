@@ -1,0 +1,2 @@
+class CertificationAttachment < Attachment
+end

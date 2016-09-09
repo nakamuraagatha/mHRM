@@ -1,0 +1,3 @@
+class PositionAttachment < Attachment
+
+end

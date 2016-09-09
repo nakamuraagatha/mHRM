@@ -7,7 +7,6 @@
     <th>Clearance type</th>
     <th>Date received</th>
     <th>Date expired</th>
-    <th>File</th>
     <th colspan="3"></th>
   </tr>
   </thead>
@@ -19,7 +18,6 @@
             <td><%= link_to clearance.clearence_type, clearance_path(clearance)%></td>
            <td><%= clearance.date_received %></td>
             <td><%= clearance.date_expired %></td>
-            <td><%= link_to(clearance.read_attribute(:file), clearance.file_url) if clearance.file_url  %></td>
 
             <td><%= edit_link edit_clearance_path(clearance) %></td>
             <td><%= delete_link clearance %></td>

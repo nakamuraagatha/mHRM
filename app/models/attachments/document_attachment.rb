@@ -1,0 +1,3 @@
+class DocumentAttachment < Attachment
+
+end

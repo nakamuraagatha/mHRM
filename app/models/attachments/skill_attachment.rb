@@ -1,0 +1,3 @@
+class SkillAttachment < Attachment
+
+end
