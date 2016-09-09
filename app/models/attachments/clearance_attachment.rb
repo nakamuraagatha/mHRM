@@ -1,0 +1,3 @@
+class ClearanceAttachment < Attachment
+
+end
