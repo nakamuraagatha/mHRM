@@ -1,18 +1,18 @@
 <fieldset>
   <legend></legend>
-  <div class="col-sm-4">
+  <div class="col-sm-4 col-md-3 col-lg-3">
 
     <div class="row">
       <div id="files" class="files col-xs-12" >
         <%= render partial: 'uploader/display_image', locals: {user: core_demographic.user} %>
       </div>
-      <div  class="files col-xs-12 margin-top-10"  align="center">
+      <div  class="files col-xs-12 col-sm-12 col-md-10 col-lg-8 margin-top-10"  align="center">
         <%= render partial: 'uploader/upload' %>
       </div>
 
     </div>
   </div>
-  <div class="col-sm-8">
+  <div class="col-sm-8 col-md-9 col-lg-9">
     <%= form_for([core_demographic.user, core_demographic], html: { class: 'form-horizontal', id: 'core-demo-form' }) do |f| %>
         <% if core_demographic.errors.any? %>
             <div id="error_explanation">
