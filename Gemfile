@@ -56,6 +56,7 @@ group :development, :test do
   gem 'faker'
   gem 'awesome_print', require: 'ap'
   gem 'better_errors'
+  gem 'letter_opener'
   gem 'binding_of_caller'
 end
 

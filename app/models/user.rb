@@ -21,8 +21,15 @@ class User < ApplicationRecord
   has_many :positions
   has_many :contacts
 
+  after_update :check_status
+
   validates_uniqueness_of :login, :email
   validates_presence_of :login, :email
+
+
+  def check_status
+    UserMailer.account_activated(self).deliver_now if self.account_active? and self.state_was == false
+  end
 
   def self.visible
     if User.current.allowed_to?(:manage_roles)

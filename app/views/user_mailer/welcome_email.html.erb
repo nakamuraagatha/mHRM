@@ -1,0 +1,12 @@
+<h1>Welcome to mHRM, <%= @user.name %></h1>
+<p>
+  You have successfully signed up.,
+  your username is: <%= @user.login %>.<br>
+  <% if @password %>
+      your password is: <%= @password %>.<br>
+  <% end %>
+</p>
+<p>
+  To login to the site, just follow this <%= link_to 'link', new_session_url(:user) %>.
+</p>
+<p>Thanks for joining and have a great day!</p>

@@ -1,0 +1,8 @@
+<h1>Hello, <%= @user.name %></h1>
+<p>
+  Your account has been activated,
+</p>
+<p>
+  To login to the site, just follow this <%= link_to 'link', new_session_url(:user) %>.
+</p>
+<p>Thanks for joining and have a great day!</p>

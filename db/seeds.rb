@@ -9,6 +9,9 @@
 
 # Create Admin User
 
-user = User.new(email: 'admin@example.net', admin: true, password: 'admin', login: 'admin' )
+user = User.new(email: 'admin@example.net',
+                admin: true,
+                state: true,
+                password: 'admin', login: 'admin' )
 
 user.save

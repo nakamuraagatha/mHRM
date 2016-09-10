@@ -1,7 +1,6 @@
 class EmployeesController < ApplicationController
   before_action  :authenticate_user!
-  before_action  :set_employee, :only => [:show, :destroy,
-                                          :log_in, :update, :change_password]
+  before_action  :set_employee, :only => [:show, :destroy, :log_in, :update]
   before_action  :authorize
 
   def index
@@ -18,7 +17,9 @@ class EmployeesController < ApplicationController
 
   def create
     @user = User.new(params.require(:user).permit(employee_params))
-    @user.save
+    if @user.save
+      UserMailer.welcome_email(@user, params[:user][:password]).deliver_now
+    end
     redirect_to users_url
   end
 
