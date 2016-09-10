@@ -2,6 +2,7 @@
   <thead>
   <tr>
     <th><%= t :label_name %></th>
+    <th><%= t :affiliation_type %></th>
     <th colspan="3"></th>
   </tr>
   </thead>
@@ -11,6 +12,7 @@
       <% affiliations.each do |affiliation| %>
           <tr>
             <td><%= link_to affiliation.name, affiliation %></td>
+            <td><%= affiliation.affiliation_type %></td>
             <td><%= edit_link( edit_affiliation_path(affiliation))  if affiliation.can?(:edit_affiliations, :manage_affiliations) %></td>
             <td><%= delete_link( affiliation)  if affiliation.can?(:delete_affiliations, :manage_affiliations) %></td>
           </tr>
