@@ -2,7 +2,7 @@ class Devise::RegistrationsController < DeviseController
   prepend_before_action :require_no_authentication, only: [:new, :create, :cancel]
   prepend_before_action :authenticate_scope!, only: [:edit, :update, :destroy]
   prepend_before_action :set_minimum_password_length, only: [:new, :edit]
-
+  prepend_before_action :check_captcha, only: [:create] if ENV['RECAPTCHA_PUBLIC_KEY'].present? # Change this to be any actions you want to protect.
   # GET /resource/sign_up
   def new
     build_resource({})
@@ -152,5 +152,12 @@ class Devise::RegistrationsController < DeviseController
 
   def translation_scope
     'devise.registrations'
+  end
+
+  def check_captcha
+    unless verify_recaptcha
+      self.resource = resource_class.new devise_parameter_sanitizer.sanitize(:sign_up)
+      respond_with_navigational(resource) { render :new }
+    end
   end
 end
