@@ -1,11 +1,10 @@
 source 'https://rubygems.org'
 
+# Load environment variables
+
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
-# Use sqlite3 as the database for Active Record
-gem 'sqlite3'
-gem 'mysql2'
 # Use Puma as the app server
 gem 'puma', '~> 3.0'
 # Use SCSS for stylesheets
@@ -76,3 +75,41 @@ gem 'ajax-datatables-rails'
 gem 'ckeditor_rails'
 gem "recaptcha", require: "recaptcha/rails"
 gem "paranoia", "~> 2.2.0.pre"
+gem "figaro"
+
+#installing adapter gems based on database.yml
+
+require 'erb'
+require 'yaml'
+database_file = File.join(File.dirname(__FILE__), "config/database.yml")
+if File.exist?(database_file)
+  database_config = YAML::load(ERB.new(IO.read(database_file)).result)
+  adapters = database_config.values.map {|c| c['adapter']}.compact.uniq
+  if adapters.any?
+    adapters.each do |adapter|
+      case adapter
+        when 'mysql2'
+          gem "mysql2", "~> 0.3.11", :platforms => [:mri, :mingw, :x64_mingw]
+          gem "activerecord-jdbcmysql-adapter", :platforms => :jruby
+        when 'mysql'
+          gem "activerecord-jdbcmysql-adapter", :platforms => :jruby
+        when /postgresql/
+          gem "pg", "~> 0.18.1", :platforms => [:mri, :mingw, :x64_mingw]
+          gem "activerecord-jdbcpostgresql-adapter", :platforms => :jruby
+        when /sqlite3/
+          gem "sqlite3", :platforms => [:mri, :mingw, :x64_mingw]
+          gem "jdbc-sqlite3", ">= 3.8.10.1", :platforms => :jruby
+          gem "activerecord-jdbcsqlite3-adapter", :platforms => :jruby
+        when /sqlserver/
+          gem "tiny_tds", "~> 0.6.2", :platforms => [:mri, :mingw, :x64_mingw]
+          gem "activerecord-sqlserver-adapter", :platforms => [:mri, :mingw, :x64_mingw]
+        else
+          warn("Unknown database adapter `#{adapter}` found in config/database.yml, use Gemfile.local to load your own database gems")
+      end
+    end
+  else
+    warn("No adapter found in config/database.yml, please configure it first")
+  end
+else
+  warn("Please configure your config/database.yml first")
+end
