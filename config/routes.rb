@@ -4,35 +4,11 @@ Rails.application.routes.draw do
   root to: "home#index"
 
   devise_for :users
-  resources :users, only: [:index, :show, :destroy] do
-    member do
-      put 'change_password'
-      put 'change_basic_info'
-      post 'image_upload'
-      get 'remove_image'
-    end
-    resources :other_skills
-    resources :clearances
-    resources :certifications
-    resources :educations, only: [:show, :edit, :index]
-    resources :contacts, only: [:show, :edit, :index]  do
-      resources :contact_extend_demographies, only: [:create, :update], controller: :extend_demographies
-    end
-    resources :affiliations do
-      resources :affiliation_extend_demography,  only: [:create, :update], controller: :extend_demographies
-    end
-    resources :organizations, only: [:show, :edit, :index] do
-      resources :organization_extend_demographies, only: [:create, :update], controller: :extend_demographies
-    end
-    resources :documents, only: [:show, :edit, :index]
-    resources :core_demographics, only: [:create, :update]
-    resources :job_details, only: [:create, :update]
-    resources :user_extend_demographies, only: [:create, :update], controller: :extend_demographies
-  end
+
+  # Routes For Normal users
   resources :departments do
     resources :department_extend_demographies, only: [:create, :update], controller: :extend_demographies
   end
-
   resources :other_skills
   resources :clearances
   resources :certifications
@@ -44,12 +20,28 @@ Rails.application.routes.draw do
   end
 
   resources :affiliations do
-    resources :affiliation_extend_demography,  only: [:create, :update], controller: :extend_demographies
+    resources :affiliation_extend_demographies,  only: [:create, :update], controller: :extend_demographies
   end
   resources :organizations do
     resources :organization_extend_demographies, only: [:create, :update], controller: :extend_demographies
   end
   resources :documents
+
+
+
+  # Routes For Admin
+  resources :users, only: [:index, :show, :destroy] do
+    member do
+      put 'change_password'
+      put 'change_basic_info'
+      post 'image_upload'
+      get 'remove_image'
+    end
+
+    resources :core_demographics, only: [:create, :update]
+    resources :job_details, only: [:create, :update]
+    resources :user_extend_demographies, only: [:create, :update], controller: :extend_demographies
+  end
 
   resources :employees, only: [:index, :show, :destroy, :update] do
     member do
@@ -68,7 +60,7 @@ Rails.application.routes.draw do
       resources :contact_extend_demographies, only: [:create, :update], controller: :extend_demographies
     end
     resources :affiliations do
-      resources :affiliation_extend_demography,  only: [:create, :update], controller: :extend_demographies
+      resources :affiliation_extend_demographies,  only: [:create, :update], controller: :extend_demographies
     end
     resources :organizations do
       resources :organization_extend_demographies, only: [:create, :update], controller: :extend_demographies
