@@ -10,6 +10,15 @@ RedCarpet::AccessControl.map do |map|
     map.permission :delete_educations, {:educations => [ :destroy]},  :read => true
     map.permission :manage_educations, {:educations => [:new, :create, :edit, :update, :destroy]},  :read => true
   end
+
+  map.project_module :languages do |map|
+    map.permission :view_languages, {:languages => [:index]},  :read => true
+    map.permission :create_languages, {:languages => [:new, :create]},  :read => true
+    map.permission :edit_languages, {:languages => [:edit, :update]},  :read => true
+    map.permission :delete_languages, {:languages => [:destroy]},  :read => true
+    map.permission :manage_languages, {:languages => [:new, :create, :edit, :update, :destroy]},  :read => true
+  end
+  
   map.project_module :departments do |map|
     map.permission :view_departments,   {:departments => [:index]},  :read => true
     map.permission :create_departments, {:departments => [:new, :create]},  :read => true

@@ -1,5 +1,5 @@
 class SocialMedium < ApplicationRecord
-  # belongs_to :extend_demography
+  belongs_to :extend_demography, optional: true
   belongs_to :social_media_type
 
   validates_presence_of :social_media_handle, :social_media_type_id

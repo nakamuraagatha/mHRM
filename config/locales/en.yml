@@ -135,6 +135,7 @@ en:
   enumeration_certification_type: Certification enumeration
   enumeration_contact_type: Relationship
   enumeration_country_type: Country enumeration
+  enumeration_citizenship_type: Citizenship enumeration
   enumeration_department_type: Department enumeration
   enumeration_document_type: Document enumeration
   enumeration_education_type: Education enumeration
@@ -145,6 +146,8 @@ en:
   enumeration_gender_type: Gender enumeration
   enumeration_identification_type: Identification enumeration
   enumeration_location_type: Location enumeration
+  enumeration_language_type: Language enumeration
+  enumeration_proficiency_type: Proficiency enumeration
   enumeration_phone_type: Phone enumeration
   enumeration_organization_type: Organization enumeration
   enumeration_religion_type: Religion type enumeration
@@ -153,6 +156,7 @@ en:
   enumeration_new_label: New_value
   education_type: Education
   educations: Educations
+  languages: Languages
   education_certification: Certification
   education_other_skill: Other skill
   education_date_received: Date received
@@ -173,6 +177,9 @@ en:
   label_phone_type: Phone type
   label_search: Search
   position_description: Position description
+  proficiency: Proficiency
+  language_type: Language Type
+  language: Language
   pay_rate: Pay rate
   employment_type: Employment type
   salary: Pay

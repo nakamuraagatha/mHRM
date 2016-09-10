@@ -1,9 +1,9 @@
 class DocumentsController < ApplicationController
   before_action  :authenticate_user!
-  before_action :set_document, only: [:show, :edit, :update, :destroy, :delete_file]
+  before_action :set_document, only: [:show, :edit, :update, :destroy]
   # before_action :find_optional_user
   before_action :authorize, only: [:new, :create]
-  before_action :authorize_edit, only: [:edit, :update, :delete_file]
+  before_action :authorize_edit, only: [:edit, :update]
   before_action :authorize_delete, only: [:destroy]
 
   # GET /documents
@@ -51,15 +51,6 @@ class DocumentsController < ApplicationController
       end
     end
   end
-
-  def delete_file
-    @document.remove_attachment!
-    @document.save
-    respond_to do |format|
-      format.html { redirect_to edit_document_path(@document), notice: 'File was successfully deleted.' }
-    end
-  end
-
 
   # DELETE /documents/1
   # DELETE /documents/1.json

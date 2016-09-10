@@ -7,6 +7,10 @@ class Department < ApplicationRecord
   has_one :department_extend_demography
   has_many :job_details
 
+  has_many :department_attachments, foreign_key: :owner_id
+  accepts_nested_attributes_for :department_attachments, reject_if: :all_blank, allow_destroy: true
+
+
   before_destroy :check_integrity
 
   validates_presence_of :department_type_id
@@ -16,7 +20,8 @@ class Department < ApplicationRecord
   scope :for_employees, -> {where(user_id: User.employees.pluck(:id))}
 
   def self.safe_attributes
-    [:user_id, :note, :date_start, :date_end, :department_type_id, :organization_id]
+    [:user_id, :note, :date_start, :date_end, :department_type_id,
+     :organization_id, department_attachments_attributes: [Attachment.safe_attributes]]
   end
 
   def visible?

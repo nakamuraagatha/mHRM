@@ -1,0 +1,2 @@
+class DepartmentAttachment < Attachment
+end

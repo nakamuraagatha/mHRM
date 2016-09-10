@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-
   get 'settings/edit'
   get 'home/index'
   root to: "home#index"
@@ -13,16 +12,8 @@ Rails.application.routes.draw do
       get 'remove_image'
     end
     resources :other_skills
-    resources :clearances  do
-      member do
-        get 'delete_file'
-      end
-    end
-    resources :certifications do
-      member do
-        get 'delete_file'
-      end
-    end
+    resources :clearances
+    resources :certifications
     resources :educations, only: [:show, :edit, :index]
     resources :contacts, only: [:show, :edit, :index]  do
       resources :contact_extend_demographies, only: [:create, :update], controller: :extend_demographies
@@ -39,45 +30,19 @@ Rails.application.routes.draw do
     resources :department_extend_demographies, only: [:create, :update], controller: :extend_demographies
   end
 
-  resources :other_skills  do
-    member do
-      get 'delete_file'
-    end
-  end
-  resources :clearances  do
-    member do
-      get 'delete_file'
-    end
-  end
-  resources :certifications  do
-    member do
-      get 'delete_file'
-    end
-  end
-  resources :educations do
-    member do
-      get 'delete_file'
-    end
-  end
-  resources :positions  do
-    member do
-      get 'delete_file'
-    end
-  end
+  resources :other_skills
+  resources :clearances
+  resources :certifications
+  resources :educations
+  resources :languages
+  resources :positions
   resources :contacts do
-    member do
-      get 'delete_file'
-    end
     resources :contact_extend_demographies, only: [:create, :update], controller: :extend_demographies
   end
   resources :organizations do
     resources :organization_extend_demographies, only: [:create, :update], controller: :extend_demographies
   end
-  resources :documents do
-    member do
-      get 'delete_file'
-    end
-  end
+  resources :documents
 
   resources :employees, only: [:index, :show, :destroy, :update] do
     member do
@@ -86,6 +51,7 @@ Rails.application.routes.draw do
 
     get 'home/index', as: 'home'
     resources :educations
+    resources :languages
     resources :departments
     resources :positions
     resources :other_skills

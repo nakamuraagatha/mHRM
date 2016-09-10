@@ -13,6 +13,11 @@
     <a href="<%= employee_educations_path(User.current) %>" title="<%= t(:educations) %>"><i class="fa fa-lg fa-fw fa-graduation-cap"></i> <span class="menu-item-parent"><%= t(:educations) %></span></a>
   </li>
 
+  <li class="<%= menu_active?('languages') %>">
+    <a href="<%= employee_languages_path(User.current) %>" title="<%= t(:languages) %>"><i class="fa fa-lg fa-fw fa-language"></i> <span class="menu-item-parent"><%= t(:languages) %></span></a>
+  </li>
+
+
   <li class="<%= menu_active?('other_skills') %>">
     <a href="<%= employee_other_skills_path(User.current) %>" title="<%= t(:other_skills) %>"><i class="fa fa-lg fa-fw fa-plus"></i> <span class="menu-item-parent"><%= t(:other_skills) %></span></a>
   </li>

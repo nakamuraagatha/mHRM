@@ -1,9 +1,9 @@
 class OtherSkillsController < ApplicationController
 
   before_action  :authenticate_user!
-  before_action :set_other_skill, only: [:show, :edit, :update, :destroy, :delete_file]
+  before_action :set_other_skill, only: [:show, :edit, :update, :destroy]
   before_action :authorize, only: [:new, :create]
-  before_action :authorize_edit, only: [:edit, :update, :delete_file]
+  before_action :authorize_edit, only: [:edit, :update]
   before_action :authorize_delete, only: [:destroy]
   
   # GET /other_skills
@@ -49,14 +49,6 @@ class OtherSkillsController < ApplicationController
       else
         format.html { render :edit }
       end
-    end
-  end
-
-  def delete_file
-    @other_skill.remove_file!
-    @other_skill.save
-    respond_to do |format|
-      format.html { redirect_to edit_other_skill_path(@other_skill), notice: 'File was successfully deleted.' }
     end
   end
 

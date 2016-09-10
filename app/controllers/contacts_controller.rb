@@ -1,9 +1,9 @@
 class ContactsController < ApplicationController
   before_action  :authenticate_user!
-  before_action :set_contact, only: [:show, :edit, :update, :destroy, :delete_file]
+  before_action :set_contact, only: [:show, :edit, :update, :destroy]
   # before_action :find_optional_user
   before_action :authorize, only: [:new, :create]
-  before_action :authorize_edit, only: [:edit, :update, :delete_file]
+  before_action :authorize_edit, only: [:edit, :update]
   before_action :authorize_delete, only: [:destroy]
 
   # GET /contacts
@@ -49,14 +49,6 @@ class ContactsController < ApplicationController
       else
         format.html { render :edit }
       end
-    end
-  end
-  
-  def delete_file
-    @contact.remove_file!
-    @contact.save
-    respond_to do |format|
-      format.html { redirect_to edit_contact_path(@contact), notice: 'File was successfully deleted.' }
     end
   end
   

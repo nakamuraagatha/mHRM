@@ -1,0 +1,13 @@
+<section id="widget-grid" class="show_customer_language">
+  <div class="row">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <%= render partial: 'form',
+                 layout: 'shared/smart_widget_wrapper',
+                 locals: {
+                     language: @language,
+                     wid_id: 'language',
+                     wid_title: 'Edit language'
+                 } %>
+    </article>
+  </div>
+</section>

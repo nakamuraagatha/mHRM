@@ -1,0 +1,33 @@
+<div class="col-xs-12 btn-edition">
+  <%= link_to 'Delete', language_path(@language), class: 'btn btn-danger pull-right',
+              :method => :delete,
+              :data => {:confirm => t(:text_are_you_sure)}
+  %>
+  <%= link_to 'Edit', edit_language_path(@language), class: 'btn btn-success pull-right' %>
+  <%= link_to t('button_cancel'), languages_path, class: 'btn btn-warning pull-right' %>
+</div>
+<div class="col-xs-12">
+
+  <p>
+    <strong>language type:</strong>
+    <%= @language.language_type %>
+  </p>
+
+  <p>
+    <strong>Proficient:</strong>
+    <%= @language.proficient %>
+  </p>
+
+  <p>
+    <strong>Note:</strong>
+    <%= @language.note.html_safe %>
+  </p>
+
+
+  <p>
+    <strong><%= t('attachments') %>:</strong>
+    <% @language.language_attachments.each do |attachment| %>
+        <%= render 'attachments/attachment_show_only', :attachment => attachment %>
+    <% end %>
+  </p>
+</div>
