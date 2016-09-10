@@ -3,6 +3,7 @@ class Position < ApplicationRecord
   belongs_to :department
   belongs_to :pay_rate, optional: true
   belongs_to :employment_type, optional: true
+  belongs_to :location_type, optional: true
 
 
   has_many :position_attachments, foreign_key: :owner_id
