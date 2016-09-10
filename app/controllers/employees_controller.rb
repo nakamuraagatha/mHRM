@@ -12,6 +12,16 @@ class EmployeesController < ApplicationController
 
   end
 
+  def new
+    @user = User.new
+  end
+
+  def create
+    @user = User.new(params.require(:user).permit(employee_params))
+    @user.save
+    redirect_to users_url
+  end
+
   def update
     if @employee.update(params.require(:user).permit(User.safe_attributes))
       flash[:notice] = I18n.t('notice_successful_update')
@@ -45,4 +55,7 @@ class EmployeesController < ApplicationController
     User.current.allowed_to?(:manage_roles)
   end
 
+  def employee_params
+    User.current.admin? ? User.admin_safe_attributes :  User.safe_attributes_with_password
+  end
 end

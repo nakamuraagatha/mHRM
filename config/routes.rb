@@ -43,7 +43,7 @@ Rails.application.routes.draw do
     resources :user_extend_demographies, only: [:create, :update], controller: :extend_demographies
   end
 
-  resources :employees, only: [:index, :show, :destroy, :update] do
+  resources :employees, except: [:edit] do
     member do
       get 'log_in'
     end

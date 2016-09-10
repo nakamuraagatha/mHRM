@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action  :authenticate_user!
-  before_action :find_user, except: [:index]
+  before_action :find_user, except: [:index, :new, :create]
 
   before_filter :require_admin, only: [:destroy]
   def index
@@ -13,6 +13,7 @@ class UsersController < ApplicationController
     @documents     = @user.documents
     @organizations = @user.organizations
   end
+
 
   def change_password
     if params[:user][:password] == params[:user][:password_confirmation]
@@ -47,9 +48,6 @@ class UsersController < ApplicationController
     @user.remove_avatar!
     @user.save
     render 'uploader/remove_image'
-  end
-
-  def new
   end
 
   def destroy
