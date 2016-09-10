@@ -9,20 +9,6 @@
 
 # Create Admin User
 
-user = User.new(email: 'admin@example.net', admin: true, password: 'admin')
+user = User.new(email: 'admin@example.net', admin: true, password: 'admin', login: 'admin' )
+
 user.save
-
-
-#Create Religion
-
-Religion.create(religion: 'Muslim')
-Religion.create(religion: 'Christian')
-Religion.create(religion: 'Jewish')
-Religion.create(religion: 'Other')
-
-# Create Gender
-Gender.create(gender: 'Male')
-Gender.create(gender: 'Female')
-Gender.create(gender: 'Transgender male')
-Gender.create(gender: 'Transgender female')
-Gender.create(gender: 'Unknown')
