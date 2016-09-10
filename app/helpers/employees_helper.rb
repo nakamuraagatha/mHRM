@@ -5,34 +5,50 @@ module EmployeesHelper
 												Action <span class="caret"></span>
 											</button>
 <ul class="dropdown-menu">'
-    if User.current.allowed_to?(:create_contacts)
+
+    if current_user.allowed_to?(:create_contacts)
       output<< '<li>'
       output<< link_to('New contact', new_employee_contact_path(user))
       output<<'</li>'
     end
 
-    if User.current.allowed_to?(:create_educations)
+    if current_user.allowed_to?(:create_educations)
       output<< '<li>'
       output<< link_to('New education', new_employee_education_path(user))
       output<<'</li>'
     end
 
-    if User.current.allowed_to?(:create_departments)
+    if current_user.allowed_to?(:create_clearances)
       output<< '<li>'
-      output<< link_to('New department', new_employee_department_path(user))
+      output<< link_to('New clearance', new_employee_clearance_path(user))
       output<<'</li>'
     end
-    if User.current.allowed_to?(:create_documents)
+
+    if current_user.allowed_to?(:create_certifications)
+      output<< '<li>'
+      output<< link_to('New certification', new_employee_certification_path(user))
+      output<<'</li>'
+    end
+
+    if current_user.allowed_to?(:create_languages)
+      output<< '<li>'
+      output<< link_to('New language', new_employee_language_path(user))
+      output<<'</li>'
+    end
+
+    if current_user.allowed_to?(:create_other_skills)
+      output<< '<li>'
+      output<< link_to('New Skill', new_employee_other_skill_path(user))
+      output<<'</li>'
+    end
+
+    if current_user.allowed_to?(:create_documents)
       output<< '<li>'
       output<< link_to('New Document', new_employee_document_path(user))
       output<<'</li>'
     end
-    if User.current.allowed_to?(:create_organizations)
-      output<< '<li>'
-      output<< link_to('New organization', new_employee_organization_path(user))
-      output<<'</li>'
-    end
-    if User.current.allowed_to?(:create_positions)
+
+    if current_user.allowed_to?(:create_positions)
       output<< '<li>'
       output<< link_to('New position', new_employee_position_path(user))
       output<<'</li>'
