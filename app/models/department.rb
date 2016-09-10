@@ -1,7 +1,7 @@
 class Department < ApplicationRecord
   belongs_to :user
   belongs_to :department_type
-  belongs_to :organization
+  belongs_to :organization, optional: true
 
 
   has_one :department_extend_demography
