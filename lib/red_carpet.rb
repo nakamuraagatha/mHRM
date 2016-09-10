@@ -19,20 +19,28 @@ RedCarpet::AccessControl.map do |map|
     map.permission :manage_languages, {:languages => [:new, :create, :edit, :update, :destroy]},  :read => true
   end
   
-  map.project_module :departments do |map|
-    map.permission :view_departments,   {:departments => [:index]},  :read => true
-    map.permission :create_departments, {:departments => [:new, :create]},  :read => true
-    map.permission :edit_departments,   {:departments => [:edit, :update]},  :read => true
-    map.permission :delete_departments, {:departments => [:destroy]},  :read => true
-    map.permission :manage_departments, {:departments => [:new, :create, :edit, :update, :destroy]},  :read => true
-  end
+  # map.project_module :departments do |map|
+  #   map.permission :view_departments,   {:departments => [:index]},  :read => true
+  #   map.permission :create_departments, {:departments => [:new, :create]},  :read => true
+  #   map.permission :edit_departments,   {:departments => [:edit, :update]},  :read => true
+  #   map.permission :delete_departments, {:departments => [:destroy]},  :read => true
+  #   map.permission :manage_departments, {:departments => [:new, :create, :edit, :update, :destroy]},  :read => true
+  # end
+  #
+  # map.project_module :organizations do |map|
+  #   map.permission :view_organizations, {:organizations => [:index]},  :read => true
+  #   map.permission :create_organizations, {:organizations => [:new, :create]},  :read => true
+  #   map.permission :edit_organizations, {:organizations => [:edit, :update]},  :read => true
+  #   map.permission :delete_organizations, {:organizations => [:destroy]},  :read => true
+  #   map.permission :manage_organizations, {:organizations => [:new, :create, :edit, :update, :destroy]},  :read => true
+  # end
 
-  map.project_module :organizations do |map|
-    map.permission :view_organizations, {:organizations => [:index]},  :read => true
-    map.permission :create_organizations, {:organizations => [:new, :create]},  :read => true
-    map.permission :edit_organizations, {:organizations => [:edit, :update]},  :read => true
-    map.permission :delete_organizations, {:organizations => [:destroy]},  :read => true
-    map.permission :manage_organizations, {:organizations => [:new, :create, :edit, :update, :destroy]},  :read => true
+  map.project_module :affiliations do |map|
+    map.permission :view_affiliations, {:affiliations => [:index]},  :read => true
+    map.permission :create_affiliations, {:affiliations => [:new, :create]},  :read => true
+    map.permission :edit_affiliations, {:affiliations => [:edit, :update]},  :read => true
+    map.permission :delete_affiliations, {:affiliations => [:destroy]},  :read => true
+    map.permission :manage_affiliations, {:affiliations => [:new, :create, :edit, :update, :destroy]},  :read => true
   end
 
   map.project_module :positions do |map|

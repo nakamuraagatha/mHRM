@@ -15,6 +15,7 @@
     <%= f.hidden_field :department_id %>
     <%= f.hidden_field :contact_id %>
     <%= f.hidden_field :organization_id %>
+    <%= f.hidden_field :affiliation_id %>
     <%= f.hidden_field :type %>
 
     <div id="tabs">
@@ -22,7 +23,7 @@
         <li><a id="link-tabs-emails" href="#tabs-emails" >Emails</a></li>
         <li><a id="link-tabs-faxes" href="#tabs-faxes">Faxes</a></li>
         <li><a id="link-tabs-phones" href="#tabs-phones">Phones</a></li>
-        <% unless extend_demography.object.is_a? Organization %>
+        <% if !extend_demography.object.is_a?(Organization) and !extend_demography.object.is_a?(Affiliation) %>
             <li><a id="link-tabs-identifications" href="#tabs-identifications">Identifications</a></li>
         <% end %>
         <li><a id="link-tabs-social_media" href="#tabs-social_media">Social media</a></li>
@@ -55,7 +56,7 @@
         </div>
       </div>
 
-      <% unless extend_demography.object.is_a? Organization %>
+      <% if !extend_demography.object.is_a?( Organization ) and  !extend_demography.object.is_a?(Affiliation)%>
       <div id='tabs-identifications' >
         <%= f.simple_fields_for :identifications do |identification| %>
             <%= render 'extend_demographies/identification_fields', :f => identification %>

@@ -19,8 +19,8 @@
             <td><%= department.note %></td>
             <td><%= department.date_start %></td>
             <td><%= department.date_end %></td>
-            <td><%= edit_link( edit_department_path(department)) if department.can?(:edit_departments, :manage_departments) %></td>
-            <td><%= delete_link( department) if department.can?(:delete_departments, :manage_departments) %></td>
+            <td><%= edit_link( edit_department_path(department))%></td>
+            <td><%= delete_link( department) %></td>
           </tr>
       <% end %>
   <% else %>

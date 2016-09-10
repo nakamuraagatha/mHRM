@@ -53,6 +53,12 @@ module EmployeesHelper
       output<< link_to('New position', new_employee_position_path(user))
       output<<'</li>'
     end
+
+   if current_user.allowed_to?(:create_affiliations)
+      output<< '<li>'
+      output<< link_to('New affiliation', new_employee_affiliation_path(user))
+      output<<'</li>'
+    end
     output<< '</ul></div>'
 
     output.html_safe

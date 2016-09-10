@@ -42,6 +42,8 @@ class ExtendDemographiesController < ApplicationController
              :department_extend_demography
            elsif params[:user_extend_demography]
              :user_extend_demography
+           elsif params[:affiliation_extend_demography]
+             :affiliation_extend_demography
            elsif params[:contact_extend_demography]
              :contact_extend_demography
            else
@@ -57,6 +59,8 @@ class ExtendDemographiesController < ApplicationController
       contacts_url
     elsif @extend_demography.organization_id
       organizations_path
+    elsif @extend_demography.affiliation_id
+     affiliations_path
     elsif User.current != current_user
       employee_path(User.current)
     else

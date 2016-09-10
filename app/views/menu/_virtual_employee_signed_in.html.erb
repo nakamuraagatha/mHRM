@@ -40,4 +40,8 @@
   <li class="<%= menu_active?('contacts') %>">
     <a href="<%= employee_contacts_path(User.current) %>" title="<%= t(:contacts) %>"><i class="fa fa-lg fa-fw fa-sitemap"></i> <span class="menu-item-parent"><%= t(:contacts) %></span></a>
   </li>
+
+  <li class="<%= menu_active?('affiliations') %>">
+    <a href="<%= employee_affiliations_path(User.current) %>" title="<%= t(:affiliations) %>"><i class="fa fa-lg fa-fw fa-home"></i> <span class="menu-item-parent"><%= t(:affiliations) %></span></a>
+  </li>
 </ul>

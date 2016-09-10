@@ -11,13 +11,8 @@
       <% organizations.each do |organization| %>
           <tr>
             <td><%= link_to organization.name, organization %></td>
-            <% if @user %>
-                <td><%= edit_link (edit_user_organization_path(@user, organization))  if organization.can?(:edit_organizations, :manage_organizations) %></td>
-            <% else %>
-
-                <td><%= edit_link( edit_organization_path(organization))  if organization.can?(:edit_organizations, :manage_organizations) %></td>
-            <% end %>
-            <td><%= delete_link( organization)  if organization.can?(:delete_organizations, :manage_organizations) %></td>
+            <td><%= edit_link( edit_organization_path(organization)) %></td>
+            <td><%= delete_link( organization)%></td>
           </tr>
       <% end %>
   <% else %>

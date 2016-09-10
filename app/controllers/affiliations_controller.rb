@@ -10,7 +10,7 @@ class AffiliationsController < ApplicationController
   # GET /affiliations
   # GET /affiliations.json
   def index
-    @affiliations = Affiliation.all
+    @affiliations = Affiliation.visible(:view_affiliations)
   end
 
   # GET /affiliations/1
@@ -20,7 +20,7 @@ class AffiliationsController < ApplicationController
 
   # GET /affiliations/new
   def new
-    @affiliation = Affiliation.new
+    @affiliation = Affiliation.new user_id: @user.id
   end
 
   # GET /affiliations/1/edit
@@ -77,7 +77,7 @@ class AffiliationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def affiliation_params
-      params.require(:affiliation).permit(:user_id, :name, :affiliation_type, :note)
+      params.require(:affiliation).permit(Affiliation.safe_attributes)
     end
 
   def authorize_edit

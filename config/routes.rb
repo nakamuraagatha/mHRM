@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :affiliations
   get 'settings/edit'
   get 'home/index'
   root to: "home#index"
@@ -18,6 +17,9 @@ Rails.application.routes.draw do
     resources :educations, only: [:show, :edit, :index]
     resources :contacts, only: [:show, :edit, :index]  do
       resources :contact_extend_demographies, only: [:create, :update], controller: :extend_demographies
+    end
+    resources :affiliations do
+      resources :affiliation_extend_demography,  only: [:create, :update], controller: :extend_demographies
     end
     resources :organizations, only: [:show, :edit, :index] do
       resources :organization_extend_demographies, only: [:create, :update], controller: :extend_demographies
@@ -40,6 +42,10 @@ Rails.application.routes.draw do
   resources :contacts do
     resources :contact_extend_demographies, only: [:create, :update], controller: :extend_demographies
   end
+
+  resources :affiliations do
+    resources :affiliation_extend_demography,  only: [:create, :update], controller: :extend_demographies
+  end
   resources :organizations do
     resources :organization_extend_demographies, only: [:create, :update], controller: :extend_demographies
   end
@@ -51,7 +57,7 @@ Rails.application.routes.draw do
     end
 
     get 'home/index', as: 'home'
-    resources :educations
+     resources :educations
     resources :languages
     resources :departments
     resources :positions
@@ -60,6 +66,9 @@ Rails.application.routes.draw do
     resources :certifications
     resources :contacts do
       resources :contact_extend_demographies, only: [:create, :update], controller: :extend_demographies
+    end
+    resources :affiliations do
+      resources :affiliation_extend_demography,  only: [:create, :update], controller: :extend_demographies
     end
     resources :organizations do
       resources :organization_extend_demographies, only: [:create, :update], controller: :extend_demographies

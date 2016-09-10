@@ -131,6 +131,7 @@ en:
 
   enumerations_label: Enumerations
   enumeration_address_type: Address enumeration
+  enumeration_affiliation_type: Affiliation enumeration
   enumeration_clearence_type: Clearance enumeration
   enumeration_certification_type: Certification enumeration
   enumeration_contact_type: Relationship
@@ -153,7 +154,7 @@ en:
   enumeration_religion_type: Religion type enumeration
   enumeration_role_type: Role enumeration
   enumeration_state_type: State enumeration
-  enumeration_new_label: New_value
+  enumeration_new_label: New value
   education_type: Education
   educations: Educations
   languages: Languages
@@ -198,6 +199,7 @@ en:
   new_affiliation: New Affiliation
   organizations: Organizations
   affiliations: Affiliations
+  affiliation_type: Affiliation_type
   organization: Organization
   organization_type: Organization Type
   clearences: Clearances

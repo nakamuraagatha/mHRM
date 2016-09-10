@@ -21,7 +21,7 @@ class ExtendDemography < ApplicationRecord
   end
 
   def self.safe_attributes
-    [:user_id, :department_id, :type, :contact_id, :organization_id,
+    [:user_id, :department_id, :type, :contact_id, :organization_id, :affiliation_id,
      social_media_attributes: [SocialMedium.safe_attributes],
      emails_attributes: [Email.safe_attributes],
      addresses_attributes: [Address.safe_attributes],
