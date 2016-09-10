@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :affiliations
   get 'settings/edit'
   get 'home/index'
   root to: "home#index"

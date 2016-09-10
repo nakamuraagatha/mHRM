@@ -9,7 +9,7 @@ class Organization < ApplicationRecord
   end
 
   def to_s
-    organization_type
+    name
   end
 
   def self.safe_attributes

@@ -1,0 +1,21 @@
+<div class="col-xs-12 btn-edition">
+  <%= link_to 'Delete',  affiliation_path(@affiliation), class: 'btn btn-danger pull-right',
+              :method => :delete,
+              :data => {:confirm => t(:text_are_you_sure)}
+  %>
+  <%= link_to 'Edit', edit_affiliation_path(@affiliation), class: 'btn btn-success pull-right' %>
+  <%= link_to t('button_cancel'), affiliations_path, class: 'btn btn-warning pull-right' %>
+</div>
+<div class="col-xs-12">
+  <p>
+    <strong>Name:</strong>
+    <%= @affiliation.name %>
+  </p>
+
+  <p>
+    <strong>Note:</strong>
+    <%= @affiliation.note.html_safe %>
+  </p>
+
+  <%= render_extend_demography_information(@affiliation.affiliation_extend_demography) %>
+</div>

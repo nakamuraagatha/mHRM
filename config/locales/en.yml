@@ -195,7 +195,9 @@ en:
   error_update: Error on update.
   notice_successful_delete: Successful deletion.
   new_organization: New Organization
+  new_affiliation: New Affiliation
   organizations: Organizations
+  affiliations: Affiliations
   organization: Organization
   organization_type: Organization Type
   clearences: Clearances

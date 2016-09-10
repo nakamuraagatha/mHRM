@@ -1,0 +1,4 @@
+<h1><%= t(:affiliation) %></h1>
+
+<%= link_to( t(:new_affiliation), new_affiliation_path, class: 'btn btn-primary pull-right margin-bottom-10') if can?(:create_affiliations, :manage_affiliations, :manage_roles) %>
+<%= render partial: 'list', locals:{affiliations: @affiliations}  %>

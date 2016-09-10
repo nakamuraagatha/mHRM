@@ -1,0 +1,23 @@
+
+<section id="widget-grid" class="show_customer_account">
+  <div class="row">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <%= render partial: 'form',
+                 layout: 'shared/smart_widget_wrapper',
+                 locals: {
+                     affiliation: @affiliation,
+                     wid_id: 'affiliation',
+                     wid_title: 'Edit Affiliation'
+                 } %>
+    </article>
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <%= render partial: 'extend_demographies/form',
+                 layout: 'shared/smart_widget_wrapper',
+                 locals: {
+                     wid_id: 'extend_demography',
+                     wid_title: 'Affiliations informations',
+                     extend_demography: @affiliation.extend_informations
+                 } %>
+    </article>
+  </div>
+</section>

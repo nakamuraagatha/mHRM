@@ -1,0 +1,1 @@
+json.partial! "affiliations/affiliation", organization: affiliation

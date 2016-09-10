@@ -133,6 +133,7 @@ end
 
 # Force load the subclasses in development mode
 require_dependency 'address_type'
+require_dependency 'affiliation_type'
 require_dependency 'certification_type'
 require_dependency 'clearence_type'
 require_dependency 'citizenship_type'
