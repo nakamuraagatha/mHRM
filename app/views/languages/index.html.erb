@@ -18,8 +18,8 @@
   <% if @languages.any?  %>
       <% @languages.each do |language| %>
           <tr>
-            <td><%= link_to language.language_type_id, language %></td>
-            <td><%= language.proficiency_id %></td>
+            <td><%= link_to language.language_type, language %></td>
+            <td><%= language.proficiency_type %></td>
             <td><%= edit_link language %></td>
             <td><%= delete_link language %></td>
           </tr>
