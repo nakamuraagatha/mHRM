@@ -76,7 +76,7 @@ gem 'ckeditor_rails'
 gem "recaptcha", require: "recaptcha/rails"
 gem "paranoia", "~> 2.2.0.pre"
 gem "figaro"
-
+gem 'prawn-rails'
 #installing adapter gems based on database.yml
 
 require 'erb'

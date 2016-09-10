@@ -6,6 +6,7 @@
   %>
   <%= link_to 'Edit', edit_education_path(@education), class: 'btn btn-success pull-right' %>
   <%= link_to t('button_cancel'), educations_path, class: 'btn btn-warning pull-right' %>
+  <%= link_to t('button_print'), education_path(@education, format: 'pdf'), class: 'btn btn-primary pull-right' %>
 </div>
 <div class="col-xs-12">
 

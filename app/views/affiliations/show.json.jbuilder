@@ -1,1 +1,1 @@
-json.partial! "affiliations/affiliation", organization: affiliation
+json.partial! "affiliations/affiliation", affiliation: @affiliation

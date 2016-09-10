@@ -5,6 +5,7 @@
 %>
 <%= link_to 'Edit', edit_contact_path(@contact), class: 'btn btn-success pull-right' %>
 <%= link_to t('button_cancel'), contacts_path, class: 'btn btn-warning pull-right' %>
+  <%= link_to t('button_print'), contact_path(@contact, format: 'pdf'), class: 'btn btn-primary pull-right' %>
 </div>
 <div class="col-xs-12">
   <p>

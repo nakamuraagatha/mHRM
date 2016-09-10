@@ -217,6 +217,7 @@ en:
 
   button_save: Save
   button_cancel: Cancel
+  button_print: Print
   button_create: Create
   button_edit: Edit
   notice_not_authorized: Not authorized

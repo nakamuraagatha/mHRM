@@ -5,6 +5,7 @@
   %>
   <%= link_to 'Edit', edit_other_skill_path(@other_skill), class: 'btn btn-success pull-right' %>
   <%= link_to t('button_cancel'), other_skills_path, class: 'btn btn-warning pull-right' %>
+  <%= link_to t('button_print'), other_skill_path(@other_skill, format: 'pdf'), class: 'btn btn-primary pull-right' %>
 </div>
 <div class="col-xs-12">
 

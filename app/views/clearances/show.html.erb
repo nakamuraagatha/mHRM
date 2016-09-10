@@ -4,7 +4,8 @@
               :data => {:confirm => t(:text_are_you_sure)}
   %>
   <%= link_to 'Edit', edit_clearance_path(@clearance), class: 'btn btn-success pull-right' %>
-  <%= link_to t('button_cancel'), certifications_path, class: 'btn btn-warning pull-right' %>
+  <%= link_to t('button_cancel'), clearances_path, class: 'btn btn-warning pull-right' %>
+  <%= link_to t('button_print'), clearance_path(@clearance, format: 'pdf'), class: 'btn btn-primary pull-right' %>
 </div>
 <div class="col-xs-12">
 

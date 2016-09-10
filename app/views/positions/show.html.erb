@@ -5,6 +5,7 @@
   %>
   <%= link_to 'Edit', edit_position_path(@position), class: 'btn btn-success pull-right' %>
   <%= link_to t('button_cancel'), positions_path, class: 'btn btn-warning pull-right' %>
+  <%= link_to t('button_print'), position_path(@position, format: 'pdf'), class: 'btn btn-primary pull-right' %>
 </div>
 <div class="col-xs-12">
 
