@@ -8,7 +8,7 @@ class CoreDemographic < ApplicationRecord
 
   def self.safe_attributes
     [:user_id, :first_name, :last_name, :middle_name, :gender_id,
-     :birth_date, :religion_id, :title, :note, :ethnicity_id]
+     :birth_date, :religion_id, :title, :note, :ethnicity_id, :citizenship_type_id]
   end
 
   def gender

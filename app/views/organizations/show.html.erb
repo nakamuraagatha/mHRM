@@ -14,7 +14,7 @@
 
   <p>
     <strong>Note:</strong>
-    <%= @organization.note %>
+    <%= @organization.note.html_safe %>
   </p>
 
   <%= render_extend_demography_information(@organization.organization_extend_demography) %>

@@ -172,6 +172,10 @@ en:
   label_fax_type: Fax type
   label_phone_type: Phone type
   label_search: Search
+  position_description: Position description
+  pay_rate: Pay rate
+  employment_type: Employment type
+  salary: Pay
   login: Username
   email: Email
   fax: Fax
@@ -224,6 +228,7 @@ en:
     gender: Gender
     religion: Religion
     ethnicity: Ethnicity
+    citizenship: Citizenship
     password: Password
     current_password: Current password
     password_confirmation: Password confirmation

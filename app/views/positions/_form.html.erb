@@ -18,14 +18,14 @@
 
 
       <div class="form-group">
-        <%= f.label :title, class: 'col-md-2 control-label' %>
+        <%= f.label t(:title), class: 'col-md-2 control-label' %>
         <div class="col-md-9">
           <%= f.text_field :title, class: 'form-control' %>
         </div>
       </div>
 
       <div class="form-group">
-        <%= f.label :position_description, class: 'col-md-2 control-label' %>
+        <%= f.label t(:position_description), class: 'col-md-2 control-label' %>
         <div class="col-md-9">
           <%= f.text_area :position_description , class: 'form-control ckeditor' %>
         </div>
@@ -51,10 +51,25 @@
           <%= f.text_field :special_requirement , class: 'form-control' %>
         </div>
       </div>
+
       <div class="form-group">
-        <%= f.label :salary , class: 'col-md-2 control-label' %>
+        <%= f.label t(:salary) , class: 'col-md-2 control-label' %>
         <div class="col-md-9">
           <%= f.text_field :salary , class: 'form-control' %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label t(:pay_rate) , class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.select :pay_rate_id, PayRateType.active.pluck(:name, :id),{} , {class: 'form-control'} %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label t(:employment_type) , class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.select :employment_type_id, EmploymentType.active.pluck(:name, :id),{} , {class: 'form-control'} %>
         </div>
       </div>
 
@@ -86,8 +101,8 @@
         <%= f.simple_fields_for :position_attachments do |attachment| %>
             <%= render 'attachments/attachment_show', :f => attachment %>
         <% end %>
-        <div id="attachment_fields" class="col-xs-11 margin-top-10 " style="padding-right: 2px;" >
-          <%= link_to_add_association 'add file', f, :position_attachments, class: 'btn btn-success col-xs-4 col-sm-2 col-md-2', partial: 'attachments/attachment_fields' %>
+        <div id="attachment_fields" class="col-md-2 margin-top-10 " style="padding-right: 2px;" >
+          <%= link_to_add_association 'add file', f, :position_attachments, class: 'btn btn-success pull-right', partial: 'attachments/attachment_fields' %>
         </div>
       </div>
 

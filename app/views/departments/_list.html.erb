@@ -14,7 +14,7 @@
   <% if departments.any? %>
       <% departments.each do |department| %>
           <tr>
-            <td><%= department.department_type %></td>
+            <td><%= link_to department.department_type, department %></td>
             <td><%= department.organization %></td>
             <td><%= department.note %></td>
             <td><%= department.date_start %></td>

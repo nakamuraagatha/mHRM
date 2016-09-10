@@ -22,9 +22,20 @@
     <strong>Location:</strong>
     <%= @position.location %>
   </p>
- <p>
-    <strong>Salary:</strong>
+
+  <p>
+    <strong><%= t('salary') %>:</strong>
     <%= @position.salary %>
+  </p>
+
+  <p>
+    <strong><%= t('pay_rate') %>:</strong>
+    <%= @position.pay_rate %>
+  </p>
+
+  <p>
+    <strong><%= t('employment_type') %>:</strong>
+    <%= @position.employment_type %>
   </p>
 
   <p>

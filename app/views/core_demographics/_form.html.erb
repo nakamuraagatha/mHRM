@@ -80,6 +80,12 @@
             <%= f.select :ethnicity_id, options_for_select(EthnicityType.active.select(:name, :id), selected: core_demographic.ethnicity_id) , {},{class: 'form-control'} %>
           </div>
         </div>
+        <div class="form-group">
+          <label class="col-md-2 control-label"><%= t('profile.citizenship') %></label>
+          <div class="col-md-8">
+            <%= f.select :citizenship_type_id, options_for_select(CitizenshipType.active.select(:name, :id), selected: core_demographic.citizenship_type_id) , {},{class: 'form-control'} %>
+          </div>
+        </div>
 
         <div class="form-group" >
           <div class="col-md-11">

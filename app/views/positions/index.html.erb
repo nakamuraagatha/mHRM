@@ -5,12 +5,14 @@
 <table class="table table-bordered table-responsive">
   <thead>
   <tr>
-    <th>Title</th>
+    <th><%= t('title') %></th>
     <th>Location</th>
     <th>Special requirement</th>
     <th>Date start</th>
     <th>Date end</th>
-    <th>Salary</th>
+    <th><%= t('salary') %></th>
+    <th><%= t('pay_rate') %></th>
+    <th><%= t('employment_type') %></th>
     <th colspan="2"></th>
   </tr>
   </thead>
@@ -25,6 +27,8 @@
             <td><%= position.date_start %></td>
             <td><%= position.date_end %></td>
             <td><%= position.salary %></td>
+            <td><%= position.pay_rate %></td>
+            <td><%= position.employment_type %></td>
             <td><%= edit_link(edit_position_path(position))  if position.can?(:edit_positions, :manage_positions) %></td>
             <td><%= delete_link(position)  if position.can?(:delete_positions, :manage_positions)%></td>
           </tr>

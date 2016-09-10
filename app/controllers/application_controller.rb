@@ -3,16 +3,24 @@ class Unauthorized < Exception; end
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
-  before_action :find_optional_user
   before_action :set_user
   layout 'base'
 
+
   def set_user
     if user_signed_in?
-      if session[:employee_id]
+      if params[:user_id]
+        @user = User.find params[:user_id]
+      elsif session[:employee_id]
         User.current = User.find session[:employee_id]
+        @user = User.current
+      elsif params[:employee_id]
+        User.current = User.find params[:employee_id]
+        @user = User.current
+        session[:employee_id] = User.current.id
       else
-        User.current= current_user
+        User.current = current_user
+        @user = User.current
       end
     end
   rescue ActiveRecord::RecordNotFound
@@ -63,17 +71,4 @@ class ApplicationController < ActionController::Base
   def require_admin
     render_404 unless User.current.admin?
   end
-
-  def find_optional_user
-    if params[:user_id]
-      @user = User.find params[:user_id]
-    elsif session[:employee_id]
-      @user = User.find session[:employee_id]
-    else
-      @user = current_user
-    end
-  rescue ActiveRecord::RecordNotFound
-    render_404
-  end
-
 end

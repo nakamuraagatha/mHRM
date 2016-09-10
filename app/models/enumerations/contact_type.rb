@@ -8,7 +8,7 @@ class ContactType < Enumeration
   end
 
   def objects
-    Contact.where(:activity_id => self.id)
+    Contact.where(:contact_type_id => self.id)
   end
 
   def objects_count
@@ -16,6 +16,6 @@ class ContactType < Enumeration
   end
 
   def transfer_relations(to)
-    objects.update_all(:activity_id => to.id)
+    objects.update_all(:contact_type_id => to.id)
   end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160904012842) do
+ActiveRecord::Schema.define(version: 20160910094456) do
 
   create_table "addresses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.integer  "address_type"
@@ -24,6 +24,15 @@ ActiveRecord::Schema.define(version: 20160904012842) do
     t.integer  "extend_demography_id"
     t.integer  "country_id"
     t.integer  "state_id"
+  end
+
+  create_table "attachments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+    t.string   "type"
+    t.string   "file"
+    t.string   "description"
+    t.integer  "owner_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "certifications", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
@@ -72,6 +81,7 @@ ActiveRecord::Schema.define(version: 20160904012842) do
     t.string   "first_name"
     t.string   "middle_name"
     t.string   "last_name"
+    t.string   "file"
   end
 
   create_table "core_demographics", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
@@ -83,10 +93,11 @@ ActiveRecord::Schema.define(version: 20160904012842) do
     t.date     "birth_date"
     t.integer  "religion_id"
     t.string   "title"
-    t.text     "note",         limit: 65535
+    t.text     "note",                limit: 65535
     t.integer  "ethnicity_id"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
+    t.integer  "citizenship_type_id"
   end
 
   create_table "departments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
@@ -258,6 +269,9 @@ ActiveRecord::Schema.define(version: 20160904012842) do
     t.datetime "updated_at",                         null: false
     t.integer  "location_type_id"
     t.integer  "department_id"
+    t.string   "salary"
+    t.integer  "pay_rate_id"
+    t.integer  "employment_type_id"
   end
 
   create_table "religions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
@@ -322,7 +336,9 @@ ActiveRecord::Schema.define(version: 20160904012842) do
     t.datetime "created_at",                                           null: false
     t.datetime "updated_at",                                           null: false
     t.string   "avatar"
+    t.datetime "deleted_at"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
+    t.index ["deleted_at"], name: "index_users_on_deleted_at", using: :btree
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true, using: :btree

@@ -55,8 +55,8 @@
         <%= f.simple_fields_for :education_attachments do |attachment| %>
             <%= render 'attachments/attachment_show', :f => attachment %>
         <% end %>
-        <div id="attachment_fields" class="col-xs-11 margin-top-10 " style="padding-right: 2px;" >
-          <%= link_to_add_association 'add file', f, :education_attachments, class: 'btn btn-success col-xs-4 col-sm-2 col-md-2', partial: 'attachments/attachment_fields' %>
+        <div id="attachment_fields" class="col-md-2 margin-top-10 " style="padding-right: 2px;" >
+          <%= link_to_add_association 'add file', f, :education_attachments, class: 'btn btn-success pull-right', partial: 'attachments/attachment_fields' %>
         </div>
       </div>
 

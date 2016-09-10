@@ -1,5 +1,5 @@
 class ClearenceType < Enumeration
-  has_many :educations
+  has_many :clearances
 
   OptionName = :enumeration_clearence_type
 
@@ -8,7 +8,7 @@ class ClearenceType < Enumeration
   end
 
   def objects
-    Education.where(:activity_id => self.id)
+    Clearance.where(:clearence_type_id => self.id)
   end
 
   def objects_count
@@ -16,6 +16,6 @@ class ClearenceType < Enumeration
   end
 
   def transfer_relations(to)
-    objects.update_all(:activity_id => to.id)
+    objects.update_all(:clearence_type_id => to.id)
   end
 end

@@ -1,5 +1,5 @@
 class EmploymentType < Enumeration
-  has_many :employments
+  has_many :positions
 
   OptionName = :enumeration_employment_type
 
@@ -8,7 +8,7 @@ class EmploymentType < Enumeration
   end
 
   def objects
-    Employment.where(:activity_id => self.id)
+    Position.where(:employment_type_id => self.id)
   end
 
   def objects_count
@@ -16,6 +16,6 @@ class EmploymentType < Enumeration
   end
 
   def transfer_relations(to)
-    objects.update_all(:activity_id => to.id)
+    objects.update_all(:employment_type_id => to.id)
   end
 end
