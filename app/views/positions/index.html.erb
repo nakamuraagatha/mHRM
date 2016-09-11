@@ -27,7 +27,7 @@
             <td><%= position.date_start %></td>
             <td><%= position.date_end %></td>
             <td><%= position.salary %></td>
-            <td><%= position.pay_rate %></td>
+            <td><%= position.pay_rate_type %></td>
             <td><%= position.employment_type %></td>
             <td><%= edit_link(edit_position_path(position))  if position.can?(:edit_positions, :manage_positions) %></td>
             <td><%= delete_link(position)  if position.can?(:delete_positions, :manage_positions)%></td>

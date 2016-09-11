@@ -1,7 +1,7 @@
 class Position < ApplicationRecord
   belongs_to :user
   belongs_to :department
-  belongs_to :pay_rate, optional: true
+  belongs_to :pay_rate_type, optional: true, foreign_key: :pay_rate_id
   belongs_to :employment_type, optional: true
   belongs_to :location_type, optional: true
 
@@ -18,7 +18,7 @@ class Position < ApplicationRecord
   def self.safe_attributes
     [:user_id, :title, :position_description,
      :location_type_id, :special_requirement, :note,
-     :date_start, :date_end, :department_id, :salary, :pay_rate, :employment_type_id,
+     :date_start, :date_end, :department_id, :salary, :pay_rate_id, :employment_type_id,
      position_attachments_attributes: [Attachment.safe_attributes]]
   end
 
@@ -32,7 +32,7 @@ class Position < ApplicationRecord
     pdf.text "<b>Date start: </b> #{date_start}", :inline_format =>  true
     pdf.text "<b>Date end: </b> #{date_end}", :inline_format =>  true
     pdf.text "<b>Pay: </b> #{salary}", :inline_format =>  true
-    pdf.text "<b>Pay rate: </b> #{pay_rate}", :inline_format =>  true
+    pdf.text "<b>Pay rate: </b> #{pay_rate_type}", :inline_format =>  true
     pdf.text "<b>Employment type: </b> #{employment_type}", :inline_format =>  true
     pdf.text "<b>Note: </b> #{ActionView::Base.full_sanitizer.sanitize(note)}", :inline_format =>  true
   end
