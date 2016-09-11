@@ -78,4 +78,14 @@ class Department < ApplicationRecord
     job_details.group_by{|j| j.role.to_s }
   end
 
+  def to_pdf(pdf)
+    pdf.font_size(25){  pdf.text "Department ##{id}", :style => :bold}
+    pdf.text "<b>Department type: </b> #{department_type}", :inline_format =>  true
+    pdf.text "<b>Organization: </b> #{organization}", :inline_format =>  true
+    pdf.text "<b>Date received: </b> #{date_start}", :inline_format =>  true
+    pdf.text "<b>Date expired: </b> #{date_end}", :inline_format =>  true
+    pdf.text "<b>Note: </b> #{ActionView::Base.full_sanitizer.sanitize(note)}", :inline_format =>  true
+    pdf.text "<b>Note: </b> #{ActionView::Base.full_sanitizer.sanitize(note)}", :inline_format =>  true
+  end
+
 end

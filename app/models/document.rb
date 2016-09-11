@@ -16,4 +16,11 @@ class Document < ApplicationRecord
     [:title, :description, :user_id, :document_type_id, :date, document_attachments_attributes: [Attachment.safe_attributes]]
   end
 
+  def to_pdf(pdf)
+    pdf.font_size(25){  pdf.text "Document ##{id}", :style => :bold}
+    pdf.text "<b>Title: </b> #{title}", :inline_format =>  true
+    pdf.text "<b>Desciption: </b> #{ActionView::Base.full_sanitizer.sanitize(description)}", :inline_format =>  true
+    pdf.text "<b>Document type: </b> #{document_type}", :inline_format =>  true
+  end
+
 end

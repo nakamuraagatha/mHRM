@@ -19,7 +19,7 @@ class Fax < ApplicationRecord
   end
 
   def to_pdf(pdf)
-    pdf.text "fax type: #{fax_type}. Fax number: #{fax_number}"
+    pdf.text "<b>fax type:</b> #{fax_type}. <b>Fax number:</b> #{fax_number}", :inline_format =>  true
   end
 
 end

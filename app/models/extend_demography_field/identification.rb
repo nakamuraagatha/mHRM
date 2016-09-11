@@ -18,7 +18,7 @@ class Identification < ApplicationRecord
   end
 
   def to_pdf(pdf)
-    pdf.text "Identification type: #{identification_type}. Id number: #{identification_number}"
+    pdf.text "<b>Identification type:</b> #{identification_type}. <b>Id number:</b> #{identification_number}", :inline_format =>  true
   end
 
 end

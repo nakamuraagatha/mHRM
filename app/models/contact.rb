@@ -20,4 +20,11 @@ class Contact < ApplicationRecord
     "#{first_name} #{middle_name} #{last_name}".gsub('  ', ' ')
   end
 
+  def to_pdf(pdf)
+    pdf.font_size(25){  pdf.text "Contact ##{id}", :style => :bold}
+    pdf.text "<b>Emergency contact: </b> #{emergency_contact}", :inline_format =>  true
+    pdf.text "<b>Name: </b> #{name}", :inline_format =>  true
+    pdf.text "<b>Note: </b> #{ActionView::Base.full_sanitizer.sanitize(note)}", :inline_format =>  true
+  end
+
 end

@@ -19,7 +19,7 @@ class Email < ApplicationRecord
   end
 
   def to_pdf(pdf)
-    pdf.text "Email type: #{email_type}. Email: #{email_address}"
+    pdf.text "<b>Email type:</b> #{email_type}. <b> Email:</b> #{email_address}", :inline_format =>  true
   end
 
 end

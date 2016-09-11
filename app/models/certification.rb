@@ -9,4 +9,12 @@ class Certification < ApplicationRecord
     [:certification_type_id, :user_id, :date_received, :note, :date_expired,
      certification_attachments_attributes: [Attachment.safe_attributes]]
   end
+
+  def to_pdf(pdf)
+    pdf.font_size(25){  pdf.text "Certification ##{id}", :style => :bold}
+    pdf.text "<b>Certification type: </b> #{certification_type}", :inline_format =>  true
+    pdf.text "<b>Date received: </b> #{date_received}", :inline_format =>  true
+    pdf.text "<b>Date expired: </b> #{date_expired}", :inline_format =>  true
+    pdf.text "<b>Note: </b> #{ActionView::Base.full_sanitizer.sanitize(note)}", :inline_format =>  true
+  end
 end

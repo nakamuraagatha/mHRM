@@ -15,4 +15,11 @@ class Language < ApplicationRecord
      language_attachments_attributes: [Attachment.safe_attributes]]
   end
 
+  def to_pdf(pdf)
+    pdf.font_size(25){  pdf.text "Language ##{id}", :style => :bold}
+    pdf.text "<b>Language type: </b> #{language_type}", :inline_format =>  true
+    pdf.text "<b>Proficiency: </b> #{proficiency_type}", :inline_format =>  true
+    pdf.text "<b>Note: </b> #{ActionView::Base.full_sanitizer.sanitize(note)}", :inline_format =>  true
+  end
+
 end

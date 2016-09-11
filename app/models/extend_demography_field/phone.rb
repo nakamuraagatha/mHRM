@@ -19,7 +19,7 @@ class Phone < ApplicationRecord
   end
 
   def to_pdf(pdf)
-    pdf.text "Phone type: #{phone_type}. Phone number: #{phone_number}"
+    pdf.text "<b>Phone type:</b> #{phone_type}. <b>Phone number:</b> #{phone_number}", :inline_format =>  true
   end
 
 end

@@ -22,4 +22,18 @@ class Position < ApplicationRecord
      position_attachments_attributes: [Attachment.safe_attributes]]
   end
 
+  def to_pdf(pdf)
+    pdf.font_size(25){  pdf.text "Position ##{id}", :style => :bold}
+    pdf.text "<b>title: </b> #{title}", :inline_format =>  true
+    pdf.text "<b>Position description: </b> #{ActionView::Base.full_sanitizer.sanitize(position_description)}", :inline_format =>  true
+    pdf.text "<b>Location: </b> #{location_type}", :inline_format =>  true
+    pdf.text "<b>Special requirement: </b> #{special_requirement}", :inline_format =>  true
+    pdf.text "<b>Date start: </b> #{date_start}", :inline_format =>  true
+    pdf.text "<b>Date end: </b> #{date_end}", :inline_format =>  true
+    pdf.text "<b>Pay: </b> #{salary}", :inline_format =>  true
+    pdf.text "<b>Pay rate: </b> #{pay_rate}", :inline_format =>  true
+    pdf.text "<b>Employment type: </b> #{employment_type}", :inline_format =>  true
+    pdf.text "<b>Note: </b> #{ActionView::Base.full_sanitizer.sanitize(note)}", :inline_format =>  true
+  end
+
 end

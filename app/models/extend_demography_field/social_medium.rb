@@ -18,7 +18,7 @@ class SocialMedium < ApplicationRecord
   end
 
   def to_pdf(pdf)
-    pdf.text "Social media type: #{social_media_type}. #: #{social_media_handle}"
+    pdf.text "<b>Social media type:</b> #{social_media_type}. <b>#:</b> #{social_media_handle}", :inline_format =>  true
   end
 
 end

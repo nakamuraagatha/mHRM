@@ -27,7 +27,7 @@ class Address < ApplicationRecord
   end
 
   def to_pdf(pdf)
-    pdf.text "Address type: #{address_type}. Address: #{full_address}"
+    pdf.text "<b>Address type:</b> #{address_type}. <b>Address:</b> #{full_address}", :inline_format =>  true
   end
 
 end

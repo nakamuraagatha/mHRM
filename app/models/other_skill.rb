@@ -14,4 +14,12 @@ class OtherSkill < ApplicationRecord
   def self.safe_attributes
     [:user_id, :name, :date_received, :date_expired, :note, skill_attachments_attributes: [Attachment.safe_attributes]]
   end
+
+  def to_pdf(pdf)
+    pdf.font_size(25){  pdf.text "Skill ##{id}", :style => :bold}
+    pdf.text "<b>Skill: </b> #{name}", :inline_format =>  true
+    pdf.text "<b>Date received: </b> #{date_received}", :inline_format =>  true
+    pdf.text "<b>Date expired: </b> #{date_expired}", :inline_format =>  true
+    pdf.text "<b>Note: </b> #{ActionView::Base.full_sanitizer.sanitize(note)}", :inline_format =>  true
+  end
 end

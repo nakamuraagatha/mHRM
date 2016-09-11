@@ -17,4 +17,12 @@ class Education < ApplicationRecord
      education_attachments_attributes: [Attachment.safe_attributes]]
   end
 
+  def to_pdf(pdf)
+    pdf.font_size(25){  pdf.text "Education ##{id}", :style => :bold}
+    pdf.text "<b>Education type: </b> #{education_type}", :inline_format =>  true
+    pdf.text "<b>Date received: </b> #{date_recieved}", :inline_format =>  true
+    pdf.text "<b>Date expired: </b> #{date_expired}", :inline_format =>  true
+    pdf.text "<b>Note: </b> #{ActionView::Base.full_sanitizer.sanitize(note)}", :inline_format =>  true
+  end
+
 end
