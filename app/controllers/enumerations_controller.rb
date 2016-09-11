@@ -28,7 +28,7 @@ class EnumerationsController < ApplicationController
   end
 
   def update
-    if @enumeration.update_attributes(params[:enumeration])
+    if @enumeration.update_attributes(params.require(:enumeration).permit!)
       respond_to do |format|
         format.html {
           flash[:notice] = I18n.t "notice_successful_update"

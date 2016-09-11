@@ -1,6 +1,6 @@
 <%= t @enumeration.option_name %>
 
-<%=form_for :enumeration, object: @enumeration, :url => enumerations_path, html: { class: 'form-horizontal' } do |f| %>
+<%=form_for :enumeration, object: @enumeration, :url => enumeration_path(@enumeration), html: {method: 'put', class: 'form-horizontal' } do |f| %>
     <%= f.hidden_field :type  %>
     <%= render :partial => 'form', :locals => {:f => f} %>
     <div class="form-group" >
