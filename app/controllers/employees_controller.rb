@@ -4,7 +4,11 @@ class EmployeesController < ApplicationController
   before_action  :authorize
 
   def index
-    @users = User.visible
+    @users =  if current_user.allowed_to?(:manage_roles)
+                User.employees
+              else
+                where(id: current_user.id)
+              end
   end
 
   def show
@@ -48,6 +52,7 @@ class EmployeesController < ApplicationController
 
   def set_employee
     @employee = User.find params[:id]
+    raise Unauthorized if @employee.admin? and !User.current.admin?
   rescue ActiveRecord::RecordNotFound
     render_404
   end
