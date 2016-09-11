@@ -18,5 +18,12 @@
     <%= @organization.note.html_safe %>
   </p>
 
+  <p>
+    <strong><%= t('attachments') %>:</strong>
+    <% @organization.organization_attachments.each do |attachment| %>
+        <%= render 'attachments/attachment_show_only', :attachment => attachment %>
+    <% end %>
+  </p>
+
   <%= render_extend_demography_information(@organization.organization_extend_demography) %>
 </div>

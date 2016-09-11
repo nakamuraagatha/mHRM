@@ -23,5 +23,13 @@
     <%= @affiliation.note.html_safe %>
   </p>
 
+
+  <p>
+    <strong><%= t('attachments') %>:</strong>
+    <% @affiliation.affiliation_attachments.each do |attachment| %>
+        <%= render 'attachments/attachment_show_only', :attachment => attachment %>
+    <% end %>
+  </p>
+
   <%= render_extend_demography_information(@affiliation.affiliation_extend_demography) %>
 </div>

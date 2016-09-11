@@ -4,6 +4,11 @@ class Affiliation < ApplicationRecord
   belongs_to :affiliation_type
   has_one :affiliation_extend_demography, :dependent => :destroy
 
+
+  has_many :affiliation_attachments, foreign_key: :owner_id
+  accepts_nested_attributes_for :affiliation_attachments, reject_if: :all_blank, allow_destroy: true
+
+
   def visible?
     User.current == user or User.current.allowed_to?(:edit_affiliations) or User.current.allowed_to?(:manage_affiliations)
   end

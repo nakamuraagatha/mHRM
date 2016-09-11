@@ -3,7 +3,6 @@
   <tr>
     <th>Department Type</th>
     <th>Organization</th>
-    <th>Note</th>
     <th>Date start</th>
     <th>Date end</th>
     <th colspan="2"></th>
@@ -16,7 +15,6 @@
           <tr>
             <td><%= link_to department.department_type, department %></td>
             <td><%= department.organization %></td>
-            <td><%= department.note %></td>
             <td><%= department.date_start %></td>
             <td><%= department.date_end %></td>
             <td><%= edit_link( edit_department_path(department))%></td>

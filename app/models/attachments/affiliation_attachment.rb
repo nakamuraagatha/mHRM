@@ -1,0 +1,2 @@
+class AffiliationAttachment < Attachment
+end

@@ -9,8 +9,12 @@
 </div>
 <div class="col-xs-12">
   <p>
+    <strong>Department type:</strong>
+    <%= @department.department_type %>
+  </p>
+  <p>
     <strong>Note:</strong>
-    <%= @department.note %>
+    <%= @department.note.html_safe %>
   </p>
 
   <p>

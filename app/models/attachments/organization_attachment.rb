@@ -1,0 +1,2 @@
+class OrganizationAttachment < Attachment
+end

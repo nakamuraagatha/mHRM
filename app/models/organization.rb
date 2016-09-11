@@ -4,6 +4,11 @@ class Organization < ApplicationRecord
   belongs_to :organization_type
   has_one :organization_extend_demography, :dependent => :destroy
 
+
+  has_many :organization_attachments, foreign_key: :owner_id
+  accepts_nested_attributes_for :organization_attachments, reject_if: :all_blank, allow_destroy: true
+
+
   def visible?
     User.current == user or User.current.allowed_to?(:edit_organizations) or User.current.allowed_to?(:manage_organizations)
   end
@@ -23,6 +28,7 @@ class Organization < ApplicationRecord
 
   def to_pdf(pdf)
     pdf.font_size(25){  pdf.text "Organization ##{id}", :style => :bold}
+    pdf.text "<b>Name </b> #{name}", :inline_format =>  true
     pdf.text "<b>Organization type </b> #{organization_type}", :inline_format =>  true
     pdf.text "<b>Note: </b> #{ActionView::Base.full_sanitizer.sanitize(note)}", :inline_format =>  true
   end
