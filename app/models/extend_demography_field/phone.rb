@@ -18,4 +18,8 @@ class Phone < ApplicationRecord
     output.html_safe
   end
 
+  def to_pdf(pdf)
+    pdf.text "Phone type: #{phone_type}. Phone number: #{phone_number}"
+  end
+
 end

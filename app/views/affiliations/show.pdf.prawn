@@ -5,6 +5,7 @@ prawn_document(:page_layout => :landscape) do |pdf|
  pdf.text @affiliation.affiliation_type
  pdf.font_size(25){  pdf.text "Note", :style => :bold}
  pdf.text @affiliation.note.html_safe
- pdf.font_size(25){  pdf.text "Information", :style => :bold}
+
+ render 'extend_demographies/show', :pdf=> pdf, extend_information: @affiliation.extend_informations
 
 end

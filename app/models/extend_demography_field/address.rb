@@ -25,4 +25,9 @@ class Address < ApplicationRecord
     output<< "</div>"
     output.html_safe
   end
+
+  def to_pdf(pdf)
+    pdf.text "Address type: #{address_type}. Address: #{full_address}"
+  end
+
 end

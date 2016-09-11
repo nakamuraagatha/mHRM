@@ -17,4 +17,8 @@ class SocialMedium < ApplicationRecord
     output.html_safe
   end
 
+  def to_pdf(pdf)
+    pdf.text "Social media type: #{social_media_type}. #: #{social_media_handle}"
+  end
+
 end

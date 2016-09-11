@@ -18,4 +18,8 @@ class Fax < ApplicationRecord
     output.html_safe
   end
 
+  def to_pdf(pdf)
+    pdf.text "fax type: #{fax_type}. Fax number: #{fax_number}"
+  end
+
 end

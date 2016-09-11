@@ -130,4 +130,32 @@ module ApplicationHelper
     output.html_safe
   end
 
+  def render_pdf_extend_information(pdf, extend_demo)
+    return if extend_demo.nil?
+    if extend_demo.emails.present?
+      pdf.font_size(15){  pdf.text "Emails:", :style => :bold}
+      extend_demo.emails.map{|record| record.to_pdf(pdf) }
+    end
+    if extend_demo.faxes.present?
+      pdf.font_size(15){  pdf.text "Faxes:", :style => :bold}
+      extend_demo.faxes.map{|record| record.to_pdf(pdf) }
+    end
+    if extend_demo.phones.present?
+      pdf.font_size(15){  pdf.text "Phones:", :style => :bold}
+      extend_demo.phones.map{|record| record.to_pdf(pdf) }
+    end
+    if extend_demo.identifications.present?
+      pdf.font_size(15){  pdf.text "Identifications:", :style => :bold}
+      extend_demo.identifications.map{|record| record.to_pdf(pdf) }
+    end
+    if extend_demo.social_media.present?
+      pdf.font_size(15){  pdf.text "Social Media:", :style => :bold}
+      extend_demo.social_media.map{|record| record.to_pdf(pdf) }
+    end
+    if extend_demo.addresses.present?
+      pdf.font_size(15){  pdf.text "Address:", :style => :bold}
+      extend_demo.addresses.map{|record| record.to_pdf(pdf) }
+    end
+  end
+
 end

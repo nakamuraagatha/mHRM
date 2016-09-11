@@ -20,6 +20,10 @@ class ExtendDemography < ApplicationRecord
 
   end
 
+  def has_informations?
+    emails.present? or faxes.present? or phones.present? or identifications.present? or social_media.present? or addresses.present?
+  end
+
   def self.safe_attributes
     [:user_id, :department_id, :type, :contact_id, :organization_id, :affiliation_id,
      social_media_attributes: [SocialMedium.safe_attributes],

@@ -18,4 +18,8 @@ class Email < ApplicationRecord
     output
   end
 
+  def to_pdf(pdf)
+    pdf.text "Email type: #{email_type}. Email: #{email_address}"
+  end
+
 end

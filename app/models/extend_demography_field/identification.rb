@@ -17,4 +17,8 @@ class Identification < ApplicationRecord
     output.html_safe
   end
 
+  def to_pdf(pdf)
+    pdf.text "Identification type: #{identification_type}. Id number: #{identification_number}"
+  end
+
 end
