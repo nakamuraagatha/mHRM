@@ -133,6 +133,8 @@ en:
   enumeration_address_type: Address enumeration
   enumeration_affiliation_type: Affiliation enumeration
   enumeration_clearence_type: Clearance enumeration
+  enumeration_pay_rate_type: Pay rate enumeration
+  enumeration_social_media_type: Social media enumeration
   enumeration_certification_type: Certification enumeration
   enumeration_contact_type: Relationship
   enumeration_country_type: Country enumeration

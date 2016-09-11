@@ -1,7 +1,7 @@
 class PayRateType < Enumeration
   has_many :positions
 
-  OptionName = :enumeration_email_type
+  OptionName = :enumeration_pay_rate_type
 
   def option_name
     OptionName
