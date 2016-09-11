@@ -29,7 +29,7 @@ class ApplicationController < ActionController::Base
   end
 
   def authorize(ctrl = params[:controller], action = params[:action])
-    allowed = current_user.allowed_to?({:controller => ctrl, :action => action}) || current_user.allowed_to?(:manage_roles)
+    allowed = current_user.allowed_to?({:controller => ctrl, :action => action})
     allowed ?  true : deny_access
   end
   rescue_from ::Unauthorized, :with => :deny_access

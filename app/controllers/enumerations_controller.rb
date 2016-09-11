@@ -2,7 +2,7 @@
 class EnumerationsController < ApplicationController
   before_action  :authenticate_user!
 
-  before_filter :require_admin, :except => :index
+  before_filter :require_admin
   before_filter :build_new_enumeration, :only => [:new, :create]
   before_filter :find_enumeration, :only => [:edit, :update, :destroy]
 

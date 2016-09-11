@@ -92,7 +92,18 @@ RedCarpet::AccessControl.map do |map|
   end
 
   map.project_module :employee do |map|
-    map.permission :manage_roles, {:employees => [:index]},  :read => true
+    map.permission :manage_roles, {:employees => [:index],
+                                   :educations => [:index,:new, :create, :edit, :update, :destroy],
+                                   :languages => [:index,:new, :create, :edit, :update, :destroy],
+                                   :affiliations => [:index,:new, :create, :edit, :update, :destroy],
+                                   :clearances => [:index,:new, :create, :edit, :update, :destroy],
+                                   :certifications => [:index,:new, :create, :edit, :update, :destroy],
+                                   :contacts => [:index,:new, :create, :edit, :update, :destroy],
+                                   :document => [:index,:new, :create, :edit, :update, :destroy],
+                                   :positions => [:index,:new, :create, :edit, :update, :destroy],
+
+
+    },  :read => true
   end
 
 end
