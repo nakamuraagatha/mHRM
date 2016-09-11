@@ -180,5 +180,10 @@ class User < ApplicationRecord
 
   end
 
+  def to_pdf_brief_info(pdf)
+    pdf.text "User: #{name}  #{birthday}  #{gender} #{active?}", :inline_format =>  true
+    pdf.move_down 10
+  end
+
   mount_uploader :avatar, AvatarUploader
 end

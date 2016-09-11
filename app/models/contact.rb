@@ -22,6 +22,7 @@ class Contact < ApplicationRecord
 
   def to_pdf(pdf)
     pdf.font_size(25){  pdf.text "Contact ##{id}", :style => :bold}
+    user.to_pdf_brief_info(pdf)
     pdf.text "<b>Emergency contact: </b> #{emergency_contact}", :inline_format =>  true
     pdf.text "<b>Name: </b> #{name}", :inline_format =>  true
     pdf.text "<b>Note: </b> #{ActionView::Base.full_sanitizer.sanitize(note)}", :inline_format =>  true

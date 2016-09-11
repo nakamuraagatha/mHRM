@@ -24,6 +24,7 @@ class Position < ApplicationRecord
 
   def to_pdf(pdf)
     pdf.font_size(25){  pdf.text "Position ##{id}", :style => :bold}
+    user.to_pdf_brief_info(pdf)
     pdf.text "<b>title: </b> #{title}", :inline_format =>  true
     pdf.text "<b>Position description: </b> #{ActionView::Base.full_sanitizer.sanitize(position_description)}", :inline_format =>  true
     pdf.text "<b>Location: </b> #{location_type}", :inline_format =>  true

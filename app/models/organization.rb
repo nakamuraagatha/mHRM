@@ -20,4 +20,11 @@ class Organization < ApplicationRecord
     organization_extend_demography || OrganizationExtendDemography.new(organization_id: self.id)
   end
 
+
+  def to_pdf(pdf)
+    pdf.font_size(25){  pdf.text "Organization ##{id}", :style => :bold}
+    pdf.text "<b>Organization type </b> #{organization_type}", :inline_format =>  true
+    pdf.text "<b>Note: </b> #{ActionView::Base.full_sanitizer.sanitize(note)}", :inline_format =>  true
+  end
+
 end

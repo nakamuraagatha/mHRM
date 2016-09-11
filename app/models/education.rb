@@ -19,6 +19,7 @@ class Education < ApplicationRecord
 
   def to_pdf(pdf)
     pdf.font_size(25){  pdf.text "Education ##{id}", :style => :bold}
+    user.to_pdf_brief_info(pdf)
     pdf.text "<b>Education type: </b> #{education_type}", :inline_format =>  true
     pdf.text "<b>Date received: </b> #{date_recieved}", :inline_format =>  true
     pdf.text "<b>Date expired: </b> #{date_expired}", :inline_format =>  true

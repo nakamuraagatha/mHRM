@@ -17,6 +17,7 @@ class OtherSkill < ApplicationRecord
 
   def to_pdf(pdf)
     pdf.font_size(25){  pdf.text "Skill ##{id}", :style => :bold}
+    user.to_pdf_brief_info(pdf)
     pdf.text "<b>Skill: </b> #{name}", :inline_format =>  true
     pdf.text "<b>Date received: </b> #{date_received}", :inline_format =>  true
     pdf.text "<b>Date expired: </b> #{date_expired}", :inline_format =>  true

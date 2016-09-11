@@ -17,6 +17,7 @@ class Language < ApplicationRecord
 
   def to_pdf(pdf)
     pdf.font_size(25){  pdf.text "Language ##{id}", :style => :bold}
+    user.to_pdf_brief_info(pdf)
     pdf.text "<b>Language type: </b> #{language_type}", :inline_format =>  true
     pdf.text "<b>Proficiency: </b> #{proficiency_type}", :inline_format =>  true
     pdf.text "<b>Note: </b> #{ActionView::Base.full_sanitizer.sanitize(note)}", :inline_format =>  true

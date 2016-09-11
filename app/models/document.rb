@@ -18,6 +18,7 @@ class Document < ApplicationRecord
 
   def to_pdf(pdf)
     pdf.font_size(25){  pdf.text "Document ##{id}", :style => :bold}
+    user.to_pdf_brief_info(pdf)
     pdf.text "<b>Title: </b> #{title}", :inline_format =>  true
     pdf.text "<b>Desciption: </b> #{ActionView::Base.full_sanitizer.sanitize(description)}", :inline_format =>  true
     pdf.text "<b>Document type: </b> #{document_type}", :inline_format =>  true
