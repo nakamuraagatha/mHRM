@@ -1,7 +1,4 @@
 <ul>
-  <li class="<%= menu_active?('devise/registrations') %>">
-    <a href="<%= edit_user_registration_path %>" title="<%= t('profile.profile') %>"><i class="fa fa-lg fa-fw fa-user"></i> <span class="menu-item-parent"><%= t('profile.profile') %></span></a>
-  </li>
 
   <% if User.current.allowed_to?(:manage_roles) %>
       <li class="<%= menu_active?('employees') %>">
@@ -9,9 +6,14 @@
       </li>
   <% end %>
 
+  <li class="<%= menu_active?('devise/registrations') %>">
+    <a href="<%= edit_user_registration_path %>" title="<%= t('profile.profile') %>"><i class="fa fa-lg fa-fw fa-user"></i> <span class="menu-item-parent"><%= t('profile.profile') %></span></a>
+  </li>
+
+
   <% if User.current.admin? %>
       <%= render partial: 'menu/admin' %>
-  <% elsif !User.current.allowed_to?(:manage_roles) %>
+  <% elsif !User.current.allowed_to?(:manage_roles) or session[:employee_id] %>
       <li class="<%= menu_active?('educations') %>">
         <a href="<%= educations_path %>" title="<%= t(:educations) %>"><i class="fa fa-lg fa-fw fa-graduation-cap"></i> <span class="menu-item-parent"><%= t(:educations) %></span></a>
       </li>
