@@ -3,7 +3,7 @@ class CoreDemographic < ApplicationRecord
   belongs_to :religion_type, foreign_key: :religion_id, optional: true
   belongs_to :gender_type, foreign_key: :gender_id, optional: true
   belongs_to :citizenship_type, optional: true
-  belongs_to :ethnicity, foreign_key: :ethnicity_id, optional: true
+  belongs_to :ethnicity_type, foreign_key: :ethnicity_id, optional: true
 
   validates_presence_of :user
 

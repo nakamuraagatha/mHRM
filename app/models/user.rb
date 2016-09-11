@@ -111,9 +111,15 @@ class User < ApplicationRecord
   def middle_name; profile.middle_name; end
   def last_name;   profile.last_name;   end
   def birthday;    profile.birth_date;  end
+  def religion;    profile.religion_type;  end
+  def ethnicity;   profile.ethnicity_type;  end
+  def citizenship; profile.citizenship_type;  end
   def gender;      profile.gender;      end
   def active?;     self.state ? 'Active' : 'Non active';         end
 
+  def profile_name
+    "#{first_name} #{middle_name} #{last_name}".gsub('  ', ' ')
+  end
 
 
   def profile_image
@@ -153,6 +159,25 @@ class User < ApplicationRecord
     return all_permissions if self.admin?
     return [] unless job_detail
     job_detail.role.try( :permissions ) || []
+  end
+
+  def to_pdf(pdf)
+    pdf.font_size(25){  pdf.text "User ##{id}", :style => :bold}
+    pdf.image("#{Rails.root}/public/#{avatar_url}") if avatar_url
+    pdf.text "<b>Login: </b> #{login}", :inline_format =>  true
+    pdf.text "<b>Email: </b> #{email}", :inline_format =>  true
+    pdf.text "<b>Active: </b> #{state?}", :inline_format =>  true
+    pdf.move_down 10
+    pdf.font_size(25){  pdf.text "Profile information", :style => :bold}
+    pdf.text "<b>Name: </b> #{profile_name}", :inline_format =>  true
+    pdf.text "<b>Gender: </b> #{gender}", :inline_format =>  true
+    pdf.text "<b>Birthday: </b> #{birthday}", :inline_format =>  true
+    pdf.text "<b>Religion: </b> #{religion}", :inline_format =>  true
+    pdf.text "<b>Ethnicity: </b> #{ethnicity}", :inline_format =>  true
+    pdf.text "<b>Citizenship: </b> #{citizenship}", :inline_format =>  true
+
+    pdf.move_down 10
+
   end
 
   mount_uploader :avatar, AvatarUploader

@@ -6,6 +6,10 @@ module EmployeesHelper
 											</button>
 <ul class="dropdown-menu">'
 
+    output<< '<li>'
+    output<< link_to('PDF', employee_path(user, format: 'pdf'))
+    output<<'</li>'
+
     if current_user.allowed_to?(:create_contacts)
       output<< '<li>'
       output<< link_to('New contact', new_employee_contact_path(user))
