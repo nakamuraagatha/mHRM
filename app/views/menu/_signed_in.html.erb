@@ -11,7 +11,7 @@
 
   <% if User.current.admin? %>
       <%= render partial: 'menu/admin' %>
-  <% else %>
+  <% elsif !User.current.allowed_to?(:manage_roles) %>
       <li class="<%= menu_active?('educations') %>">
         <a href="<%= educations_path %>" title="<%= t(:educations) %>"><i class="fa fa-lg fa-fw fa-graduation-cap"></i> <span class="menu-item-parent"><%= t(:educations) %></span></a>
       </li>
