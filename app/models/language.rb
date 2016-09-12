@@ -15,7 +15,7 @@ class Language < ApplicationRecord
   end
 
   def proficiency_type
-    if proficiency_type_id
+    if proficiency_id
       super
     else
       ProficiencyType.default
