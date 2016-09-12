@@ -10,7 +10,7 @@ class Address < ApplicationRecord
 
 
   def self.safe_attributes
-    [:id, :address_type, :address, :zip_code, :state, :city, :country_code, :state_id, :country_id, :_destroy]
+    [:id, :address_type_id, :address, :zip_code, :state, :city, :country_code, :state_id, :country_id, :_destroy]
   end
 
   def full_address

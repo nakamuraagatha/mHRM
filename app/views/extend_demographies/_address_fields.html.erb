@@ -7,7 +7,7 @@
       <div class="form-group col-md-12">
         <%= f.label :address_type , class: 'col-md-2 control-label' %>
         <div class="col-md-8">
-          <%= f.select :address_type, AddressType.active.pluck(:name, :id), {}, {class: 'form-control'} %>
+          <%= f.select :address_type_id, AddressType.active.pluck(:name, :id), {}, {class: 'form-control'} %>
         </div>
       </div>
 
