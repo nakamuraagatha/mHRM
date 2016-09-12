@@ -135,15 +135,7 @@ class Devise::RegistrationsController < DeviseController
   end
 
   def sign_up_params
-    devise_parameter_sanitizer.sanitize(:sign_up)
-  end
-
-  def account_update_params
-    devise_parameter_sanitizer.sanitize(:account_update)
-  end
-
-  def sign_up_params
-    params.require(:user).permit(:login, :email, :password, :password_confirmation)
+    params.require(:user).permit(User.safe_attributes_with_password_with_core_demographic_without_state)
   end
 
   def account_update_params

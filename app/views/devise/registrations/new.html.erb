@@ -2,56 +2,82 @@
   <div class="well no-padding">
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: {id:"smart-form-register", class:"smart-form client-form"}) do |f| %>
         <%= devise_error_messages! %>
-      <header>
-      </header>
+        <header>
+        </header>
 
-      <fieldset>
-        <section>
-          <label class="input"> <i class="icon-append fa fa-user"></i>
-            <%= f.text_field :login, autofocus: true , placeholder: "Username" %>
-            <b class="tooltip tooltip-bottom-right">Needed to enter the website</b> </label>
-        </section>
+        <fieldset>
+          <% f.object.core_demographic = CoreDemographic.new %>
+          <%= f.fields_for :core_demographic do |form| %>
+              <section>
+                <label class="input"><i class="icon-append fa fa-user"></i>
+                  <%= form.text_field :first_name, placeholder: 'First name', class: 'form-control' %>
+                </label>
+              </section>
 
-        <section>
-          <label class="input"> <i class="icon-append fa fa-envelope"></i>
-            <%= f.email_field :email, placeholder: "Email address" %>
-            <b class="tooltip tooltip-bottom-right">Needed to verify your account</b> </label>
-        </section>
+              <section>
+                <label class="input"><i class="icon-append fa fa-user"></i>
+                  <%= form.text_field :middle_name, placeholder: 'Middle name', class: 'form-control' %>
+                </label>
+              </section>
 
-        <section>
-          <label class="input"> <i class="icon-append fa fa-lock"></i>
+              <section>
+                <label class="input"><i class="icon-append fa fa-user"></i>
+                  <%= form.text_field :last_name, placeholder: 'Last name', class: 'form-control' %>
+                </label>
+              </section>
 
-            <%= f.password_field :password, autocomplete: "off" ,placeholder: "Password"%>
-            <b class="tooltip tooltip-bottom-right"><% if @minimum_password_length %>
-                  <em>(<%= @minimum_password_length %> characters minimum)</em>
-              <% end %></b> </label>
-        </section>
-
-        <section>
-          <label class="input"> <i class="icon-append fa fa-lock"></i>
-            <%= f.password_field :password_confirmation, autocomplete: "off", placeholder: "Confirm password" %>
-            <b class="tooltip tooltip-bottom-right"><% if @minimum_password_length %>
-                  <em>(<%= @minimum_password_length %> characters minimum)</em>
-              <% end %></b> </label>
-        </section>
-        <section>
-          <% if ENV['RECAPTCHA_PUBLIC_KEY']  %>
-              <%= recaptcha_tags :public_key => ENV['RECAPTCHA_PUBLIC_KEY'] %>
+              <section>
+                <label class="input">
+                  <%= form.select :gender_id, options_for_select(GenderType.active.pluck(:name, :id), selected: form.object.gender_type.try(:id)), {},{class: 'form-control'} %>
+                </label>
+              </section>
           <% end %>
-        </section>
-      </fieldset>
-      <footer>
-        <button type="submit" class="btn btn-primary">
-          Register
-        </button>
-      </footer>
+          <section>
+            <label class="input"> <i class="icon-append fa fa-user"></i>
+              <%= f.text_field :login, autofocus: true , placeholder: "Username" %>
+              <b class="tooltip tooltip-bottom-right">Needed to enter the website</b> </label>
+          </section>
 
-      <div class="message">
-        <i class="fa fa-check"></i>
-        <p>
-          Thank you for your registration!
-        </p>
-      </div>
+          <section>
+            <label class="input"> <i class="icon-append fa fa-envelope"></i>
+              <%= f.email_field :email, placeholder: "Email address" %>
+              <b class="tooltip tooltip-bottom-right">Needed to verify your account</b> </label>
+          </section>
+
+          <section>
+            <label class="input"> <i class="icon-append fa fa-lock"></i>
+
+              <%= f.password_field :password, autocomplete: "off" ,placeholder: "Password"%>
+              <b class="tooltip tooltip-bottom-right"><% if @minimum_password_length %>
+                    <em>(<%= @minimum_password_length %> characters minimum)</em>
+                <% end %></b> </label>
+          </section>
+
+          <section>
+            <label class="input"> <i class="icon-append fa fa-lock"></i>
+              <%= f.password_field :password_confirmation, autocomplete: "off", placeholder: "Confirm password" %>
+              <b class="tooltip tooltip-bottom-right"><% if @minimum_password_length %>
+                    <em>(<%= @minimum_password_length %> characters minimum)</em>
+                <% end %></b> </label>
+          </section>
+          <section>
+            <% if ENV['RECAPTCHA_PUBLIC_KEY']  %>
+                <%= recaptcha_tags :public_key => ENV['RECAPTCHA_PUBLIC_KEY'] %>
+            <% end %>
+          </section>
+        </fieldset>
+        <footer>
+          <button type="submit" class="btn btn-primary">
+            Register
+          </button>
+        </footer>
+
+        <div class="message">
+          <i class="fa fa-check"></i>
+          <p>
+            Thank you for your registration!
+          </p>
+        </div>
     <% end %>
 
   </div>
@@ -65,6 +91,12 @@
 
       // Rules for form validation
       rules : {
+        "user[core_demographic_attributes][first_name]" : {
+          required : true
+        },
+        "user[core_demographic_attributes][last_name]" : {
+          required : true
+        },
         "user[login]" : {
           required : true
         },

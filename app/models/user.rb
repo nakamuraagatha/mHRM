@@ -10,6 +10,8 @@ class User < ApplicationRecord
 
   # HAS ONE
   has_one :core_demographic
+  accepts_nested_attributes_for :core_demographic
+
   has_one :user_extend_demography
   has_one :job_detail
 
@@ -134,12 +136,16 @@ class User < ApplicationRecord
     [:login, :state, :email]
   end
 
+  def self.safe_attributes_with_password_with_core_demographic_without_state
+    [:login, :email, :password, :password_confirmation, core_demographic_attributes: [CoreDemographic.safe_attributes]]
+  end
+
   def self.safe_attributes_with_password
-    [:login, :state, :email, :password, :password_confirmation]
+    [:login, :state, :email, :password, :password_confirmation, core_demographic_attributes: [CoreDemographic.safe_attributes]]
   end
 
   def self.admin_safe_attributes
-    [:login, :state, :email, :password, :password_confirmation, :admin]
+    [:login, :state, :email, :password, :password_confirmation, :admin, core_demographic_attributes: [CoreDemographic.safe_attributes]]
   end
 
   def active_for_authentication?
