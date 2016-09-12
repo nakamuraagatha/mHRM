@@ -13,7 +13,7 @@ class Position < ApplicationRecord
 
 
   def pay_rate_type
-    if pay_rate_type_id
+    if pay_rate_id
       super
     else
       PayRateType.default
