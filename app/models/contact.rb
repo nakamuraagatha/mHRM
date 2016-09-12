@@ -6,6 +6,14 @@ class Contact < ApplicationRecord
   has_many :contact_attachments, foreign_key: :owner_id
   accepts_nested_attributes_for :contact_attachments, reject_if: :all_blank, allow_destroy: true
 
+  def contact_type
+    if contact_type_id
+      super
+    else
+      ContactType.default
+    end
+  end
+
 
   def self.safe_attributes
     [:emergency_contact, :first_name, :middle_name, :last_name,

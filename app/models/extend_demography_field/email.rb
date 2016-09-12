@@ -18,6 +18,14 @@ class Email < ApplicationRecord
     output
   end
 
+  def email_type
+    if email_type_id
+      super
+    else
+      EmailType.default
+    end
+  end
+
   def to_pdf(pdf)
     pdf.text "<b>Email type:</b> #{email_type}. <b> Email:</b> #{email_address}", :inline_format =>  true
   end

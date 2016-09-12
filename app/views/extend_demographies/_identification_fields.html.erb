@@ -7,7 +7,7 @@
       <div class="  form-group col-md-12">
         <%= f.label :identification_type_id, class: 'col-md-2 control-label' %>
         <div class="col-md-8">
-          <%= f.select :identification_type_id, IdentificationType.active.pluck(:name, :id), {} , {class: 'form-control'}%>
+          <%= f.select :identification_type_id, options_for_select(IdentificationType.active.pluck(:name, :id), selected: f.object.identification_type.try(:id) ), {} , {class: 'form-control'}%>
         </div>
       </div>
 
@@ -48,3 +48,9 @@
     </div>
   </fieldset>
 </div>
+<script>
+  $(function(){
+    $('.date_picker').datepicker({ dateFormat: 'dd-mm-yy' })
+  })
+
+</script>

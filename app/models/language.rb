@@ -6,6 +6,22 @@ class Language < ApplicationRecord
   has_many :language_attachments, foreign_key: :owner_id
   accepts_nested_attributes_for :language_attachments, reject_if: :all_blank, allow_destroy: true
 
+  def language_type
+    if language_type_id
+      super
+    else
+      LanguageType.default
+    end
+  end
+
+  def proficiency_type
+    if proficiency_type_id
+      super
+    else
+      ProficiencyType.default
+    end
+  end
+
   def visible?
     User.current.permitted_users.include? user
   end

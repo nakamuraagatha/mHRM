@@ -17,6 +17,16 @@ class Identification < ApplicationRecord
     output.html_safe
   end
 
+  def identification_type
+    if identification_type_id
+      super
+    else
+      IdentificationType.default
+    end
+  end
+
+
+
   def to_pdf(pdf)
     pdf.text "<b>Identification type:</b> #{identification_type}. <b>Id number:</b> #{identification_number}", :inline_format =>  true
   end

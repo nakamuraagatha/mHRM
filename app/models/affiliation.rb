@@ -8,6 +8,13 @@ class Affiliation < ApplicationRecord
   has_many :affiliation_attachments, foreign_key: :owner_id
   accepts_nested_attributes_for :affiliation_attachments, reject_if: :all_blank, allow_destroy: true
 
+  def affiliation_type
+    if affiliation_type_id
+      super
+    else
+      AffiliationType.default
+    end
+  end
 
   def visible?
     User.current == user or User.current.allowed_to?(:edit_affiliations) or User.current.allowed_to?(:manage_affiliations)

@@ -6,6 +6,14 @@ class Clearance < ApplicationRecord
   accepts_nested_attributes_for :clearance_attachments, reject_if: :all_blank, allow_destroy: true
 
 
+  def clearence_type
+    if clearence_type_id
+      super
+    else
+      ClearenceType.default
+    end
+  end
+
   def self.safe_attributes
     [:clearence_type_id, :user_id, :date_received, :note, :date_expired,
      clearance_attachments_attributes: [Attachment.safe_attributes]]

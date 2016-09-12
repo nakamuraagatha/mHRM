@@ -8,7 +8,7 @@
       <div class="form-group col-md-12">
         <%= f.label t('label_email_type'), class: 'col-md-2 control-label' %>
         <div class="col-md-8">
-          <%= f.select :email_type_id, options_for_select(EmailType.active.pluck(:name, :id)), {},{ class: 'form-control'} %>
+          <%= f.select :email_type_id, options_for_select(EmailType.active.pluck(:name, :id), selected: f.object.email_type.try(:id) ), {},{ class: 'form-control'} %>
         </div>
       </div>
 

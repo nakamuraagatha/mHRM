@@ -11,6 +11,28 @@ class Position < ApplicationRecord
 
   validates_presence_of :department_id, :user_id
 
+
+  def pay_rate_type
+    if pay_rate_type_id
+      super
+    else
+      PayRateType.default
+    end
+  end
+  def employment_type
+    if employment_type_id
+      super
+    else
+      EmploymentType.default
+    end
+  end
+  def location_type
+    if location_type_id
+      super
+    else
+      LocationType.default
+    end
+  end
   def visible?
     User.current.permitted_users.include? user
   end

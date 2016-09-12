@@ -7,6 +7,13 @@ class Document < ApplicationRecord
   has_many :document_attachments, foreign_key: :owner_id
   accepts_nested_attributes_for :document_attachments, reject_if: :all_blank, allow_destroy: true
 
+  def document_type
+    if document_type_id
+      super
+    else
+      DocumentType.default
+    end
+  end
 
   def visible?
     User.current == user or User.current.allowed_to?(:edit_documents) or User.current.allowed_to?(:manage_documents)

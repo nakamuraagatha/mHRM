@@ -13,6 +13,31 @@ class Address < ApplicationRecord
     [:id, :address_type_id, :address, :zip_code, :state, :city, :country_code, :state_id, :country_id, :_destroy]
   end
 
+  def address_type
+    if address_type_id
+      super
+    else
+      AddressType.default
+    end
+  end
+
+  def state_type
+    if state_id
+      super
+    else
+      StateType.default
+    end
+  end
+
+  def country_type
+    if country_id
+      super
+    else
+      CountryType.default
+    end
+  end
+
+
   def full_address
     "#{address}, #{city}, #{zip_code}"
   end

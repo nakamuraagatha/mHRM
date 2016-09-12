@@ -13,6 +13,14 @@ class Organization < ApplicationRecord
     User.current == user or User.current.allowed_to?(:edit_organizations) or User.current.allowed_to?(:manage_organizations)
   end
 
+  def organization_type
+    if organization_type_id
+      super
+    else
+      OrganizationType.default
+    end
+  end
+
   def to_s
     name
   end

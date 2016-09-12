@@ -7,7 +7,7 @@
       <div class="form-group col-md-12">
         <%= f.label :social_media_type_id , class: 'col-md-2 control-label' %>
         <div class="col-md-8">
-          <%= f.select :social_media_type_id, SocialMediaType.active.pluck(:name, :id), {}, {class: 'form-control'} %>
+          <%= f.select :social_media_type_id, options_for_select(SocialMediaType.active.pluck(:name, :id), selected: f.object.social_media_type.try(:id) ), {}, {class: 'form-control'} %>
         </div>
       </div>
 

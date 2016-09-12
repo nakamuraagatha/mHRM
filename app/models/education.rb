@@ -11,6 +11,14 @@ class Education < ApplicationRecord
     User.current == user or User.current.allowed_to?(:edit_educations) or User.current.allowed_to?(:manage_educations)
   end
 
+  def education_type
+    if education_type_id
+      super
+    else
+      EducationType.default
+    end
+  end
+
   def self.safe_attributes
     [:user_id, :education_type_id, :date_recieved,
      :date_expired, :note,

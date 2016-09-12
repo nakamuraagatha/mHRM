@@ -7,7 +7,7 @@
       <div class="form-group col-md-12">
         <%= f.label :address_type , class: 'col-md-2 control-label' %>
         <div class="col-md-8">
-          <%= f.select :address_type_id, AddressType.active.pluck(:name, :id), {}, {class: 'form-control'} %>
+          <%= f.select :address_type_id, options_for_select( AddressType.active.pluck(:name, :id), selected: f.object.address_type.try(:id) ), {}, {class: 'form-control'} %>
         </div>
       </div>
 
@@ -35,14 +35,14 @@
       <div class="form-group col-md-12">
         <%= f.label :state , class: 'col-md-2 control-label' %>
         <div class="col-md-8">
-          <%= f.select :state_id, StateType.active.pluck(:name, :id),{} ,{class: 'form-control'} %>
+          <%= f.select :state_id, options_for_select(StateType.active.pluck(:name, :id) , selected: f.object.state_type.try(:id) ),{} ,{class: 'form-control'} %>
         </div>
       </div>
 
       <div class="form-group col-md-12">
         <%= f.label :country, class: 'col-md-2 control-label' %>
         <div class="col-md-8">
-          <%= f.select :country_id, CountryType.active.pluck(:name, :id) ,{} ,{class: 'form-control'} %>
+          <%= f.select :country_id, options_for_select(CountryType.active.pluck(:name, :id), selected: f.object.country_type.try(:id) )  ,{} ,{class: 'form-control'} %>
         </div>
       </div>
 

@@ -10,6 +10,13 @@ class Department < ApplicationRecord
   has_many :department_attachments, foreign_key: :owner_id
   accepts_nested_attributes_for :department_attachments, reject_if: :all_blank, allow_destroy: true
 
+  def department_type
+    if department_type_id
+      super
+    else
+      DepartmentType.default
+    end
+  end
 
   before_destroy :check_integrity
 

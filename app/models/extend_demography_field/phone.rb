@@ -18,6 +18,14 @@ class Phone < ApplicationRecord
     output.html_safe
   end
 
+  def phone_type
+    if phone_type_id
+      super
+    else
+      PhoneType.default
+    end
+  end
+
   def to_pdf(pdf)
     pdf.text "<b>Phone type:</b> #{phone_type}. <b>Phone number:</b> #{phone_number}", :inline_format =>  true
   end

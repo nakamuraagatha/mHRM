@@ -6,7 +6,7 @@
       <div class="form-group col-md-12">
         <%= f.label t('label_fax_type'), class: 'col-md-2 control-label' %>
         <div class="col-md-8">
-          <%= f.select :fax_type_id, options_for_select(FaxType.active.pluck(:name, :id)), {},{ class: 'form-control'} %>
+          <%= f.select :fax_type_id, options_for_select(FaxType.active.pluck(:name, :id), selected: f.object.fax_type.try(:id) ), {},{ class: 'form-control'} %>
         </div>
       </div>
 

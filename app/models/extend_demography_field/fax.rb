@@ -18,6 +18,14 @@ class Fax < ApplicationRecord
     output.html_safe
   end
 
+  def fax_type
+    if fax_type_id
+      super
+    else
+      FaxType.default
+    end
+  end
+
   def to_pdf(pdf)
     pdf.text "<b>fax type:</b> #{fax_type}. <b>Fax number:</b> #{fax_number}", :inline_format =>  true
   end

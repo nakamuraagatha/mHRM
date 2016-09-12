@@ -12,6 +12,14 @@ class Role < ApplicationRecord
     end
   end
 
+  def role_type
+    if role_type_id
+      super
+    else
+      RoleType.default
+    end
+  end
+
 
   serialize :permissions, ::Role::PermissionsAttributeCoder
 
