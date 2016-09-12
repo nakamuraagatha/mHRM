@@ -33,9 +33,15 @@
       </div>
 
       <div class="  form-group col-md-12">
-        <%= f.label :issued_by , class: 'col-md-2 control-label' %>
+        <%= f.label :issued_by_type , class: 'col-md-2 control-label' %>
         <div class="col-md-8">
-          <%= f.text_field :issued_by ,  class: 'form-control date_picker' %>
+          <%= f.select :issued_by_type_id , options_for_select(IssuedByType.active.pluck(:name, :id), selected: f.object.issued_by_type.try(:id)) ,{},  {class: 'form-control'} %>
+        </div>
+      </div>
+      <div class="  form-group col-md-12">
+        <%= f.label :date_issued , class: 'col-md-2 control-label' %>
+        <div class="col-md-8">
+          <%= f.text_field :date_issued ,  class: 'form-control date_picker' %>
         </div>
       </div>
 
