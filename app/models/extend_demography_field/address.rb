@@ -10,7 +10,7 @@ class Address < ApplicationRecord
 
 
   def self.safe_attributes
-    [:id, :address_type_id, :address, :zip_code, :state, :city, :country_code, :state_id, :country_id, :_destroy]
+    [:id, :address_type_id, :address, :second_address, :zip_code, :state, :city, :country_code, :state_id, :country_id, :_destroy]
   end
 
   def address_type
@@ -39,7 +39,7 @@ class Address < ApplicationRecord
 
 
   def full_address
-    "#{address}, #{city}, #{zip_code}"
+    "#{address}, #{second_address}, #{city}, #{zip_code}"
   end
 
   def to_html
