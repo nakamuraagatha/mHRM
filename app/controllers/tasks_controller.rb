@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
   before_action  :authenticate_user!
-  before_action :set_task, only: [:show, :edit, :update, :destroy, :new_note]
+  before_action :set_task, only: [:show, :edit, :update, :destroy, :new_note, :add_note]
   # before_action :find_optional_user
   before_action :authorize, only: [:new, :create]
   before_action :authorize_edit, only: [:edit, :update]
@@ -22,6 +22,10 @@ class TasksController < ApplicationController
   # GET /tasks/new
   def new
     @task = Task.new(user_id: @user.id, assigned_to_id: @user.id)
+  end
+
+  def add_note
+    @note = TaskNote.new(user_id: @user.id)
   end
 
   def new_note

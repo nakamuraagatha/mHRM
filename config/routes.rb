@@ -28,6 +28,7 @@ Rails.application.routes.draw do
   resources :tasks do
     member do
       post 'new_note'
+      get 'add_note'
     end
   end
   resources :documents
