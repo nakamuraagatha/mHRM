@@ -4,6 +4,8 @@ class Task < ApplicationRecord
   belongs_to :priority_type, optional: true, foreign_key: :priority_id
   belongs_to :task_type, optional: true
 
+  has_many :task_notes, dependent: :destroy
+
 
   has_many :task_attachments, foreign_key: :owner_id
   accepts_nested_attributes_for :task_attachments, reject_if: :all_blank, allow_destroy: true

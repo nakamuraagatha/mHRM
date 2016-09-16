@@ -25,7 +25,11 @@ Rails.application.routes.draw do
   resources :educations
   resources :languages
   resources :positions
-  resources :tasks
+  resources :tasks do
+    member do
+      post 'new_note'
+    end
+  end
   resources :documents
 
 

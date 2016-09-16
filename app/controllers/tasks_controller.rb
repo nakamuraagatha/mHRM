@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
   before_action  :authenticate_user!
-  before_action :set_task, only: [:show, :edit, :update, :destroy]
+  before_action :set_task, only: [:show, :edit, :update, :destroy, :new_note]
   # before_action :find_optional_user
   before_action :authorize, only: [:new, :create]
   before_action :authorize_edit, only: [:edit, :update]
@@ -16,6 +16,7 @@ class TasksController < ApplicationController
   # GET /tasks/1
   # GET /tasks/1.json
   def show
+    @notes = @task.task_notes
   end
 
   # GET /tasks/new
@@ -23,8 +24,21 @@ class TasksController < ApplicationController
     @task = Task.new(user_id: @user.id, assigned_to_id: @user.id)
   end
 
+  def new_note
+    @note = TaskNote.new(params.require(:task_note).permit(TaskNote.safe_attributes))
+    @note.task_id = @task.id
+    respond_to do |format|
+      if @note.save
+        format.html { redirect_to @task, notice: 'Task Note was successfully created.' }
+       else
+        format.html { render :edit }
+       end
+    end
+  end
+
   # GET /tasks/1/edit
   def edit
+    @note = TaskNote.new(user_id: @user.id)
   end
 
   # POST /tasks
