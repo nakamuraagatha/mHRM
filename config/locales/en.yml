@@ -142,6 +142,8 @@ en:
   enumeration_department_type: Department enumeration
   enumeration_document_type: Document enumeration
   enumeration_education_type: Education enumeration
+  enumeration_priority_type: Priority enumeration
+  enumeration_task_type: Task enumeration
   enumeration_employment_type: Employment enumeration
   enumeration_email_type: Email enumeration
   enumeration_ethnicity_type: Ethnicity enumeration
