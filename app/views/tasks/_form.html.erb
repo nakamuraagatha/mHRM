@@ -18,7 +18,7 @@
       <div class="form-group">
         <%= f.label 'Assign to', class: 'col-md-2 control-label' %>
         <div class="col-md-9">
-          <%= f.select :assigned_to_id, options_for_select(User.visible.map{|user| [user.name, user.id]}.insert(0, ''), selected: f.object.assigned_to_id) , {}, {class: 'form-control' } %>
+          <%= f.select :assigned_to_id, options_for_select(User.visible.map{|user| [user.name, user.id]}.insert(0, ''), selected: f.object.assigned_to_id) , {}, {class: 'col-xs-12 use_select2', style: 'padding: 0' } %>
         </div>
       </div>
 
