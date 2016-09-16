@@ -10,12 +10,6 @@
     <a href="<%= edit_user_registration_path %>" title="<%= t('profile.profile') %>"><i class="fa fa-lg fa-fw fa-user"></i> <span class="menu-item-parent"><%= t('profile.profile') %></span></a>
   </li>
 
-  <% if User.current.allowed_to?(:manage_roles) %>
-      <li class="<%= menu_active?('tasks') %>">
-        <a href="<%= tasks_path %>" title="<%= t :tasks %>"><i class="fa fa-lg fa-fw fa-tasks"></i> <span class="menu-item-parent"><%= t(:tasks) %></span></a>
-      </li>
-  <% end %>
-
 
   <% if User.current.admin? %>
       <%= render partial: 'menu/admin' %>
@@ -60,5 +54,11 @@
             <a href="<%= tasks_path %>" title="<%= t :tasks %>"><i class="fa fa-lg fa-fw fa-tasks"></i> <span class="menu-item-parent"><%= t(:tasks) %></span></a>
           </li>
       <% end %>
+  <% end %>
+
+  <% if User.current.allowed_to?(:manage_roles) %>
+      <li class="<%= menu_active?('tasks') %>">
+        <a href="<%= tasks_path %>" title="<%= t :tasks %>"><i class="fa fa-lg fa-fw fa-tasks"></i> <span class="menu-item-parent"><%= t(:tasks) %></span></a>
+      </li>
   <% end %>
 </ul>
