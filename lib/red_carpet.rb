@@ -91,6 +91,14 @@ RedCarpet::AccessControl.map do |map|
     map.permission :manage_other_skills, {:other_skills => [:new, :create, :edit, :update, :destroy]},  :read => true
   end
 
+   map.project_module :tasks do |map|
+    map.permission :view_tasks, {:tasks => [:index]},  :read => true
+    map.permission :create_tasks, {:tasks => [:new, :create]},  :read => true
+    map.permission :edit_tasks, {:tasks => [:edit, :update]},  :read => true
+    map.permission :delete_tasks, {:tasks => [:destroy]},  :read => true
+    map.permission :manage_tasks, {:tasks => [:new, :create, :edit, :update, :destroy]},  :read => true
+  end
+
   map.project_module :employee do |map|
     map.permission :manage_roles, {:employees => [:index],
                                    :educations => [:index,:new, :create, :edit, :update, :destroy],

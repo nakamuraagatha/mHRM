@@ -1,12 +1,4 @@
-<div class="col-xs-12 btn-edition">
-  <%= link_to 'Delete',  position_path(@position), class: 'btn btn-danger pull-right',
-              :method => :delete,
-              :data => {:confirm => t(:text_are_you_sure)}
-  %>
-  <%= link_to 'Edit', edit_position_path(@position), class: 'btn btn-success pull-right' %>
-  <%= link_to t('button_cancel'), positions_path, class: 'btn btn-warning pull-right' %>
-  <%= link_to t('button_print'), position_path(@position, format: 'pdf'), class: 'btn btn-primary pull-right' %>
-</div>
+<%= render partial: 'action_menu' %>
 <div class="col-xs-12">
 
   <p>

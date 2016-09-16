@@ -1,0 +1,9 @@
+<div class="col-xs-12 btn-edition">
+  <%= link_to 'Delete',  task_path(@task), class: 'btn btn-danger pull-right',
+              :method => :delete,
+              :data => {:confirm => t(:text_are_you_sure)}
+  %>
+  <%= link_to 'Edit', edit_task_path(@task), class: 'btn btn-success pull-right' %>
+  <%= link_to t('button_cancel'), tasks_path, class: 'btn btn-warning pull-right' %>
+  <%= link_to t('button_print'), task_path(@task, format: 'pdf'), class: 'btn btn-primary pull-right' %>
+</div>

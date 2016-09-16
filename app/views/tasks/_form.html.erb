@@ -1,0 +1,90 @@
+<fieldset>
+  <legend>task</legend>
+  <%= form_for(task, html: { class: 'form-horizontal' }) do |f| %>
+      <% if task.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(task.errors.count, "error") %> prohibited this task from being saved:</h2>
+
+            <ul>
+              <% task.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+      <% end %>
+
+
+      <%= f.hidden_field :user_id %>
+      <%= f.hidden_field :assigned_to_id %>
+
+
+      <div class="form-group">
+        <%= f.label t(:title), class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.text_field :title, class: 'form-control' %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label t(:description), class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.text_area :description , class: 'form-control ckeditor' %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :priority , class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.select :priority_id, options_for_select(PriorityType.active.pluck(:name, :id), selected: f.object.priority_type.try(:id)), {} , {class: 'form-control'} %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :task_type , class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.select :task_type_id, options_for_select(TaskType.active.pluck(:name, :id), selected: f.object.task_type.try(:id)), {} , {class: 'form-control'} %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :date_start , class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.text_field :date_start, class: 'form-control date_picker' %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :date_due , class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.text_field :date_due , class: 'form-control date_picker' %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :date_completed , class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.text_field :date_completed , class: 'form-control date_picker' %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-md-12">
+          <%= f.label t(:attachments) , class: 'col-md-2 control-label' %>
+        </div>
+        <%= f.simple_fields_for :task_attachments do |attachment| %>
+            <%= render 'attachments/attachment_show', :f => attachment %>
+        <% end %>
+        <div id="attachment_fields" class="col-md-2 margin-top-10 " style="padding-right: 2px;" >
+          <%= link_to_add_association 'add file', f, :task_attachments, class: 'btn btn-success pull-right', partial: 'attachments/attachment_fields' %>
+        </div>
+      </div>
+
+      <div class="form-group" >
+        <div class="col-md-11">
+          <%= link_to t('button_cancel'), tasks_path, class: 'btn btn-warning pull-right' %>
+          <%= f.submit t('button_save'), class: 'btn btn-primary pull-right' %>
+        </div>
+      </div>
+  <% end %>
+</fieldset>
+

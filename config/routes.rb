@@ -9,22 +9,23 @@ Rails.application.routes.draw do
   resources :departments do
     resources :department_extend_demographies, only: [:create, :update], controller: :extend_demographies
   end
-  resources :other_skills
-  resources :clearances
-  resources :certifications
-  resources :educations
-  resources :languages
-  resources :positions
   resources :contacts do
     resources :contact_extend_demographies, only: [:create, :update], controller: :extend_demographies
   end
-
   resources :affiliations do
     resources :affiliation_extend_demographies,  only: [:create, :update], controller: :extend_demographies
   end
   resources :organizations do
     resources :organization_extend_demographies, only: [:create, :update], controller: :extend_demographies
   end
+
+  resources :other_skills
+  resources :clearances
+  resources :certifications
+  resources :educations
+  resources :languages
+  resources :positions
+  resources :tasks
   resources :documents
 
 
@@ -49,13 +50,16 @@ Rails.application.routes.draw do
     end
 
     get 'home/index', as: 'home'
-     resources :educations
+    resources :educations
+    resources :tasks
     resources :languages
-    resources :departments
     resources :positions
     resources :other_skills
     resources :clearances
     resources :certifications
+    resources :departments do
+      resources :department_extend_demographies, only: [:create, :update], controller: :extend_demographies
+    end
     resources :contacts do
       resources :contact_extend_demographies, only: [:create, :update], controller: :extend_demographies
     end

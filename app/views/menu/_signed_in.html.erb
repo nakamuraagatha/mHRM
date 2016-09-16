@@ -1,6 +1,6 @@
 <ul>
 
-  <% if User.current.allowed_to?(:manage_roles) %>
+  <% if can?(:manage_roles) %>
       <li class="<%= menu_active?('employees') %>">
         <a href="<%= employees_path %>" title="<%= t 'label_search' %>"><i class="fa fa-lg fa-fw fa-users"></i> <span class="menu-item-parent"><%= t :label_search %></span></a>
       </li>
@@ -9,6 +9,12 @@
   <li class="<%= menu_active?('devise/registrations') %>">
     <a href="<%= edit_user_registration_path %>" title="<%= t('profile.profile') %>"><i class="fa fa-lg fa-fw fa-user"></i> <span class="menu-item-parent"><%= t('profile.profile') %></span></a>
   </li>
+
+  <% if User.current.allowed_to?(:manage_roles) %>
+      <li class="<%= menu_active?('tasks') %>">
+        <a href="<%= tasks_path %>" title="<%= t :tasks %>"><i class="fa fa-lg fa-fw fa-tasks"></i> <span class="menu-item-parent"><%= t(:tasks) %></span></a>
+      </li>
+  <% end %>
 
 
   <% if User.current.admin? %>
@@ -49,5 +55,10 @@
         <a href="<%= affiliations_path %>" title="<%= t(:affiliations) %>"><i class="fa fa-lg fa-fw fa-home"></i> <span class="menu-item-parent"><%= t(:affiliations) %></span></a>
       </li>
 
+      <% unless User.current.allowed_to?(:manage_roles) %>
+          <li class="<%= menu_active?('tasks') %>">
+            <a href="<%= tasks_path %>" title="<%= t :tasks %>"><i class="fa fa-lg fa-fw fa-tasks"></i> <span class="menu-item-parent"><%= t(:tasks) %></span></a>
+          </li>
+      <% end %>
   <% end %>
 </ul>

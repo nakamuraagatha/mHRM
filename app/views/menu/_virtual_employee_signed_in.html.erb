@@ -44,4 +44,8 @@
   <li class="<%= menu_active?('affiliations') %>">
     <a href="<%= employee_affiliations_path(User.current) %>" title="<%= t(:affiliations) %>"><i class="fa fa-lg fa-fw fa-home"></i> <span class="menu-item-parent"><%= t(:affiliations) %></span></a>
   </li>
+
+  <li class="<%= menu_active?('tasks') %>">
+    <a href="<%= tasks_path %>" title="<%= t :tasks %>"><i class="fa fa-lg fa-fw fa-tasks"></i> <span class="menu-item-parent"><%= t(:tasks) %></span></a>
+  </li>
 </ul>

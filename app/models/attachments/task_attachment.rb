@@ -1,0 +1,3 @@
+class TaskAttachment < Attachment
+
+end

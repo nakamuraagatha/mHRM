@@ -19,11 +19,7 @@
   <!-- NAVIGATION : This navigation is also responsive-->
   <nav>
     <% if user_signed_in? %>
-        <% if User.current == current_user %>
-            <%= render  partial: 'menu/signed_in' %>
-        <% else %>
-            <%= render  partial: 'menu/virtual_employee_signed_in' %>
-        <% end %>
+        <%= render  partial: 'menu/signed_in' %>
     <% else %>
         <%= render partial: 'menu/not_signed_in' %>
     <% end %>

@@ -213,6 +213,8 @@ en:
   contacts: Contacts
   description: Description
   title: Title
+  task: Task
+  tasks: Tasks
   date: date
   attachment: Attachment
   attachments: Attachments
