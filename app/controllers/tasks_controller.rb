@@ -10,7 +10,7 @@ class TasksController < ApplicationController
   # GET /tasks
   # GET /tasks.json
   def index
-    @tasks = Task.where(assigned_to: @user)
+    @tasks = Task.where(assigned_to: @user).or(Task.where(for_individual: @user) )
   end
 
   # GET /tasks/1

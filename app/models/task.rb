@@ -31,6 +31,10 @@ class Task < ApplicationRecord
     User.current.permitted_users.include? user
   end
 
+  def can?(*args)
+    owner? or args.map{|action| User.current.allowed_to?(action) }.include?(true) or assigned_to == User.current or for_individual == User.current
+  end
+
   def self.safe_attributes
     [:title, :description, :task_type_id, :priority_id, :assigned_to_id, :for_individual_id,
      :date_start, :date_due, :user_id, :date_completed,
