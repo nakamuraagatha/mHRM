@@ -15,7 +15,12 @@
 
 
       <%= f.hidden_field :user_id %>
-      <%= f.hidden_field :assigned_to_id %>
+      <div class="form-group">
+        <%= f.label 'Assign to', class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.select :assigned_to_id, options_for_select(User.visible.map{|user| [user.name, user.id]}.insert(0, ''), selected: f.object.assigned_to_id) , {}, {class: 'form-control' } %>
+        </div>
+      </div>
 
 
       <div class="form-group">
