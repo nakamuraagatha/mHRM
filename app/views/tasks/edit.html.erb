@@ -4,25 +4,26 @@
       <%= render partial: 'form',
                  layout: 'shared/smart_widget_wrapper',
                  locals: {
-                     task: @task,
-                     wid_id: 'task',
-                     wid_title: 'Edit task'
+                         task: @task,
+                         wid_id: 'task',
+                         wid_title: 'Edit task'
                  } %>
     </article>
   </div>
 </section>
-
-<section id="widget-grid" class="form_task_user">
-  <div class="row">
-    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-      <%= render partial: 'form_task_note',
-                 layout: 'shared/smart_widget_wrapper',
-                 locals: {
-                     note: @note,
-                     task: @task,
-                     wid_id: 'note_form',
-                     wid_title: 'Add note'
-                 } %>
-    </article>
-  </div>
-</section>
+<% if can?(:add_notes, :manage_roles) %>
+    <section id="widget-grid" class="form_task_user">
+      <div class="row">
+        <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <%= render partial: 'form_task_note',
+                     layout: 'shared/smart_widget_wrapper',
+                     locals: {
+                             note: @note,
+                             task: @task,
+                             wid_id: 'note_form',
+                             wid_title: 'Add note'
+                     } %>
+        </article>
+      </div>
+    </section>
+<% end %>

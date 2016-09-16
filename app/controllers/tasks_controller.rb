@@ -2,7 +2,7 @@ class TasksController < ApplicationController
   before_action  :authenticate_user!
   before_action :set_task, only: [:show, :edit, :update, :destroy, :new_note, :add_note]
   # before_action :find_optional_user
-  before_action :authorize, only: [:new, :create]
+  before_action :authorize, only: [:new, :create, :add_note, :new_note]
   before_action :authorize_edit, only: [:edit, :update]
   before_action :authorize_delete, only: [:destroy]
 
@@ -49,6 +49,7 @@ class TasksController < ApplicationController
   # POST /tasks.json
   def create
     @task = Task.new(task_params)
+    @note = TaskNote.new(user_id: @user.id)
 
     respond_to do |format|
       if @task.save
