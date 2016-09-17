@@ -21,7 +21,7 @@
   <link rel="stylesheet" type="text/css" media="screen" href="css/your_style.css"> -->
 
   <!-- FAVICONS -->
-<%= favicon_link_tag 'favicon.ico' %>
+  <%= favicon_link_tag 'favicon.ico' %>
 
 
   <!-- Specifying a Webpage Icon for Web Clip
@@ -77,26 +77,40 @@
     </div>
   </div>
 </div>
-  <!-- END MAIN PANEL -->
-    <%= render partial: 'shared/shortcuts' %>
-    <!-- PAGE FOOTER -->
-    <div class="page-footer">
-      <div class="row">
-        <div class="col-xs-12 col-sm-6">
-          <span class="txt-color-white">mHRM <span class="hidden-xs"> – MicroHealth </span> © 2016</span>
-        </div>
-
-      </div>
+<!-- END MAIN PANEL -->
+<%= render partial: 'shared/shortcuts' %>
+<!-- PAGE FOOTER -->
+<div class="page-footer">
+  <div class="row">
+    <div class="col-xs-4">
+      <span class="txt-color-white">mHRM <span class="hidden-xs"> – MicroHealth </span> © 2016</span>
     </div>
-    <!-- END PAGE FOOTER -->
-    <%= javascript_include_tag 'smart_admin/smart_admin' %>
-    <script>
-      $(document).ready(function() {
 
-        // DO NOT REMOVE : GLOBAL FUNCTIONS!
-        pageSetUp();
-      });
-    </script>
+    <div class="col-xs-4">
+      <span class="txt-color-white">
+      This program is licensed under GPL v3 <br/>
+      <a href="https://www.gnu.org/licenses/gpl-3.0.html" target="_blank">https://www.gnu.org/licenses/gpl-3.0.html</a>
+    </span>
+    </div>
+
+    <div class="col-xs-3 pull-right">
+      <span class="txt-color-white">
+        Please send your feedback <br/>
+        <A HREF="mailto:feedback@microhealthllc.com">feedback@microhealthllc.com</A>
+      </span>
+    </div>
+
+  </div>
+</div>
+<!-- END PAGE FOOTER -->
+<%= javascript_include_tag 'smart_admin/smart_admin' %>
+<script>
+  $(document).ready(function() {
+
+    // DO NOT REMOVE : GLOBAL FUNCTIONS!
+    pageSetUp();
+  });
+</script>
 
 </body>
 

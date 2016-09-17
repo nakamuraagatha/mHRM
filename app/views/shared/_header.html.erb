@@ -2,12 +2,12 @@
   <div id="logo-group">
 
     <!-- PLACE YOUR LOGO HERE -->
-    <span id="logo1" style="margin: 10px;"> <%= link_to image_tag( "logo.png", alt:"mHRM") , root_path %> </span>
+    <span id="logo1" style="margin: 10px;"> <%= link_to "#{image_tag( "logo.png", alt:"mHRM")} mHRM".html_safe , root_path %> </span>
     <!-- END LOGO PLACEHOLDER -->
 
   </div>
   <% if session[:employee_id] %>
-    <%= render_employee_information.html_safe %>
+      <%= render_employee_information.html_safe %>
   <% end %>
   <!-- end projects dropdown -->
 
@@ -26,23 +26,16 @@
     <div id="logout" class="btn-header transparent pull-right">
       <span>
         <% if user_signed_in? %>
-            <% if (User.current == current_user) and !session[:employee_id] %>
-                <%= link_to destroy_user_session_path, title: 'Sign out', :method => :delete do %>
-                    <i class="fa fa-sign-out"></i>
-                <% end %>
-            <% else %>
-                <%= link_to employee_path(User.current), title: "Log off from #{User.current.login}", :method => :delete do %>
-                    <i class="fa fa-sign-out"></i>
-                <% end %>
+            <%= link_to destroy_user_session_path, title: 'Sign out', :method => :delete do %>
+                <i class="fa fa-sign-out"></i>
             <% end %>
-            </span>
         <% else %>
-        <%= link_to new_session_path(:user), title: "Sign In" do %>
+            <%= link_to new_session_path(:user), title: "Sign In" do %>
                 <i class="fa fa-sign-in"></i>
             <% end %>
         <% end %>
-        </span>
-        </div>
+      </span>
+    </div>
     <!-- end logout button -->
 
     <!-- search mobile button (this is hidden till mobile view port) -->
