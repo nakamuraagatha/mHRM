@@ -39,6 +39,28 @@ class User < ApplicationRecord
     UserMailer.account_activated(self).deliver_now if self.account_active? and self.state_was == false
   end
 
+  def self.from_omniauth(auth)
+    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+      user.provider = auth.provider
+      user.uid = auth.uid
+      user.email = "#{auth.uid}@#{auth.provider}.com"
+      user.login = "#{auth.uid}@#{auth.provider}.com"
+      user.password = Devise.friendly_token[0,20]
+    end
+  end
+
+  def self.create_with_jwt_hash(jwt)
+    email = jwt['email'].presence || jwt['preferred_username']
+    where(provider: 'office365', uid: email).first_or_create do |user|
+      user.provider = 'office365'
+      user.uid = email
+      user.email = email
+      user.login = jwt['name']
+      user.password = Devise.friendly_token[0,20]
+    end
+  end
+
+
   def self.visible
     if User.current.allowed_to?(:manage_roles)
       employees
