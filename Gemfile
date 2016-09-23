@@ -61,6 +61,8 @@ group :development, :test do
 end
 
 gem 'devise'
+gem "omniauth-office365", github: 'jcarbo/omniauth-office365'
+# gem "omniauth-github"
 
 gem 'therubyracer', platforms: :ruby
 gem 'execjs'

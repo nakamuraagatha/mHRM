@@ -6,7 +6,8 @@ class User < ApplicationRecord
 
 
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable, :lockable
+         :recoverable, :rememberable, :trackable,
+         :validatable, :lockable, :omniauthable
 
   # HAS ONE
   has_one :core_demographic

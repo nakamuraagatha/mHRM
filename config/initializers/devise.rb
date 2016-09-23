@@ -247,8 +247,8 @@ Devise.setup do |config|
   # ==> OmniAuth
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
-  # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
-
+  # config.omniauth :github, 'c6befc3523d739417860', '8271ba3736027e1e23671d27b2656c9daa4f9868', scope: 'user:email'
+  config.omniauth :office365, ENV['OFFICE365_KEY'], ENV['OFFICE365_SECRET'], :scope => 'https://outlook.office.com/mail.read'
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
   # change the failure app, you can configure them inside the config.warden block.
