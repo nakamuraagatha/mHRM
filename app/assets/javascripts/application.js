@@ -18,6 +18,13 @@
 //= require jquery-fileupload/vendor/tmpl
 //= require cocoon
 //= require dataTables/jquery.dataTables
+//= require plugin/datatables/dataTables.colVis.min.js
+//= require plugin/datatables/dataTables.tableTools.min.js
+//= require plugin/datatables/dataTables.bootstrap.min.js
+//= require plugin/datatable-responsive/datatables.responsive.min.js
+//= require buttons.colVis.min
+//= require dataTables.buttons.min
+
 //= require ckeditor-jquery
 
 $(function(){
