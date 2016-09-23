@@ -26,8 +26,12 @@
 //= require dataTables.buttons.min
 
 //= require ckeditor-jquery
+//= require plugin/select2/select2.min.js
 
 $(function(){
     $('.date_picker').datepicker({ dateFormat: 'dd-mm-yy' })
+    $( ".use_select2" ).select2({
+        theme: "bootstrap"
+    });
 })
 

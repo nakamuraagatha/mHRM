@@ -42,6 +42,14 @@ class User < ApplicationRecord
     end
   end
 
+  def visible
+    if allowed_to?(:manage_roles)
+      User.where(nil)
+    else
+      User.where(id: User.current.id)
+    end
+  end
+
   def self.employees
     User.where(admin: false)
   end

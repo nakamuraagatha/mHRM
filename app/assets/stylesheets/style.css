@@ -1,4 +1,4 @@
-div.flash {margin-top: 8px;}
+div.flash {margin-top: 8px; margin-bottom: 5px;}
 
 div.flash.error, #errorExplanation {
     /*background: url(../images/exclamation.png) 8px 50% no-repeat;*/
