@@ -12,6 +12,11 @@ class Position < ApplicationRecord
   validates_presence_of :department_id, :user_id
 
 
+  after_save :send_notification
+  def send_notification
+    UserMailer.position_notification(self).deliver_now
+  end
+
   def pay_rate_type
     if pay_rate_id
       super
@@ -57,6 +62,23 @@ class Position < ApplicationRecord
     pdf.text "<b>Pay rate: </b> #{pay_rate_type}", :inline_format =>  true
     pdf.text "<b>Employment type: </b> #{employment_type}", :inline_format =>  true
     pdf.text "<b>Note: </b> #{ActionView::Base.full_sanitizer.sanitize(note)}", :inline_format =>  true
+  end
+
+  def for_mail
+    output = ""
+    output<< "<h2>Position ##{id} </h2>"
+    output<<"<b>title: </b> #{title}<br/>"
+    output<<"<b>Position description: </b> #{position_description}<br/>"
+    output<<"<b>Location: </b> #{location_type}<br/>"
+    output<<"<b>Special requirement: </b> #{special_requirement}<br/>"
+    output<<"<b>Date start: </b> #{date_start}<br/>"
+    output<<"<b>Date end: </b> #{date_end}<br/>"
+    output<<"<b>Pay: </b> #{salary}<br/>"
+    output<<"<b>Pay rate: </b> #{pay_rate_type}<br/>"
+    output<<"<b>Employment type: </b> #{employment_type}<br/>"
+    output<<"<b>Note: </b> #{note}<br/>"
+
+    output.html_safe
   end
 
 end

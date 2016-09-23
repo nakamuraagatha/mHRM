@@ -8,6 +8,11 @@ class Affiliation < ApplicationRecord
   has_many :affiliation_attachments, foreign_key: :owner_id
   accepts_nested_attributes_for :affiliation_attachments, reject_if: :all_blank, allow_destroy: true
 
+  after_save :send_notification
+  def send_notification
+    UserMailer.affiliation_notification(self).deliver_now
+  end
+
   def affiliation_type
     if affiliation_type_id
       super
@@ -38,6 +43,16 @@ class Affiliation < ApplicationRecord
     pdf.text "<b>name: </b> #{name}", :inline_format =>  true
     pdf.text "<b>Affiliation type: </b> #{affiliation_type}", :inline_format =>  true
     pdf.text "<b>Note: </b> #{ActionView::Base.full_sanitizer.sanitize(note)}", :inline_format =>  true
+  end
+
+  def for_mail
+    output = ""
+    output<< "<h2>Affiliation ##{id} </h2>"
+    output<< "<b>name: </b> #{name}<br/>"
+    output<< "<b>Affiliation type: </b> #{affiliation_type}<br/>"
+    output<< "<b>Note: </b> #{note}<br/>"
+
+    output.html_safe
   end
 
 end

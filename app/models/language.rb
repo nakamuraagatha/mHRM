@@ -6,6 +6,11 @@ class Language < ApplicationRecord
   has_many :language_attachments, foreign_key: :owner_id
   accepts_nested_attributes_for :language_attachments, reject_if: :all_blank, allow_destroy: true
 
+  after_save :send_notification
+  def send_notification
+    UserMailer.language_notification(self).deliver_now
+  end
+
   def language_type
     if language_type_id
       super
@@ -37,6 +42,16 @@ class Language < ApplicationRecord
     pdf.text "<b>Language type: </b> #{language_type}", :inline_format =>  true
     pdf.text "<b>Proficiency: </b> #{proficiency_type}", :inline_format =>  true
     pdf.text "<b>Note: </b> #{ActionView::Base.full_sanitizer.sanitize(note)}", :inline_format =>  true
+  end
+
+  def for_mail
+    output = ""
+    output<< "<h2>Language ##{id} </h2>"
+    output<< "<b>Language type: </b> #{language_type}<br/>"
+    output<< "<b>Proficiency: </b> #{proficiency_type}<br/>"
+    output<< "<b>Note: </b> #{note}<br/>"
+
+    output.html_safe
   end
 
 end

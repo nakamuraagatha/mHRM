@@ -10,6 +10,12 @@ class Task < ApplicationRecord
   has_many :task_attachments, foreign_key: :owner_id
   accepts_nested_attributes_for :task_attachments, reject_if: :all_blank, allow_destroy: true
 
+
+  after_save :send_notification
+  def send_notification
+    UserMailer.task_notification(self).deliver_now
+  end
+
   def priority_type
     if priority_id
       super
@@ -47,5 +53,19 @@ class Task < ApplicationRecord
     pdf.text "<b>Date start: </b> #{date_start}", :inline_format =>  true
     pdf.text "<b>Date due: </b> #{date_due}", :inline_format =>  true
     pdf.text "<b>Date completed: </b> #{date_completed}", :inline_format =>  true
-    end
+  end
+
+  def for_mail
+    output = ""
+    output<< "<h2>Task ##{id} </h2>"
+    output<<"<b>Title: </b> #{title}"
+    output<<"<b>Description: </b> #{description} <br/>"
+    output<<"<b>Task type: </b> #{task_type}<br/>"
+    output<<"<b>Priority: </b> #{priority_type}<br/>"
+
+    output<<"<b>Date start: </b> #{date_start}<br/>"
+    output<<"<b>Date due: </b> #{date_due}<br/>"
+    output<<"<b>Date completed: </b> #{date_completed}<br/>"
+    output.html_safe
+  end
 end
