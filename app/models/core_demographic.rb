@@ -43,4 +43,17 @@ class CoreDemographic < ApplicationRecord
   def gender
     gender_type
   end
+
+  def to_pdf(pdf)
+    pdf.text "<b>First name: </b> #{first_name}", :inline_format =>  true
+    pdf.text "<b>Middle name: </b> #{middle_name}", :inline_format =>  true
+    pdf.text "<b>Last name: </b> #{last_name}", :inline_format =>  true
+    pdf.text "<b>Gender: </b> #{gender_type}", :inline_format =>  true
+    pdf.text "<b>Birthday: </b> #{birth_date}", :inline_format =>  true
+    pdf.text "<b>Religion: </b> #{religion_type}", :inline_format =>  true
+    pdf.text "<b>Tile: </b> #{title}", :inline_format =>  true
+    pdf.text "<b>Ethnicity: </b> #{ethnicity_type}", :inline_format =>  true
+    pdf.text "<b>Citizenship: </b> #{citizenship_type}", :inline_format =>  true
+    pdf.text "<b>Note: </b> #{ActionView::Base.full_sanitizer.sanitize(note)}", :inline_format =>  true
+  end
 end

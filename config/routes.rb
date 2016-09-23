@@ -2,10 +2,12 @@ Rails.application.routes.draw do
   get 'settings/edit'
   get 'home/index'
   root to: "home#index"
+  get 'home/all_informations', as: 'all_informations'
 
   devise_for :users, :controllers => { omniauth_callbacks: 'callbacks' }
 
   # Routes For Normal users
+  resources :core_demographics, only: [:show]
   resources :departments do
     resources :department_extend_demographies, only: [:create, :update], controller: :extend_demographies
   end

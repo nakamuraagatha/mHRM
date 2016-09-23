@@ -17,12 +17,17 @@ class User < ApplicationRecord
   has_one :job_detail
 
   # HAS MANY
+  has_many :affiliations
+  has_many :certifications
+  has_many :clearances
+  has_many :contacts
+  has_many :other_skills
+  has_many :languages
   has_many :educations
   has_many :documents
   has_many :organizations
   has_many :departments
   has_many :positions
-  has_many :contacts
 
   after_update :check_status
 
@@ -178,7 +183,8 @@ class User < ApplicationRecord
 
   def to_pdf(pdf)
     pdf.font_size(25){  pdf.text "User ##{id}", :style => :bold}
-    pdf.image("#{Rails.root}/public/#{avatar_url}") if avatar_url
+    pdf.image("#{Rails.root}/public/#{avatar.resized.url}") if avatar_url
+    pdf.move_down 10
     pdf.text "<b>Login: </b> #{login}", :inline_format =>  true
     pdf.text "<b>Email: </b> #{email}", :inline_format =>  true
     pdf.text "<b>Active: </b> #{state?}", :inline_format =>  true

@@ -1,6 +1,6 @@
 class CoreDemographicsController < ApplicationController
   before_action  :authenticate_user!
-  before_action :set_core_demographic, only: [:update]
+  before_action :set_core_demographic, only: [:update, :show]
 
   # POST /core_demographics
   # POST /core_demographics.json
@@ -14,6 +14,12 @@ class CoreDemographicsController < ApplicationController
       else
         format.html { render :edit }
       end
+    end
+  end
+
+  def show
+    respond_to do |format|
+      format.pdf{}
     end
   end
 

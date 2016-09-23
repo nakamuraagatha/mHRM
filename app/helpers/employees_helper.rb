@@ -7,6 +7,7 @@ module EmployeesHelper
 <ul class="dropdown-menu">'
 
     output<< '<li>'
+    output<< link_to('All_informations', all_informations_path(format: 'pdf'))
     output<< link_to('PDF', employee_path(user, format: 'pdf'))
     output<<'</li>'
 
