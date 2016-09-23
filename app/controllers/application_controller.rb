@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   before_action :set_user
+  before_action :module_visible
   layout 'base'
 
 
@@ -26,6 +27,12 @@ class ApplicationController < ActionController::Base
     end
   rescue ActiveRecord::RecordNotFound
     render_404
+  end
+
+  def module_visible
+    if EnabledModule.where(name: params[:controller], status: false).present?
+      render_404
+    end
   end
 
   def authorize(ctrl = params[:controller], action = params[:action])

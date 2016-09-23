@@ -158,4 +158,8 @@ module ApplicationHelper
     end
   end
 
+  def module_enabled?(module_name)
+    EnabledModule.where(name: module_name).where(status: true).present?
+  end
+
 end

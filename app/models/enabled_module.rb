@@ -1,0 +1,2 @@
+class EnabledModule < ApplicationRecord
+end

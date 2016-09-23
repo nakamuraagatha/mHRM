@@ -14,6 +14,15 @@ class SettingsController < ApplicationController
     redirect_to settings_path
   end
 
+  def set_modules
+    ems = EnabledModule.pluck(:name)
+    rejected_modules = ems.reject{|em| params.has_key? em}
+    selected_modules = ems.select{|em| params.has_key? em}
+    EnabledModule.where(name: selected_modules).update_all({status: true})
+    EnabledModule.where(name: rejected_modules).update_all({status: false})
+    redirect_to settings_path
+  end
+
   private
 
   def setting_params

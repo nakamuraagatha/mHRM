@@ -1,6 +1,7 @@
 <div id="tabs">
   <ul>
-    <li><a id="link-tabs-emails" href="#tabs-home" >Home page</a></li>
+    <li><a id="link-tabs-general" href="#tabs-home" >Home page</a></li>
+    <li><a id="link-tabs-modules" href="#tabs-module">Module page</a></li>
   </ul>
   <div id='tabs-home' >
     <%= form_for(setting, url: settings_path, html: { method: 'post',  class: 'form-horizontal' }) do |f| %>
@@ -11,6 +12,23 @@
           </div>
         </div>
     <% end %>
+  </div>
+
+  <div id='tabs-module' >
+    <div class="row">
+      <%= form_tag(set_modules_settings_path, html: { method: 'post',  class: 'form-horizontal' }) do |f| %>
+          <% EnabledModule.order('name ASC').each do |em| %>
+              <div class="col-xs-12">
+                <%= check_box_tag em.name, em.status, em.status %> <%= em.name.to_s.gsub('_', ' ').capitalize %>
+              </div>
+          <% end %>
+          <div class="form-group margin-top-10" >
+            <div class="col-xs-12">
+              <%= submit_tag t('button_save'), class: 'btn btn-primary pull-right' %>
+            </div>
+          </div>
+      <% end %>
+    </div>
   </div>
 </div>
 <script>

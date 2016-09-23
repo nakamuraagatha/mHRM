@@ -79,5 +79,9 @@ Rails.application.routes.draw do
 
   resources :enumerations
   resources :roles
-  resources :settings, only: [:index, :create]
+  resources :settings, only: [:index, :create] do
+    collection do
+      post 'set_modules'
+    end
+  end
 end
