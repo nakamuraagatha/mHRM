@@ -3,6 +3,17 @@
 
 <table class="display  projects-table table  table-striped table-bordered table-hover" cellspacing="0" width="100%" id="users">
   <thead>
+  <tr id="users_input">
+    <th>#</th>
+    <th><%= t 'profile.first_name' %></th>
+    <th><%= t 'profile.middle_name' %></th>
+    <th><%= t 'profile.last_name' %></th>
+    <th><%= t 'profile.gender' %></th>
+    <th><%= t :email %></th>
+    <th><%= 'Active' %></th>
+    <td></td>
+  </tr>
+
   <tr>
     <th>#</th>
     <th><%= t 'profile.first_name' %></th>
@@ -37,16 +48,7 @@
 
   </tbody>
   <tfoot>
-  <tr>
-    <th>#</th>
-    <th><%= t 'profile.first_name' %></th>
-    <th><%= t 'profile.middle_name' %></th>
-    <th><%= t 'profile.last_name' %></th>
-    <th><%= t 'profile.gender' %></th>
-    <th><%= t :email %></th>
-    <th><%= 'Active' %></th>
-    <td></td>
-  </tr>
+
   </tfoot>
 </table>
 
@@ -70,14 +72,14 @@
 
     TableToolsInit.sPrintMessage = "Print header message!";
 
-    $('#users tfoot th').each( function () {
+    $('#users_input th').each( function () {
       var title = $(this).text();
       $(this).html( '<input type="text" placeholder="Search '+title+'" />' );
     } );
 
 
     table = $('#users').DataTable({ //Brtip
-      "bStateSave": true,
+//      "bStateSave": true,
       display: [[0, 'desc']],
       "bDestroy": true,
       "sDom": "<'dt-toolbar'" +
@@ -99,17 +101,11 @@
     });
 
     // Apply the search
-    table.columns().every( function () {
-      var that = this;
-
-      $( 'input', this.footer() ).on( 'keyup change', function () {
-        if ( that.search() !== this.value ) {
-          that
-              .search( this.value )
-              .draw();
-        }
-      } );
-    } );
-
+    $("#users thead input").on( 'keyup change', function () {
+      table
+          .column( $(this).parent().index()+':visible' )
+          .search( this.value )
+          .draw();
+    });
   } );
 </script>

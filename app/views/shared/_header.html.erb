@@ -49,6 +49,16 @@
     <div id="fullscreen" class="btn-header transparent pull-right">
       <span> <a href="javascript:void(0);" data-action="launchFullscreen" title="Full Screen"><i class="fa fa-arrows-alt"></i></a> </span>
     </div>
+
+    <div id="logout" class="btn-header transparent pull-right">
+      <span>
+        <% if user_signed_in? and session[:employee_id]%>
+            <%= link_to employee_path(User.current), title: "Log off from #{User.current.login}", :method => :delete do %>
+                    <i class="fa fa-times-circle"></i>
+            <% end %>
+        <% end %>
+      </span>
+    </div>
     <!-- end fullscreen button -->
 
     <!-- end voice command -->
