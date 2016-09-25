@@ -4,7 +4,6 @@ class ChecklistTemplate < ApplicationRecord
   accepts_nested_attributes_for :checklists, reject_if: :all_blank, allow_destroy: true
 
   has_many :checklist_answers, dependent: :destroy
-  accepts_nested_attributes_for :checklist_answers, reject_if: :all_blank, allow_destroy: true
 
   CHECKLIST_TYPE = ['', 'Task']
 

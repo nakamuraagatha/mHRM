@@ -1,0 +1,14 @@
+<section id="widget-grid" class="form_task_user">
+  <div class="row">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <%= render partial: 'form_survey_answer',
+                 layout: 'shared/smart_widget_wrapper',
+                 locals: {
+                     answer: @answer,
+                     url: edit_answer_survey_path(@survey, answer_id: @answer.id),
+                     wid_id: 'answer_form',
+                     wid_title: 'Edit Answer'
+                 } %>
+    </article>
+  </div>
+</section>

@@ -1,0 +1,56 @@
+<div class="col-xs-12 btn-edition">
+  <% if User.current.allowed_to?(:manage_roles) %>
+      <%= link_to 'Delete',  position_path(@survey), class: 'btn btn-danger pull-right',
+                  :method => :delete,
+                  :data => {:confirm => t(:text_are_you_sure)}
+      %>
+      <%= link_to 'Edit', edit_survey_path(@survey), class: 'btn btn-success pull-right' %>
+  <% elsif @survey.assigned_to == User.current %>
+
+  <% end %>
+  <%= link_to t('button_cancel'), surveys_path, class: 'btn btn-warning pull-right' %>
+</div>
+<p>
+  <strong>Survey type:</strong>
+  <%= @survey.survey_type %>
+</p>
+
+<p>
+  <strong>Question:</strong>
+  <%= @survey.question.html_safe %>
+</p>
+
+<p>
+  <strong>Assigned to:</strong>
+  <%= @survey.assigned_to %>
+</p>
+
+<p>
+  <strong>Due date:</strong>
+  <%= @survey.due_date %>
+</p>
+
+<p>
+  <strong>Date completed:</strong>
+  <%= @survey.date_completed %>
+</p>
+
+<% if User.current == @survey.assigned_to %>
+
+    <%= render 'answers' %>
+
+    <section id="widget-grid" class="form_task_user">
+      <div class="row">
+        <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <%= render partial: 'form_survey_answer',
+                     layout: 'shared/smart_widget_wrapper',
+                     locals: {
+                         answer: SurveyAnswer.new(survey_id: @survey.id, user_id: User.current ),
+                         url: answer_survey_path(@survey),
+                         wid_id: 'answer_form',
+                         wid_title: 'Add Answer'
+                     } %>
+        </article>
+      </div>
+    </section>
+<% end %>

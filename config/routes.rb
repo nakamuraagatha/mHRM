@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   get 'settings/edit'
   get 'home/index'
   root to: "home#index"
@@ -35,6 +36,15 @@ Rails.application.routes.draw do
   end
   resources :documents
 
+
+  resources :surveys do
+    member do
+      post   'answer'
+      get    'edit_answer'
+      post   'edit_answer'
+      delete 'delete_answer'
+    end
+  end
 
 
   # Routes For Admin

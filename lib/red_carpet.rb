@@ -111,6 +111,8 @@ RedCarpet::AccessControl.map do |map|
                                    :contacts => [:index,:new, :create, :edit, :update, :destroy],
                                    :document => [:index,:new, :create, :edit, :update, :destroy],
                                    :positions => [:index,:new, :create, :edit, :update, :destroy],
+                                   :surveys => [:index,:new, :create, :edit, :update, :destroy, :show],
+                                   :tasks => [:index,:new, :create, :edit, :update, :destroy],
 
 
     },  :read => true

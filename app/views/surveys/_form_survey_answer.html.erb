@@ -1,0 +1,19 @@
+<fieldset>
+  <legend></legend>
+  <%= form_for(answer, url: url, html: {method: 'post', class: 'form-horizontal' }) do |f| %>
+      <%= f.hidden_field :user_id %>
+
+      <div class="form-group">
+        <%= f.label t(:answer), class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.text_area :answer , class: 'form-control ckeditor' %>
+        </div>
+      </div>
+      <div class="form-group" >
+        <div class="col-md-11">
+          <%= f.submit t('button_save'), class: 'btn btn-primary pull-right' %>
+        </div>
+      </div>
+  <% end %>
+</fieldset>
+

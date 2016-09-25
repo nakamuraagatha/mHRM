@@ -11,53 +11,74 @@
   </li>
 
 
-  <% if User.current.admin? %>
-      <%= render partial: 'menu/admin' %>
-  <% elsif !User.current.allowed_to?(:manage_roles) or session[:employee_id] %>
-      <li class="<%= menu_active?('educations') %>">
-        <a href="<%= educations_path %>" title="<%= t(:educations) %>"><i class="fa fa-lg fa-fw fa-graduation-cap"></i> <span class="menu-item-parent"><%= t(:educations) %></span></a>
-      </li>
-
-      <li class="<%= menu_active?('languages') %>">
-        <a href="<%= languages_path %>" title="<%= t(:languages) %>"><i class="fa fa-lg fa-fw fa-language"></i> <span class="menu-item-parent"><%= t(:languages) %></span></a>
-      </li>
-
-      <li class="<%= menu_active?('other_skills') %>">
-        <a href="<%= other_skills_path %>" title="<%= t(:other_skills) %>"><i class="fa fa-lg fa-fw fa-plus"></i> <span class="menu-item-parent"><%= t(:other_skills) %></span></a>
-      </li>
-
-      <li class="<%= menu_active?('certifications') %>">
-        <a href="<%= certifications_path %>" title="<%= t(:certifications) %>"><i class="fa fa-lg fa-fw fa-certificate"></i> <span class="menu-item-parent"><%= t(:certifications) %></span></a>
-      </li>
-
-      <li class="<%= menu_active?('clearances') %>">
-        <a href="<%= clearances_path %>" title="<%= t(:clearences) %>"><i class="fa fa-lg fa-fw fa-eraser"></i> <span class="menu-item-parent"><%= t(:clearences) %></span></a>
-      </li>
-
-      <li class="<%= menu_active?('documents') %>">
-        <a href="<%= documents_path %>" title="<%= t(:documents) %>"><i class="fa fa-lg fa-fw fa-book"></i> <span class="menu-item-parent"><%= t(:documents) %></span></a>
-      </li>
-      <li class="<%= menu_active?('positions') %>">
-        <a href="<%= positions_path %>" title="<%= t(:positions) %>"><i class="fa fa-lg fa-fw fa-sort"></i> <span class="menu-item-parent"><%= t(:positions) %></span></a>
-      </li>
-
-      <li class="<%= menu_active?('contacts') %>">
-        <a href="<%= contacts_path %>" title="<%= t(:contacts) %>"><i class="fa fa-lg fa-fw fa-sitemap"></i> <span class="menu-item-parent"><%= t(:contacts) %></span></a>
-      </li>
-
-      <li class="<%= menu_active?('affiliations') %>">
-        <a href="<%= affiliations_path %>" title="<%= t(:affiliations) %>"><i class="fa fa-lg fa-fw fa-home"></i> <span class="menu-item-parent"><%= t(:affiliations) %></span></a>
-      </li>
-
-      <li class="<%= menu_active?('checklists') %>">
-        <a href="<%= checklist_templates_path %>" title="<%= t(:checklists) %>"><i class="fa fa-lg fa-fw fa-check"></i> <span class="menu-item-parent"><%= t(:checklists) %></span></a>
-      </li>
-
+  <% if !User.current.allowed_to?(:manage_roles) or session[:employee_id] %>
+      <% if module_enabled? 'educations' %>
+          <li class="<%= menu_active?('educations') %>">
+            <a href="<%= educations_path %>" title="<%= t(:educations) %>"><i class="fa fa-lg fa-fw fa-graduation-cap"></i> <span class="menu-item-parent"><%= t(:educations) %></span></a>
+          </li>
+      <% end %>
+      <% if module_enabled? 'languages' %>
+          <li class="<%= menu_active?('languages') %>">
+            <a href="<%= languages_path %>" title="<%= t(:languages) %>"><i class="fa fa-lg fa-fw fa-language"></i> <span class="menu-item-parent"><%= t(:languages) %></span></a>
+          </li>
+      <% end %>
+      <% if module_enabled? 'other_skills' %>
+          <li class="<%= menu_active?('other_skills') %>">
+            <a href="<%= other_skills_path %>" title="<%= t(:other_skills) %>"><i class="fa fa-lg fa-fw fa-plus"></i> <span class="menu-item-parent"><%= t(:other_skills) %></span></a>
+          </li>
+      <% end %>
+      <% if module_enabled? 'certifications' %>
+          <li class="<%= menu_active?('certifications') %>">
+            <a href="<%= certifications_path %>" title="<%= t(:certifications) %>"><i class="fa fa-lg fa-fw fa-certificate"></i> <span class="menu-item-parent"><%= t(:certifications) %></span></a>
+          </li>
+      <% end %>
+      <% if module_enabled? 'clearances' %>
+          <li class="<%= menu_active?('clearances') %>">
+            <a href="<%= clearances_path %>" title="<%= t(:clearences) %>"><i class="fa fa-lg fa-fw fa-eraser"></i> <span class="menu-item-parent"><%= t(:clearences) %></span></a>
+          </li>
+      <% end %>
+      <% if module_enabled? 'documents' %>
+          <li class="<%= menu_active?('documents') %>">
+            <a href="<%= documents_path %>" title="<%= t(:documents) %>"><i class="fa fa-lg fa-fw fa-book"></i> <span class="menu-item-parent"><%= t(:documents) %></span></a>
+          </li>
+      <% end %>
+      <% if module_enabled? 'positions' %>
+          <li class="<%= menu_active?('positions') %>">
+            <a href="<%= positions_path %>" title="<%= t(:positions) %>"><i class="fa fa-lg fa-fw fa-sort"></i> <span class="menu-item-parent"><%= t(:positions) %></span></a>
+          </li>
+      <% end %>
+      <% if module_enabled? 'contacts' %>
+          <li class="<%= menu_active?('contacts') %>">
+            <a href="<%= contacts_path %>" title="<%= t(:contacts) %>"><i class="fa fa-lg fa-fw fa-sitemap"></i> <span class="menu-item-parent"><%= t(:contacts) %></span></a>
+          </li>
+      <% end %>
+      <% if module_enabled? 'affiliations' %>
+          <li class="<%= menu_active?('affiliations') %>">
+            <a href="<%= affiliations_path %>" title="<%= t(:affiliations) %>"><i class="fa fa-lg fa-fw fa-home"></i> <span class="menu-item-parent"><%= t(:affiliations) %></span></a>
+          </li>
+      <% end %>
+      <% if module_enabled? 'checklists' %>
+          <li class="<%= menu_active?('checklists') %>">
+            <a href="<%= checklist_templates_path %>" title="<%= t(:checklists) %>"><i class="fa fa-lg fa-fw fa-check"></i> <span class="menu-item-parent"><%= t(:checklists) %></span></a>
+          </li>
+      <% end %>
   <% end %>
 
   <% if module_enabled? 'tasks' %>
       <li class="<%= menu_active?('tasks') %>">
-          <a href="<%= tasks_path %>" title="<%= t :tasks %>"><i class="fa fa-lg fa-fw fa-tasks"></i> <span class="menu-item-parent"><%= t(:tasks) %></span></a>
+        <a href="<%= tasks_path %>" title="<%= t :tasks %>"><i class="fa fa-lg fa-fw fa-tasks"></i> <span class="menu-item-parent"><%= t(:tasks) %></span></a>
       </li>
   <% end %>
+
+  <% if module_enabled? 'surveys' %>
+      <li class="<%= menu_active?('surveys') %>">
+        <a href="<%= surveys_path %>" title="<%= t(:surveys) %>"><i class="fa fa-lg fa-fw fa-question"></i> <span class="menu-item-parent"><%= t(:surveys) %></span></a>
+      </li>
+  <% end %>
+
+  <% if User.current.admin? %>
+      <%= render partial: 'menu/admin' %>
+  <% end %>
+
+
 </ul>

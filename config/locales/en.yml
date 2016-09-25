@@ -149,6 +149,7 @@ en:
   enumeration_ethnicity_type: Ethnicity enumeration
   enumeration_fax_type: Fax enumeration
   enumeration_gender_type: Gender enumeration
+  enumeration_survey_type: Survey enumeration
   enumeration_identification_type: Identification enumeration
   enumeration_location_type: Location enumeration
   enumeration_language_type: Language enumeration
@@ -185,6 +186,7 @@ en:
   proficiency: Proficiency
   language_type: Language Type
   language: Language
+  answer: Answer
   pay_rate: Pay rate
   employment_type: Employment type
   salary: Pay
@@ -215,6 +217,8 @@ en:
   checklists: Checklists
   contacts: Contacts
   description: Description
+  question: Question
+  surveys: Surveys
   title: Title
   task: Task
   tasks: Tasks
