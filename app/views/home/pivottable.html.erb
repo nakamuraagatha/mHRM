@@ -1,0 +1,31 @@
+<div id="output">
+
+</div>
+<%= javascript_include_tag 'smart_admin/pivottable.js' %>
+<script>
+  $(function(){
+    $("#output").pivotUI(
+        [
+          <% User.all.each do |user| %>
+          {
+            user: "<%= user.login %>",
+            assigned_tasks: <%= user.assigned_tasks.count %>,
+            affiliations: <%= user.affiliations.count %>,
+            certifications: <%= user.certifications.count %>,
+            contacts: <%= user.contacts.count %>,
+            clearances: <%= user.clearances.count %>,
+            positions: <%= user.positions.count %>,
+            languages: <%= user.languages.count %>,
+            skills: <%= user.other_skills.count %>,
+            educations: <%= user.educations.count %>,
+            documents: <%= user.documents.count %>
+          },
+          <% end %>
+        ],
+        {
+          rows: ["user"],
+          cols: ["assigned_tasks"]
+        }
+    );
+  });
+</script>

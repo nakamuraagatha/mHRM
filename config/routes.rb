@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   root to: "home#index"
   get 'home/all_informations', as: 'all_informations'
 
+  get 'home/pivottable'
+
   devise_for :users, :controllers => { omniauth_callbacks: 'callbacks' }
 
   # Routes For Normal users

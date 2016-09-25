@@ -22,5 +22,6 @@
   *= require smartadmin-rtl.min.css
   *= require dataTables/jquery.dataTables
   *= require buttons.dataTables.min
+  *= require pivot
   *= require style.css
  */

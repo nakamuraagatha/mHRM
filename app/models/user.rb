@@ -28,6 +28,8 @@ class User < ApplicationRecord
   has_many :organizations
   has_many :departments
   has_many :positions
+  has_many :tasks
+  has_many :assigned_tasks, class_name: 'Task', foreign_key: :assigned_to_id
 
 
   has_many :checklist_answers
@@ -233,6 +235,10 @@ class User < ApplicationRecord
   def to_pdf_brief_info(pdf)
     pdf.text "User: #{name}  #{birthday}  #{gender} #{active?}", :inline_format =>  true
     pdf.move_down 10
+  end
+
+  def pivot_table
+    {}
   end
 
   mount_uploader :avatar, AvatarUploader

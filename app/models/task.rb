@@ -13,6 +13,8 @@ class Task < ApplicationRecord
 
 
   after_save :send_notification
+
+
   def send_notification
     UserMailer.task_notification(self).deliver_now
   end
@@ -23,6 +25,10 @@ class Task < ApplicationRecord
     else
       PriorityType.default
     end
+  end
+
+  def to_s
+    task_type
   end
 
   def task_type
