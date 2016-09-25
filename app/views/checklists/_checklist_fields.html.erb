@@ -1,0 +1,15 @@
+<div class="nested-fields row margin-top-5">
+  <fieldset>
+    <div class="col-xs-2">
+      <%#= f.check_box :status %>
+    </div>
+    <div class="col-xs-6">
+      <%= f.text_field :description, class: 'form-control', placeholder: t(:description) %>
+    </div>
+
+   <div class="col-xs-1">
+     <%= link_to_remove_association "<i class='fa fa-trash-o'></i>".html_safe, f, class: 'btn btn-danger pull-right' %>
+   </div>
+
+  </fieldset>
+</div>

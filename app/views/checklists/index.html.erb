@@ -1,0 +1,36 @@
+
+<h1>Checklists</h1>
+<%= link_to( 'New checklist', new_checklist_template_path, class: 'btn btn-primary pull-right margin-bottom-10')%>
+<table class="table table-responsive table-bordered">
+  <thead>
+  <tr>
+    <th>checklist type</th>
+    <th>Number of checklist</th>
+    <th colspan="3"></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% if @checklists.any? %>
+      <% @checklists.each do |checklist_template| %>
+          <tr>
+            <td><%= checklist_template.checklist_type %></td>
+            <td><%= checklist_template.checklists.count %></td>
+
+            <% if User.current.admin? %>
+                <td><%= edit_link edit_checklist_template_path(checklist_template) %></td>
+            <% else %>
+                <td><%= show_link checklist_template_path(checklist_template) %></td>
+            <% end %>
+            <td><%= delete_link checklist_template %></td>
+          </tr>
+      <% end %>
+  <% else %>
+      <tr align="center">
+        <td colspan="11"><%= t('label_no_data') %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<%= will_paginate @checklists, renderer: BootstrapPagination::Rails %>

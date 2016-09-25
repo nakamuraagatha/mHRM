@@ -48,6 +48,11 @@
       <li class="<%= menu_active?('affiliations') %>">
         <a href="<%= affiliations_path %>" title="<%= t(:affiliations) %>"><i class="fa fa-lg fa-fw fa-home"></i> <span class="menu-item-parent"><%= t(:affiliations) %></span></a>
       </li>
+
+      <li class="<%= menu_active?('checklists') %>">
+        <a href="<%= checklist_templates_path %>" title="<%= t(:checklists) %>"><i class="fa fa-lg fa-fw fa-check"></i> <span class="menu-item-parent"><%= t(:checklists) %></span></a>
+      </li>
+
   <% end %>
 
   <% if module_enabled? 'tasks' %>

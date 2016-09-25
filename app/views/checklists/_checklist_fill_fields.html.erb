@@ -1,0 +1,18 @@
+<% checklist_answer = ChecklistAnswer.where(checklist_id: checklist.id, user_id: User.current.id).first_or_initialize %>
+    <div class="nested-fields row margin-top-5">
+      <fieldset>
+        <div class="col-xs-1">
+          <%= check_box_tag "checklist_answer_#{index}_status", checklist_answer.status, checklist_answer.status, name: "checklist_answer[#{index}][status]" %>
+        </div>
+        <div class="col-xs-6">
+          <%= checklist.description %>
+        </div>
+
+        <div class="col-xs-3">
+          <%= text_field_tag "checklist_answer_#{index}_due_date", checklist_answer.due_date,  name: "checklist_answer[#{index}][due_date]", class: 'form-control date_picker', placeholder: 'Due Date' %>
+          <%= hidden_field_tag "checklist_answer_#{index}_user_id", User.current.id, name: "checklist_answer[#{index}][user_id]" %>
+          <%= hidden_field_tag "checklist_answer_#{index}_checklist_id", checklist.id, name: "checklist_answer[#{index}][checklist_id]" %>
+          <%= hidden_field_tag "checklist_answer_#{index}_checklist_template_id", checklist_template_id, name: "checklist_answer[#{index}][checklist_template_id]" %>
+        </div>
+      </fieldset>
+    </div>

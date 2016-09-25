@@ -29,6 +29,9 @@ class User < ApplicationRecord
   has_many :departments
   has_many :positions
 
+
+  has_many :checklist_answers
+
   after_update :check_status
 
   validates_uniqueness_of :login, :email
@@ -87,6 +90,10 @@ class User < ApplicationRecord
 
   def self.current
     RequestStore.store[:current_user] ||= User.new
+  end
+
+  def checklist_template_answers(template_id)
+    checklist_answers.where(checklist_template_id: template_id)
   end
 
   def extend_informations

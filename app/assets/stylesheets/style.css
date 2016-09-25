@@ -36,3 +36,7 @@ label, legend, .jarviswidget header h2 strong, a{
 .btn {
     margin-left: 10px;
 }
+
+.display_block{
+    display: block;
+}

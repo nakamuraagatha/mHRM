@@ -73,6 +73,7 @@ gem "cocoon"
 gem 'simple_form'
 gem "request_store"
 gem 'will_paginate'
+gem 'will_paginate-bootstrap'
 gem 'jquery-datatables-rails'
 gem 'ajax-datatables-rails'
 gem 'ckeditor_rails'

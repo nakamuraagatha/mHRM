@@ -1,6 +1,6 @@
 <li>
-  <a href="#"><i class="fa fa-lg fa-fw fa-gears"></i> <span class="menu-item-parent">Administration</span></a>
-  <ul style="display: block;">
+  <a href="#" id="ul_menu"><i class="fa fa-lg fa-fw fa-gears"></i> <span class="menu-item-parent">Administration</span></a>
+  <ul id="admin_menu">
     <li>
       <%= link_to "Users", users_path %>
     </li>
@@ -15,6 +15,9 @@
     </li>
     <li>
       <a href="<%= departments_path %>" title="<%= t(:departments) %>"><span class="menu-item-parent"><%= t(:departments) %></span></a>
+    </li>
+   <li>
+      <a href="<%= checklist_templates_path %>" title="<%= t(:checklists) %>"><span class="menu-item-parent"><%= t(:checklists) %></span></a>
     </li>
     <li>
       <%= link_to "Setting", settings_path %>

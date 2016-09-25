@@ -1,0 +1,43 @@
+<fieldset>
+  <legend>Checklist Templates</legend>
+  <%= simple_form_for(checklist, html: { class: 'form-horizontal' }) do |f| %>
+      <% data = checklist
+         if data.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(data.errors.count, "error") %> :</h2>
+
+            <ul>
+              <% data.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+      <% end %>
+      <%= f.hidden_field :user_id %>
+
+      <div class="form-group">
+        <%= f.label 'Checklist type', class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.select :checklist_type, options_for_select(ChecklistTemplate::CHECKLIST_TYPE, selected: f.object.checklist_type),{}, {class: 'form-control'} %>
+        </div>
+      </div>
+
+
+      <div id='checklists' >
+        <%= f.simple_fields_for :checklists do |checklist| %>
+            <%= render 'checklist_fields', :f => checklist %>
+        <% end %>
+
+        <div id="s" class="col-xs-11 margin-top-10" style="padding-right: 2px;" >
+          <%= link_to_add_association 'add checklist', f, :checklists, class: 'btn btn-success pull-left col-xs-4 col-sm-2 col-md-2' %>
+        </div>
+      </div>
+
+      <div class="form-group" >
+        <div class="col-md-11">
+          <%= link_to t('button_cancel'), checklist_templates_path, class: 'btn btn-warning pull-right' %>
+          <%= f.submit t('button_save'), class: 'btn btn-primary pull-right' %>
+        </div>
+      </div>
+  <% end %>
+</fieldset>

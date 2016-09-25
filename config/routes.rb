@@ -38,6 +38,11 @@ Rails.application.routes.draw do
 
 
   # Routes For Admin
+  resources :checklist_templates, controller: :checklists do
+    member do
+      match 'save', via: [:patch, :put, :post]
+    end
+  end
   resources :users, only: [:index, :show, :destroy] do
     member do
       put 'change_password'
