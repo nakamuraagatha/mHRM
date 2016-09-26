@@ -3,7 +3,7 @@ class ChecklistsController < ApplicationController
   before_action :set_checklist_template, only: [:show, :edit, :update, :destroy, :save]
 
   before_action :require_admin, except: [:index, :show, :save] # ...
-  before_action :authorize, only: [:index, :show, :save]
+  # before_action :authorize, only: [:index, :show, :save]
   
   def index
     @checklists = ChecklistTemplate.order('id DESC').paginate(page: params[:page], per_page: 25)
