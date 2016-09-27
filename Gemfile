@@ -81,7 +81,7 @@ gem "recaptcha", require: "recaptcha/rails"
 gem "paranoia", "~> 2.2.0.pre"
 gem "figaro"
 gem 'prawn-rails'
-# gem "survey", "~> 0.1"
+gem "survey", github: 'dierbro/survey'
 
 #installing adapter gems based on database.yml
 require 'erb'

@@ -1,62 +1,61 @@
-<fieldset>
-  <legend>Survey</legend>
-  <%= form_for(survey, html: { class: 'form-horizontal' }) do |f| %>
-      <% if survey.errors.any? %>
-          <div id="error_explanation">
-            <h2><%= pluralize(survey.errors.count, "error") %> prohibited this survey from being saved:</h2>
+<%= form_for(@survey, :url => survey_scope(@survey)) do |f| %>
 
-            <ul>
-              <% survey.errors.full_messages.each do |message| %>
-                  <li><%= message %></li>
-              <% end %>
-            </ul>
-          </div>
+  <% if f.object.errors.messages.any? %>
+    <ul>
+      <% f.object.errors.messages.each_pair do |field, msg| %>
+        <li>
+          <%= "#{field} - #{msg}" %>
+        </li>
+      <% end -%>
+    </ul>
+  <% end -%>
+
+  <div class="field">
+    <%= f.label :name %> <br />
+    <%= f.text_field :name %> <br />
+    <%= f.label :attempts_number %> <br />
+    <%= f.text_field :attempts_number %> <br />
+    <%= f.label :active %> <br />
+    <%= f.select :active, ["true", "false"] %>
+  </div>
+
+  <div class="field">
+    <%= f.label :description %> <br />
+    <%= f.text_area :description, :size => "100x5" %> <br />
+  </div>
+
+  <br/ >
+
+  <div class="field">
+    <ul>
+      <%= f.fields_for :questions do |builder| %>
+          <%= render "question_fields", :f => builder %>
       <% end %>
+    </ul>
+    <br/ >
+    <%= link_to_add_field "Add a new Question", f, :questions %>
+  </div>
 
+  <br/ >
 
-      <%= f.hidden_field :user_id %>
+  <div class="field">
+    <%= f.submit %>
+  </div>
+<% end -%>
 
-      <div class="form-group">
-        <%= f.label 'Assign to', class: 'col-md-2 control-label' %>
-        <div class="col-md-9">
-          <%= f.select :assigned_to_id, options_for_select(current_user.visible.map{|user| [user.name, user.id]}.insert(0, ''), selected: f.object.assigned_to_id) , {}, {class: 'col-xs-12 use_select2', style: 'padding: 0' } %>
-        </div>
-      </div>
+<script type="text/javascript">
+  // remove attachment field
+  function removeField(link) {
+    $(link).prev("input[type=hidden]").val("true");
+    tag = $(link).closest("li")
+    tag.hide("fade in").addClass("deleted");
+  }
 
-      <div class="form-group">
-        <%= f.label :survey_type , class: 'col-md-2 control-label' %>
-        <div class="col-md-9">
-          <%= f.select :survey_type_id, options_for_select(SurveyType.active.pluck(:name, :id), selected: f.object.survey_type.try(:id)), {} , {class: 'form-control'} %>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <%= f.label t(:question), class: 'col-md-2 control-label' %>
-        <div class="col-md-9">
-          <%= f.text_area :question , class: 'form-control ckeditor' %>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <%= f.label :due_date , class: 'col-md-2 control-label' %>
-        <div class="col-md-9">
-          <%= f.text_field :due_date , class: 'form-control date_picker' %>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <%= f.label :date_completed , class: 'col-md-2 control-label' %>
-        <div class="col-md-9">
-          <%= f.text_field :date_completed , class: 'form-control date_picker' %>
-        </div>
-      </div>
-
-      <div class="form-group" >
-        <div class="col-md-11">
-          <%= link_to t('button_cancel'), surveys_path, class: 'btn btn-warning pull-right' %>
-          <%= f.submit t('button_save'), class: 'btn btn-primary pull-right' %>
-        </div>
-      </div>
-  <% end %>
-</fieldset>
-
+  // add attachment field
+  function addField(link, association, content) {
+    var new_id = new Date().getTime();
+    var regexp = new RegExp("new_" + association, "g");
+    var html = $(content.replace(regexp, new_id)).hide();
+    html.appendTo($(link).closest("div.field").find("ul").first()).slideDown("slow");
+  }
+</script>
