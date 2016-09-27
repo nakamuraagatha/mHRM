@@ -1,0 +1,27 @@
+<%= render partial: 'action_menu' %>
+<div id="output">
+
+</div>
+<%= javascript_include_tag 'smart_admin/pivottable.js' %>
+<% if params[:for_table] %>
+    <script>
+      $(function(){
+        $("#output").pivotUI(
+            [
+              <% render_pivot_information(params[:for_table]).each do |hash| %>
+              {
+                 <% hash.each do |k, v| %>
+                   '<%= k %>': '<%= v %>',
+                <% end %>
+              },
+              <% end %>
+           ],
+        {
+          rows: ["user"],
+              cols: ["task_type"]
+        }
+        );
+      });
+    </script>
+
+<% end %>

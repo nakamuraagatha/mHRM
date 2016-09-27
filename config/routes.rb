@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'pivot_table/index'
+
   get 'settings/edit'
   get 'home/index'
   root to: "home#index"

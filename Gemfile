@@ -81,8 +81,9 @@ gem "recaptcha", require: "recaptcha/rails"
 gem "paranoia", "~> 2.2.0.pre"
 gem "figaro"
 gem 'prawn-rails'
-#installing adapter gems based on database.yml
+# gem "survey", "~> 0.1"
 
+#installing adapter gems based on database.yml
 require 'erb'
 require 'yaml'
 database_file = File.join(File.dirname(__FILE__), "config/database.yml")
