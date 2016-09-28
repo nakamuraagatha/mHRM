@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :attempts, :only => [:new, :create]
+  resources :attempts, :only => [:new, :create, :index]
   get 'pivot_table/index'
 
   get 'settings/edit'

@@ -162,4 +162,52 @@ module ApplicationHelper
     EnabledModule.where(name: module_name).where(status: true).present?
   end
 
+  def the_chosen_one?( answer, option)
+    if answer.option_id == option.id then 'chosen' else nil end
+  end
+
+  def get_color_of_option( answer, option)
+    if is_quiz?(answer.question.survey.survey_type)
+      if option.correct
+        'bg-success'
+      elsif the_chosen_one?(answer, option)
+        'bg-danger'
+      end
+    elsif is_score?(answer.question.survey.survey_type)
+      get_weight_html_class option
+    end
+  end
+
+  def get_survey_types
+    { 0 => 'quiz',
+      1 => 'score',
+      2 => 'poll' }
+  end
+
+  def is_quiz? something
+    something == 0 || something == 'quiz'
+  end
+
+  def is_score? something
+    something == 1 || something == 'score'
+  end
+
+  def is_poll? something
+    something == 2 || something == 'poll'
+  end
+
+  def get_weight option
+    return unless is_score?(option.question.survey.survey_type)
+    option.weight > 0 ? "(+#{option.weight})" : "(#{option.weight})"
+  end
+
+  def number_of_people_who_also_answered option_id
+    count = number_of_people_who_also_answered_count(option_id)
+    "<span class='number'> #{count} </span> #{'answer'.pluralize}".html_safe
+  end
+
+  def number_of_people_who_also_answered_count option_id
+    Survey::Answer.where(option_id: option_id).count
+  end
+
 end

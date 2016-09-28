@@ -40,3 +40,7 @@ label, legend, .jarviswidget header h2 strong, a{
 .display_block{
     display: block;
 }
+
+.chosen{
+    background-color: greenyellow;
+}

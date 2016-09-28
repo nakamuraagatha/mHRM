@@ -17,10 +17,11 @@
             <td><%= survey.name %></td>
             <td><%= survey.survey_type %></td>
             <td><%= survey.assigned_to %></td>
-            <td><% if survey.assigned_to == User.current %>
-                  <%= link_to 'New attempt', new_attempt_path(survey_id: survey.id) %>
-                  <% end %>
-                  </td>
+            <% if survey.assigned_to == User.current %>
+                <td><%= link_to 'New attempt', new_attempt_path(survey_id: survey.id) %> </td>
+                <td><%= link_to 'Show attempts', attempts_path(survey_id: survey.id) %> </td>
+            <% end %>
+
             <% if User.current.allowed_to?(:manage_roles) %>
                 <td><%= edit_link edit_survey_path survey %></td>
 

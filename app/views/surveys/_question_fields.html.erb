@@ -1,4 +1,4 @@
-<li>
+<div class="col-md-12">
   <legend>Question</legend>
   <div class="field">
     <div class="form-group">
@@ -8,13 +8,13 @@
       </div>
     </div>
 
-    <ul class="options">
-      <%= f.fields_for :options do |builder| %>
-          <%= render "option_fields", :f => builder %>
-      <% end -%>
-    </ul>
-    <%= link_to_add_field "Add a new Option", f, :options %>
 
-    <%= link_to_remove_field "Remove Question", f %>
+    <%= f.fields_for :options do |builder| %>
+        <%= render "option_fields", :f => builder %>
+    <% end -%>
+    <div class="options">
+      <%= link_to_add_association "Add a new Option", f, :options,  class: 'btn btn-success' %>
+    </div>
+    <%= link_to_remove_association "Remove Question", f, class: 'btn btn-warning pull-right' %>
   </div>
-</li>
+</div>

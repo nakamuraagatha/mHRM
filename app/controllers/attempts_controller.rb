@@ -2,8 +2,12 @@ class AttemptsController < ApplicationController
 
   helper 'surveys'
 
-  before_filter :load_active_survey
+  before_filter :load_active_survey, only: [:new, :create, :index]
   before_filter :normalize_attempts_data, :only => :create
+
+  def index
+    @attempts = @survey.attempts.where(participant_type: 'User', participant_id: User.current)
+  end
 
   def new
     @participant = User.current # you have to decide what to do here
@@ -25,10 +29,16 @@ class AttemptsController < ApplicationController
     end
   end
 
+  def show
+
+  end
+
   private
 
   def load_active_survey
     @survey =  Survey::Survey.find(params[:survey_id])
+  rescue ActiveRecord::RecordNotFound
+    render_404
   end
 
   def normalize_attempts_data
