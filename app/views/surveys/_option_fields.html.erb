@@ -1,9 +1,17 @@
-<li>
-  <div class="field">
-    <%= f.label :text %> <br/ >
-    <%= f.text_field :text %>
-    <%= f.check_box :correct %>
-    <%= f.label :correct %>
-    <%= link_to_remove_field "Remove", f %>
+<div class="nested-fields row">
+
+<div class="form-group">
+  <%= f.label 'Text', class: 'col-md-2 control-label' %>
+  <div class="col-md-5">
+    <%= f.text_field :text, class: 'form-control' %>
   </div>
-</li>
+  <div class="col-md-4">
+    <%= f.label :correct, class: 'col-md-2 control-label' %>
+    <div class="col-md-9">
+      <%= f.check_box :correct %>
+      <%= link_to_remove_association "<i class='fa fa-trash-o'></i>".html_safe , f, class: 'btn btn-danger' %>
+    </div>
+  </div>
+</div>
+
+</div>

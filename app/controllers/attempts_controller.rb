@@ -6,7 +6,7 @@ class AttemptsController < ApplicationController
   before_filter :normalize_attempts_data, :only => :create
 
   def new
-    @participant = current_user # you have to decide what to do here
+    @participant = User.current # you have to decide what to do here
 
     unless @survey.nil?
       @attempt = @survey.attempts.new
@@ -16,10 +16,10 @@ class AttemptsController < ApplicationController
 
   def create
     @attempt = @survey.attempts.new(attempt_params)
-    @attempt.participant = current_user
+    @attempt.participant =  User.current
 
     if @attempt.valid? && @attempt.save
-      redirect_to view_context.new_attempt, alert: I18n.t("attempts_controller.#{action_name}")
+      redirect_to view_context.new_attempt(survey_id: @survey.id), alert: I18n.t("attempts_controller.#{action_name}")
     else
       render :action => :new
     end
@@ -28,7 +28,7 @@ class AttemptsController < ApplicationController
   private
 
   def load_active_survey
-    @survey =  Survey::Survey.active.first
+    @survey =  Survey::Survey.find(params[:survey_id])
   end
 
   def normalize_attempts_data

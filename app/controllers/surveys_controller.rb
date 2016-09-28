@@ -3,7 +3,12 @@ class SurveysController < ApplicationController
   before_filter :load_survey, :only => [:show, :edit, :update]
 
   def index
-    @surveys = Survey::Survey.all
+    if User.current.allowed_to?(:manage_roles)
+      @surveys = Survey::Survey.order('id DESC').paginate(page: params[:page], per_page: 25)
+    else
+      @surveys = Survey::Survey.where(assigned_to_id: User.current.id ).order('id DESC').paginate(page: params[:page], per_page: 25)
+    end
+
   end
 
   def new

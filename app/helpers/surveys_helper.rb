@@ -20,8 +20,8 @@ module SurveysHelper
     end
   end
 
-  def new_attempt
-    new_attempt_path
+  def new_attempt(params= {})
+    new_attempt_path(params)
   end
 
   def attempt_scope(resource)
