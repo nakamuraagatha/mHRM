@@ -12,6 +12,7 @@
     <th><%= t :email %></th>
     <th><%= 'Active' %></th>
     <td></td>
+    <td></td>
   </tr>
 
   <tr>
@@ -23,6 +24,7 @@
     <th><%= t :email %></th>
     <th><%= 'Active' %></th>
     <th></th>
+    <th></th>
   </tr>
   </thead>
 
@@ -30,14 +32,15 @@
   <% if @users.any? %>
       <% @users.each do |user| %>
           <tr>
-            <td><%= link_to user.id, log_in_employee_path(user) %></td>
+            <td><%= user.id %></td>
             <td><%= user.first_name %></td>
             <td><%= user.middle_name %></td>
             <td><%= user.last_name %></td>
             <td><%= user.gender %></td>
             <td><%= user.email %></td>
             <td><%= user.active? %></td>
-            <td><%= render_action_link(user) %></td>
+            <td><%= link_to 'Show', log_in_employee_path(user), class: 'btn btn-primary' %></td>
+            <td><%= link_to('<i class="fa fa-download"></i>'.html_safe, all_informations_path(format: 'pdf')) %></td>
           </tr>
       <% end %>
   <% else %>
