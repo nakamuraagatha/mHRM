@@ -56,6 +56,10 @@ Rails.application.routes.draw do
     member do
       match 'save', via: [:patch, :put, :post]
     end
+    collection do
+      get 'new_assign'
+      post 'new_assign'
+    end
   end
   resources :users, only: [:index, :show, :destroy] do
     member do

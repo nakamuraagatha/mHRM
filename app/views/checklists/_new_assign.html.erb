@@ -1,0 +1,34 @@
+<fieldset>
+  <legend>Checklist Templates</legend>
+  <%= simple_form_for(checklist, url: new_assign_checklist_templates_path, html: {method: 'post', class: 'form-horizontal' }) do |f| %>
+      <% data = checklist
+         if data.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(data.errors.count, "error") %> :</h2>
+
+            <ul>
+              <% data.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+      <% end %>
+      <%= f.hidden_field :assigned_to_id %>
+
+
+      <div class="form-group">
+        <%= f.label 'Checklist', class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.select :checklist_template_id, options_for_select(@checklists.map{|c| [c.title, c.id]  }, selected: f.object.checklist_template_id),{}, {class: 'form-control'} %>
+        </div>
+      </div>
+
+
+      <div class="form-group" >
+        <div class="col-md-11">
+          <%= link_to t('button_cancel'), checklist_templates_path, class: 'btn btn-warning pull-right' %>
+          <%= f.submit t('button_save'), class: 'btn btn-primary pull-right' %>
+        </div>
+      </div>
+  <% end %>
+</fieldset>

@@ -25,6 +25,11 @@
     <li>
       <%= link_to "Setting", settings_path %>
     </li>
+    <% if module_enabled? 'surveys' %>
+        <li class="<%= menu_active?('surveys') %>">
+          <a href="<%= surveys_path %>" title="<%= t(:surveys) %>"><span class="menu-item-parent"><%= t(:surveys) %></span></a>
+        </li>
+    <% end %>
 
   </ul>
 </li>

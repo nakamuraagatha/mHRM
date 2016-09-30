@@ -64,15 +64,9 @@
       <% end %>
   <% end %>
 
-  <% if module_enabled? 'tasks' %>
+  <% if false && module_enabled?( 'tasks') %>
       <li class="<%= menu_active?('tasks') %>">
         <a href="<%= tasks_path %>" title="<%= t :tasks %>"><i class="fa fa-lg fa-fw fa-tasks"></i> <span class="menu-item-parent"><%= t(:tasks) %></span></a>
-      </li>
-  <% end %>
-
-  <% if module_enabled? 'surveys' %>
-      <li class="<%= menu_active?('surveys') %>">
-        <a href="<%= surveys_path %>" title="<%= t(:surveys) %>"><i class="fa fa-lg fa-fw fa-question"></i> <span class="menu-item-parent"><%= t(:surveys) %></span></a>
       </li>
   <% end %>
 

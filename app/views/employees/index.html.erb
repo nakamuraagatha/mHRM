@@ -32,14 +32,13 @@
   <% if @users.any? %>
       <% @users.each do |user| %>
           <tr>
-            <td><%= user.id %></td>
-            <td><%= user.first_name %></td>
+            <td><%= link_to user.id, log_in_employee_path(user) %></td>
+            <td><%= link_to user.first_name.to_s, log_in_employee_path(user)  %></td>
             <td><%= user.middle_name %></td>
             <td><%= user.last_name %></td>
             <td><%= user.gender %></td>
             <td><%= user.email %></td>
             <td><%= user.active? %></td>
-            <td><%= link_to 'Show', log_in_employee_path(user), class: 'btn btn-primary' %></td>
             <td><%= link_to('<i class="fa fa-download"></i>'.html_safe, all_informations_path(format: 'pdf')) %></td>
           </tr>
       <% end %>

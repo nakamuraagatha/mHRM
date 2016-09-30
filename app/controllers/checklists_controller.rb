@@ -2,15 +2,37 @@ class ChecklistsController < ApplicationController
   before_action  :authenticate_user!
   before_action :set_checklist_template, only: [:show, :edit, :update, :destroy, :save]
 
-  before_action :require_admin, except: [:index, :show, :save] # ...
+  before_action :require_admin, except: [:index, :show, :save, :new_assign] # ...
   # before_action :authorize, only: [:index, :show, :save]
-  
+
   def index
-    @checklists = ChecklistTemplate.order('id DESC').paginate(page: params[:page], per_page: 25)
+    if User.current.admin?
+      @checklists = ChecklistTemplate.order('id DESC').paginate(page: params[:page], per_page: 25)
+
+    else
+      @checklists = ChecklistTemplate.joins(:checklist_users).
+          where("#{ChecklistUser.table_name}.assigned_to_id = ? ", User.current.id).order('id DESC').paginate(page: params[:page], per_page: 25)
+    end
   end
-  
+
+  def new_assign
+    if request.post?
+      @checklist = ChecklistUser.new(params.require(:checklist_user).permit!)
+
+      if @checklist.save
+        redirect_to checklist_templates_path
+      else
+        @checklists = ChecklistTemplate.order('title ASC') - ChecklistUser.where(assigned_to_id: User.current.id).map(&:checklist_template)
+      end
+    else
+      @checklists = ChecklistTemplate.order('title ASC') - ChecklistUser.where(assigned_to_id: User.current.id).map(&:checklist_template)
+      @checklist = ChecklistUser.new(assigned_to_id: User.current.id)
+
+    end
+  end
+
   def show
-    
+
   end
 
   def save
@@ -68,7 +90,7 @@ class ChecklistsController < ApplicationController
       format.json { head :no_content }
     end
   end
-  
+
   private
 
   # Use callbacks to share common setup or constraints between actions.
@@ -87,5 +109,5 @@ class ChecklistsController < ApplicationController
     params[:checklist_template][:checklist_answers_attributes] = params[:checklist_template][:checklists_attributes]
     params.require(:checklist_template).permit(ChecklistTemplate.safe_attributes_with_save)
   end
-  
+
 end
