@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161001170640) do
+ActiveRecord::Schema.define(version: 20161001203427) do
 
   create_table "addresses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.integer  "address_type_id"
@@ -53,9 +53,13 @@ ActiveRecord::Schema.define(version: 20161001170640) do
     t.date     "date_due"
     t.date     "date_completed"
     t.integer  "assigned_to_id"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
     t.integer  "subcase_id"
+    t.text     "note",                limit: 65535
+    t.integer  "case_status_type_id"
+    t.integer  "case_category_id"
+    t.text     "description",         limit: 65535
   end
 
   create_table "certifications", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
@@ -477,6 +481,7 @@ ActiveRecord::Schema.define(version: 20161001170640) do
     t.integer  "assigned_to_id"
     t.integer  "for_individual_id"
     t.integer  "task_status_type_id"
+    t.integer  "sub_task_id"
     t.index ["user_id"], name: "index_tasks_on_user_id", using: :btree
   end
 

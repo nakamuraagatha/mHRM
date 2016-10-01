@@ -7,6 +7,8 @@ class Case < ApplicationRecord
 
   has_many :sub_cases, foreign_key: :subcase_id, class_name: 'Case'
 
+  scope :root, -> {where(subcase_id: nil)}
+
   validates_presence_of :title
 
   def priority_type
@@ -55,7 +57,7 @@ class Case < ApplicationRecord
 
   def self.safe_attributes
     [
-        :title, :case_type_id, :assigned_to_id, :priority_id, :subcase_id,
+        :title, :description, :case_type_id, :assigned_to_id, :priority_id, :subcase_id,
         :date_start, :date_due, :date_completed, :case_status_id, :note, :case_category_type_id
     ]
   end
@@ -64,6 +66,7 @@ class Case < ApplicationRecord
     pdf.font_size(25){  pdf.text "Case ##{id}", :style => :bold}
 
     pdf.text "<b>Title: </b> #{title}", :inline_format =>  true
+    pdf.text "<b>Description: </b> #{ActionView::Base.full_sanitizer.sanitize(description)}", :inline_format =>  true
     pdf.text "<b>Case type: </b> #{case_type}", :inline_format =>  true
     pdf.text "<b>Case status: </b> #{case_status_type}", :inline_format =>  true
     pdf.text "<b>Case category: </b> #{case_category_type}", :inline_format =>  true

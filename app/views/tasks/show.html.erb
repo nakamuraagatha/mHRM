@@ -51,6 +51,20 @@
     <% end %>
   </p>
 </div>
+<% if @tasks.any? %>
+    <section id="widget-grid" class="checklists_account">
+      <div class="row">
+        <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <%= render partial: 'sub_tasks',
+                     layout: 'shared/smart_widget_wrapper',
+                     locals: {
+                         wid_id: 'subtasks',
+                         wid_title: 'Sub tasks'
+                     } %>
+        </article>
+      </div>
+    </section>
+<% end %>
 <% if can?(:manage_roles, :view_notes) %>
-<%= render 'notes' %>
+    <%= render 'notes' %>
 <% end %>

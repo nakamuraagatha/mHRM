@@ -41,6 +41,7 @@ Rails.application.routes.draw do
     member do
       post 'new_note'
       get 'add_note'
+      get 'delete_sub_task_relation'
     end
   end
   resources :documents

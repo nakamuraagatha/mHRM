@@ -4,6 +4,11 @@
     <%= @case.title %>
   </p>
 
+ <p>
+    <strong>Description:</strong>
+    <%= @case.description.to_s.html_safe %>
+  </p>
+
   <p>
     <strong>Priority:</strong>
     <%= @case.priority_type %>

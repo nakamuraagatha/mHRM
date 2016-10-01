@@ -7,14 +7,19 @@ class Task < ApplicationRecord
   belongs_to :task_status_type, optional: true
 
   has_many :task_notes, dependent: :destroy
+  has_many :sub_tasks, class_name: 'Task', foreign_key: :sub_task_id
 
 
   has_many :task_attachments, foreign_key: :owner_id
   accepts_nested_attributes_for :task_attachments, reject_if: :all_blank, allow_destroy: true
 
+  scope :root, -> {where(sub_task_id: nil)}
 
   after_save :send_notification
 
+  before_destroy do
+    self.sub_tasks.update_all(sub_task_id: nil)
+  end
 
   def send_notification
     UserMailer.task_notification(self).deliver_now
@@ -58,7 +63,7 @@ class Task < ApplicationRecord
 
   def self.safe_attributes
     [:title, :description, :task_type_id, :task_status_type_id, :priority_id, :assigned_to_id, :for_individual_id,
-     :date_start, :date_due, :user_id, :date_completed,
+     :date_start, :date_due, :user_id, :date_completed,  :sub_task_id,
      task_attachments_attributes: [Attachment.safe_attributes]]
   end
 

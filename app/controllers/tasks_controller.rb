@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
   before_action  :authenticate_user!
-  before_action :set_task, only: [:show, :edit, :update, :destroy, :new_note, :add_note]
+  before_action :set_task, only: [:show, :edit, :update, :destroy, :new_note, :add_note, :delete_sub_task_relation]
   # before_action :find_optional_user
   before_action :authorize, only: [:new, :create, :add_note, :new_note]
   before_action :authorize_edit, only: [:edit, :update]
@@ -10,18 +10,19 @@ class TasksController < ApplicationController
   # GET /tasks
   # GET /tasks.json
   def index
-    @tasks = Task.where(assigned_to: @user).or(Task.where(for_individual: @user) )
+    @tasks = Task.root.where(assigned_to: @user).or(Task.root.where(for_individual: @user) )
   end
 
   # GET /tasks/1
   # GET /tasks/1.json
   def show
     @notes = @task.task_notes
+     @tasks = @task.sub_tasks
   end
 
   # GET /tasks/new
   def new
-    @task = Task.new(user_id: @user.id, assigned_to_id: @user.id)
+    @task = Task.new(user_id: @user.id, assigned_to_id: @user.id, sub_task_id: params[:sub_task_id])
   end
 
   def add_note
@@ -84,6 +85,12 @@ class TasksController < ApplicationController
       format.html { redirect_to tasks_url, notice: 'Task was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def delete_sub_task_relation
+    @task.sub_task_id = nil
+    @task.save
+    redirect_to tasks_url
   end
 
   private
