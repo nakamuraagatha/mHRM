@@ -6,6 +6,7 @@
   <tr>
     <th>Title</th>
     <th>Task type</th>
+    <th>Status</th>
     <th>Priority</th>
     <th>Assigned to</th>
     <th>For individual</th>
@@ -22,6 +23,7 @@
           <tr>
             <td><%= link_to task.title, task %></td>
             <td><%= task.task_type %></td>
+            <td><%= task.task_status_type %></td>
             <td><%= task.priority_type %></td>
             <td><%= task.assigned_to %></td>
             <td><%= task.for_individual %></td>

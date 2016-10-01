@@ -16,8 +16,21 @@
       <% end %>
       <%= f.hidden_field :user_id %>
 
-      <b> <%= f.object.checklist_type %></b>
+      <div>
+        <p>
+          <strong>Title:</strong>
+          <%=  @checklist.title %>
+        </p>
 
+        <p>
+          <strong>Description:</strong>
+          <%=  @checklist.description.html_safe %>
+        </p>
+        <p>
+          <strong>Type:</strong>
+          <%=  @checklist.checklist_type %>
+        </p>
+      </div>
 
       <div id='checklists' >
         <% f.object.checklists.each_with_index do |checklist, index| %>

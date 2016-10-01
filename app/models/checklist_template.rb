@@ -9,7 +9,7 @@ class ChecklistTemplate < ApplicationRecord
   CHECKLIST_TYPE = ['', 'Task']
 
   def self.safe_attributes
-    [:title, :user_id, :checklist_type, checklists_attributes: [Checklist.safe_attributes]]
+    [:title, :description, :user_id, :checklist_type, checklists_attributes: [Checklist.safe_attributes]]
   end
 
  def self.safe_attributes_with_save

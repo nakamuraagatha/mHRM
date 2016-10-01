@@ -4,6 +4,7 @@ class Task < ApplicationRecord
   belongs_to :for_individual, class_name: 'User', optional: true
   belongs_to :priority_type, optional: true, foreign_key: :priority_id
   belongs_to :task_type, optional: true
+  belongs_to :task_status_type, optional: true
 
   has_many :task_notes, dependent: :destroy
 
@@ -24,6 +25,14 @@ class Task < ApplicationRecord
       super
     else
       PriorityType.default
+    end
+  end
+
+ def task_status_type
+    if task_status_type_id
+      super
+    else
+      TaskStatusType.default
     end
   end
 
@@ -48,7 +57,7 @@ class Task < ApplicationRecord
   end
 
   def self.safe_attributes
-    [:title, :description, :task_type_id, :priority_id, :assigned_to_id, :for_individual_id,
+    [:title, :description, :task_type_id, :task_status_type_id, :priority_id, :assigned_to_id, :for_individual_id,
      :date_start, :date_due, :user_id, :date_completed,
      task_attachments_attributes: [Attachment.safe_attributes]]
   end
@@ -59,6 +68,7 @@ class Task < ApplicationRecord
     pdf.text "<b>Title: </b> #{title}", :inline_format =>  true
     pdf.text "<b>Description: </b> #{ActionView::Base.full_sanitizer.sanitize(description)}", :inline_format =>  true
     pdf.text "<b>Task type: </b> #{task_type}", :inline_format =>  true
+    pdf.text "<b>Status: </b> #{task_status_type}", :inline_format =>  true
     pdf.text "<b>Assigned to: </b> #{assigned_to}", :inline_format =>  true
     pdf.text "<b>For individual: </b> #{for_individual}", :inline_format =>  true
     pdf.text "<b>Priority: </b> #{priority_type}", :inline_format =>  true
@@ -77,6 +87,7 @@ class Task < ApplicationRecord
     output<<"<b>Title: </b> #{title}"
     output<<"<b>Description: </b> #{description} <br/>"
     output<<"<b>Task type: </b> #{task_type}<br/>"
+    output<<"<b>Status: </b> #{task_status_type}<br/>"
     output<<"<b>Priority: </b> #{priority_type}<br/>"
 
     output<<"<b>Date start: </b> #{date_start}<br/>"
