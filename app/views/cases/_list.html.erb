@@ -4,11 +4,12 @@
   <tr>
     <th>Title</th>
     <th>Priority</th>
-    <th>Case type</th>
+    <th>Type</th>
+    <th>Status</th>
+    <th>Category</th>
     <th>Date start</th>
     <th>Date due</th>
     <th>Date complete</th>
-    <th>Assigned to</th>
     <th colspan="3"></th>
   </tr>
   </thead>
@@ -20,10 +21,11 @@
             <td><%= link_to(c.title, case_path(c) ) %></td>
             <td><%= c.priority_type %></td>
             <td><%= c.case_type %></td>
+            <td><%= c.case_status_type %></td>
+            <td><%= c.case_category_type %></td>
             <td><%= c.date_start %></td>
             <td><%= c.date_due %></td>
             <td><%= c.date_completed %></td>
-            <td><%= c.assigned_to %></td>
             <td><%= edit_link edit_case_path(c) %></td>
             <td><%= delete_link c %></td>
             <% if params[:action] == 'show' %>

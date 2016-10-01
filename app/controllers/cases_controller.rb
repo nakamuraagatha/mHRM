@@ -24,7 +24,7 @@ class CasesController < ApplicationController
 
   # GET /cases/new
   def new
-    @case = Case.new(subcase_id: params[:subcase_id])
+    @case = Case.new(assigned_to_id: User.current.id, subcase_id: params[:subcase_id])
   end
 
   # GET /cases/1/edit

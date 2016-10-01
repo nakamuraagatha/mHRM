@@ -10,8 +10,18 @@
   </p>
 
   <p>
-    <strong>Case type:</strong>
+    <strong>Type:</strong>
     <%= @case.case_type %>
+  </p>
+
+  <p>
+    <strong>Status:</strong>
+    <%= @case.case_status_type %>
+  </p>
+
+  <p>
+    <strong>Category:</strong>
+    <%= @case.case_category_type %>
   </p>
 
   <p>
@@ -30,7 +40,7 @@
   </p>
 
   <p>
-    <strong>Assigned to:</strong>
-    <%= @case.assigned_to %>
+    <strong>Note:</strong>
+    <%= @case.note.to_s.html_safe %>
   </p>
 </div>

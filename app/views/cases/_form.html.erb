@@ -12,9 +12,16 @@
       </div>
 
       <div class="form-group">
-        <%= f.label 'Assign to', class: 'col-md-2 control-label' %>
+        <%= f.label 'Case Status', class: 'col-md-2 control-label' %>
         <div class="col-md-9">
-          <%= f.select :assigned_to_id, options_for_select([[nil, f.object.assigned_to] + User.visible].flatten.uniq.map{|user| [user.try(:name), user.try(:id) ]}, selected: f.object.assigned_to_id) , {}, {class: 'col-xs-12 use_select2', style: 'padding: 0' } %>
+          <%= f.select :case_status_type_id, options_for_select(CaseStatusType.active.pluck(:name, :id), selected: f.object.case_status_type.try(:id)) , {}, {class: 'col-xs-12 use_select2', style: 'padding: 0' } %>
+        </div>
+      </div>
+
+     <div class="form-group">
+        <%= f.label 'Case category', class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.select :case_category_id, options_for_select(CaseCategoryType.active.pluck(:name, :id), selected: f.object.case_category_type.try(:id)) , {}, {class: 'col-xs-12 use_select2', style: 'padding: 0' } %>
         </div>
       </div>
 
@@ -50,6 +57,13 @@
         <%= f.label :date_completed , class: 'col-md-2 control-label' %>
         <div class="col-md-9">
           <%= f.text_field :date_completed , class: 'form-control date_picker' %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label t(:label_note) , class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.text_area :note , class: 'form-control ckeditor' %>
         </div>
       </div>
 
