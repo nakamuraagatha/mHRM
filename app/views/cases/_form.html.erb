@@ -3,6 +3,7 @@
   <%= simple_form_for(@case, html: { class: 'form-horizontal' }) do |f| %>
       <%= f.error_notification %>
 
+      <%= f.hidden_field :subcase_id %>
       <div class="form-group">
         <%= f.label t('title'), class: 'col-md-2 control-label' %>
         <div class="col-md-9">

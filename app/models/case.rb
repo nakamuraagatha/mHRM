@@ -3,6 +3,8 @@ class Case < ApplicationRecord
   belongs_to :priority_type, optional: true, foreign_key: :priority_id
   belongs_to :case_type, optional: true
 
+  has_many :sub_cases, foreign_key: :subcase_id, class_name: 'Case'
+
   validates_presence_of :title
 
   def priority_type
@@ -11,6 +13,10 @@ class Case < ApplicationRecord
     else
       PriorityType.default
     end
+  end
+
+  before_destroy do
+    sub_cases.update_all(subcase_id: nil)
   end
 
   def user; assigned_to; end
@@ -31,7 +37,7 @@ class Case < ApplicationRecord
 
   def self.safe_attributes
     [
-        :title, :case_type_id, :assigned_to_id, :priority_id,
+        :title, :case_type_id, :assigned_to_id, :priority_id, :subcase_id,
         :date_start, :date_due, :date_completed
     ]
   end
@@ -39,10 +45,13 @@ class Case < ApplicationRecord
   def to_pdf(pdf)
     pdf.font_size(25){  pdf.text "Case ##{id}", :style => :bold}
 
-    pdf.text "<b>Case type: </b> #{certification_type}", :inline_format =>  true
-    pdf.text "<b>Date received: </b> #{date_received}", :inline_format =>  true
-    pdf.text "<b>Date expired: </b> #{date_expired}", :inline_format =>  true
-    pdf.text "<b>Note: </b> #{ActionView::Base.full_sanitizer.sanitize(note)}", :inline_format =>  true
+    pdf.text "<b>Title: </b> #{title}", :inline_format =>  true
+    pdf.text "<b>Case type: </b> #{case_type}", :inline_format =>  true
+    pdf.text "<b>Priority: </b> #{priority_type}", :inline_format =>  true
+
+    pdf.text "<b>Date start: </b> #{date_start}", :inline_format =>  true
+    pdf.text "<b>Date due: </b> #{date_due}", :inline_format =>  true
+    pdf.text "<b>Date completed: </b> #{date_completed}", :inline_format =>  true
   end
 
 end

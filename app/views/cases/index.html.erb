@@ -1,40 +1,4 @@
 <h1>Cases</h1>
 
 <%= link_to('New case', new_case_path, class: 'btn btn-primary pull-right margin-bottom-10') %>
-
-<table class="table table-responsive table-bordered">
-  <thead>
-  <tr>
-    <th>Title</th>
-    <th>Priority</th>
-    <th>Case type</th>
-    <th>Date start</th>
-    <th>Date due</th>
-    <th>Date complete</th>
-    <th>Assigned to</th>
-    <th colspan="3"></th>
-  </tr>
-  </thead>
-
-  <tbody>
-  <% if @cases.any? %>
-      <% @cases.each do |c| %>
-          <tr>
-            <td><%= link_to c.title, title %></td>
-            <td><%= c.priority_type %></td>
-            <td><%= c.case_type %></td>
-            <td><%= c.date_start %></td>
-            <td><%= c.date_due %></td>
-            <td><%= c.date_completed %></td>
-            <td><%= c.assigned_to %></td>
-            <td><%= edit_link edit_case_path(c) %></td>
-            <td><%= delete_link c %></td>
-          </tr>
-      <% end %>
-  <% else %>
-      <tr align="center">
-        <td colspan="11"><%= t('label_no_data') %></td>
-      </tr>
-  <% end %>
-  </tbody>
-</table>
+<%= render 'list' %>

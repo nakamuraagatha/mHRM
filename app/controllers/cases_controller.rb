@@ -14,17 +14,17 @@ class CasesController < ApplicationController
     else
       @cases = Case.where(assigned_to_id: User.current.id ).order('title desc').paginate(page: params[:page], per_page: 25)
     end
-
   end
 
   # GET /cases/1
   # GET /cases/1.json
   def show
+    @cases = @case.sub_cases
   end
 
   # GET /cases/new
   def new
-    @case = Case.new
+    @case = Case.new(subcase_id: params[:subcase_id])
   end
 
   # GET /cases/1/edit
@@ -70,6 +70,13 @@ class CasesController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def delete_sub_case_relation
+    @case.subcase_id = nil
+    @case.save
+    redirect_to cases_url
+  end
+
 
   private
   # Use callbacks to share common setup or constraints between actions.

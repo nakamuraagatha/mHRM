@@ -6,41 +6,34 @@
   <%= link_to(t('button_edit'), edit_case_path(@case), class: 'btn btn-success pull-right') if can?(:manage_roles, :edit_cases) %>
   <%= link_to(t('button_cancel'), cases_path, class: 'btn btn-warning pull-right') %>
   <%= link_to(t('button_print'), case_path(@case, format: 'pdf'), class: 'btn btn-primary pull-right') %>
+  <%= link_to('Add subCase', new_case_path(subcase_id: @case.id), class: 'btn btn-primary pull-right') if can?(:manage_roles, :add_cases)  %>
 </div>
 
-<div class="col-xs-12">
-  <p>
-    <strong>Title:</strong>
-    <%= @case.title %>
-  </p>
+<section id="widget-grid" class="checklists_account">
+  <div class="row">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <%= render partial: 'show',
+                 layout: 'shared/smart_widget_wrapper',
+                 locals: {
+                     wid_id: 'info',
+                     wid_title: 'case'
+                 } %>
+    </article>
+  </div>
+</section>
 
-  <p>
-    <strong>Priority:</strong>
-    <%= @case.priority_type %>
-  </p>
+<% if @cases.any? %>
+    <section id="widget-grid" class="checklists_account">
+      <div class="row">
+        <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <%= render partial: 'list',
+                     layout: 'shared/smart_widget_wrapper',
+                     locals: {
+                         wid_id: 'subcases',
+                         wid_title: 'Sub cases'
+                     } %>
+        </article>
+      </div>
+    </section>
 
-  <p>
-    <strong>Case type:</strong>
-    <%= @case.case_type %>
-  </p>
-
-  <p>
-    <strong>Date start:</strong>
-    <%= @case.date_start %>
-  </p>
-
-  <p>
-    <strong>Date due:</strong>
-    <%= @case.date_due %>
-  </p>
-
-  <p>
-    <strong>Date complete:</strong>
-    <%= @case.date_completed %>
-  </p>
-
-  <p>
-    <strong>Assigned to:</strong>
-    <%= @case.assigned_to %>
-  </p>
-</div>
+<% end %>

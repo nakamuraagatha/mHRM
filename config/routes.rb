@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  resources :cases
+  resources :cases do
+    member do
+      get 'delete_sub_case_relation'
+    end
+  end
   resources :attempts, :only => [:new, :create, :index]
   get 'pivot_table/index'
 
