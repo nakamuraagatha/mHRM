@@ -49,20 +49,21 @@
       </div>
 
 
-      <div class="field">
-        <ul>
+      <div class="form-group">
+        <div class="col-md-12">
           <%= f.fields_for :questions do |builder| %>
               <%= render "question_fields", :f => builder %>
           <% end %>
-        </ul>
-
-        <%= link_to_add_association "Add a new Question", f, :questions,  class: 'btn btn-success' %>
+          <%= link_to_add_association "Add a new Question", f, :questions,  class: 'btn btn-success margin-top-10' %>
+        </div>
       </div>
 
 
 
-      <div class="field">
-        <%= f.submit %>
+      <div class="form-group" >
+        <div class="col-md-11">
+          <%= f.submit class: 'btn btn-primary pull-right' %>
+        </div>
       </div>
   <% end -%>
 </fieldset>

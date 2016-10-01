@@ -1,5 +1,5 @@
 <div class="col-md-12">
-  <legend>Question</legend>
+  <legend>Question <%= link_to_remove_association "Remove Question", f, class: 'btn btn-warning pull-right' %></legend>
   <div class="field">
     <div class="form-group">
       <%= f.label 'Text', class: 'col-md-2 control-label' %>
@@ -13,8 +13,7 @@
         <%= render "option_fields", :f => builder %>
     <% end -%>
     <div class="options">
-      <%= link_to_add_association "Add a new Option", f, :options,  class: 'btn btn-success' %>
+      <%= link_to_add_association "Add a new Option", f, :options,  class: 'btn btn-success margin-bottom-10' %>
     </div>
-    <%= link_to_remove_association "Remove Question", f, class: 'btn btn-warning pull-right' %>
   </div>
 </div>
