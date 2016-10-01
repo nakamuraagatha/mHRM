@@ -1,0 +1,63 @@
+<fieldset>
+  <legend></legend>
+  <%= simple_form_for(@case, html: { class: 'form-horizontal' }) do |f| %>
+      <%= f.error_notification %>
+
+      <div class="form-group">
+        <%= f.label t('title'), class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.text_field :title , class: 'form-control' %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label 'Assign to', class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.select :assigned_to_id, options_for_select([[nil, f.object.assigned_to] + User.visible].flatten.uniq.map{|user| [user.try(:name), user.try(:id) ]}, selected: f.object.assigned_to_id) , {}, {class: 'col-xs-12 use_select2', style: 'padding: 0' } %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :priority , class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.select :priority_id, options_for_select(PriorityType.active.pluck(:name, :id), selected: f.object.priority_type.try(:id)), {} , {class: 'form-control'} %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :case_type , class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.select :case_type_id, options_for_select(CaseType.active.pluck(:name, :id), selected: f.object.priority_type.try(:id)), {} , {class: 'form-control'} %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :date_start , class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.text_field :date_start, class: 'form-control date_picker' %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :date_due , class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.text_field :date_due , class: 'form-control date_picker' %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :date_completed , class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.text_field :date_completed , class: 'form-control date_picker' %>
+        </div>
+      </div>
+
+      <div class="form-group" >
+        <div class="col-md-11">
+          <%= link_to t('button_cancel'), cases_path, class: 'btn btn-warning pull-right' %>
+          <%= f.submit t('button_save'), class: 'btn btn-primary pull-right' %>
+        </div>
+      </div>
+
+  <% end %>
+</fieldset>

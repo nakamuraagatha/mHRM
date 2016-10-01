@@ -1,0 +1,1 @@
+json.partial! "cases/case", c: @case
