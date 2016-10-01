@@ -11,8 +11,9 @@ class Position < ApplicationRecord
 
   validates_presence_of :department_id, :user_id
 
-
+  validates_presence_of :title
   after_save :send_notification
+
   def send_notification
     UserMailer.position_notification(self).deliver_now
   end

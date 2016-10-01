@@ -101,6 +101,14 @@ RedCarpet::AccessControl.map do |map|
     map.permission :view_notes, {:tasks => [:view_notes]},  :read => true
   end
 
+  map.project_module :cases do |map|
+    map.permission :view_cases, {:cases => [:index]},  :read => true
+    map.permission :create_cases, {:cases => [:new, :create]},  :read => true
+    map.permission :edit_cases, {:cases => [:edit, :update]},  :read => true
+    map.permission :delete_cases, {:cases => [:destroy]},  :read => true
+    map.permission :manage_cases, {:cases => [:new, :create, :edit, :update, :destroy]},  :read => true
+ end
+
   map.project_module :employee do |map|
     map.permission :manage_roles, {:employees => [:index],
                                    :educations => [:index,:new, :create, :edit, :update, :destroy],

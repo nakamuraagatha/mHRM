@@ -8,7 +8,9 @@ class Affiliation < ApplicationRecord
   has_many :affiliation_attachments, foreign_key: :owner_id
   accepts_nested_attributes_for :affiliation_attachments, reject_if: :all_blank, allow_destroy: true
 
+  validates_presence_of :name
   after_save :send_notification
+
   def send_notification
     UserMailer.affiliation_notification(self).deliver_now
   end

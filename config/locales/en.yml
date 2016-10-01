@@ -219,6 +219,7 @@ en:
   description: Description
   question: Question
   surveys: Surveys
+  cases: Cases
   title: Title
   task: Task
   tasks: Tasks

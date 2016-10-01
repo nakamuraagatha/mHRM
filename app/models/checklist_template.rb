@@ -6,6 +6,8 @@ class ChecklistTemplate < ApplicationRecord
 
   has_many :checklist_answers, dependent: :destroy
 
+  validates_presence_of :title
+
   CHECKLIST_TYPE = ['', 'Task']
 
   def self.safe_attributes

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :cases
   resources :attempts, :only => [:new, :create, :index]
   get 'pivot_table/index'
 

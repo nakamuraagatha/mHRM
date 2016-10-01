@@ -74,6 +74,13 @@
             <a href="<%= surveys_path %>" title="<%= t(:surveys) %>"><i class="fa fa-lg fa-fw fa-question"></i><span class="menu-item-parent"><%= t(:surveys) %></span></a>
           </li>
       <% end %>
+
+      <% if module_enabled? 'cases' %>
+          <li class="<%= menu_active?('cases') %>">
+            <a href="<%= cases_path %>" title="<%= t(:cases) %>"><i class="fa fa-lg fa-fw fa-square"></i><span class="menu-item-parent"><%= t(:cases) %></span></a>
+          </li>
+      <% end %>
+
   <% end %>
 
 
