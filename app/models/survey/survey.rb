@@ -7,14 +7,13 @@ class Survey::Survey < ActiveRecord::Base
                         :active,
                         :attempts_number,
                         :survey_type_id,
-                        :assigned_to_id,
     :questions_attributes => Survey::Question::AccessibleAttributes
 
   # relations
   has_many :attempts,  :dependent => :destroy
   has_many :questions, :dependent => :destroy
   belongs_to :survey_type, optional: true
-  belongs_to :assigned_to, optional: true, class_name: 'User'
+  has_many :survey_users
 
 
   accepts_nested_attributes_for :questions,

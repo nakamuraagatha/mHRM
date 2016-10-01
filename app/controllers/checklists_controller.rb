@@ -11,7 +11,7 @@ class ChecklistsController < ApplicationController
 
     else
       @checklists = ChecklistTemplate.joins(:checklist_users).
-          where("#{ChecklistUser.table_name}.assigned_to_id = ? ", User.current.id).order('id DESC').paginate(page: params[:page], per_page: 25)
+          where("#{ChecklistUser.table_name}.assigned_to_id = ? ", User.current.id).order('title DESC').paginate(page: params[:page], per_page: 25)
     end
   end
 
@@ -22,10 +22,10 @@ class ChecklistsController < ApplicationController
       if @checklist.save
         redirect_to checklist_templates_path
       else
-        @checklists = ChecklistTemplate.order('title ASC') - ChecklistUser.where(assigned_to_id: User.current.id).map(&:checklist_template)
+        @checklists = ChecklistTemplate.order('title ASC') - ChecklistTemplate.where(id: ChecklistUser.where(assigned_to_id: User.current.id).pluck(:checklist_template_id))
       end
     else
-      @checklists = ChecklistTemplate.order('title ASC') - ChecklistUser.where(assigned_to_id: User.current.id).map(&:checklist_template)
+      @checklists = ChecklistTemplate.order('title ASC') - ChecklistTemplate.where(id: ChecklistUser.where(assigned_to_id: User.current.id).pluck(:checklist_template_id))
       @checklist = ChecklistUser.new(assigned_to_id: User.current.id)
 
     end

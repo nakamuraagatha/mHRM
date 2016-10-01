@@ -48,6 +48,11 @@ Rails.application.routes.draw do
       post   'edit_answer'
       delete 'delete_answer'
     end
+
+    collection do
+      get 'new_assign'
+      post 'new_assign'
+    end
   end
 
 

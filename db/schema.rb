@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161001131730) do
+ActiveRecord::Schema.define(version: 20161001133200) do
 
   create_table "addresses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.integer  "address_type_id"
@@ -430,6 +430,14 @@ ActiveRecord::Schema.define(version: 20161001131730) do
     t.datetime "updated_at"
     t.integer  "assigned_to_id"
     t.integer  "survey_type_id"
+  end
+
+  create_table "survey_users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+    t.integer  "assigned_to_id"
+    t.integer  "survey_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.index ["assigned_to_id"], name: "index_survey_users_on_assigned_to_id", using: :btree
   end
 
   create_table "task_notes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|

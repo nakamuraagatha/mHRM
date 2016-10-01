@@ -6,9 +6,25 @@ class SurveysController < ApplicationController
     if User.current.allowed_to?(:manage_roles)
       @surveys = Survey::Survey.order('id DESC').paginate(page: params[:page], per_page: 25)
     else
-      @surveys = Survey::Survey.where(assigned_to_id: User.current.id ).order('id DESC').paginate(page: params[:page], per_page: 25)
+      @surveys = Survey::Survey.includes(:survey_users).
+          references(:survey_users).where("#{SurveyUser.table_name}.assigned_to_id = ?", User.current.id ).order('name DESC').paginate(page: params[:page], per_page: 25)
     end
+  end
 
+  def new_assign
+    if request.post?
+      @survey = SurveyUser.new(params.require(:survey_user).permit!)
+
+      if @survey.save
+        redirect_to surveys_path
+      else
+        @surveys = Survey::Survey.order('name ASC') - Survey::Survey.where(id: SurveyUser.where(assigned_to_id: User.current.id).pluck(:survey_id))
+      end
+    else
+      @surveys = Survey::Survey.order('name ASC') - Survey::Survey.where(id: SurveyUser.where(assigned_to_id: User.current.id).pluck(:survey_id))
+      @survey = SurveyUser.new(assigned_to_id: User.current.id)
+
+    end
   end
 
   def new
