@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :checklist_notes, only: [:create, :update], controller: :notes
+  resources :survey_notes, only: [:create, :update], controller: :notes
   resources :notes, only: [:create, :update]
 
   resources :cases do
@@ -54,6 +56,7 @@ Rails.application.routes.draw do
   resources :surveys do
     member do
       post   'answer'
+      get    'new_note'
       get    'edit_answer'
       post   'edit_answer'
       delete 'delete_answer'
@@ -76,8 +79,6 @@ Rails.application.routes.draw do
       get 'new_assign'
       post 'new_assign'
     end
-
-    resources :checklist_notes, only: [:create, :update], controller: :notes
   end
   resources :users, only: [:index, :show, :destroy] do
     member do

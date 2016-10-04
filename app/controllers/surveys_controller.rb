@@ -1,6 +1,6 @@
 class SurveysController < ApplicationController
 
-  before_filter :load_survey, :only => [:show, :edit, :update]
+  before_filter :load_survey, :only => [:show, :edit, :update, :new_note]
 
   def index
     if User.current.allowed_to?(:manage_roles)
@@ -31,6 +31,10 @@ class SurveysController < ApplicationController
     @survey = Survey::Survey.new
   end
 
+  def new_note
+    @note = SurveyNote.new(user_id: User.current.id, owner_id: @survey.id)
+  end
+
   def create
     @survey = Survey::Survey.new(survey_params)
     if @survey.valid? && @survey.save
@@ -44,6 +48,7 @@ class SurveysController < ApplicationController
   end
 
   def show
+    @notes = @survey.survey_notes
   end
 
   def update

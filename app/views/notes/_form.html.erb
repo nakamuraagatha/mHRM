@@ -1,6 +1,6 @@
 <fieldset>
   <legend>New Note</legend>
-  <%= form_for([note.object, note], html: { class: 'form-horizontal' }) do |f| %>
+  <%= form_for(note, html: { class: 'form-horizontal' }) do |f| %>
       <%= f.hidden_field :user_id %>
       <%= f.hidden_field :type %>
       <%= f.hidden_field :owner_id %>

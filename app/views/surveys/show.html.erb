@@ -1,0 +1,40 @@
+<div class="col-xs-12 btn-edition">
+  <%= link_to 'Delete',  survey_path(@survey), class: 'btn btn-danger pull-right',
+              :method => :delete,
+              :data => {:confirm => t(:text_are_you_sure)}
+  %>
+  <%= link_to 'Edit', edit_survey_path(@survey), class: 'btn btn-success pull-right' %>
+  <%= link_to t('button_cancel'), surveys_path, class: 'btn btn-warning pull-right' %>
+  <%= link_to t('button_print'), survey_path(@survey, format: 'pdf'), class: 'btn btn-primary pull-right' %>
+  <%= link_to 'New note', new_note_survey_path(@survey), class: 'btn btn-success pull-right' %>
+</div>
+<section id="widget-grid" class="form_note_list">
+  <div class="row">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <%= render partial: 'show',
+                 layout: 'shared/smart_widget_wrapper',
+                 locals: {
+                     survey: @survey,
+                     wid_id: 'survey',
+                     wid_title: 'Survey'
+                 } %>
+    </article>
+  </div>
+</section>
+
+<% if @notes.any? %>
+    <section id="widget-grid" class="form_note_list">
+      <div class="row">
+        <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <%= render partial: 'notes/notes',
+                     layout: 'shared/smart_widget_wrapper',
+                     locals: {
+                         notes: @notes,
+                         wid_id: 'note_lists',
+                         wid_title: 'Notes'
+                     } %>
+        </article>
+      </div>
+    </section>
+
+<% end %>

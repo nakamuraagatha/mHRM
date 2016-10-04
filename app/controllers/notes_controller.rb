@@ -48,7 +48,7 @@ class NotesController < ApplicationController
     if params[:checklist_note]
       checklist_template_path(@note.object)
     elsif params[:survey_note]
-      surveys_url
+      survey_url(@note.object)
     else
       root_path
     end

@@ -7,18 +7,19 @@ class Survey::Survey < ActiveRecord::Base
                         :active,
                         :attempts_number,
                         :survey_type_id,
-    :questions_attributes => Survey::Question::AccessibleAttributes
+                        :questions_attributes => Survey::Question::AccessibleAttributes
 
   # relations
   has_many :attempts,  :dependent => :destroy
   has_many :questions, :dependent => :destroy
   belongs_to :survey_type, optional: true
   has_many :survey_users
+  has_many :survey_notes, foreign_key: :owner_id
 
 
   accepts_nested_attributes_for :questions,
-    :reject_if => ->(q) { q[:text].blank? },
-    :allow_destroy => true
+                                :reject_if => ->(q) { q[:text].blank? },
+                                :allow_destroy => true
 
   # scopes
   scope :active,   -> { where(:active => true) }
@@ -56,6 +57,19 @@ class Survey::Survey < ActiveRecord::Base
   def avaliable_for_participant?(participant)
     warn "[DEPRECATION] avaliable_for_participant? is deprecated. Please use available_for_participant? instead"
     available_for_participant?(participant)
+  end
+
+  def to_pdf(pdf)
+    pdf.font_size(25){  pdf.text "Survey ##{id}", :style => :bold}
+    pdf.text "<b>name: </b> #{name}", :inline_format =>  true
+    pdf.text "<b>Description: </b> #{ActionView::Base.full_sanitizer.sanitize(description)}", :inline_format =>  true
+    self.questions.each_with_index do |question, index|
+      pdf.text "<b>Q#{index+1}: </b>", :inline_format =>  true
+      pdf.text "<b>#{question.text}: </b>", :inline_format =>  true
+      question.options.each do |option|
+        pdf.text "-#{option.text}: </b>", :inline_format =>  true
+      end
+    end
   end
 
   private

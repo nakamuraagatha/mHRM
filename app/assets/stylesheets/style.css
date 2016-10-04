@@ -44,3 +44,8 @@ label, legend, .jarviswidget header h2 strong, a{
 .chosen{
     background-color: greenyellow;
 }
+
+.btn-edition
+{
+    margin-bottom: 10px;
+}
