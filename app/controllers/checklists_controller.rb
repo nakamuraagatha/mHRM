@@ -2,7 +2,9 @@ class ChecklistsController < ApplicationController
   before_action  :authenticate_user!
   before_action :set_checklist_template, only: [:new_note, :show, :edit, :update, :destroy, :save]
 
-  before_action :require_admin, except: [:index, :show, :save, :new_assign, :new_note] # ...
+  before_action :require_admin, except: [:index, :show,
+                                         :save, :new_assign,
+                                         :destroy, :new_note] # ...
   # before_action :authorize, only: [:index, :show, :save]
 
   def index
@@ -88,7 +90,13 @@ class ChecklistsController < ApplicationController
   end
 
   def destroy
-    @checklist.destroy
+    if User.current.admin?
+      @checklist.destroy
+    else
+      ChecklistUser.where(assigned_to_id: User.current.id, checklist_template_id: @checklist.id).delete_all
+      ChecklistAnswer.where(checklist_template_id: @checklist.id, user_id: User.current.id).delete_all
+    end
+
     respond_to do |format|
       format.html { redirect_to checklist_templates_url, notice: 'Template was successfully destroyed.' }
       format.json { head :no_content }
