@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :notes, only: [:create, :update]
+
   resources :cases do
     member do
       get 'delete_sub_case_relation'
@@ -68,11 +70,14 @@ Rails.application.routes.draw do
   resources :checklist_templates, controller: :checklists do
     member do
       match 'save', via: [:patch, :put, :post]
+      get 'new_note'
     end
     collection do
       get 'new_assign'
       post 'new_assign'
     end
+
+    resources :checklist_notes, only: [:create, :update], controller: :notes
   end
   resources :users, only: [:index, :show, :destroy] do
     member do

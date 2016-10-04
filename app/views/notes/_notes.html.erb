@@ -1,0 +1,8 @@
+<% notes.each do |note| %>
+    <div class="col-xs-12 bordered">
+      <p>
+        <strong><%= note.user %>: <span style="color: blueviolet;"> <%= note.created_at.to_date %> </span></strong>
+        <%= note.note.html_safe %>
+      </p>
+    </div>
+<% end %>

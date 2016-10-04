@@ -1,8 +1,8 @@
 class ChecklistsController < ApplicationController
   before_action  :authenticate_user!
-  before_action :set_checklist_template, only: [:show, :edit, :update, :destroy, :save]
+  before_action :set_checklist_template, only: [:new_note, :show, :edit, :update, :destroy, :save]
 
-  before_action :require_admin, except: [:index, :show, :save, :new_assign] # ...
+  before_action :require_admin, except: [:index, :show, :save, :new_assign, :new_note] # ...
   # before_action :authorize, only: [:index, :show, :save]
 
   def index
@@ -13,6 +13,10 @@ class ChecklistsController < ApplicationController
       @checklists = ChecklistTemplate.joins(:checklist_users).
           where("#{ChecklistUser.table_name}.assigned_to_id = ? ", User.current.id).order('title DESC').paginate(page: params[:page], per_page: 25)
     end
+  end
+
+  def new_note
+    @note = ChecklistNote.new(user_id: User.current.id, owner_id: @checklist.id)
   end
 
   def new_assign

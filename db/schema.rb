@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161004114220) do
+ActiveRecord::Schema.define(version: 20161004184055) do
 
   create_table "addresses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.integer  "address_type_id"
@@ -328,6 +328,18 @@ ActiveRecord::Schema.define(version: 20161004114220) do
     t.text     "note",             limit: 65535
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
+  end
+
+  create_table "notes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+    t.string   "type"
+    t.integer  "owner_id"
+    t.text     "note",       limit: 65535
+    t.integer  "user_id"
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.index ["owner_id"], name: "index_notes_on_owner_id", using: :btree
+    t.index ["type"], name: "index_notes_on_type", using: :btree
+    t.index ["user_id"], name: "index_notes_on_user_id", using: :btree
   end
 
   create_table "organizations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
