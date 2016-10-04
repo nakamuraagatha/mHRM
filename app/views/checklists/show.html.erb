@@ -1,6 +1,6 @@
 <div class="col-xs-12 btn-edition">
   <%= link_to t('button_cancel'), checklist_templates_path, class: 'btn btn-warning pull-right' %>
-  <%#= link_to t('button_print'), checklist_template_path(@checklist, format: 'pdf'), class: 'btn btn-primary pull-right' %>
+  <%= link_to t('button_print'), checklist_template_path(@checklist, format: 'pdf'), class: 'btn btn-primary pull-right' %>
   <%= link_to 'New note' , new_note_checklist_template_path(@checklist), class: 'btn btn-primary pull-right' %>
 </div>
 <fieldset>

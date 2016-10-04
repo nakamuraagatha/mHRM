@@ -28,6 +28,13 @@ class ChecklistTemplate < ApplicationRecord
  end
 
   def to_pdf(pdf)
-
+    pdf.font_size(25){  pdf.text "Checklist ##{id}", :style => :bold}
+    pdf.text "<b>Title: </b> #{title}", :inline_format =>  true
+    pdf.text "<b>Type: </b> #{checklist_type}", :inline_format =>  true
+    pdf.text "<b>Description: </b> #{ActionView::Base.full_sanitizer.sanitize(description)}", :inline_format =>  true
+    self.checklists.each_with_index do |checklist, index|
+      checklist_answer = ChecklistAnswer.where(checklist_id: checklist.id, user_id: User.current.id).first_or_initialize
+      pdf.text "<b>[ #{checklist_answer.status ? 'X' : ' ' } ]</b> #{checklist.description}    #{checklist_answer.due_date}", :inline_format =>  true
+    end
   end
 end
