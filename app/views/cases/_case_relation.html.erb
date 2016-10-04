@@ -1,0 +1,62 @@
+<fieldset>
+  <legend>Survey relation</legend>
+  <%= simple_form_for(case_relation, url: new_relation_case_path(@case), html: {method: 'post', class: 'form-horizontal' }) do |f| %>
+      <% data = case_relation
+         if data.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(data.errors.count, "error") %> :</h2>
+
+            <ul>
+              <% data.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+      <% end %>
+
+      <%= f.hidden_field :case_id %>
+      <div class="form-group">
+        <%= f.label 'Type', class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.select :relation_type, options_for_select(['Case', 'Survey', 'Task'], selected: f.object.relation_type),{}, {class: 'form-control', onchange: 'make_change($(this).val() )'} %>
+        </div>
+      </div>
+
+
+      <div class="form-group option_select" id="relation_Survey" <%= f.object.relation_type != 'Survey' ? 'hidden' :'' %>>
+        <%= f.label 'Survey', class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= select_tag :survey_id, options_for_select(@surveys, selected: f.object.relation_id), {class: 'form-control  select2', style: 'padding: 0'} %>
+        </div>
+      </div>
+
+      <div class="form-group option_select" id="relation_Task" <%= f.object.relation_type != 'Task' ? 'hidden' :'' %>>
+        <%= f.label 'Task', class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= select_tag :task_id, options_for_select(@tasks, selected: f.object.relation_id), {class: 'form-control  select2', style: 'padding: 0'} %>
+        </div>
+      </div>
+
+      <div class="form-group option_select" id="relation_Case" <%= f.object.relation_type != 'Case' ? 'hidden' :'' %>>
+        <%= f.label 'Case', class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= select_tag :case_id, options_for_select(@cases, selected: f.object.relation_id), {class: 'form-control  select2', style: 'padding: 0'} %>
+        </div>
+      </div>
+
+      <script>
+        function make_change(val){
+          $('.option_select').hide();
+          $('#relation_'+val).show();
+        }
+      </script>
+
+
+      <div class="form-group" >
+        <div class="col-md-11">
+          <%= link_to t('button_cancel'), surveys_path, class: 'btn btn-warning pull-right' %>
+          <%= f.submit t('button_save'), class: 'btn btn-primary pull-right' %>
+        </div>
+      </div>
+  <% end %>
+</fieldset>

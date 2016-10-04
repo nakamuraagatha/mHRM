@@ -7,6 +7,7 @@
   <%= link_to(t('button_cancel'), cases_path, class: 'btn btn-warning pull-right') %>
   <%= link_to(t('button_print'), case_path(@case, format: 'pdf'), class: 'btn btn-primary pull-right') %>
   <%= link_to('Add subCase', new_case_path(subcase_id: @case.id), class: 'btn btn-primary pull-right') if can?(:manage_roles, :add_cases)  %>
+  <%= link_to('Add relation', new_relation_case_path(@case), class: 'btn btn-primary pull-right') if can?(:manage_roles, :add_cases)  %>
 </div>
 
 <section id="widget-grid" class="checklists_account">
@@ -31,6 +32,22 @@
                      locals: {
                          wid_id: 'subcases',
                          wid_title: 'Sub cases'
+                     } %>
+        </article>
+      </div>
+    </section>
+
+<% end %>
+
+<% if @relations.any? %>
+    <section id="widget-grid" class="checklists_account">
+      <div class="row">
+        <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <%= render partial: 'show_relations',
+                     layout: 'shared/smart_widget_wrapper',
+                     locals: {
+                         wid_id: 'relations',
+                         wid_title: 'Relations'
                      } %>
         </article>
       </div>

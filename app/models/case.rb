@@ -6,6 +6,7 @@ class Case < ApplicationRecord
   belongs_to :case_status_type, optional: true
 
   has_many :sub_cases, foreign_key: :subcase_id, class_name: 'Case'
+  has_many :relations, foreign_key: :case_id, class_name: 'CaseRelation'
 
   scope :root, -> {where(subcase_id: nil)}
 

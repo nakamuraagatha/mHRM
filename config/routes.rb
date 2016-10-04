@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   resources :cases do
     member do
       get 'delete_sub_case_relation'
+      get 'delete_relation'
+      match 'new_relation', via: [:post, :get]
     end
   end
   resources :attempts, :only => [:new, :create, :index]

@@ -1,0 +1,26 @@
+
+<table class="table table-responsive table-bordered">
+  <thead>
+  <tr>
+    <th>Title</th>
+    <th>Type</th>
+    <th colspan="3"></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% if @relations.any? %>
+      <% @relations.each do |relation| %>
+          <tr>
+            <td><%= link_to(relation.relation, relation.relation ) %></td>
+            <td><%= relation.relation_type %></td>
+            <td><%= link_to '<i class="fa fa-unlink"></i>'.html_safe, delete_relation_case_path(relation) %></td>
+          </tr>
+      <% end %>
+  <% else %>
+      <tr align="center">
+        <td colspan="11"><%= t('label_no_data') %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>

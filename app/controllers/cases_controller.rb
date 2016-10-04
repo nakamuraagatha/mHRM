@@ -1,6 +1,6 @@
 class CasesController < ApplicationController
   before_action  :authenticate_user!
-  before_action :set_case, only: [:show, :edit, :update, :destroy, :delete_sub_case_relation]
+  before_action :set_case, only: [:show, :edit, :update, :destroy, :new_relation, :delete_sub_case_relation]
 
   before_action :authorize, only: [:new, :create]
   before_action :authorize_edit, only: [:edit, :update]
@@ -19,7 +19,8 @@ class CasesController < ApplicationController
   # GET /cases/1
   # GET /cases/1.json
   def show
-    @cases = @case.sub_cases
+    @cases     = @case.sub_cases
+    @relations = @case.relations
   end
 
   # GET /cases/new
@@ -77,6 +78,38 @@ class CasesController < ApplicationController
     redirect_to cases_url
   end
 
+  def new_relation
+    if request.post?
+      @case_relation = CaseRelation.new(params.require(:case_relation).permit!)
+      case @case_relation.relation_type
+        when 'Survey' then @case_relation.relation_id = params[:survey_id]
+        when 'Task' then @case_relation.relation_id = params[:task_id]
+        when 'Case' then @case_relation.relation_id = params[:case_id]
+        else
+      end
+
+      if @case_relation.save
+        redirect_to cases_path
+      else
+        @cases = Case.root.pluck(:title, :id)
+        @tasks = Task.pluck(:title, :id)
+        @surveys = Survey::Survey.pluck(:name, :id)
+      end
+    else
+      @cases = Case.root.pluck(:title, :id)
+      @tasks = Task.pluck(:title, :id)
+      @surveys = Survey::Survey.pluck(:name, :id)
+
+      @case_relation = CaseRelation.new(case_id: @case.id, relation_type: 'Case')
+    end
+  end
+
+  def delete_relation
+    a = CaseRelation.find(params[:id])
+    a.destroy
+
+    redirect_to :back
+  end
 
   private
   # Use callbacks to share common setup or constraints between actions.
