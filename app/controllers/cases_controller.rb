@@ -73,9 +73,10 @@ class CasesController < ApplicationController
   end
 
   def delete_sub_case_relation
+    root_case  = Case.find(@case.subcase_id) rescue nil
     @case.subcase_id = nil
     @case.save
-    redirect_to cases_url
+    redirect_to root_case ? root_case : cases_url
   end
 
   def new_relation
@@ -89,7 +90,7 @@ class CasesController < ApplicationController
       end
 
       if @case_relation.save
-        redirect_to cases_path
+        redirect_to @case.case
       else
         @cases = Case.root.pluck(:title, :id)
         @tasks = Task.pluck(:title, :id)

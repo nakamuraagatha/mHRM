@@ -1,6 +1,6 @@
 class NotesController < ApplicationController
   before_action  :authenticate_user!
-  before_action :set_note, only: [:update]
+  before_action :set_note, only: [:update, :edit]
 
   def create
     @note = Note.new(note_params)
@@ -14,7 +14,11 @@ class NotesController < ApplicationController
     end
   end
 
- def update
+  def edit
+
+  end
+
+  def update
     respond_to do |format|
       if @note.update(note_params)
         format.html { redirect_to  url_back, notice: I18n.t(:notice_successful_update) }

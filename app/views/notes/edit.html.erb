@@ -1,2 +1,13 @@
-<h1>Notes#edit</h1>
-<p>Find me in app/views/notes/edit.html.erb</p>
+<section id="widget-grid" class="form_task_user">
+  <div class="row">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <%= render partial: 'form',
+                 layout: 'shared/smart_widget_wrapper',
+                 locals: {
+                         note: @note,
+                         wid_id: 'note_form',
+                         wid_title: 'Edit note'
+                 } %>
+    </article>
+  </div>
+</section>
