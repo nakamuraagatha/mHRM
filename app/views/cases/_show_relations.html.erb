@@ -12,7 +12,7 @@
   <% if @relations.any? %>
       <% @relations.each do |relation| %>
           <tr>
-            <td><%= link_to(relation.relation, relation.relation ) %></td>
+            <td><%= show_relation_path(relation) %></td>
             <td><%= relation.relation_type %></td>
             <td><%= link_to '<i class="fa fa-unlink"></i>'.html_safe, delete_relation_case_path(relation) %></td>
           </tr>

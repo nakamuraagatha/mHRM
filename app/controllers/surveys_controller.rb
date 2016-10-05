@@ -3,7 +3,7 @@ class SurveysController < ApplicationController
   before_filter :load_survey, :only => [:show, :edit, :update, :new_note]
 
   def index
-    if User.current.allowed_to?(:manage_roles)
+    if User.current.admin?
       @surveys = Survey::Survey.order('id DESC').paginate(page: params[:page], per_page: 25)
     else
       @surveys = Survey::Survey.includes(:survey_users).

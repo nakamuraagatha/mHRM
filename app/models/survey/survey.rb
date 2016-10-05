@@ -31,6 +31,10 @@ class Survey::Survey < ActiveRecord::Base
   validate  :check_active_requirements
 
 
+  def to_s
+    name
+  end
+
   def survey_type
     if survey_type_id
       super

@@ -28,7 +28,7 @@
                 <td><%= link_to 'Show attempts', attempts_path(survey_id: survey.id) %> </td>
             <% end %>
 
-            <% if User.current.allowed_to?(:manage_roles) %>
+            <% if User.current.admin? %>
                 <td><%= edit_link edit_survey_path survey %></td>
             <% end %>
 
