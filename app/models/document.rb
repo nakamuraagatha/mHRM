@@ -1,6 +1,7 @@
 class Document < ApplicationRecord
   belongs_to :document_type
   belongs_to :user
+  belongs_to :case, optional: true, foreign_key: :related_to_id
 
   validates_presence_of :title
 

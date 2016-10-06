@@ -6,6 +6,8 @@ class ChecklistTemplate < ApplicationRecord
 
   has_many :checklist_answers, dependent: :destroy
 
+  belongs_to :case, optional: true, foreign_key: :related_to_id
+
   scope :not_related, -> {where(related_to_id: nil)}
 
 

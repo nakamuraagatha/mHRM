@@ -35,7 +35,7 @@ class DocumentsController < ApplicationController
 
     respond_to do |format|
       if @document.save
-        format.html { redirect_to documents_url, notice: 'Document was successfully created.' }
+        format.html { redirect_to back_url, notice: 'Document was successfully created.' }
       else
         format.html { render :new }
       end
@@ -47,7 +47,7 @@ class DocumentsController < ApplicationController
   def update
     respond_to do |format|
       if @document.update(document_params)
-        format.html { redirect_to documents_url, notice: 'Document was successfully updated.' }
+        format.html { redirect_to back_url, notice: 'Document was successfully updated.' }
       else
         format.html { render :edit }
       end
@@ -82,5 +82,13 @@ class DocumentsController < ApplicationController
 
   def authorize_delete
     raise Unauthorized unless @document.can?(:delete_documents, :manage_documents, :manage_roles)
+  end
+
+  def back_url
+    if @document.case
+      case_url(@document.case)
+    else
+      documents_url
+    end
   end
 end

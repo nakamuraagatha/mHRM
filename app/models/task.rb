@@ -15,6 +15,8 @@ class Task < ApplicationRecord
 
   scope :root, -> {where(sub_task_id: nil)}
   scope :not_related, -> {where(related_to_id: nil)}
+  belongs_to :case, optional: true, foreign_key: :related_to_id
+
 
   after_save :send_notification
 

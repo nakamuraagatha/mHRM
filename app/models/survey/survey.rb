@@ -17,6 +17,8 @@ class Survey::Survey < ActiveRecord::Base
   has_many :survey_users
   has_many :survey_notes, foreign_key: :owner_id
 
+  belongs_to :case, optional: true, foreign_key: :related_to_id
+
 
   accepts_nested_attributes_for :questions,
                                 :reject_if => ->(q) { q[:text].blank? },

@@ -72,7 +72,7 @@ class ChecklistsController < ApplicationController
 
     respond_to do |format|
       if @checklist.save
-        format.html { redirect_to checklist_templates_url, notice: 'Template was successfully created.' }
+        format.html { redirect_to back_url, notice: 'Template was successfully created.' }
       else
         format.html { render :new }
       end
@@ -84,7 +84,7 @@ class ChecklistsController < ApplicationController
   def update
     respond_to do |format|
       if @checklist.update(checklist_template_params)
-        format.html { redirect_to checklist_templates_url, notice: 'Template was successfully updated.' }
+        format.html { redirect_to back_url, notice: 'Template was successfully updated.' }
       else
         format.html { render :edit }
       end
@@ -122,6 +122,14 @@ class ChecklistsController < ApplicationController
   def checklist_template_save_params
     params[:checklist_template][:checklist_answers_attributes] = params[:checklist_template][:checklists_attributes]
     params.require(:checklist_template).permit(ChecklistTemplate.safe_attributes_with_save)
+  end
+
+  def back_url
+    if @checklist.case
+      case_url(@checklist.case)
+    else
+      checklist_templates_url
+    end
   end
 
 end

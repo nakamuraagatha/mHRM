@@ -63,7 +63,7 @@ class SurveysController < ApplicationController
   private
 
   def default_redirect
-    redirect_to surveys_path, alert: I18n.t("surveys_controller.#{action_name}")
+    redirect_to back_url, alert: I18n.t("surveys_controller.#{action_name}")
   end
 
   def load_survey
@@ -76,6 +76,14 @@ class SurveysController < ApplicationController
 
   def params_whitelist
     params.require(:survey_survey).permit(Survey::Survey::AccessibleAttributes)
+  end
+
+  def back_url
+    if @survey.case
+      case_url(@survey.case)
+    else
+      surveys_url
+    end
   end
 
 end

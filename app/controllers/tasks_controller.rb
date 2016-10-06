@@ -58,7 +58,7 @@ class TasksController < ApplicationController
 
     respond_to do |format|
       if @task.save
-        format.html { redirect_to @task, notice: 'Task was successfully created.' }
+        format.html { redirect_to back_url, notice: 'Task was successfully created.' }
         format.json { render :show, status: :created, location: @task }
       else
         format.html { render :new }
@@ -72,7 +72,7 @@ class TasksController < ApplicationController
   def update
     respond_to do |format|
       if @task.update(task_params)
-        format.html { redirect_to @task, notice: 'Task was successfully updated.' }
+        format.html { redirect_to back_url, notice: 'Task was successfully updated.' }
         format.json { render :show, status: :ok, location: @task }
       else
         format.html { render :edit }
@@ -117,4 +117,13 @@ class TasksController < ApplicationController
   def authorize_delete
     raise Unauthorized unless @task.can?(:delete_tasks, :manage_tasks, :manage_roles)
   end
+
+  def back_url
+    if @task.case
+      case_url(@task.case)
+    else
+      tasks_url
+    end
+  end
+
 end
