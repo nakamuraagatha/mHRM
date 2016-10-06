@@ -12,6 +12,9 @@
           </ul>
       <% end -%>
 
+      <%= f.hidden_field :related_to_type %>
+      <%= f.hidden_field :related_to_id %>
+
       <div class="form-group">
         <%= f.label 'Name', class: 'col-md-2 control-label' %>
         <div class="col-md-9">

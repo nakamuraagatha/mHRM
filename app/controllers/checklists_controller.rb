@@ -9,10 +9,10 @@ class ChecklistsController < ApplicationController
 
   def index
     if User.current.admin?
-      @checklists = ChecklistTemplate.order('id DESC').paginate(page: params[:page], per_page: 25)
+      @checklists = ChecklistTemplate.not_related.order('id DESC').paginate(page: params[:page], per_page: 25)
 
     else
-      @checklists = ChecklistTemplate.joins(:checklist_users).
+      @checklists = ChecklistTemplate.not_related.joins(:checklist_users).
           where("#{ChecklistUser.table_name}.assigned_to_id = ? ", User.current.id).order('title DESC').paginate(page: params[:page], per_page: 25)
     end
   end
@@ -58,7 +58,9 @@ class ChecklistsController < ApplicationController
   end
 
   def new
-    @checklist = ChecklistTemplate.new(user_id: User.current.id)
+    @checklist = ChecklistTemplate.new(user_id: User.current.id,
+                                       related_to_id: params[:related_to],
+                                       related_to_type: params[:type])
     @checklist.checklists.build
   end
 

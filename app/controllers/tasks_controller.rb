@@ -10,7 +10,7 @@ class TasksController < ApplicationController
   # GET /tasks
   # GET /tasks.json
   def index
-    @tasks = Task.root.where(assigned_to: @user).or(Task.root.where(for_individual: @user) )
+    @tasks = Task.not_related.root.where(assigned_to: @user).or(Task.root.where(for_individual: @user) )
   end
 
   # GET /tasks/1
@@ -22,7 +22,11 @@ class TasksController < ApplicationController
 
   # GET /tasks/new
   def new
-    @task = Task.new(user_id: @user.id, assigned_to_id: @user.id, sub_task_id: params[:sub_task_id])
+    @task = Task.new(user_id: @user.id,
+                     assigned_to_id: @user.id,
+                     sub_task_id: params[:sub_task_id],
+                     related_to_id: params[:related_to],
+                     related_to_type: params[:type])
   end
 
   def add_note

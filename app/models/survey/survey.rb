@@ -7,6 +7,7 @@ class Survey::Survey < ActiveRecord::Base
                         :active,
                         :attempts_number,
                         :survey_type_id,
+                        :related_to_id, :related_to_type,
                         :questions_attributes => Survey::Question::AccessibleAttributes
 
   # relations
@@ -24,6 +25,8 @@ class Survey::Survey < ActiveRecord::Base
   # scopes
   scope :active,   -> { where(:active => true) }
   scope :inactive, -> { where(:active => false) }
+  scope :not_related, -> {where(related_to_id: nil)}
+
 
   # validations
   validates :attempts_number, :numericality => { :only_integer => true, :greater_than => -1 }

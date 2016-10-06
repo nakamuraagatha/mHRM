@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161004184055) do
+ActiveRecord::Schema.define(version: 20161006202118) do
 
   create_table "addresses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.integer  "address_type_id"
@@ -94,10 +94,12 @@ ActiveRecord::Schema.define(version: 20161004184055) do
   create_table "checklist_templates", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string   "checklist_type"
     t.integer  "user_id"
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
     t.string   "title"
-    t.text     "description",    limit: 65535
+    t.text     "description",     limit: 65535
+    t.integer  "related_to_id"
+    t.string   "related_to_type"
   end
 
   create_table "checklist_users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
@@ -191,6 +193,8 @@ ActiveRecord::Schema.define(version: 20161004184055) do
     t.string   "attachment"
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
+    t.integer  "related_to_id"
+    t.string   "related_to_type"
   end
 
   create_table "educations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
@@ -467,6 +471,8 @@ ActiveRecord::Schema.define(version: 20161004184055) do
     t.datetime "updated_at"
     t.integer  "assigned_to_id"
     t.integer  "survey_type_id"
+    t.integer  "related_to_id"
+    t.string   "related_to_type"
   end
 
   create_table "survey_users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
@@ -502,6 +508,8 @@ ActiveRecord::Schema.define(version: 20161004184055) do
     t.integer  "for_individual_id"
     t.integer  "task_status_type_id"
     t.integer  "sub_task_id"
+    t.integer  "related_to_id"
+    t.string   "related_to_type"
     t.index ["user_id"], name: "index_tasks_on_user_id", using: :btree
   end
 

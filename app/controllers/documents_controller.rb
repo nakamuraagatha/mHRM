@@ -9,7 +9,7 @@ class DocumentsController < ApplicationController
   # GET /documents
   # GET /documents.json
   def index
-    @documents = Document.visible :view_documents
+    @documents = Document.not_related.visible :view_documents
   end
 
   # GET /documents/1
@@ -19,7 +19,9 @@ class DocumentsController < ApplicationController
 
   # GET /documents/new
   def new
-    @document = Document.new(user_id: @user.id)
+    @document = Document.new(user_id: @user.id,
+                             related_to_id: params[:related_to],
+                             related_to_type: params[:type])
   end
 
   # GET /documents/1/edit

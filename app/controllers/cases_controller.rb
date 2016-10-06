@@ -21,6 +21,12 @@ class CasesController < ApplicationController
   def show
     @cases     = @case.sub_cases
     @relations = @case.relations
+
+    @tasks       = @case.tasks
+    @surveys     = @case.surveys
+    @documents   = @case.documents
+    @checklists  = @case.checklist_templates
+    @notes       = @case.case_notes
   end
 
   # GET /cases/new

@@ -4,6 +4,8 @@ class Document < ApplicationRecord
 
   validates_presence_of :title
 
+  scope :not_related, -> {where(related_to_id: nil)}
+
   has_many :document_attachments, foreign_key: :owner_id
   accepts_nested_attributes_for :document_attachments, reject_if: :all_blank, allow_destroy: true
 
@@ -25,7 +27,7 @@ class Document < ApplicationRecord
   end
 
   def self.safe_attributes
-    [:title, :description, :user_id, :document_type_id, :date, document_attachments_attributes: [Attachment.safe_attributes]]
+    [:title, :description, :related_to_id, :related_to_type, :user_id, :document_type_id, :date, document_attachments_attributes: [Attachment.safe_attributes]]
   end
 
   def to_pdf(pdf)

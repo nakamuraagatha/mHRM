@@ -8,6 +8,14 @@ class Case < ApplicationRecord
   has_many :sub_cases, foreign_key: :subcase_id, class_name: 'Case'
   has_many :relations, foreign_key: :case_id, class_name: 'CaseRelation'
 
+
+  has_many :tasks, foreign_key: :related_to_id, class_name: 'Task'
+  has_many :surveys, foreign_key: :related_to_id, class_name: 'Survey::Survey'
+  has_many :documents, foreign_key: :related_to_id, class_name: 'Document'
+  has_many :checklist_templates, foreign_key: :related_to_id, class_name: 'ChecklistTemplate'
+
+  has_many :case_notes, foreign_key: :owner_id
+
   scope :root, -> {where(subcase_id: nil)}
 
   validates_presence_of :title

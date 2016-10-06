@@ -1,0 +1,37 @@
+<table class="table table-responsive table-bordered">
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Survey type</th>
+    <th>Attempts</th>
+    <th>Last updated</th>
+    <th colspan="4"></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% if @surveys.any? %>
+      <% @surveys.each do |survey| %>
+          <tr>
+            <td><%= link_to survey.name, survey_path(survey) %></td>
+            <td><%= survey.survey_type %></td>
+            <td><%= survey.attempts.where(participant_id: User.current.id).count %></td>
+            <td><%= survey.attempts.last.answers.last.updated_at.strftime('%d/%m/%y %H:%M') rescue '' %></td>
+            <% if survey.survey_users.map(&:assigned_to_id).include?(User.current.id) %>
+                <td><%= link_to 'New attempt', new_attempt_path(survey_id: survey.id) %> </td>
+                <td><%= link_to 'Show attempts', attempts_path(survey_id: survey.id) %> </td>
+            <% end %>
+
+            <% if User.current.admin? %>
+                <td><%= edit_link edit_survey_path survey %></td>
+            <% end %>
+
+          </tr>
+      <% end %> <% else %>
+      <tr align="center">
+        <td colspan="11"><%= t('label_no_data') %></td>
+      </tr>
+  <% end %>
+
+  </tbody>
+</table>

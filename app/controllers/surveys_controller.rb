@@ -4,9 +4,9 @@ class SurveysController < ApplicationController
 
   def index
     if User.current.admin?
-      @surveys = Survey::Survey.order('id DESC').paginate(page: params[:page], per_page: 25)
+      @surveys = Survey::Survey.not_related.order('id DESC').paginate(page: params[:page], per_page: 25)
     else
-      @surveys = Survey::Survey.includes(:survey_users).
+      @surveys = Survey::Survey.not_related.includes(:survey_users).
           references(:survey_users).where("#{SurveyUser.table_name}.assigned_to_id = ?", User.current.id ).order('name DESC').paginate(page: params[:page], per_page: 25)
     end
   end
@@ -28,7 +28,8 @@ class SurveysController < ApplicationController
   end
 
   def new
-    @survey = Survey::Survey.new
+    @survey = Survey::Survey.new(  related_to_id: params[:related_to],
+                                   related_to_type: params[:type])
   end
 
   def new_note

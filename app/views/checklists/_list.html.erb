@@ -1,0 +1,32 @@
+<table class="table table-responsive table-bordered">
+  <thead>
+  <tr>
+    <th>Title</th>
+    <th>checklist type</th>
+    <th>Number of checklist</th>
+    <th colspan="3"></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% if @checklists.any? %>
+      <% @checklists.each do |checklist_template| %>
+          <tr>
+            <td><%= link_to checklist_template.title, checklist_template_path(checklist_template)%></td>
+            <td><%= checklist_template.checklist_type %></td>
+            <td><%= checklist_template.checklists.count %></td>
+
+            <% if User.current.admin? %>
+                <td><%= edit_link edit_checklist_template_path(checklist_template) %></td>
+            <% end %>
+
+            <td><%= delete_link checklist_template %></td>
+          </tr>
+      <% end %>
+  <% else %>
+      <tr align="center">
+        <td colspan="11"><%= t('label_no_data') %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>

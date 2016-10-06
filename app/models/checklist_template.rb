@@ -6,6 +6,8 @@ class ChecklistTemplate < ApplicationRecord
 
   has_many :checklist_answers, dependent: :destroy
 
+  scope :not_related, -> {where(related_to_id: nil)}
+
 
   validates_presence_of :title
 
@@ -20,7 +22,7 @@ class ChecklistTemplate < ApplicationRecord
   end
 
   def self.safe_attributes
-    [:title, :description, :user_id, :checklist_type, checklists_attributes: [Checklist.safe_attributes]]
+    [:title, :description, :user_id, :related_to_id, :related_to_type, :checklist_type, checklists_attributes: [Checklist.safe_attributes]]
   end
 
  def self.safe_attributes_with_save

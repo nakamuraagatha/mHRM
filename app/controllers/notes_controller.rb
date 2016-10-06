@@ -2,6 +2,12 @@ class NotesController < ApplicationController
   before_action  :authenticate_user!
   before_action :set_note, only: [:update, :edit]
 
+  def new
+    @note = Note.new(type: params[:type], owner_id: params[:owner_id])
+  rescue
+    render_404
+  end
+
   def create
     @note = Note.new(note_params)
 
@@ -42,6 +48,8 @@ class NotesController < ApplicationController
              :checklist_note
            elsif params[:survey_note]
              :survey_note
+           elsif params[:case_note]
+             :case_note
            else
              :note
            end
@@ -53,6 +61,8 @@ class NotesController < ApplicationController
       checklist_template_path(@note.object)
     elsif params[:survey_note]
       survey_url(@note.object)
+    elsif params[:case_note]
+      case_url(@note.object)
     else
       root_path
     end
