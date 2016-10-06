@@ -13,8 +13,7 @@
     <th><%= t('salary') %></th>
     <th><%= t('pay_rate') %></th>
     <th><%= t('employment_type') %></th>
-    <th colspan="2"></th>
-  </tr>
+   </tr>
   </thead>
 
   <tbody>
@@ -29,8 +28,6 @@
             <td><%= position.salary %></td>
             <td><%= position.pay_rate_type %></td>
             <td><%= position.employment_type %></td>
-            <td><%= edit_link(edit_position_path(position))  if position.can?(:edit_positions, :manage_positions) %></td>
-            <td><%= delete_link(position)  if position.can?(:delete_positions, :manage_positions)%></td>
           </tr>
       <% end %>
   <% else %>
