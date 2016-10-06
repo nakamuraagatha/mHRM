@@ -12,7 +12,7 @@ class Case < ApplicationRecord
   has_many :tasks, foreign_key: :related_to_id, class_name: 'Task'
   has_many :surveys, foreign_key: :related_to_id, class_name: 'Survey::Survey'
   has_many :documents, foreign_key: :related_to_id, class_name: 'Document'
-  has_many :checklist_templates, foreign_key: :related_to_id, class_name: 'ChecklistTemplate'
+  has_many :checklists, foreign_key: :assigned_to_id, class_name: 'ChecklistCase'
 
   has_many :case_notes, foreign_key: :owner_id
 

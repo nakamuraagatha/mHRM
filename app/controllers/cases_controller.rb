@@ -1,6 +1,6 @@
 class CasesController < ApplicationController
   before_action  :authenticate_user!
-  before_action :set_case, only: [:show, :edit, :update, :destroy, :new_relation, :delete_sub_case_relation]
+  before_action :set_case, only: [:new_assign, :show, :edit, :update, :destroy, :new_relation, :delete_sub_case_relation]
 
   before_action :authorize, only: [:new, :create]
   before_action :authorize_edit, only: [:edit, :update]
@@ -25,7 +25,7 @@ class CasesController < ApplicationController
     @tasks       = @case.tasks
     @surveys     = @case.surveys
     @documents   = @case.documents
-    @checklists  = @case.checklist_templates
+    @checklists  = @case.checklists.map(&:checklist_template)
     @notes       = @case.case_notes
   end
 
@@ -36,6 +36,21 @@ class CasesController < ApplicationController
 
   # GET /cases/1/edit
   def edit
+  end
+
+  def new_assign
+    if request.post?
+      @checklist = ChecklistCase.new(params.require(:checklist_case).permit!)
+
+      if @checklist.save
+        redirect_to checklist_templates_path
+      else
+        @checklists = ChecklistTemplate.order('title ASC') - ChecklistTemplate.where(id: ChecklistCase.where(assigned_to_id: User.current.id).pluck(:checklist_template_id))
+      end
+    else
+      @checklists = ChecklistTemplate.order('title ASC') - ChecklistTemplate.where(id: ChecklistCase.where(assigned_to_id: @case.id).pluck(:checklist_template_id))
+      @checklist = ChecklistCase.new(assigned_to_id: @case.id)
+    end
   end
 
   # POST /cases

@@ -107,6 +107,14 @@ RedCarpet::AccessControl.map do |map|
     map.permission :edit_cases, {:cases => [:edit, :update]},  :read => true
     map.permission :delete_cases, {:cases => [:destroy]},  :read => true
     map.permission :manage_cases, {:cases => [:new, :create, :edit, :update, :destroy]},  :read => true
+  end
+  
+ map.project_module :checklists do |map|
+    map.permission :view_checklists, {:checklists => [:index]},  :read => true
+    map.permission :create_checklists, {:checklists => [:new, :create]},  :read => true
+    map.permission :edit_checklists, {:checklists => [:edit, :update]},  :read => true
+    map.permission :delete_checklists, {:checklists => [:destroy]},  :read => true
+    map.permission :manage_checklists, {:checklists => [:new, :create, :edit, :update, :destroy]},  :read => true
  end
 
   map.project_module :employee do |map|

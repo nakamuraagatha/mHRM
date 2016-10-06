@@ -33,7 +33,6 @@ class ChecklistsController < ApplicationController
     else
       @checklists = ChecklistTemplate.order('title ASC') - ChecklistTemplate.where(id: ChecklistUser.where(assigned_to_id: User.current.id).pluck(:checklist_template_id))
       @checklist = ChecklistUser.new(assigned_to_id: User.current.id)
-
     end
   end
 
