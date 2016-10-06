@@ -13,6 +13,13 @@
       </div>
 
       <div class="form-group">
+        <%= f.label t(:label_note) , class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.text_area :note , class: 'form-control ckeditor' %>
+        </div>
+      </div>
+
+      <div class="form-group">
         <%= f.label 'Case Status', class: 'col-md-2 control-label' %>
         <div class="col-md-9">
           <%= f.select :case_status_type_id, options_for_select(CaseStatusType.active.pluck(:name, :id), selected: f.object.case_status_type.try(:id)) , {}, {class: 'col-xs-12 use_select2', style: 'padding: 0' } %>
@@ -58,13 +65,6 @@
         <%= f.label :date_completed , class: 'col-md-2 control-label' %>
         <div class="col-md-9">
           <%= f.text_field :date_completed , class: 'form-control date_picker' %>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <%= f.label t(:label_note) , class: 'col-md-2 control-label' %>
-        <div class="col-md-9">
-          <%= f.text_area :note , class: 'form-control ckeditor' %>
         </div>
       </div>
 

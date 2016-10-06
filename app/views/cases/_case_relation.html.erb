@@ -1,5 +1,5 @@
 <fieldset>
-  <legend>Survey relation</legend>
+  <legend>Case relationship</legend>
   <%= simple_form_for(case_relation, url: new_relation_case_path(@case), html: {method: 'post', class: 'form-horizontal' }) do |f| %>
       <% data = case_relation
          if data.errors.any? %>
@@ -54,7 +54,7 @@
 
       <div class="form-group" >
         <div class="col-md-11">
-          <%= link_to t('button_cancel'), surveys_path, class: 'btn btn-warning pull-right' %>
+          <%= link_to t('button_cancel'), case_path(@case), class: 'btn btn-warning pull-right' %>
           <%= f.submit t('button_save'), class: 'btn btn-primary pull-right' %>
         </div>
       </div>

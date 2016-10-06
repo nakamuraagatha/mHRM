@@ -92,14 +92,17 @@ class CasesController < ApplicationController
       if @case_relation.save
         redirect_to @case.case
       else
-        @cases = Case.root.pluck(:title, :id)
-        @tasks = Task.pluck(:title, :id)
-        @surveys = Survey::Survey.pluck(:name, :id)
+        @cases = Case.root.where(assigned_to_id: User.current.id ).pluck(:title, :id)
+        @tasks = Task.where(assigned_to_id: User.current.id ).pluck(:title, :id)
+        @surveys = Survey::Survey.includes(:survey_users).
+            references(:survey_users).where("#{SurveyUser.table_name}.assigned_to_id = ?", User.current.id ).pluck(:name, :id)
+
       end
     else
-      @cases = Case.root.pluck(:title, :id)
-      @tasks = Task.pluck(:title, :id)
-      @surveys = Survey::Survey.pluck(:name, :id)
+      @cases = Case.root.where(assigned_to_id: User.current.id ).pluck(:title, :id)
+      @tasks = Task.where(assigned_to_id: User.current.id ).pluck(:title, :id)
+      @surveys = Survey::Survey.includes(:survey_users).
+          references(:survey_users).where("#{SurveyUser.table_name}.assigned_to_id = ?", User.current.id ).pluck(:name, :id)
 
       @case_relation = CaseRelation.new(case_id: @case.id, relation_type: 'Case')
     end
