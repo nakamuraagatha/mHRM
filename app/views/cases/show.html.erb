@@ -16,8 +16,8 @@
       <%= render partial: 'show',
                  layout: 'shared/smart_widget_wrapper',
                  locals: {
-                     wid_id: 'info',
-                     wid_title: 'case'
+                         wid_id: 'info',
+                         wid_title: 'case'
                  } %>
     </article>
   </div>
@@ -29,8 +29,8 @@
       <%= render partial: 'list',
                  layout: 'shared/smart_widget_wrapper',
                  locals: {
-                     wid_id: 'subcases',
-                     wid_title: 'Sub cases'
+                         wid_id: 'subcases',
+                         wid_title: 'Sub cases'
                  } %>
     </article>
   </div>
@@ -42,9 +42,9 @@
       <%= render partial: 'notes/notes',
                  layout: 'shared/smart_widget_wrapper',
                  locals: {
-                     notes: @notes,
-                     wid_id: 'note_lists',
-                     wid_title: 'Notes'
+                         notes: @notes,
+                         wid_id: 'note_lists',
+                         wid_title: 'Notes'
                  } %>
     </article>
   </div>
@@ -58,8 +58,8 @@
           <%= render partial: 'tasks/sub_tasks',
                      layout: 'shared/smart_widget_wrapper',
                      locals: {
-                         wid_id: 'tasks',
-                         wid_title: 'tasks'
+                             wid_id: 'tasks',
+                             wid_title: 'tasks'
                      } %>
         </article>
       </div>
@@ -74,12 +74,43 @@
           <%= render partial: 'documents/list',
                      layout: 'shared/smart_widget_wrapper',
                      locals: {
-                         documents: @documents,
-                         wid_id: 'documents',
-                         wid_title: 'documents'
+                             documents: @documents,
+                             wid_id: 'documents',
+                             wid_title: 'documents'
                      } %>
         </article>
       </div>
     </section>
 <% end %>
 
+<% if module_enabled?('surveys') %>
+    <%= link_to 'New survey', new_assign_survey_case_path(@case.id), class: 'btn btn-primary pull-right btn-edition' %>
+    <section id="widget-grid" class="checklists_account">
+      <div class="row">
+        <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <%= render partial: 'surveys/list',
+                     layout: 'shared/smart_widget_wrapper',
+                     locals: {
+                             wid_id: 'surveys',
+                             wid_title: 'surveys'
+                     } %>
+        </article>
+      </div>
+    </section>
+<% end %>
+<% if module_enabled?('checklists') %>
+    <%= link_to 'New checklist', new_assign_case_path(@case.id), class: 'btn btn-primary pull-right btn-edition' %>
+    <section id="widget-grid" class="checklists_account">
+      <div class="row">
+        <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <%= render partial: 'checklists/list',
+                     layout: 'shared/smart_widget_wrapper',
+                     locals: {
+                             wid_id: 'checklists',
+                             wid_title: 'checklists'
+                     } %>
+        </article>
+      </div>
+    </section>
+
+<% end %>

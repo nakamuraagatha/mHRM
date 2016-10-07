@@ -7,7 +7,6 @@ class Survey::Survey < ActiveRecord::Base
                         :active,
                         :attempts_number,
                         :survey_type_id,
-                        :related_to_id, :related_to_type,
                         :questions_attributes => Survey::Question::AccessibleAttributes
 
   # relations

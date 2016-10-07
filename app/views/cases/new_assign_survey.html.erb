@@ -1,0 +1,13 @@
+<section id="widget-grid" class="checklists_account">
+  <div class="row">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <%= render partial: 'new_assign_survey',
+                 layout: 'shared/smart_widget_wrapper',
+                 locals: {
+                         survey: @survey,
+                         wid_id: 'survey',
+                         wid_title: 'New assign for survey'
+                 } %>
+    </article>
+  </div>
+</section>

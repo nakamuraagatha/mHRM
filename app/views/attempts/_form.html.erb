@@ -1,6 +1,7 @@
 <h1>Survey <%= @survey.name %></h1>
 <%= form_for(@attempt, :url => attempt_scope(@attempt)) do |f| %>
     <%= hidden_field_tag :survey_id, @survey.id %>
+    <%= hidden_field_tag :case_id, params[:case_id] %>
   <%= f.fields_for :answers do |builder| %>
     <ul>
       <% @survey.questions.each_with_index do |question, index| %>
