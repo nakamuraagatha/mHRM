@@ -1,0 +1,52 @@
+<div class="col-xs-12">
+  <p>
+    <strong>Title:</strong>
+    <%= @task.title %>
+  </p>
+
+  <p>
+    <strong>Description:</strong>
+    <%= @task.description.html_safe %>
+  </p>
+
+  <p>
+    <strong>Task type:</strong>
+    <%= @task.task_type%>
+  </p>
+
+  <p>
+    <strong>Priority:</strong>
+    <%= @task.priority_type %>
+  </p>
+
+  <p>
+    <strong>Assigned to:</strong>
+    <%= @task.assigned_to %>
+  </p>
+
+  <p>
+    <strong>For individual:</strong>
+    <%= @task.for_individual %>
+  </p>
+
+  <p>
+    <strong>Date start:</strong>
+    <%= @task.date_start %>
+  </p>
+
+  <p>
+    <strong>Date due:</strong>
+    <%= @task.date_due %>
+  </p>
+
+  <p>
+    <strong>Date completed:</strong>
+    <%= @task.date_completed %>
+  </p>
+  <p>
+    <strong><%= t('attachments') %>:</strong>
+    <% @task.task_attachments.each do |attachment| %>
+        <%= render 'attachments/attachment_show_only', :attachment => attachment %>
+    <% end %>
+  </p>
+</div>

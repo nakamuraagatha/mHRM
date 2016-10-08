@@ -1,8 +1,29 @@
-<% notes.each do |note| %>
-    <div class="col-xs-12 bordered">
-      <p>
-        <strong><%= note.user %>: <span style="color: blueviolet;"> <%= note.created_at.to_date %> </span> <span class="pull-right"><%= link_to "<i class='fa fa-edit'></i>".html_safe, edit_note_path(note)  %></span></strong>
-        <%= note.note.html_safe %>
-      </p>
-    </div>
-<% end %>
+<table class="table table-bordered table-responsive">
+  <thead>
+  <tr>
+    <th>User</th>
+    <th>Date</th>
+    <th>Note</th>
+    <th colspan="2"></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% if notes.any? %>
+      <% notes.each do |note| %>
+          <tr>
+            <td><%= note.user %></td>
+            <td><%= note.updated_at.to_date %></td>
+            <td><%= note.note.to_s.html_safe %></td>
+            <td><%= link_to "<i class='fa fa-edit'></i>".html_safe, edit_note_path(note)  %></td>
+            <td><%= delete_link note  %></td>
+          </tr>
+      <% end %>
+
+  <% else %>
+      <tr align="center">
+        <td colspan="11"><%= t('label_no_data') %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>

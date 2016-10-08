@@ -1,6 +1,6 @@
 class SurveysController < ApplicationController
 
-  before_filter :load_survey, :only => [:show, :edit, :update, :new_note]
+  before_filter :load_survey, :only => [:show, :edit, :update, :new_note, :destroy]
 
   def index
     if User.current.admin?
@@ -57,6 +57,14 @@ class SurveysController < ApplicationController
       default_redirect
     else
       render :action => :edit
+    end
+  end
+
+  def destroy
+    @survey.destroy
+    respond_to do |format|
+      format.html { redirect_to surveys_url, notice: 'Note was successfully destroyed.' }
+      format.json { head :no_content }
     end
   end
 

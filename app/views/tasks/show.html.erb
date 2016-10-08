@@ -1,56 +1,19 @@
 <%= render 'action_menu' %>
-<div class="col-xs-12">
-  <p>
-    <strong>Title:</strong>
-    <%= @task.title %>
-  </p>
 
-  <p>
-    <strong>Description:</strong>
-    <%= @task.description.html_safe %>
-  </p>
+<section id="widget-grid" class="form_note_list">
+  <div class="row">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <%= render partial: 'show',
+                 layout: 'shared/smart_widget_wrapper',
+                 locals: {
+                     notes: @notes,
+                     wid_id: 'note_lists',
+                     wid_title: 'Notes'
+                 } %>
+    </article>
+  </div>
+</section>
 
-  <p>
-    <strong>Task type:</strong>
-    <%= @task.task_type%>
-  </p>
-
-  <p>
-    <strong>Priority:</strong>
-    <%= @task.priority_type %>
-  </p>
-
-  <p>
-    <strong>Assigned to:</strong>
-    <%= @task.assigned_to %>
-  </p>
-
-  <p>
-    <strong>For individual:</strong>
-    <%= @task.for_individual %>
-  </p>
-
-  <p>
-    <strong>Date start:</strong>
-    <%= @task.date_start %>
-  </p>
-
-  <p>
-    <strong>Date due:</strong>
-    <%= @task.date_due %>
-  </p>
-
-  <p>
-    <strong>Date completed:</strong>
-    <%= @task.date_completed %>
-  </p>
-  <p>
-    <strong><%= t('attachments') %>:</strong>
-    <% @task.task_attachments.each do |attachment| %>
-        <%= render 'attachments/attachment_show_only', :attachment => attachment %>
-    <% end %>
-  </p>
-</div>
 <% if @tasks.any? %>
     <section id="widget-grid" class="checklists_account">
       <div class="row">
@@ -65,6 +28,19 @@
       </div>
     </section>
 <% end %>
+
 <% if can?(:manage_roles, :view_notes) %>
-    <%= render 'notes' %>
+    <section id="widget-grid-2" class="form_note_list2">
+      <div class="row">
+        <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <%= render partial: 'notes/notes',
+                     layout: 'shared/smart_widget_wrapper',
+                     locals: {
+                         notes: @notes,
+                         wid_id: 'note_lists',
+                         wid_title: 'Notes'
+                     } %>
+        </article>
+      </div>
+    </section>
 <% end %>

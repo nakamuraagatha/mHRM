@@ -6,7 +6,6 @@
   <%= link_to(t('button_edit'), edit_case_path(@case), class: 'btn btn-success pull-right') if can?(:manage_roles, :edit_cases) %>
   <%= link_to(t('button_cancel'), cases_path, class: 'btn btn-warning pull-right') %>
   <%= link_to(t('button_print'), case_path(@case, format: 'pdf'), class: 'btn btn-primary pull-right') %>
-  <%= link_to('Add subCase', new_case_path(subcase_id: @case.id), class: 'btn btn-primary pull-right') if can?(:manage_roles, :add_cases)  %>
   <%#= link_to('Add relation', new_relation_case_path(@case), class: 'btn btn-primary pull-right') if can?(:manage_roles, :add_cases)  %>
 </div>
 
@@ -23,6 +22,7 @@
   </div>
 </section>
 
+<%= link_to('Add subCase', new_case_path(subcase_id: @case.id), class: 'btn btn-primary pull-right btn-edition') if can?(:manage_roles, :add_cases)  %>
 <section id="widget-grid" class="relations_account">
   <div class="row">
     <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -35,6 +35,7 @@
     </article>
   </div>
 </section>
+
 <%= link_to 'New note', new_note_path(type: 'CaseNote', owner_id: @case.id), class: 'btn btn-primary pull-right btn-edition' %>
 <section id="widget-grid" class="form_note_list">
   <div class="row">

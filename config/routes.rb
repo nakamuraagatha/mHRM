@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
-  resources :checklist_notes, only: [:create, :update], controller: :notes
-  resources :survey_notes, only: [:create, :update], controller: :notes
-  resources :case_notes, only: [:create, :update], controller: :notes
+  resources :checklist_notes, except: [:index], controller: :notes
+  resources :survey_notes, except: [:index], controller: :notes
+  resources :case_notes, except: [:index], controller: :notes
   resources :notes, except: [:index]
 
   resources :cases do
