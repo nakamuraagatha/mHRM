@@ -45,7 +45,7 @@ class CasesController < ApplicationController
       if @checklist.save
         redirect_to checklist_templates_path
       else
-        @checklists = ChecklistTemplate.order('title ASC') - ChecklistTemplate.where(id: ChecklistCase.where(assigned_to_id: User.current.id).pluck(:checklist_template_id))
+        @checklists = ChecklistTemplate.order('title ASC') - ChecklistTemplate.where(id: ChecklistCase.where(assigned_to_id: @case.id).pluck(:checklist_template_id))
       end
     else
       @checklists = ChecklistTemplate.order('title ASC') - ChecklistTemplate.where(id: ChecklistCase.where(assigned_to_id: @case.id).pluck(:checklist_template_id))
@@ -59,11 +59,11 @@ class CasesController < ApplicationController
       if @survey.save
         redirect_to case_url(@case)
       else
-        @surveys = Survey::Survey.order('name ASC') - Survey::Survey.where(id: SurveyCase.where(assigned_to_id: User.current.id).pluck(:survey_id))
+        @surveys = Survey::Survey.order('name ASC') - Survey::Survey.where(id: SurveyCase.where(assigned_to_id: @case.id).pluck(:survey_id))
       end
     else
-      @surveys = Survey::Survey.order('name ASC') - Survey::Survey.where(id: SurveyCase.where(assigned_to_id: User.current.id).pluck(:survey_id))
-      @survey = SurveyCase.new(assigned_to_id: User.current.id)
+      @surveys = Survey::Survey.order('name ASC') - Survey::Survey.where(id: SurveyCase.where(assigned_to_id: @case.id).pluck(:survey_id))
+      @survey = SurveyCase.new(assigned_to_id: @case.id)
 
     end
   end
