@@ -17,16 +17,15 @@
             <td><%= survey.survey_type %></td>
             <td><%= survey.attempts.where(participant_id: User.current.id).count %></td>
             <td><%= survey.attempts.last.answers.last.updated_at.strftime('%d/%m/%y %H:%M') rescue '' %></td>
-            <% if survey.survey_users.map(&:assigned_to_id).include?(User.current.id) %>
-                <% if params[:controller] == 'cases' %>
-                    <td><%= link_to 'New attempt', new_attempt_path(survey_id: survey.id, c: params[:controller], case_id: @case.id) %> </td>
-                    <td><%= link_to 'Show attempts', attempts_path(survey_id: survey.id, case_id: @case.id) %> </td>
-                <% else %>
-                    <td><%= link_to 'New attempt', new_attempt_path(survey_id: survey.id) %> </td>
-                    <td><%= link_to 'Show attempts', attempts_path(survey_id: survey.id) %> </td>
-                <% end %>
 
+            <% if params[:controller] == 'cases' %>
+                <td><%= link_to 'New attempt', new_attempt_path(survey_id: survey.id, c: params[:controller], case_id: @case.id) %> </td>
+                <td><%= link_to 'Show attempts', attempts_path(survey_id: survey.id, case_id: @case.id) %> </td>
+            <% else %>
+                <td><%= link_to 'New attempt', new_attempt_path(survey_id: survey.id) %> </td>
+                <td><%= link_to 'Show attempts', attempts_path(survey_id: survey.id) %> </td>
             <% end %>
+
 
             <% if User.current.admin? %>
                 <td><%= edit_link edit_survey_path survey %></td>

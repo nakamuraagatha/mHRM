@@ -43,7 +43,7 @@ class CasesController < ApplicationController
       @checklist = ChecklistCase.new(params.require(:checklist_case).permit!)
 
       if @checklist.save
-        redirect_to checklist_templates_path
+        redirect_to checklist_template_path(@checklist.checklist_template)
       else
         @checklists = ChecklistTemplate.order('title ASC') - ChecklistTemplate.where(id: ChecklistCase.where(assigned_to_id: @case.id).pluck(:checklist_template_id))
       end
@@ -57,7 +57,7 @@ class CasesController < ApplicationController
     if request.post?
       @survey = SurveyCase.new(params.require(:survey_case).permit!)
       if @survey.save
-        redirect_to case_url(@case)
+        redirect_to new_attempt_path(survey_id: @survey.survey.id, c: params[:controller], case_id: @case.id)
       else
         @surveys = Survey::Survey.order('name ASC') - Survey::Survey.where(id: SurveyCase.where(assigned_to_id: @case.id).pluck(:survey_id))
       end

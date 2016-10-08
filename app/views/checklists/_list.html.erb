@@ -12,7 +12,7 @@
   <% if @checklists.any? %>
       <% @checklists.each do |checklist_template| %>
           <tr>
-            <td><%= link_to checklist_template.title, checklist_template_path(checklist_template)%></td>
+            <td><%= link_to checklist_template.title, checklist_template_path(checklist_template) %></td>
             <td><%= checklist_template.checklist_type %></td>
             <td><%= checklist_template.checklists.count %></td>
 
