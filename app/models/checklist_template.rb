@@ -33,6 +33,7 @@ class ChecklistTemplate < ApplicationRecord
 
   def to_pdf(pdf)
     pdf.font_size(25){  pdf.text "Checklist ##{id}", :style => :bold}
+    User.current.to_pdf_brief_info(pdf)
     pdf.text "<b>Title: </b> #{title}", :inline_format =>  true
     pdf.text "<b>Type: </b> #{checklist_type}", :inline_format =>  true
     pdf.text "<b>Description: </b> #{ActionView::Base.full_sanitizer.sanitize(description)}", :inline_format =>  true

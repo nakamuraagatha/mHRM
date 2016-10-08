@@ -1,0 +1,14 @@
+<%= render 'action_menu' %>
+
+<section id="widget-grid" class="form_note_list">
+  <div class="row">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <%= render partial: 'show',
+                 layout: 'shared/smart_widget_wrapper',
+                 locals: {
+                     wid_id: 'note_lists',
+                     wid_title: 'Note'
+                 } %>
+    </article>
+  </div>
+</section>

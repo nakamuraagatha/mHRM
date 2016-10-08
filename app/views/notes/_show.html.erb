@@ -1,0 +1,27 @@
+<div class="col-xs-12">
+  <p>
+    <strong>User:</strong>
+    <%= @note.user %>
+  </p>
+
+  <p>
+    <strong>Created at:</strong>
+    <%= @note.created_at.to_date %>
+  </p>
+
+   <p>
+    <strong>Update at:</strong>
+    <%= @note.updated_at.to_date %>
+  </p>
+
+  <p>
+    <strong>Belongs to:</strong>
+    <%= link_to @note.object, @note.object %>
+  </p>
+
+  <p>
+    <strong>Note:</strong>
+    <%= @note.note.html_safe %>
+  </p>
+  
+</div>
