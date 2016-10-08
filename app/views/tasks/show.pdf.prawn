@@ -1,3 +1,3 @@
-prawn_document(:page_layout => :landscape) do |pdf|
+prawn_document(:page_layout => :portrait) do |pdf|
  @task.to_pdf(pdf)
 end

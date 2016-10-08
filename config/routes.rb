@@ -70,6 +70,7 @@ Rails.application.routes.draw do
       post 'new_assign'
     end
   end
+  resources :survey_survey,  controller: :surveys
 
 
   # Routes For Admin

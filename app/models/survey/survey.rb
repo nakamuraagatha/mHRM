@@ -12,9 +12,11 @@ class Survey::Survey < ActiveRecord::Base
   # relations
   has_many :attempts,  :dependent => :destroy
   has_many :questions, :dependent => :destroy
-  belongs_to :survey_type, optional: true
   has_many :survey_users,  :dependent => :destroy
-  has_many :survey_notes, foreign_key: :owner_id
+  has_many :survey_notes, foreign_key: :owner_id, :dependent => :destroy
+  has_many :survey_cases, :dependent => :destroy
+
+  belongs_to :survey_type, optional: true
 
   accepts_nested_attributes_for :questions,
                                 :reject_if => ->(q) { q[:text].blank? },
