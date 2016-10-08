@@ -1,6 +1,6 @@
 class CasesController < ApplicationController
   before_action  :authenticate_user!
-  before_action :set_case, only: [:new_assign, :show, :edit, :update, :destroy, :new_relation, :delete_sub_case_relation]
+  before_action :set_case, only: [:new_assign_survey, :new_assign, :show, :edit, :update, :destroy, :new_relation, :delete_sub_case_relation]
 
   before_action :authorize, only: [:new, :create]
   before_action :authorize_edit, only: [:edit, :update]
@@ -23,7 +23,7 @@ class CasesController < ApplicationController
     @relations = @case.relations
 
     @tasks       = @case.tasks
-    @surveys     = @case.surveys
+    @surveys     = @case.surveys.map(&:survey)
     @documents   = @case.documents
     @checklists  = @case.checklists.map(&:checklist_template)
     @notes       = @case.case_notes
@@ -50,6 +50,21 @@ class CasesController < ApplicationController
     else
       @checklists = ChecklistTemplate.order('title ASC') - ChecklistTemplate.where(id: ChecklistCase.where(assigned_to_id: @case.id).pluck(:checklist_template_id))
       @checklist = ChecklistCase.new(assigned_to_id: @case.id)
+    end
+  end
+
+  def new_assign_survey
+    if request.post?
+      @survey = SurveyCase.new(params.require(:survey_case).permit!)
+      if @survey.save
+        redirect_to case_url(@case)
+      else
+        @surveys = Survey::Survey.order('name ASC') - Survey::Survey.where(id: SurveyCase.where(assigned_to_id: User.current.id).pluck(:survey_id))
+      end
+    else
+      @surveys = Survey::Survey.order('name ASC') - Survey::Survey.where(id: SurveyCase.where(assigned_to_id: User.current.id).pluck(:survey_id))
+      @survey = SurveyCase.new(assigned_to_id: User.current.id)
+
     end
   end
 

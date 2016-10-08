@@ -6,11 +6,22 @@ class AttemptsController < ApplicationController
   before_filter :normalize_attempts_data, :only => :create
 
   def index
-    @attempts = @survey.attempts.where(participant_type: 'User', participant_id: User.current)
+    if params[:case_id]
+      @attempts = @survey.attempts.where(participant_type: 'Case', participant_id: params[:case_id])
+    else
+      @attempts = @survey.attempts.where(participant_type: 'User', participant_id: User.current)
+    end
+
   end
 
   def new
-    @participant = User.current # you have to decide what to do here
+    if params[:c] == 'cases'
+      c = Case.find(params[:case_id])
+      @participant = c # you have to decide what to do here
+    else
+      @participant = User.current # you have to decide what to do here
+    end
+
 
     unless @survey.nil?
       @attempt = @survey.attempts.new
@@ -20,7 +31,12 @@ class AttemptsController < ApplicationController
 
   def create
     @attempt = @survey.attempts.new(attempt_params)
-    @attempt.participant =  User.current
+    if params[:case_id]
+      @attempt.participant =  Case.find(params[:case_id])
+    else
+      @attempt.participant =  User.current
+    end
+
 
     if @attempt.valid? && @attempt.save
       redirect_to view_context.new_attempt(survey_id: @survey.id), alert: I18n.t("attempts_controller.#{action_name}")

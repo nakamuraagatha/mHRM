@@ -10,6 +10,7 @@ Rails.application.routes.draw do
       get 'delete_relation'
       match 'new_relation', via: [:post, :get]
       match 'new_assign', via: [:post, :get]
+      match 'new_assign_survey', via: [:post, :get]
     end
   end
   resources :attempts, :only => [:new, :create, :index]
