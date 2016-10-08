@@ -6,7 +6,7 @@ class Task < ApplicationRecord
   belongs_to :task_type, optional: true
   belongs_to :task_status_type, optional: true
 
-  has_many :task_notes, dependent: :destroy
+  has_many :task_notes, foreign_key: :owner_id, dependent: :destroy
   has_many :sub_tasks, class_name: 'Task', foreign_key: :sub_task_id
 
 
@@ -17,6 +17,7 @@ class Task < ApplicationRecord
   scope :not_related, -> {where(related_to_id: nil)}
   belongs_to :case, optional: true, foreign_key: :related_to_id
 
+  validates_presence_of :title
 
   after_save :send_notification
 
@@ -45,7 +46,7 @@ class Task < ApplicationRecord
   end
 
   def to_s
-    task_type
+    title
   end
 
   def task_type

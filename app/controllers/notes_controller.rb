@@ -63,6 +63,8 @@ class NotesController < ApplicationController
              :survey_note
            elsif params[:case_note]
              :case_note
+           elsif params[:task_note]
+             :task_note
            else
              :note
            end
@@ -76,6 +78,8 @@ class NotesController < ApplicationController
       survey_url(@note.object)
     elsif params[:case_note]
       case_url(@note.object)
+    elsif params[:task_note]
+      task_url(@note.object)
     else
       root_path
     end

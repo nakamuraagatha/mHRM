@@ -16,18 +16,10 @@
 
       <%= f.hidden_field :user_id %>
       <%= f.hidden_field :assigned_to_id %>
+      <%= f.hidden_field :for_individual_id %>
       <%= f.hidden_field :related_to_type %>
       <%= f.hidden_field :related_to_id %>
       <%= f.hidden_field :sub_task_id %>
-
-      <% if can?(:manage_roles) %>
-          <div class="form-group">
-            <%= f.label :for_individual, class: 'col-md-2 control-label' %>
-            <div class="col-md-9">
-              <%= f.select :for_individual_id, options_for_select(current_user.visible.map{|user| [user.name, user.id]}.insert(0, ''), selected: f.object.for_individual_id) , {}, {class: 'col-xs-12 use_select2', style: 'padding: 0' } %>
-            </div>
-          </div>
-      <% end %>
 
       <div class="form-group">
         <%= f.label t(:title), class: 'col-md-2 control-label' %>

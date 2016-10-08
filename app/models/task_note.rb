@@ -1,9 +1,8 @@
-class TaskNote < ApplicationRecord
-  belongs_to :user
-  belongs_to :task
+class TaskNote < Note
+  belongs_to :root, foreign_key: :owner_id, class_name: 'Task'
 
-  def self.safe_attributes
-    [:note, :user_id ]
+  def object
+    root
   end
 
 end

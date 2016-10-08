@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   resources :checklist_notes, except: [:index], controller: :notes
   resources :survey_notes, except: [:index], controller: :notes
   resources :case_notes, except: [:index], controller: :notes
+  resources :task_notes, except: [:index], controller: :notes
   resources :notes, except: [:index]
 
   resources :cases do

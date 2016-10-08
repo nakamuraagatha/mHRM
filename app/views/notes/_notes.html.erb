@@ -15,8 +15,6 @@
             <td><%= link_to note.user, note %></td>
             <td><%= note.updated_at.to_date %></td>
             <td><%= note.note.to_s.html_safe %></td>
-            <td><%= link_to "<i class='fa fa-edit'></i>".html_safe, edit_note_path(note)  %></td>
-            <td><%= delete_link note  %></td>
           </tr>
       <% end %>
 
