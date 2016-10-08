@@ -24,6 +24,7 @@ class TasksController < ApplicationController
   def new
     @task = Task.new(user_id: @user.id,
                      assigned_to_id: @user.id,
+                     for_individual_id: @user.id,
                      sub_task_id: params[:sub_task_id],
                      related_to_id: params[:related_to],
                      related_to_type: params[:type])
