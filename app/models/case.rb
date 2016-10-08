@@ -20,6 +20,10 @@ class Case < ApplicationRecord
 
   validates_presence_of :title
 
+  def redirection
+    subcase_id ? Case.find(subcase_id) : self
+  end
+
   def priority_type
     if priority_id
       super

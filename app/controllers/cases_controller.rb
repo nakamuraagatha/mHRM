@@ -75,7 +75,7 @@ class CasesController < ApplicationController
 
     respond_to do |format|
       if @case.save
-        format.html { redirect_to @case, notice: 'Case was successfully created.' }
+        format.html { redirect_to back_url, notice: 'Case was successfully created.' }
         format.json { render :show, status: :created, location: @case }
       else
         format.html { render :new }
@@ -89,7 +89,7 @@ class CasesController < ApplicationController
   def update
     respond_to do |format|
       if @case.update(case_params)
-        format.html { redirect_to @case, notice: 'Case was successfully updated.' }
+        format.html { redirect_to back_url, notice: 'Case was successfully updated.' }
         format.json { render :show, status: :ok, location: @case }
       else
         format.html { render :edit }
@@ -170,6 +170,10 @@ class CasesController < ApplicationController
 
   def authorize_delete
     raise Unauthorized unless @case.can?(:delete_cases, :manage_cases, :manage_roles)
+  end
+
+  def back_url
+    @case.redirection
   end
 
 end

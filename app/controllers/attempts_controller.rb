@@ -39,8 +39,14 @@ class AttemptsController < ApplicationController
 
 
     if @attempt.valid? && @attempt.save
-      redirect_to view_context.new_attempt(survey_id: @survey.id), alert: I18n.t("attempts_controller.#{action_name}")
-    else
+      if params[:case_id]
+        redirect_to view_context.new_attempt(survey_id: @survey.id, case_id: params[:case_id]), alert: I18n.t("attempts_controller.#{action_name}")
+
+      else
+        redirect_to view_context.new_attempt(survey_id: @survey.id), alert: I18n.t("attempts_controller.#{action_name}")
+
+      end
+       else
       render :action => :new
     end
   end

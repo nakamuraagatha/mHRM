@@ -86,7 +86,7 @@ class DocumentsController < ApplicationController
 
   def back_url
     if @document.case
-      case_url(@document.case)
+      @document.case
     else
       documents_url
     end

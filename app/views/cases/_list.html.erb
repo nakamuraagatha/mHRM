@@ -26,11 +26,6 @@
             <td><%= c.date_start %></td>
             <td><%= c.date_due %></td>
             <td><%= c.date_completed %></td>
-            <td><%= edit_link edit_case_path(c) %></td>
-            <td><%= delete_link c %></td>
-            <% if params[:action] == 'show' %>
-               <td><%= link_to '<i class="fa fa-unlink"></i>'.html_safe, delete_sub_case_relation_case_path(c) %></td>
-            <% end %>
           </tr>
       <% end %>
   <% else %>
