@@ -8,4 +8,5 @@
   <%= link_to t('button_print'), task_path(@task, format: 'pdf'), class: 'btn btn-primary pull-right' %>
   <%= link_to( "Add note", new_note_path(type: 'TaskNote', owner_id: @task.id), class: 'btn btn-success pull-right') if can?(:add_notes, :manage_roles) %>
   <%= link_to( "Add sub task", new_task_path(sub_task_id: @task.id), class: 'btn btn-success pull-right') %>
+  <%= link_to 'Unlink', delete_sub_task_relation_task_path(@task), class: 'btn btn-primary pull-right' if @task.related_to_id %>
 </div>

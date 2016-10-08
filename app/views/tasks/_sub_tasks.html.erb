@@ -29,9 +29,6 @@
             <td><%= task.date_completed %></td>
             <!--<td><%#= edit_link(edit_task_path(task))  if task.can?(:edit_tasks, :manage_tasks) %></td>-->
             <!--<td><%#= delete_link(task)  if task.can?(:delete_tasks, :manage_tasks)%></td>-->
-           <% if params[:action] == 'show' %>
-                <td><%= link_to '<i class="fa fa-unlink"></i>'.html_safe, delete_sub_task_relation_task_path(task) %></td>
-            <% end %>
           </tr>
       <% end %>
 
