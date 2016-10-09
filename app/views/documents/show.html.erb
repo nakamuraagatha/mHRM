@@ -4,7 +4,7 @@
               :data => {:confirm => t(:text_are_you_sure)}
   %>
   <%= link_to 'Edit', edit_document_path(@document), class: 'btn btn-success pull-right' %>
-  <%= link_to t('button_cancel'), documents_path, class: 'btn btn-warning pull-right' %>
+  <%= link_to t('button_cancel'), back_url(@document), class: 'btn btn-warning pull-right' %>
   <%= link_to t('button_print'), document_path(@document, format: 'pdf'), class: 'btn btn-primary pull-right' %>
 </div>
 <div class="col-xs-12">

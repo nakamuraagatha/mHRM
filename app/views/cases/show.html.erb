@@ -4,7 +4,7 @@
               :data => {:confirm => t(:text_are_you_sure)}) if can?(:manage_roles, :delete_cases)
   %>
   <%= link_to(t('button_edit'), edit_case_path(@case), class: 'btn btn-success pull-right') if can?(:manage_roles, :edit_cases) %>
-  <%= link_to(t('button_cancel'), cases_path, class: 'btn btn-warning pull-right') %>
+  <%= link_to(t('button_cancel'), case_back_url(@case), class: 'btn btn-warning pull-right') %>
   <%= link_to(t('button_print'), case_path(@case, format: 'pdf'), class: 'btn btn-primary pull-right') %>
   <%#= link_to('Add relation', new_relation_case_path(@case), class: 'btn btn-primary pull-right') if can?(:manage_roles, :add_cases)  %>
   <%= link_to 'Unlink', delete_sub_case_relation_case_path(@case), class: 'btn btn-primary pull-right' if @case.subcase_id %>
