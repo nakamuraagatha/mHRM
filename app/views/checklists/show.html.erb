@@ -3,7 +3,7 @@
               :method => :delete,
               :data => {:confirm => t(:text_are_you_sure)}
   %>
-  <%= link_to t('button_cancel'), checklist_templates_path, class: 'btn btn-warning pull-right' %>
+  <%= link_to t('button_cancel'), :back, class: 'btn btn-warning pull-right' %>
   <%= link_to t('button_print'), checklist_template_path(@checklist, format: 'pdf'), class: 'btn btn-primary pull-right' %>
   <%= link_to 'New note' , new_note_checklist_template_path(@checklist), class: 'btn btn-primary pull-right' %>
 </div>
