@@ -6,4 +6,9 @@ module CasesHelper
       link_to(relation.relation, relation.relation )
     end
   end
+
+  def case_back_url obj
+    obj.subcase_id ? obj.case : documents_path
+  end
+
 end

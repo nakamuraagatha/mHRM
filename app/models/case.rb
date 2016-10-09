@@ -4,6 +4,7 @@ class Case < ApplicationRecord
   belongs_to :case_type, optional: true
   belongs_to :case_category, optional: true, foreign_key: :case_category_type_id
   belongs_to :case_status_type, optional: true
+  belongs_to :case, optional: true, foreign_key: :subcase_id
 
   has_many :sub_cases, foreign_key: :subcase_id, class_name: 'Case'
   has_many :relations, foreign_key: :case_id, class_name: 'CaseRelation'
